@@ -111,6 +111,25 @@
             "Text1": "At M.A.H.Y. Khoory Group, our purpose is to deliver solutions that enrich lives while protecting the planet.",
             "Text2": "We combine innovation, sustainability, and technology to create cost-effective products and services that empower communities, drive progress, and safeguard the environment for future generations."
         },
+        "Explore": {
+            "Heading": "The Next",
+            "Text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ex modi voluptas, quidem, suscipit",
+            "Label1": "Experience",
+            "Heading1": "Lorem ipsum dolor sit amet consectetur",
+            "Text1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ex modi voluptas, quidem, suscipit",
+            "Label2": "Insight",
+            "Heading2": "Lorem ipsum dolor sit amet consectetur",
+            "Text2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ex modi voluptas, quidem, suscipit",
+            "Label3": "Innovate",
+            "Heading3": "Lorem ipsum dolor sit amet consectetur",
+            "Text3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ex modi voluptas, quidem, suscipit",
+            "Label4": "Accelerate",
+            "Heading4": "Lorem ipsum dolor sit amet consectetur",
+            "Text4": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ex modi voluptas, quidem, suscipit",
+            "Label5": "Assure",
+            "Heading5": "Lorem ipsum dolor sit amet consectetur",
+            "Text5": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere ex modi voluptas, quidem, suscipit"
+        },
         "History": {
             "Heading": "Our History",
             "Text": "M.A.H.Y. Khoory - Corporate Evolution Timeline",

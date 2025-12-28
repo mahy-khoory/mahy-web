@@ -11,6 +11,7 @@ import HistoryTimelineClient from "@/components/HistoryTimelineClient";
 import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
 import ManufacturingNetworkMap from "@/components/UI/about-us/ManufacturingNetworkMap";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
+import Explore from "@/components/UI/about-us/Explore";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");
@@ -148,6 +149,7 @@ async function About() {
       <Breadcrumb segments={[{ label: t("Page"), href: "/about-us" }]} locale={locale} />
       <MissionStatement missionStatement={missionStatement} />
       <Purpose purpose={purpose} />
+      <Explore />
       <div className="py-16 lg:py-24 border-b border-gray-300">
         <History history={history} />
       </div>
