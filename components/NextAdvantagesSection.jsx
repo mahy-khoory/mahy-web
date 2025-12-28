@@ -2,40 +2,39 @@
 
 import AdvantageGridItem from "./AdvantageGridItem";
 
-export default function NextAdvantagesSection() {
+export default function NextAdvantagesSection({ advantages }) {
   const items = {
     experience: {
-      title: "Experience",
+      title: advantages.items[0].title,
       image:
         "https://images.unsplash.com/photo-1682686581264-c47e25e61d95?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      heading: "Design-led transformation. From brand to experience",
-      description:
-        "Create unified digital experiences to enhance customer experience and build loyalty",
+      heading: advantages.items[0].heading,
+      description: advantages.items[0].description,
     },
     insight: {
-      title: "Insight",
+      title: advantages.items[1].title,
       image:
         "https://images.unsplash.com/photo-1653158861306-e5b3804f6115?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      heading: "Do 100x more. Do it yourself",
-      description: "Build an analytics-driven enterprise to monetize data",
+      heading: advantages.items[1].heading,
+      description: advantages.items[1].description
     },
     innovate: {
-      title: "Innovate",
+      title: advantages.items[2].title,
       image:
         "https://plus.unsplash.com/premium_photo-1664304869167-130629c66932?q=80&w=734&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Build an analytics-driven enterprise to monetize data",
+      description: advantages.items[2].description,
     },
     accelerate: {
-      title: "Accelerate",
+      title: advantages.items[3].title,
       image:
         "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Build an analytics-driven enterprise to monetize data",
+      description: advantages.items[3].description,
     },
     assure: {
-      title: "Assure",
+      title: advantages.items[4].title,
       image:
         "https://images.unsplash.com/photo-1634402149804-67614eb48331?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Build an analytics-driven enterprise to monetize data",
+      description: advantages.items[4].description,
     },
   };
 
@@ -52,12 +51,12 @@ export default function NextAdvantagesSection() {
         </div>
 
         <h2 className="text-[42px] sm:text-[50px] lg:text-[56px] font-semibold leading-[1] tracking-tight text-black">
-          The next
+          {advantages.heading}
         </h2>
 
         <p className="mx-auto mt-5 sm:mt-6 max-w-3xl text-[22px] sm:text-[28px] lg:text-[34px] font-light leading-[1.2] text-gray-500">
-          We bring you powerful advantages to <br className="hidden sm:block" />
-          navigate your digital transformation
+          {advantages.text1} <br className="hidden sm:block" />
+          {advantages.text2}
         </p>
       </div>
 

@@ -13,24 +13,24 @@ import SustainabilityPanels from "@/components/SustainabilityPanels";
 import NextAdvantagesSection from "@/components/NextAdvantagesSection";
 
 export default async function Home() {
-  const translations = await getTranslations("HomePage");
+  const t = await getTranslations("HomePage");
 
   const slides = [
     {
-      title: translations("Hero1Title"),
-      subtitle: translations("Hero1Subtitle"),
-      cta: { label: translations("Hero1CtaLabel") },
+      title: t("Hero1Title"),
+      subtitle: t("Hero1Subtitle"),
+      cta: { label: t("Hero1CtaLabel") },
     },
     {
-      title: translations("Hero2Title"),
-      subtitle: translations("Hero2Subtitle"),
-      cta: { label: translations("Hero2CtaLabel") },
-      otherCta: { label: translations("Hero2OtherCtaLabel") },
+      title: t("Hero2Title"),
+      subtitle: t("Hero2Subtitle"),
+      cta: { label: t("Hero2CtaLabel") },
+      otherCta: { label: t("Hero2OtherCtaLabel") },
     },
     {
-      title: translations("Hero3Title"),
-      subtitle: translations("Hero3Subtitle"),
-      cta: { label: translations("Hero3CtaLabel") },
+      title: t("Hero3Title"),
+      subtitle: t("Hero3Subtitle"),
+      cta: { label: t("Hero3CtaLabel") },
     },
   ];
 
@@ -83,21 +83,33 @@ export default async function Home() {
     },
   ];
   const floatingMenuItems = [
-    translations("FloatingMenu.Item1"),
-    translations("FloatingMenu.Item2"),
-    translations("FloatingMenu.Item3"),
-    translations("FloatingMenu.Item4"),
-    translations("FloatingMenu.Item5"),
-    translations("FloatingMenu.Item6"),
-    translations("FloatingMenu.Item7"),
+    t("FloatingMenu.Item1"),
+    t("FloatingMenu.Item2"),
+    t("FloatingMenu.Item3"),
+    t("FloatingMenu.Item4"),
+    t("FloatingMenu.Item5"),
+    t("FloatingMenu.Item6"),
+    t("FloatingMenu.Item7"),
   ];
   const galleryItems = [
-    translations("Gallery.Item1"),
-    translations("Gallery.Item2"),
-    translations("Gallery.Item3"),
-    translations("Gallery.Item4"),
-    translations("Gallery.Item5"),
+    t("Gallery.Item1"),
+    t("Gallery.Item2"),
+    t("Gallery.Item3"),
+    t("Gallery.Item4"),
+    t("Gallery.Item5"),
   ];
+  const advantages = {
+    heading: t("Advantages.Heading"),
+    text1: t("Advantages.Text1"),
+    text2: t("Advantages.Text2"),
+    items: [
+      { title: t("Advantages.Title1"), heading: t("Advantages.Heading1"), description: t("Advantages.Description1") },
+      { title: t("Advantages.Title2"), heading: t("Advantages.Heading2"), description: t("Advantages.Description2") },
+      { title: t("Advantages.Title3"), description: t("Advantages.Description3") },
+      { title: t("Advantages.Title4"), description: t("Advantages.Description4") },
+      { title: t("Advantages.Title5"), description: t("Advantages.Description5") }
+    ]
+  }
 
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
@@ -107,7 +119,7 @@ export default async function Home() {
         <HeroVideo slides={slides} />
       </div>
 
-      <NextAdvantagesSection/>
+      <NextAdvantagesSection advantages={advantages} />
 
       <section id="about">
         <DesignProcessContainer />
