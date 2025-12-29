@@ -54,13 +54,11 @@ function TopFilter({ topFilters, locale }) {
             {/* Horizontal scroll container */}
             <div className='flex gap-4 flex-nowrap overflow-x-scroll hide-scrollbar' ref={containerRef}>
                 {items.map((item, i) => (
-                    <button
-                        onClick={() => setIndex(i)}
-                        className={`flex-none transition-all h-35 duration-500 w-50 bg-gray-50 rounded-xl px-5 py-4 ${i === index && "w-70 border flex items-center gap-4"}`}
-                        key={i}
-                    >
+                    <button key={i} onClick={() => setIndex(i)}
+                        className={`flex-none transition-all h-35 duration-500 w-50 bg-gray-50 rounded-xl px-5 py-4 
+                            ${i === index && "w-70 border flex items-center gap-4"}`}>
                         <div>
-                            <p className='text-sm font-medium mb-2'>{item.label}</p>
+                            <p className={`text-sm font-medium mb-2 ${i !== index && "h-9"}`}>{item.label}</p>
                             {i === index && <p className='text-gray-600 text-xs'>{item.text}</p>}
                         </div>
                         <div className="flex justify-center">
