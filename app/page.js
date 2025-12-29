@@ -11,6 +11,7 @@ import WhyUsContainer from "@/components/UI/home/WhyUsContainer";
 import MissionVisionValuesSection from "@/components/MissionVisionValuesSection";
 import SustainabilityPanels from "@/components/SustainabilityPanels";
 import NextAdvantagesSection from "@/components/NextAdvantagesSection";
+import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -120,6 +121,8 @@ export default async function Home() {
       </div>
 
       <NextAdvantagesSection advantages={advantages} />
+
+      <ImageSlideShow />
 
       <section id="about">
         <DesignProcessContainer />
