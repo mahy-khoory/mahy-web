@@ -58,7 +58,7 @@ export default function ManufacturingNetworkMap({ data, locations }) {
 
   const animRef = useRef({ raf: null, start: 0 });
   const hoverStateRef = useRef(false);
-  const controlsRef = useRef({ start: () => { }, stop: () => { } });
+  const controlsRef = useRef({ start: () => {}, stop: () => {} });
   const worldDataRef = useRef(null);
 
   useEffect(() => {
@@ -132,10 +132,7 @@ export default function ManufacturingNetworkMap({ data, locations }) {
       .scale((isCompactMap ? 520 : 365) * scaleFactor)
       .translate(
         isCompactMap
-          ? [
-            width * 0.58,
-            height * 0.6,
-          ]
+          ? [width * 0.58, height * 0.6]
           : [width * 0.52, height * 0.53]
       );
 
@@ -161,11 +158,8 @@ export default function ManufacturingNetworkMap({ data, locations }) {
       ctx.fillStyle = "#111827";
       ctx.textAlign = "center";
       ctx.textBaseline = "bottom";
-
-      // Lift label above line like reference
       ctx.fillText(label, px, py - 34);
 
-      // Vertical leader line
       ctx.beginPath();
       ctx.moveTo(px, py - 26);
       ctx.lineTo(px, py - 10);
@@ -205,12 +199,36 @@ export default function ManufacturingNetworkMap({ data, locations }) {
       ctx.fill();
 
       // Pulse rings (your existing behavior, just slightly softer)
+      // pulseProgress.forEach((progress) => {
+      //   const radius = 18 + progress * 52;
+      //   const alpha = 0.34 * (1 - progress);
+      //   ctx.beginPath();
+      //   ctx.arc(px, py, radius, 0, Math.PI * 2);
+      //   ctx.strokeStyle = `rgba(45,105,255,${alpha})`;
+      //   ctx.lineWidth = 2;
+      //   ctx.stroke();
+      // });
+
       pulseProgress.forEach((progress) => {
         const radius = 18 + progress * 52;
-        const alpha = 0.34 * (1 - progress);
+
+        // 🔵 Dark near pin → light as it expands
+        const gradient = ctx.createRadialGradient(
+          px,
+          py,
+          radius * 0.15, // inner (near pin)
+          px,
+          py,
+          radius // outer
+        );
+
+        gradient.addColorStop(0, "rgba(45,105,255,0.55)"); // dark blue
+        gradient.addColorStop(0.45, "rgba(45,105,255,0.35)");
+        gradient.addColorStop(1, "rgba(167,176,255,0.15)"); // light blue
+
         ctx.beginPath();
         ctx.arc(px, py, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(45,105,255,${alpha})`;
+        ctx.strokeStyle = gradient;
         ctx.lineWidth = 2;
         ctx.stroke();
       });
@@ -365,23 +383,23 @@ export default function ManufacturingNetworkMap({ data, locations }) {
 
     controlsRef.current = { start: startAnimation, stop: stopAnimation };
 
-    function handleMove(e) {
-      const rect = canvas.getBoundingClientRect();
-      const mx = ((e.clientX - rect.left) / rect.width) * width;
-      const my = ((e.clientY - rect.top) / rect.height) * height;
-      const [px, py] = pinPxRef.current;
+    // function handleMove(e) {
+    //   const rect = canvas.getBoundingClientRect();
+    //   const mx = ((e.clientX - rect.left) / rect.width) * width;
+    //   const my = ((e.clientY - rect.top) / rect.height) * height;
+    //   const [px, py] = pinPxRef.current;
 
-      const hitRadius = 40 * (width / baseWidth);
-      const hit = Math.hypot(mx - px, my - py) <= hitRadius;
-      setIsPinHovered(hit);
-    }
+    //   const hitRadius = 40 * (width / baseWidth);
+    //   const hit = Math.hypot(mx - px, my - py) <= hitRadius;
+    //   setIsPinHovered(hit);
+    // }
 
-    function handleLeave() {
-      setIsPinHovered(false);
-    }
+    // function handleLeave() {
+    //   setIsPinHovered(false);
+    // }
 
-    canvas.addEventListener("mousemove", handleMove);
-    canvas.addEventListener("mouseleave", handleLeave);
+    // canvas.addEventListener("mousemove", handleMove);
+    // canvas.addEventListener("mouseleave", handleLeave);
 
     async function loadWorld() {
       if (worldDataRef.current) return worldDataRef.current;
@@ -430,8 +448,8 @@ export default function ManufacturingNetworkMap({ data, locations }) {
 
     return () => {
       destroyed = true;
-      canvas.removeEventListener("mousemove", handleMove);
-      canvas.removeEventListener("mouseleave", handleLeave);
+      // canvas.removeEventListener("mousemove", handleMove);
+      // canvas.removeEventListener("mouseleave", handleLeave);
       if (animRef.current.raf) cancelAnimationFrame(animRef.current.raf);
     };
   }, [primaryPin, networkPins, canvasSize]);
@@ -441,6 +459,17 @@ export default function ManufacturingNetworkMap({ data, locations }) {
     if (isPinHovered) controlsRef.current.start();
     else controlsRef.current.stop();
   }, [isPinHovered]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsPinHovered(true);
+      setTimeout(() => {
+        setIsPinHovered(false);
+      }, waveDuration + 150);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="pb-16 sm:pb-20">
