@@ -12,6 +12,7 @@ import MissionVisionValuesSection from "@/components/MissionVisionValuesSection"
 import SustainabilityPanels from "@/components/SustainabilityPanels";
 import NextAdvantagesSection from "@/components/NextAdvantagesSection";
 import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
+import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -123,6 +124,7 @@ export default async function Home() {
       <NextAdvantagesSection advantages={advantages} />
 
       <ImageSlideShow />
+      <ScrollSectionWithImages />
 
       <section id="about">
         <DesignProcessContainer />
