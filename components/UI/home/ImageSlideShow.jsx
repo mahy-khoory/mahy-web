@@ -3,13 +3,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
-export default function ImageSlideShow() {
+export default function ImageSlideShow({ data, locale }) {
     const items = [
-        { title: "Close up", subTitle: "35mm", image: "/gallery/gallery-1.jpg" },
-        { title: "Portrait Shot", subTitle: "50mm", image: "/gallery/gallery-2.jpg" },
-        { title: "Camera Shot", subTitle: "30mm", image: "/gallery/gallery-3.jpg" },
-        { title: "Narrative Shot", subTitle: "45mm", image: "/gallery/gallery-4.jpg" },
-        { title: "Classic Shot", subTitle: "65mm", image: "/gallery/gallery-5.jpg" },
+        { title: data[0].title, subTitle: data[0].subTitle, image: "/gallery/gallery-1.jpg" },
+        { title: data[1].title, subTitle: data[1].subTitle, image: "/gallery/gallery-2.jpg" },
+        { title: data[2].title, subTitle: data[2].subTitle, image: "/gallery/gallery-3.jpg" },
+        { title: data[3].title, subTitle: data[3].subTitle, image: "/gallery/gallery-4.jpg" },
+        { title: data[4].title, subTitle: data[4].subTitle, image: "/gallery/gallery-5.jpg" },
     ];
 
     const [index, setIndex] = useState(0);
@@ -54,21 +54,30 @@ export default function ImageSlideShow() {
             </div>
             {/* CONTROLS */}
             <div className="flex justify-center gap-4 mt-4">
-                <button
-                    onClick={() =>
-                        setIndex((i) => (i - 1 + items.length) % items.length)
-                    }
-                    className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition"
-                >
-                    <HiChevronLeft className="text-2xl" />
-                </button>
-                <button
-                    onClick={() => setIndex((i) => (i + 1) % items.length)}
-                    className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition"
-                >
-                    <HiChevronRight className="text-2xl" />
-                </button>
-            </div>
-        </div>
+                {locale === "ar" ? (
+                    <>
+                        <button onClick={() => setIndex((i) => (i + 1) % items.length)}
+                            className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition">
+                            <HiChevronRight className="text-2xl" />
+                        </button>
+                        <button onClick={() => setIndex((i) => (i - 1 + items.length) % items.length)}
+                            className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition">
+                            <HiChevronLeft className="text-2xl" />
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button onClick={() => setIndex((i) => (i - 1 + items.length) % items.length)}
+                            className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition">
+                            <HiChevronLeft className="text-2xl" />
+                        </button>
+                        <button onClick={() => setIndex((i) => (i + 1) % items.length)}
+                            className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition">
+                            <HiChevronRight className="text-2xl" />
+                        </button>
+                    </>
+                )}
+            </div >
+        </div >
     );
 }

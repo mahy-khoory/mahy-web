@@ -14,27 +14,27 @@ const itemVariants = {
     }),
 };
 
-function ScrollSectionWithImages() {
+function ScrollSectionWithImages({ data }) {
     const items = [
         {
-            title: "The power of DXC",
-            title2: "people and technology.",
-            text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam optio autem quis quia assumenda necessitatibus tenetur commodi rem ipsa, accusamus fugit officia doloremque vero architecto numquam vitae temporibus aliquid est.",
-            cta: "Join our team",
+            title1: data[0].title1,
+            title2: data[0].title2,
+            text: data[0].text,
+            cta: data[0].cta,
             image: "/gallery/gallery-1.jpg"
         },
         {
-            title: "The power of DXC",
-            title2: "people and technology.",
-            text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam optio autem quis quia assumenda necessitatibus tenetur commodi rem ipsa, accusamus fugit officia doloremque vero architecto numquam vitae temporibus aliquid est.",
-            cta: "Join our team",
+            title1: data[1].title1,
+            title2: data[1].title2,
+            text: data[1].text,
+            cta: data[1].cta,
             image: "/gallery/gallery-2.jpg"
         },
         {
-            title: "The power of DXC",
-            title2: "people and technology.",
-            text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam optio autem quis quia assumenda necessitatibus tenetur commodi rem ipsa, accusamus fugit officia doloremque vero architecto numquam vitae temporibus aliquid est.",
-            cta: "Join our team",
+            title1: data[2].title1,
+            title2: data[2].title2,
+            text: data[2].text,
+            cta: data[2].cta,
             image: "/gallery/gallery-3.jpg"
         }
     ];
@@ -78,13 +78,13 @@ function ScrollSectionWithImages() {
                                 data-index={i}>
                                 <div className="md:h-40">
                                     <div className="px-5 md:px-0 pt-20 md:pt-0">
-                                        <p className="text-3xl md:text-5xl font-bold">{item.title}</p>
+                                        <p className="text-3xl md:text-5xl font-bold">{item.title1}</p>
                                         <p className="text-3xl md:text-5xl font-bold t-base mt-1 md:mt-3">{item.title2}</p>
                                         <p className="mt-8 md:mt-15">{item.text}</p>
                                         <PrimaryButton label={item.cta} className={"mt-8 md:mt-10"} />
                                     </div>
                                     <div className="relative h-80 w-full md:hidden mt-15">
-                                        <Image src={item.image} alt={item.title} fill style={{ objectFit: "cover" }} />
+                                        <Image src={item.image} alt={item.title1} fill style={{ objectFit: "cover" }} />
                                     </div>
                                 </div>
                             </motion.div>
@@ -97,7 +97,7 @@ function ScrollSectionWithImages() {
                             <div key={i} className={`${i === currentIndex ? "h-8/10 z-10" : "h-1/10"} 
                                 relative w-full bg-blue-100 rounded-2xl overflow-hidden transition-all duration-800`}>
                                 {i === currentIndex && (
-                                    <Image src={item.image} alt={item.title} fill style={{ objectFit: "cover" }} />
+                                    <Image src={item.image} alt={item.title1} fill style={{ objectFit: "cover" }} />
                                 )}
                             </div>
                         ))}

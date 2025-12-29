@@ -3,37 +3,42 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 
-function TopFilter() {
+function TopFilter({ topFilters, locale }) {
     const items = [
-        { label: "Pumping Solutions", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Turnkey Projects", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "System Engineering & Design", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Energy Efficient Solutions", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Digital Pump Solution", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Interior & Kitchen Solutions", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Fit-Out & Joinery Solutions", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Industry-Specific Packages", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" },
-        { label: "Emergency & Critical Applications", image: "/products/pump.png", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nesciunt ab" }
+        { label: topFilters[0].label, image: "/products/pump.png", text: topFilters[0].text },
+        { label: topFilters[1].label, image: "/products/pump.png", text: topFilters[1].text },
+        { label: topFilters[2].label, image: "/products/pump.png", text: topFilters[2].text },
+        { label: topFilters[3].label, image: "/products/pump.png", text: topFilters[3].text },
+        { label: topFilters[4].label, image: "/products/pump.png", text: topFilters[4].text },
+        { label: topFilters[5].label, image: "/products/pump.png", text: topFilters[5].text },
+        { label: topFilters[6].label, image: "/products/pump.png", text: topFilters[6].text },
+        { label: topFilters[7].label, image: "/products/pump.png", text: topFilters[7].text },
+        { label: topFilters[8].label, image: "/products/pump.png", text: topFilters[8].text }
     ];
     const [index, setIndex] = useState(0);
     const [scrollProgress, setScrollProgress] = useState(0);
     const containerRef = useRef(null);
 
+    const getRTLScrollLeft = (el) => {
+        if (el.scrollLeft < 0) return Math.abs(el.scrollLeft);
+        return el.scrollWidth - el.clientWidth - el.scrollLeft;
+    };
+
     const updateScroll = () => {
         const container = containerRef.current;
         if (!container) return;
-
-        const scrollLeft = container.scrollLeft;
         const maxScroll = container.scrollWidth - container.clientWidth;
-        const percentage = (scrollLeft / maxScroll) * 100;
-        setScrollProgress(percentage);
+
+        if (maxScroll <= 0) return;
+        const scroll = locale === "ar" ? getRTLScrollLeft(container) : container.scrollLeft;
+
+        const percentage = (scroll / maxScroll) * 100;
+        if (percentage === 100 && locale === "ar") setScrollProgress(0);
+        else setScrollProgress(percentage);
     };
 
     const scrollBy = (amount) => {
-        containerRef.current.scrollBy({
-            left: amount,
-            behavior: 'smooth'
-        });
+        containerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
     };
 
     useEffect(() => {
@@ -70,15 +75,25 @@ function TopFilter() {
             {/* Scroll progress and buttons */}
             <div className='flex mt-6 items-center gap-8 max-w-lg md:max-w-xl mx-auto px-4'>
                 <div className='bg-gray-200 h-2 w-11/12 relative rounded-2xl overflow-hidden'>
-                    <div className='absolute left-0 top-0 bottom-0 b-base rounded-2xl' style={{ width: `${scrollProgress}%` }} />
+                    <div className={`absolute bottom-0 top-0 ${locale === "ar" ? "right-0" : "left-0"} bottom-0 b-base rounded-2xl`} style={{ width: `${scrollProgress}%` }} />
                 </div>
                 <div className='flex gap-1 w-1/12 justify-center'>
-                    <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(-200)}>
-                        <ChevronLeft color='gray' />
-                    </button>
-                    <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(200)}>
-                        <ChevronRight color='gray' />
-                    </button>
+                    {locale === "ar" ? (
+                        <>
+                            <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(200)}>
+                                <ChevronRight color='gray' />
+                            </button>
+                            <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(-200)}>
+                                <ChevronLeft color='gray' />
+                            </button></>
+                    ) : (<>
+                        <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(-200)}>
+                            <ChevronLeft color='gray' />
+                        </button>
+                        <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(200)}>
+                            <ChevronRight color='gray' />
+                        </button>
+                    </>)}
                 </div>
             </div>
         </div>

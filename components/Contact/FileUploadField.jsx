@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FiUploadCloud, FiFileText } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 export default function FileUploadField({ label, register, error, upload }) {
   const [fileName, setFileName] = useState(null);
@@ -40,7 +41,7 @@ export default function FileUploadField({ label, register, error, upload }) {
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (!file || file.size > 5 * 1024 * 1024) {
-              alert("File must be JPG, PNG, or PDF and less than 5MB.");
+              toast.error("File must be less than 5MB.");
               return;
             }
             setFileName(file ? file.name : null);

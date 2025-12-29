@@ -15,6 +15,17 @@ async function Shop({ searchParams }) {
     const t = await getTranslations("ShopPage");
 
     const partnerNames = await getPartnerNames();
+    const topFilters = [
+        { label: t("Filter1"), text: t("Filter1Text") },
+        { label: t("Filter2"), text: t("Filter2Text") },
+        { label: t("Filter3"), text: t("Filter3Text") },
+        { label: t("Filter4"), text: t("Filter4Text") },
+        { label: t("Filter5"), text: t("Filter5Text") },
+        { label: t("Filter6"), text: t("Filter6Text") },
+        { label: t("Filter7"), text: t("Filter7Text") },
+        { label: t("Filter8"), text: t("Filter8Text") },
+        { label: t("Filter9"), text: t("Filter9Text") }
+    ];
     const filters = [
         {
             title: t("Partners"),
@@ -42,7 +53,7 @@ async function Shop({ searchParams }) {
                 image={"/gallery/gallery-2.jpg"}
             />
             <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }]} locale={locale} />
-            <TopFilter />
+            <TopFilter topFilters={topFilters} locale={locale} />
             <div id="list" className="relative max-w-7xl mx-auto lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20" >
                 <Filters filters={filters} search={search} />
                 <div className="col-span-8">

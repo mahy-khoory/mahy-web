@@ -70,7 +70,7 @@ export default function SwipeableNewsGrid({ page, totalPages, children }) {
       ref={containerRef}
       id="list"
       className={`
-        max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24
+        max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24
         grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16
         animate-fade-in
         ${animationClass}

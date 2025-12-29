@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import SubmitButton from "./SubmitButton";
 import FileUploadField from "./FileUploadField";
+import { Slide, ToastContainer } from "react-toastify";
 
 const COMPLAINT_CATEGORIES = [
   { value: "product_quality", label: "Product Quality & Defects" },
@@ -68,22 +69,22 @@ export default function ComplaintFormPane({ data, upload, submit }) {
           <input {...register("customerName")} />
         </Field>
 
-        <Field label={data[0]} error={errors.email}>
+        <Field label={data[1]} error={errors.email}>
           <input {...register("email")} />
         </Field>
 
-        <Field label={data[0]} error={errors.phone}>
+        <Field label={data[2]} error={errors.phone}>
           <input {...register("phone")} />
         </Field>
 
-        <Field label={data[0]} error={errors.productService}>
+        <Field label={data[3]} error={errors.productService}>
           <input {...register("productService")} />
         </Field>
       </div>
 
       <div className="mt-6 space-y-5">
         <SelectField
-          label={data[0]}
+          label={data[4]}
           options={COMPLAINT_CATEGORIES}
           error={errors.category}
           {...register("category")}
@@ -101,7 +102,7 @@ export default function ComplaintFormPane({ data, upload, submit }) {
         </div> */}
 
         <FileUploadField
-          label={data[0]}
+          label={data[5]}
           upload={upload}
           register={register}
           error={errors.attachment}
@@ -117,6 +118,14 @@ export default function ComplaintFormPane({ data, upload, submit }) {
 
         <SubmitButton label={submit} loading={isSubmitting} />
       </div>
+      <ToastContainer
+        transition={Slide}
+        hideProgressBar
+        autoClose={3000}
+        position="top-right"
+        toastStyle={{
+          transition: "all 0.5s ease-in-out",
+        }} />
     </form>
   );
 }
