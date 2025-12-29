@@ -71,29 +71,18 @@ function TopFilter({ topFilters, locale }) {
                     </button>
                 ))}
             </div>
-
             {/* Scroll progress and buttons */}
             <div className='flex mt-6 items-center gap-8 max-w-lg md:max-w-xl mx-auto px-4'>
                 <div className='bg-gray-200 h-2 w-11/12 relative rounded-2xl overflow-hidden'>
                     <div className={`absolute bottom-0 top-0 ${locale === "ar" ? "right-0" : "left-0"} bottom-0 b-base rounded-2xl`} style={{ width: `${scrollProgress}%` }} />
                 </div>
-                <div className='flex gap-1 w-1/12 justify-center'>
-                    {locale === "ar" ? (
-                        <>
-                            <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(200)}>
-                                <ChevronRight color='gray' />
-                            </button>
-                            <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(-200)}>
-                                <ChevronLeft color='gray' />
-                            </button></>
-                    ) : (<>
-                        <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(-200)}>
-                            <ChevronLeft color='gray' />
-                        </button>
-                        <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(200)}>
-                            <ChevronRight color='gray' />
-                        </button>
-                    </>)}
+                <div className={`flex gap-1 ${locale === "ar" && "flex-row-reverse"} w-1/12 justify-center`}>
+                    <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(-200)}>
+                        <ChevronLeft color='gray' />
+                    </button>
+                    <button className='border border-gray-300 p-1 rounded-full' onClick={() => scrollBy(200)}>
+                        <ChevronRight color='gray' />
+                    </button>
                 </div>
             </div>
         </div>
