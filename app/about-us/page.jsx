@@ -12,6 +12,7 @@ import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
 import ManufacturingNetworkMap from "@/components/UI/about-us/ManufacturingNetworkMap";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
 import Explore from "@/components/UI/about-us/Explore";
+import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");

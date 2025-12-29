@@ -1,67 +1,74 @@
-"use client"
-import Image from 'next/image';
-import React, { useState } from 'react'
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+"use client";
+import Image from "next/image";
+import { useState } from "react";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
-function ImageSlideShow() {
+export default function ImageSlideShow() {
     const items = [
         { title: "Close up", subTitle: "35mm", image: "/gallery/gallery-1.jpg" },
-        { title: "Potrait Shot", subTitle: "50mm", image: "/gallery/gallery-2.jpg" },
+        { title: "Portrait Shot", subTitle: "50mm", image: "/gallery/gallery-2.jpg" },
         { title: "Camera Shot", subTitle: "30mm", image: "/gallery/gallery-3.jpg" },
         { title: "Narrative Shot", subTitle: "45mm", image: "/gallery/gallery-4.jpg" },
         { title: "Classic Shot", subTitle: "65mm", image: "/gallery/gallery-5.jpg" },
     ];
-    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const handleIndexChange = (index) => {
-        if (index === -1) setCurrentIndex(items.length - 1);
-        else if (index === items.length) setCurrentIndex(0);
-        else setCurrentIndex(index);
-    }
+    const [index, setIndex] = useState(0);
 
-    const currentItems = [
-        items[currentIndex === 0 ? items.length - 1 : currentIndex - 1],
-        items[currentIndex],
-        items[currentIndex === items.length - 1 ? 0 : currentIndex + 1]
-    ];
+    const getItem = (offset) =>
+        items[(index + offset + items.length) % items.length];
 
     return (
-        <div>
-            <div className='max-w-5xl mx-auto flex items-center justify-center gap-4'>
-                {currentItems.map((item, i) => (
-                    <div key={i} className={`relative overflow-hidden ${i !== 1 ? "rounded-3xl h-90 w-70" :
-                        "rounded-4xl h-120 w-90 border-20 border-transparent bg-linear-to-r from-red-400/20 via-yellow-400/20 via-green-400/20 via-blue-400/20 to-purple-400/20 bg-clip-border"}`}>
-                        <Image src={item.image} alt={item.title} className='rounded-3xl bg-blue-200' fill style={{ objectFit: "cover" }} />
-                    </div>
-                ))}
+        <div className="pt-20">
+            {/* SLIDER */}
+            <div className="relative overflow-hidden max-w-5xl mx-auto h-90 md:h-120">
+                <div className="absolute inset-0 flex items-center justify-center">
+                    {[-1, 0, 1].map((pos) => {
+                        const item = getItem(pos);
+                        return (
+                            <div key={item.image}
+                                className={`absolute rounded-3xl will-change-transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+                                    ${pos === 0
+                                        ? "translate-x-0 scale-100 opacity-100 z-20"
+                                        : pos === -1
+                                            ? "-translate-x-65 scale-95 opacity-60 z-10"
+                                            : "translate-x-65 scale-95 opacity-60 z-10"
+                                    }`}>
+                                <div className={`relative overflow-hidden rounded-3xl 
+                                    ${pos === 0 ? "h-90 w-70 md:h-120 md:w-90" : "h-70 w-50 md:h-90 md:w-70"}`}>
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
-            <div className='flex justify-center items-center flex-col gap-1 mt-8'>
-                <p className='font-semibold text-lg'>{currentItems[1].title}</p>
-                <p className='text-sm'>{currentItems[1].subTitle}</p>
+            {/* TEXT */}
+            <div className="text-center mt-10">
+                <p className="font-semibold text-lg">{items[index].title}</p>
+                <p className="text-sm text-gray-500">{items[index].subTitle}</p>
             </div>
-
-            <div className="relative mt-1 flex items-center justify-center gap-3">
+            {/* CONTROLS */}
+            <div className="flex justify-center gap-4 mt-4">
                 <button
-                    onClick={() => handleIndexChange(currentIndex - 1)}
-                    aria-label="Previous Image"
-                    className={`group relative flex h-14 w-14 items-center justify-center rounded-full border border-black/20 backdrop-blur-md transition-all duration-300
-                                 "hover:border-black hover:bg-black hover:scale-105`}>
-                    <HiChevronLeft
-                        className="text-3xl text-black transition-all duration-300 group-hover:text-white group-hover:-translate-x-0.5"
-                    />
+                    onClick={() =>
+                        setIndex((i) => (i - 1 + items.length) % items.length)
+                    }
+                    className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition"
+                >
+                    <HiChevronLeft className="text-2xl" />
                 </button>
                 <button
-                    onClick={() => handleIndexChange(currentIndex + 1)}
-                    aria-label="Next Image"
-                    className={`group relative flex h-14 w-14 items-center justify-center rounded-full border border-black/20 backdrop-blur-md transition-all duration-300
-                            hover:border-black hover:bg-black hover:scale-105`}>
-                    <HiChevronRight
-                        className="text-3xl text-black transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5"
-                    />
+                    onClick={() => setIndex((i) => (i + 1) % items.length)}
+                    className="h-12 w-12 rounded-full border flex items-center justify-center hover:bg-black hover:text-white transition"
+                >
+                    <HiChevronRight className="text-2xl" />
                 </button>
             </div>
         </div>
-    )
+    );
 }
-
-export default ImageSlideShow
