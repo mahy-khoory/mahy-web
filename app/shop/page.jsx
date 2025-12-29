@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/UI/Breadcrumb";
 import Filters from "@/components/UI/companies/Filters";
 import PageHeading from "@/components/UI/PageHeading";
 import ProductCard from "@/components/UI/shop/ProductCard";
+import TopFilter from "@/components/UI/shop/TopFilter";
 import { getPartnerNames } from "@/constants/partners";
 import { getProducts } from "@/constants/products";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -41,6 +42,7 @@ async function Shop({ searchParams }) {
                 image={"/gallery/gallery-2.jpg"}
             />
             <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }]} locale={locale} />
+            <TopFilter />
             <div id="list" className="relative max-w-7xl mx-auto lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20" >
                 <Filters filters={filters} search={search} />
                 <div className="col-span-8">
