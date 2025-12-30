@@ -18,8 +18,6 @@ export const FLOW = {
         ],
     },
 
-    //safety product select
-
     safety_product_select: {
         text: "Please select the safety product",
         type: "options",
@@ -174,22 +172,22 @@ export const FLOW = {
     // FURNITURE FLOW
 
     fur_type: {
-    text: "Could you tell me the style or type of furniture you're looking for?",
-    type: "text",
-    field: "furnitureType",
-    next: "fur_usage",
-},
+        text: "Could you tell me the style or type of furniture you're looking for?",
+        type: "text",
+        field: "furnitureType",
+        next: "fur_usage",
+    },
 
 
- fur_usage: {
-    text: "May I know if this is for your home or office space?",
-    type: "options",
-    field: "furnitureUsage",
-    options: [
-        { label: "Home", next: "q_name" },
-        { label: "Office", next: "q_name" },
-    ],
-},
+    fur_usage: {
+        text: "May I know if this is for your home or office space?",
+        type: "options",
+        field: "furnitureUsage",
+        options: [
+            { label: "Home", next: "q_name" },
+            { label: "Office", next: "q_name" },
+        ],
+    },
 
 
     fur_brand_pref: {

@@ -12,10 +12,6 @@ const HIDDEN_ROUTES = [
 
 export default function ChatBot({ data, locale }) {
   const pathname = usePathname();
-
-  if (HIDDEN_ROUTES.some(route => pathname.startsWith(route))) {
-    return null;
-  }
-
+  if (HIDDEN_ROUTES.some(route => pathname.startsWith(route))) return null;
   return <ChatWidget data={data} locale={locale} />;
 }

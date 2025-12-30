@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
-function ChatMessages({ messages, isTyping }, ref) {
+function ChatMessages({ messages, isTyping, data, locale }, ref) {
   const chatRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
@@ -35,7 +35,7 @@ function ChatMessages({ messages, isTyping }, ref) {
           const badgeClass = isBot
             ? "bg-slate-200 text-slate-600"
             : "bg-slate-900 text-white";
-          const textAlignment = isBot ? "text-left" : "text-right";
+          const textAlignment = (isBot && locale !== "ar") ? "text-left" : "text-right";
 
           return (
             <article
@@ -43,20 +43,19 @@ function ChatMessages({ messages, isTyping }, ref) {
               className={`flex w-full items-end gap-3 ${alignment} animate-message-in sm:gap-4`}
             >
               <div
-                className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-2xl text-[11px] font-semibold uppercase tracking-wide sm:h-10 sm:w-10 ${badgeClass}`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl text-[11px] font-semibold uppercase tracking-wide sm:h-10 sm:w-10 ${badgeClass}`}
               >
-                {isBot ? "MK" : "You"}
+                {isBot ? "MK" : data.you}
               </div>
 
               <div
                 className={`max-w-[82%] rounded-[26px] px-4 py-3 text-sm leading-relaxed shadow-sm shadow-slate-900/5 ${bubbleClass} ${textAlignment}`}
               >
                 <p
-                  className={`text-[11px] font-semibold uppercase tracking-[0.25em] ${
-                    isBot ? "text-slate-500" : "text-white/70"
-                  }`}
+                  className={`text-[11px] font-semibold uppercase tracking-[0.25em] ${isBot ? "text-slate-500" : "text-white/70"
+                    }`}
                 >
-                  {isBot ? "Concierge" : "You"}
+                  {isBot ? data.concierge : data.you}
                 </p>
                 <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed">
                   {msg.text}

@@ -1,4 +1,4 @@
-export default function ChatLayout({ children, onClose, className = "" }) {
+export default function ChatLayout({ children, onClose, className = "", data }) {
   return (
     <div
       className={`flex h-full flex-col overflow-hidden rounded-[32px] border border-slate-100/80 bg-white/95 shadow-[0_25px_70px_rgba(15,23,42,0.15)] ${className}`}
@@ -6,11 +6,11 @@ export default function ChatLayout({ children, onClose, className = "" }) {
       <header className="border-b border-slate-100/80 bg-white/85 px-5 py-4 backdrop-blur-sm sm:px-6 sm:py-5">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-2">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
-              Mahy Khoory
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+              {data.title}
             </p>
             <h1 className="text-lg font-semibold leading-snug text-slate-900 sm:text-xl">
-              Welcome to the Mahy Khoory intelligent desk.
+              {data.welcome}
             </h1>
           </div>
 
@@ -18,7 +18,7 @@ export default function ChatLayout({ children, onClose, className = "" }) {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-200"
+              className="inline-flex h-10 w-14 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-200"
             >
               <span className="sr-only">Close enquiry assistant</span>
               <svg
@@ -38,7 +38,6 @@ export default function ChatLayout({ children, onClose, className = "" }) {
           )}
         </div>
       </header>
-
       {children}
     </div>
   );

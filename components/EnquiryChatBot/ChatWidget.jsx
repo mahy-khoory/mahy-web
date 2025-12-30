@@ -8,14 +8,14 @@ import ChatOptionButtons from "./ChatOptionButtons";
 import CountryDropdown from "./CountryDropdown";
 import ChatInput from "./ChatInput";
 import { COUNTRY_LIST } from "@/utils/countries";
-import { FLOW } from "@/utils/chatbot-inference/chatBotFlow";
 import LottieButton from "./LottieButton";
 import IdlePrompt from "./IdlePrompt";
 import MahyraAvatar from "./MahyraAvatar";
 
 export default function ChatWidget({ data, locale }) {
+  const { flow, layout } = data;
   const [messages, setMessages] = useState([
-    { from: "bot", text: FLOW.q1_business.text },
+    { from: "bot", text: flow.q1_business.text },
   ]);
   const [current, setCurrent] = useState("q1_business");
   const [history, setHistory] = useState(["q1_business"]);
@@ -101,7 +101,7 @@ export default function ChatWidget({ data, locale }) {
   function saveAnswer(field, value) {
     if (!field) return;
 
-    const questionText = FLOW[current]?.text || "";
+    const questionText = flow[current]?.text || "";
 
     setAnswers((prev) => ({
       ...prev,
@@ -116,7 +116,7 @@ export default function ChatWidget({ data, locale }) {
   }
 
   function handleOptionSelect(optionLabel) {
-    const question = FLOW[current];
+    const question = flow[current];
     if (!question) return;
 
     addUser(optionLabel);
@@ -132,7 +132,7 @@ export default function ChatWidget({ data, locale }) {
   }
 
   function handleTextSubmit(text) {
-    const question = FLOW[current];
+    const question = flow[current];
     if (!question) return;
 
     addUser(text);
@@ -147,7 +147,7 @@ export default function ChatWidget({ data, locale }) {
   }
 
   function handleCountrySelect(country) {
-    const question = FLOW[current];
+    const question = flow[current];
     if (!question) return;
 
     addUser(country);
@@ -157,21 +157,19 @@ export default function ChatWidget({ data, locale }) {
 
   async function finalizeSubmission() {
     setIsTyping(true);
-    addBot("Submitting your details...");
+    addBot(layout.submit1);
 
     setTimeout(async () => {
       await submitToCRM({ answers, conversation: messages });
       setIsTyping(false);
-      addBot(
-        "Your enquiry has been submitted successfully. Our specialists will contact you shortly."
-      );
+      addBot(layout.submit2);
       setCurrent("done");
       setHistory((prev) => [...prev, "done"]);
     }, 900);
   }
 
   function progress(nextKey) {
-    if (!nextKey || !FLOW[nextKey]) {
+    if (!nextKey || !flow[nextKey]) {
       setCurrent("done");
       setHistory((prev) =>
         prev[prev.length - 1] === "done" ? prev : [...prev, "done"]
@@ -182,7 +180,7 @@ export default function ChatWidget({ data, locale }) {
     setIsTyping(true);
 
     setTimeout(async () => {
-      const nextQuestion = FLOW[nextKey];
+      const nextQuestion = flow[nextKey];
       addBot(nextQuestion.text);
 
       if (nextQuestion.submit && nextQuestion.type === "info") {
@@ -199,7 +197,7 @@ export default function ChatWidget({ data, locale }) {
     }, 650);
   }
 
-  const question = FLOW[current];
+  const question = flow[current];
   const options =
     question?.type === "options" ? question.options.map((o) => o.label) : null;
 
@@ -213,10 +211,10 @@ export default function ChatWidget({ data, locale }) {
     history.length > 1 && current !== "done" && !isTyping;
 
   function getPlaceholder() {
-    if (!question) return "Type your response";
+    if (!question) return layout.type;
     if (question.type === "email") return "name@company.com";
     if (question.type === "phone") return "+971 55 123 4567";
-    return "Type your response";
+    return layout.type;
   }
 
   function handleChangeSelection() {
@@ -244,7 +242,7 @@ export default function ChatWidget({ data, locale }) {
         if (Array.isArray(updated._qmap)) {
           updated._qmap = updated._qmap.slice(0, -1);
         }
-        const fieldKey = FLOW[previousKey]?.field;
+        const fieldKey = flow[previousKey]?.field;
         if (fieldKey) {
           delete updated[fieldKey];
         }
@@ -330,12 +328,15 @@ export default function ChatWidget({ data, locale }) {
             <ChatLayout
               onClose={() => setIsWidgetOpen(false)}
               className="h-[80vh] max-h-[640px]"
+              data={layout}
             >
               {" "}
               <ChatMessages
                 ref={messagesRef}
                 messages={messages}
                 isTyping={isTyping}
+                data={layout}
+                locale={locale}
               />
               <footer className="space-y-4 border-t border-slate-100 bg-slate-50/95 px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
                 {prompt && (
@@ -344,12 +345,9 @@ export default function ChatWidget({ data, locale }) {
                       {prompt}
                     </p>
                     {canChangeSelection && (
-                      <button
-                        type="button"
-                        onClick={handleChangeSelection}
-                        className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500 transition hover:text-slate-900"
-                      >
-                        Change Answer
+                      <button type="button" onClick={handleChangeSelection}
+                        className="text-xs font-semibold uppercase tracking-widest text-slate-500 transition hover:text-slate-900">
+                        {layout.change}
                       </button>
                     )}
                   </div>
@@ -373,24 +371,23 @@ export default function ChatWidget({ data, locale }) {
                     placeholder={getPlaceholder()}
                     onSubmit={handleTextSubmit}
                     type={question.type}
+                    data={layout}
                   />
                 )}
 
                 {!canInteract && current === "done" && (
                   <div className="text-center text-xs text-slate-500">
-                    <button
-                      onClick={() => {
-                        setMessages([
-                          { from: "bot", text: FLOW.q1_business.text },
-                        ]);
-                        setAnswers({});
-                        setCurrent("q1_business");
-                        setHistory(["q1_business"]);
-                        setIsTyping(false);
-                      }}
-                      className="mt-2 rounded-full border border-slate-200 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-blue-600"
-                    >
-                      Start New Enquiry
+                    <button onClick={() => {
+                      setMessages([
+                        { from: "bot", text: flow.q1_business.text },
+                      ]);
+                      setAnswers({});
+                      setCurrent("q1_business");
+                      setHistory(["q1_business"]);
+                      setIsTyping(false);
+                    }}
+                      className="mt-2 rounded-full border border-slate-200 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-blue-600">
+                      {layout.start}
                     </button>
                   </div>
                 )}

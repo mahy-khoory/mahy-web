@@ -6,7 +6,8 @@ export default function ChatInput({
   placeholder,
   onSubmit,
   disabled = false,
-  type = "text", 
+  type = "text",
+  data
 }) {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
@@ -71,11 +72,10 @@ export default function ChatInput({
           type="submit"
           aria-label="Send message"
           disabled={!canSend}
-          className={`inline-flex h-11 min-w-[3rem] items-center justify-center gap-2 rounded-full bg-slate-900 px-5 text-sm font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/30 ${
-            canSend ? "hover:-translate-y-0.5" : "opacity-40 hover:translate-y-0"
-          }`}
+          className={`inline-flex h-11 min-w-[3rem] items-center justify-center gap-2 rounded-full bg-slate-900 px-5 text-sm font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/30 ${canSend ? "hover:-translate-y-0.5" : "opacity-40 hover:translate-y-0"
+            }`}
         >
-          <span className="hidden sm:inline">Send</span>
+          <span className="hidden sm:inline">{data.send}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
