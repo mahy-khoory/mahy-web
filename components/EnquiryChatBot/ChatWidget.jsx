@@ -357,6 +357,7 @@ export default function ChatWidget({ data, locale }) {
                   <ChatOptionButtons
                     options={options}
                     onSelect={handleOptionSelect}
+                    locale={locale}
                   />
                 )}
 

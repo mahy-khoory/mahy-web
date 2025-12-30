@@ -24,11 +24,11 @@ function DesignProcess({ processes }) {
     return (
         <div className="mt-3 grid grid-cols-1 md:grid-cols-5 items-center justify-center">
             <motion.div
-                className={`relative overflow-hidden w-150 h-150 rounded-full ${locale === "ar" ? "-right-40" : "-left-40"} hidden lg:block col-span-2`}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
+                className={`relative overflow-hidden w-150 h-150 rounded-full ${locale === "ar" ? "-right-40" : "-left-40"} hidden lg:block col-span-2`}
             >
                 <Image
                     src="/processes/customer-service.avif"

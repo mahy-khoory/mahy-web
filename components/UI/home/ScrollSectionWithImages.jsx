@@ -3,7 +3,16 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import PrimaryButton from "../PrimaryButton";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
+
+const container1 = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" }, delay: 0.9 },
+};
+const container2 = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.5 } },
+};
 
 const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -63,7 +72,12 @@ function ScrollSectionWithImages({ data }) {
     return (
         <section className="max-w-7xl mx-auto my-30">
             <div className='md:grid grid-cols-5 md:h-[80vh]'>
-                <div className="col-span-3">
+                <motion.div
+                    variants={container1}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="col-span-3">
                     <div className="md:h-full md:overflow-y-scroll" ref={scrollContainerRef}>
                         {items.map((item, i) => (
                             <motion.div
@@ -90,8 +104,13 @@ function ScrollSectionWithImages({ data }) {
                             </motion.div>
                         ))}
                     </div>
-                </div>
-                <div className='col-span-2 hidden md:block'>
+                </motion.div>
+                <motion.div
+                    variants={container2}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className='col-span-2 hidden md:block'>
                     <div className='flex flex-col gap-4 h-full'>
                         {items.map((item, i) => (
                             <div key={i} className={`${i === currentIndex ? "h-8/10 z-10" : "h-1/10"} 
@@ -102,7 +121,7 @@ function ScrollSectionWithImages({ data }) {
                             </div>
                         ))}
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

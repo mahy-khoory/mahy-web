@@ -28,7 +28,9 @@ function ChatMessages({ messages, isTyping, data, locale }, ref) {
       <div className="space-y-4">
         {messages.map((msg, i) => {
           const isBot = msg.from === "bot";
-          const alignment = isBot ? "flex-row" : "flex-row-reverse";
+          const alignment = (locale === "ar")
+            ? (isBot ? "flex-row-reverse" : "flex-row")
+            : (isBot ? "flex-row" : "flex-row-reverse");
           const bubbleClass = isBot
             ? "bg-white text-slate-800 border border-slate-100"
             : "bg-slate-900 text-white shadow-lg shadow-slate-900/20";
@@ -52,7 +54,7 @@ function ChatMessages({ messages, isTyping, data, locale }, ref) {
                 className={`max-w-[82%] rounded-[26px] px-4 py-3 text-sm leading-relaxed shadow-sm shadow-slate-900/5 ${bubbleClass} ${textAlignment}`}
               >
                 <p
-                  className={`text-[11px] font-semibold uppercase tracking-[0.25em] ${isBot ? "text-slate-500" : "text-white/70"
+                  className={`text-[11px] font-semibold uppercase tracking-widest ${isBot ? "text-slate-500" : "text-white/70"
                     }`}
                 >
                   {isBot ? data.concierge : data.you}

@@ -18,7 +18,7 @@ export default function ChatLayout({ children, onClose, className = "", data }) 
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-10 w-14 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-200"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-200"
             >
               <span className="sr-only">Close enquiry assistant</span>
               <svg

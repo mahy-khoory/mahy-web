@@ -2,6 +2,12 @@
 import Image from "next/image";
 import { useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" }, delay: 1 },
+};
 
 export default function ImageSlideShow({ data, locale }) {
     const items = [
@@ -18,7 +24,12 @@ export default function ImageSlideShow({ data, locale }) {
         items[(index + offset + items.length) % items.length];
 
     return (
-        <div className="pt-20">
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="pt-20">
             {/* SLIDER */}
             <div className="relative overflow-hidden max-w-5xl mx-auto h-90 md:h-120">
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -78,6 +89,6 @@ export default function ImageSlideShow({ data, locale }) {
                     </>
                 )}
             </div >
-        </div >
+        </motion.div >
     );
 }
