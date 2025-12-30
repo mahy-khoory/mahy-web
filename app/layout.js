@@ -9,6 +9,7 @@ import { getFooter } from "@/config/footer.config";
 import { NextIntlClientProvider } from "next-intl";
 import ChatBot from "@/components/EnquiryChatBot/FloatingWrapper/Chatbot";
 import { chatbotData } from "@/config/chatbot";
+import SmoothScrollProvider from "@/components/Providers/SmoothScrollProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -56,14 +57,16 @@ export default async function RootLayout({ children }) {
         className={`${poppins.variable} antialiased`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <NextIntlClientProvider locale={locale}>
-          <Navbar navigation={getNavigation(navTranslations)} />
-          {children}
-          <section id="useful-links">
-            <Footer data={getFooter(footerTranslations)} />
-          </section>
-          <ChatBot data={chatbotData(chatbotTranslations)} locale={locale} />
-        </NextIntlClientProvider>
+        <SmoothScrollProvider>
+          <NextIntlClientProvider locale={locale}>
+            <Navbar navigation={getNavigation(navTranslations)} />
+            {children}
+            <section id="useful-links">
+              <Footer data={getFooter(footerTranslations)} />
+            </section>
+            <ChatBot data={chatbotData(chatbotTranslations)} locale={locale} />
+          </NextIntlClientProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

@@ -1,9 +1,15 @@
 "use client"
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import PrimaryButton from "../PrimaryButton";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const container1 = {
     hidden: { opacity: 0, x: -20 },
@@ -48,37 +54,112 @@ function ScrollSectionWithImages({ data }) {
         }
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
-    const scrollContainerRef = useRef(null);
-    const itemRefs = useRef([]);
+    const containerRef = useRef(null);
+    const trackRef = useRef(null);
+    const sectionRefs = useRef([]);
+    const lastIndexRef = useRef(0);
+
+    useLayoutEffect(() => {
+        if (!containerRef.current || !trackRef.current) return;
+
+        const mm = gsap.matchMedia();
+
+        mm.add("(min-width: 1024px)", () => {
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+            if (prefersReducedMotion.matches) return;
+
+            const totalSlides = items.length;
+            if (totalSlides <= 1) return;
+
+            const ctx = gsap.context(() => {
+                gsap.set(trackRef.current, { y: 0 });
+
+                const getScrollDistance = () => {
+                    if (!trackRef.current || !containerRef.current) return 0;
+                    const distance =
+                        trackRef.current.scrollHeight - containerRef.current.offsetHeight;
+                    return Math.max(distance, 0);
+                };
+
+                const timeline = gsap.timeline({
+                    defaults: { ease: "none" },
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top top",
+                        end: () => "+=" + getScrollDistance(),
+                        scrub: true,
+                        pin: true,
+                        anticipatePin: 1,
+                        onUpdate: (self) => {
+                            const nextIndex = Math.min(
+                                totalSlides - 1,
+                                Math.round(self.progress * (totalSlides - 1))
+                            );
+                            if (lastIndexRef.current !== nextIndex) {
+                                lastIndexRef.current = nextIndex;
+                                setCurrentIndex(nextIndex);
+                            }
+                        },
+                    },
+                });
+
+                timeline.to(trackRef.current, {
+                    y: () => -getScrollDistance(),
+                });
+            }, containerRef);
+
+            setCurrentIndex(0);
+            lastIndexRef.current = 0;
+
+            return () => ctx.revert();
+        });
+
+        return () => mm.revert();
+    }, [items.length]);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const index = Number(entry.target.dataset.index);
-                        setCurrentIndex(index);
-                    }
-                });
-            },
-            { root: scrollContainerRef.current, threshold: 0.5 }
-        );
-        itemRefs.current.forEach(ref => ref && observer.observe(ref));
-        return () => {
-            itemRefs.current.forEach(ref => ref && observer.unobserve(ref));
+        if (typeof window === "undefined") return;
+        const mq = window.matchMedia("(min-width: 1024px)");
+        let observer;
+
+        const handleObserver = () => {
+            observer?.disconnect();
+            if (mq.matches) return;
+
+            observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const index = Number(entry.target.dataset.index);
+                            setCurrentIndex(index);
+                        }
+                    });
+                },
+                { threshold: 0.5 }
+            );
+
+            sectionRefs.current.forEach((ref) => ref && observer.observe(ref));
         };
-    }, []);
+
+        handleObserver();
+        mq.addEventListener("change", handleObserver);
+
+        return () => {
+            observer?.disconnect();
+            mq.removeEventListener("change", handleObserver);
+        };
+    }, [items.length]);
 
     return (
-        <section className="max-w-7xl mx-auto my-30">
+        <section ref={containerRef} className="max-w-7xl mx-auto my-30">
             <div className='md:grid grid-cols-5 md:h-[80vh]'>
                 <motion.div
                     variants={container1}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="col-span-3">
-                    <div className="md:h-full md:overflow-y-scroll" ref={scrollContainerRef}>
+                    className="col-span-3 lg:overflow-hidden">
+                    <div ref={trackRef} className="flex flex-col gap-10 lg:gap-0 lg:hide-scrollbar">
                         {items.map((item, i) => (
                             <motion.div
                                 variants={itemVariants}
@@ -86,11 +167,11 @@ function ScrollSectionWithImages({ data }) {
                                 whileInView="visible"
                                 custom={i}
                                 viewport={{ once: false }}
-                                className="md:h-full flex items-center"
+                                className="flex items-center lg:min-h-screen"
                                 key={i}
-                                ref={el => itemRefs.current[i] = el}
+                                ref={el => sectionRefs.current[i] = el}
                                 data-index={i}>
-                                <div className="md:h-40">
+                                <div className="w-full">
                                     <div className="px-5 md:px-0 pt-20 md:pt-0">
                                         <p className="text-3xl md:text-5xl font-bold">{item.title1}</p>
                                         <p className="text-3xl md:text-5xl font-bold t-base mt-1 md:mt-3">{item.title2}</p>
