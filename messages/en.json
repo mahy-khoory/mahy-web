@@ -508,5 +508,10 @@
         "Partner5": "Marathon Motor",
         "Partner6": "Ariston",
         "Partner7": "Pakawaste"
+    },
+    "Chatbot": {
+        "Heading1": "Need help?",
+        "Heading2": "Chat with Mahyra",
+        "Cta": "Let's talk"
     }
 }

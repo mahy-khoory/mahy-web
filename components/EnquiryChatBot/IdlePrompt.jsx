@@ -1,6 +1,6 @@
 "use client";
 
-export default function IdlePrompt({ visible, onOpen }) {
+export default function IdlePrompt({ visible, onOpen, data, locale }) {
   if (!visible) return null;
 
   return (
@@ -39,11 +39,11 @@ export default function IdlePrompt({ visible, onOpen }) {
           </svg>
         </div>
         <div className="space-y-0.5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-200">
-            Need help?
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-200">
+            {data.heading1}
           </p>
           <p className="text-base font-semibold text-white">
-            Chat with Mahyra
+            {data.heading2}
           </p>
           {/* <p className="text-[11px] text-slate-300/90">
             We usually respond in under a minute.
@@ -55,7 +55,6 @@ export default function IdlePrompt({ visible, onOpen }) {
         onClick={onOpen}
         className="
           mt-4
-          inline-flex
           items-center
           justify-between
           rounded-full
@@ -66,33 +65,23 @@ export default function IdlePrompt({ visible, onOpen }) {
           text-[11px]
           font-semibold
           uppercase
-          tracking-[0.3em]
+          tracking-widest
           text-white
           transition
           hover:bg-white/20
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-white/60
+          flex gap-3
         "
       >
-        Let's talk
-        <span className="ml-2 h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_2px_rgba(255,255,255,0.35)]" />
+        {data.cta}
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_2px_rgba(255,255,255,0.35)]" />
       </button>
 
       <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-5
-          right-4
-          sm:right-6
-          flex
-          flex-col
-          items-start
-          gap-1
-        "
-        aria-hidden="true"
-      >
+        className={`pointer-events-none absolute -bottom-5 ${locale === "ar" ? "left-4 sm:left-6" : "right-4 sm:right-6"} 
+          flex flex-col items-start gap-1`} aria-hidden="true">
         <span className="h-2 w-2 rounded-full bg-white/85" />
         <span className="ml-1 h-1.5 w-1.5 rounded-full bg-white/70" />
         <span className="ml-2 h-1 w-1 rounded-full bg-white/60" />

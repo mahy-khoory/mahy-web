@@ -508,5 +508,10 @@
         "Partner5": "Marathon Motor",
         "Partner6": "Ariston",
         "Partner7": "Pakawaste"
+    },
+    "Chatbot": {
+        "Heading1": "Brauchen Sie Hilfe?",
+        "Heading2": "Chatten Sie mit Mahyra",
+        "Cta": "Lass uns sprechen"
     }
 }

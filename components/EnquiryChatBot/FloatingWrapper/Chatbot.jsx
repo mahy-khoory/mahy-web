@@ -5,17 +5,17 @@ import ChatWidget from "../ChatWidget";
 
 const HIDDEN_ROUTES = [
   "/careers",
-//   "/about-us",
+  //   "/about-us",
   "/privacy-policy",
   "/terms"
 ];
 
-export default function ChatBot() {
+export default function ChatBot({ data, locale }) {
   const pathname = usePathname();
 
   if (HIDDEN_ROUTES.some(route => pathname.startsWith(route))) {
     return null;
   }
 
-  return <ChatWidget />;
+  return <ChatWidget data={data} locale={locale} />;
 }

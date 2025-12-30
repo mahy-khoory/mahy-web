@@ -13,7 +13,7 @@ import LottieButton from "./LottieButton";
 import IdlePrompt from "./IdlePrompt";
 import MahyraAvatar from "./MahyraAvatar";
 
-export default function ChatWidget() {
+export default function ChatWidget({ data, locale }) {
   const [messages, setMessages] = useState([
     { from: "bot", text: FLOW.q1_business.text },
   ]);
@@ -289,26 +289,15 @@ export default function ChatWidget() {
 
       {!isWidgetOpen && (
         <div
-          className="
-            fixed
-            bottom-4
-            right-4
-            sm:bottom-6
-            sm:right-6
-            z-[9999]
-            flex
-            flex-col
-            items-end
-            gap-3
-            pointer-events-none
-          "
-        >
+          className={`fixed bottom-4 ${locale === "ar" ? "left-4 sm:left-6" : "right-4 sm:right-6"}  sm:bottom-6  z-9999 flex flex-col items-end gap-3 pointer-events-none`}>
           <div
-            className="relative w-full max-w-[260px] sm:max-w-[280px] pointer-events-auto"
+            className="relative w-full max-w-65 sm:max-w-70 pointer-events-auto"
             style={{ width: "min(80vw, 280px)" }}
           >
-            <MahyraAvatar visible={showIdlePrompt} />
+            <MahyraAvatar visible={showIdlePrompt} locale={locale} />
             <IdlePrompt
+              locale={locale}
+              data={data.idle}
               visible={showIdlePrompt}
               onOpen={() => {
                 handleIdleTease();
@@ -318,6 +307,7 @@ export default function ChatWidget() {
           </div>
           <div className="pointer-events-auto">
             <LottieButton
+              locale={locale}
               onInteract={handleIdleTease}
               onClick={() => {
                 handleIdleTease();
@@ -336,16 +326,7 @@ export default function ChatWidget() {
           />
 
           <div
-            className="
-    fixed
-    bottom-6
-    right-6
-    z-50
-    w-[calc(100vw-3rem)]
-    max-w-[420px]
-    sm:w-full
-  "
-          >
+            className={`fixed bottom-6 ${locale === "ar" ? "left-6" : "right-6"}  z-50 w-[calc(100vw-3rem)] max-w-105 sm:w-full`}>
             <ChatLayout
               onClose={() => setIsWidgetOpen(false)}
               className="h-[80vh] max-h-[640px]"

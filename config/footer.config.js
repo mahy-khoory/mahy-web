@@ -1,7 +1,7 @@
-export const getFooter = (translations) => {
+export const getFooter = (t) => {
   return {
     brand: {
-      name: translations("Name"),
+      name: t("Name"),
       logo: {
         src: "/MAHY.png",
         alt: "MAHY Khoory & Co. LLC",
@@ -9,9 +9,9 @@ export const getFooter = (translations) => {
         width: 140,
         height: 32,
       },
-      description: translations("Description"),
+      description: t("Description"),
       status: {
-        label: translations("Status"),
+        label: t("Status"),
         active: true,
       },
     },
@@ -19,44 +19,44 @@ export const getFooter = (translations) => {
 
     sections: [
       {
-        title: translations("Section1"),
+        title: t("Section1"),
         links: [
-          { label: translations("Section1Link1"), href: "#" },
-          { label: translations("Section1Link2"), href: "#" },
-          { label: translations("Section1Link3"), href: "#" },
-          { label: translations("Section1Link4"), href: "#" },
-          { label: translations("Section1Link5"), href: "#" },
+          { label: t("Section1Link1"), href: "#" },
+          { label: t("Section1Link2"), href: "#" },
+          { label: t("Section1Link3"), href: "#" },
+          { label: t("Section1Link4"), href: "#" },
+          { label: t("Section1Link5"), href: "#" },
         ],
       },
       {
-        title: translations("Section2"),
+        title: t("Section2"),
         links: [
-          { label: translations("Section2Link1"), href: "/about-us" },
-          { label: translations("Section2Link2"), href: "#" },
-          { label: translations("Section2Link3"), href: "/companies" },
-          { label: translations("Section2Link4"), href: "#" },
+          { label: t("Section2Link1"), href: "/about-us" },
+          { label: t("Section2Link2"), href: "#" },
+          { label: t("Section2Link3"), href: "/companies" },
+          { label: t("Section2Link4"), href: "#" },
         ],
       },
       {
-        title: translations("Section3"),
+        title: t("Section3"),
         links: [
-          { label: translations("Section3Link1"), href: "#" },
-          { label: translations("Section3Link2"), href: "/contact-us" },
-          { label: translations("Section3Link3"), href: "#" },
+          { label: t("Section3Link1"), href: "#" },
+          { label: t("Section3Link2"), href: "/contact-us" },
+          { label: t("Section3Link3"), href: "#" },
         ],
         cta: {
-          label: translations("Cta"),
+          label: t("Cta"),
           href: "#",
         },
       },
     ],
 
     bottom: {
-      copyright: translations("Bottom"),
+      copyright: t("Bottom"),
       links: [
-        { label: translations("BottomLink1"), href: "#" },
-        { label: translations("BottomLink2"), href: "#" },
-        { label: translations("BottomLink3"), href: "#" },
+        { label: t("BottomLink1"), href: "#" },
+        { label: t("BottomLink2"), href: "#" },
+        { label: t("BottomLink3"), href: "#" },
       ],
     },
   }

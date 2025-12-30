@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 
-export default function MahyraAvatar({ visible }) {
+export default function MahyraAvatar({ visible, locale }) {
   const animRef = useRef(null);
   const lottieInstance = useRef(null);
 
@@ -35,26 +35,9 @@ export default function MahyraAvatar({ visible }) {
 
   return (
     <div
-      className={`
-        absolute
-        -top-10
-        -right-4
-        sm:-top-12
-        sm:-right-6
-        lg:-top-14
-        lg:-right-8
-        w-30
-        h-30
-        sm:w-24
-        sm:h-24
-        lg:w-38
-        lg:h-38
-        z-10
-        pointer-events-none
-        transition
-        duration-500
-        ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"}
-      `}
+      className={`absolute ${locale === "ar" ? "-left-4 sm:-left-6 lg:-left-6" : "-right-4 sm:-right-6 lg:-right-8"} -top-10  sm:-top-12  lg:-top-14 
+        w-30 h-30 sm:w-24 sm:h-24 lg:w-38 lg:h-38 z-10 pointer-events-none transition duration-500
+        ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"}`}
     >
       <div
         ref={animRef}

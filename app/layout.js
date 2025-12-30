@@ -8,6 +8,7 @@ import { getNavigation } from "@/config/navbar.config";
 import { getFooter } from "@/config/footer.config";
 import { NextIntlClientProvider } from "next-intl";
 import ChatBot from "@/components/EnquiryChatBot/FloatingWrapper/Chatbot";
+import { chatbotData } from "@/config/chatbot";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -46,7 +47,7 @@ export default async function RootLayout({ children }) {
   const dir = locale === "ar" ? "rtl" : "ltr";
   const navTranslations = await getTranslations('Nav');
   const footerTranslations = await getTranslations('Footer');
-  const footerLinks = getFooter(footerTranslations);
+  const chatbotTranslations = await getTranslations("Chatbot");
 
   return (
     <html lang={locale} dir={dir}>
@@ -59,9 +60,9 @@ export default async function RootLayout({ children }) {
           <Navbar navigation={getNavigation(navTranslations)} />
           {children}
           <section id="useful-links">
-            <Footer data={footerLinks} />
+            <Footer data={getFooter(footerTranslations)} />
           </section>
-          <ChatBot />
+          <ChatBot data={chatbotData(chatbotTranslations)} locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>
