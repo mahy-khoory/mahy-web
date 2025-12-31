@@ -13,8 +13,6 @@ export default async function KeyStatsSection() {
   ];
 
   return (
-    <>
-      <KeyStats heading={translations("Heading")} stats={stats} />
-    </>
+    <KeyStats heading={translations("Heading")} stats={stats} />
   );
 }

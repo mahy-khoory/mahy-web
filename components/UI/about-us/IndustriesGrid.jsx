@@ -13,6 +13,7 @@ import {
   FaBolt,
   FaCogs,
 } from "react-icons/fa";
+import AnimatedLines from "../AnimatedLines";
 
 export default function IndustriesGrid({ heading, industries }) {
   const INDUSTRIES = [
@@ -31,6 +32,7 @@ export default function IndustriesGrid({ heading, industries }) {
   return (
     <section className="w-full py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6">
+        <AnimatedLines />
         <h2 className="text-center text-lg md:text-xl font-medium text-gray-700 mb-12">{heading}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
           {INDUSTRIES.map((item, index) => {

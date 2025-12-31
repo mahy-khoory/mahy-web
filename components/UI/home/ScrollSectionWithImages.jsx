@@ -85,7 +85,7 @@ function ScrollSectionWithImages({ data }) {
                     defaults: { ease: "none" },
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: "top top",
+                        start: "top 10%",
                         end: () => "+=" + getScrollDistance(),
                         scrub: true,
                         pin: true,
@@ -151,8 +151,8 @@ function ScrollSectionWithImages({ data }) {
     }, [items.length]);
 
     return (
-        <section ref={containerRef} className="max-w-7xl mx-auto my-30">
-            <div className='md:grid grid-cols-5 md:h-[80vh]'>
+        <section className="max-w-7xl mx-auto py-30">
+            <div ref={containerRef} className='md:grid grid-cols-5 md:h-[80vh]'>
                 <motion.div
                     variants={container1}
                     initial="hidden"

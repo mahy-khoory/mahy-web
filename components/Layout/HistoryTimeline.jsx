@@ -8,6 +8,7 @@ import React, {
   useCallback,
 } from "react";
 import { motion } from "framer-motion";
+import AnimatedLines from "../UI/AnimatedLines";
 
 export default function HistoryTimeline({ title = "", items = [] }) {
   const sectionRef = useRef(null);
@@ -389,7 +390,6 @@ function TimelinePanel({ item, index, green, progress, total }) {
         <StarMarker color={green} />
         <div className="text-sm text-black/70">{item.year}</div>
       </div>
-
       <h3 className="text-xl md:text-[22px] font-semibold text-black">
         {item.title}
       </h3>

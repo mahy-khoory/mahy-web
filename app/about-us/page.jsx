@@ -151,7 +151,6 @@ async function About() {
       <Breadcrumb segments={[{ label: t("Page"), href: "/about-us" }]} locale={locale} />
       <MissionStatement missionStatement={missionStatement} />
       <Purpose purpose={purpose} />
-      {/* <Explore /> */}
       <div className="py-16 lg:py-24 border-b border-gray-300">
         <History history={history} />
       </div>

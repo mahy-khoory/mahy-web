@@ -1,6 +1,7 @@
 "use client";
 
 import AdvantageGridItem from "./AdvantageGridItem";
+import AnimatedLines from "./UI/AnimatedLines";
 
 export default function NextAdvantagesSection({ advantages }) {
   const items = {
@@ -41,14 +42,7 @@ export default function NextAdvantagesSection({ advantages }) {
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 text-center">
-        <div className="mx-auto mb-3 flex justify-center gap-1">
-          {Array.from({ length: 14 }).map((_, i) => (
-            <span
-              key={i}
-              className="h-[10px] w-[2px] rounded-full bg-gray-500"
-            />
-          ))}
-        </div>
+        <AnimatedLines />
 
         <h2 className="text-[42px] sm:text-[50px] lg:text-[56px] font-semibold leading-[1] tracking-tight text-black">
           {advantages.heading}
@@ -59,7 +53,6 @@ export default function NextAdvantagesSection({ advantages }) {
           {advantages.text2}
         </p>
       </div>
-
       <div className="mx-auto mt-10 sm:mt-12 lg:mt-14 max-w-7xl px-5 sm:px-6">
         <div
           className="

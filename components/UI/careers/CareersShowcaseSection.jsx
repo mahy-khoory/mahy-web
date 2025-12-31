@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import AnimatedLines from "../AnimatedLines";
 
 export default function CareersShowcaseSection({
   title,
@@ -12,6 +13,7 @@ export default function CareersShowcaseSection({
       <div className="mx-auto w-full max-w-screen-xl px-6 sm:px-8 lg:px-12 overflow-x-hidden">
 
         <div className="text-center">
+          <AnimatedLines />
           <h2
             className="
               text-[28px]

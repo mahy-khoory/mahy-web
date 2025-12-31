@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import AnimatedCounter from "../AnimatedCounter";
+import AnimatedLines from "../AnimatedLines";
 
 const containerVariants = {
     hidden: {},
@@ -33,17 +34,8 @@ function KeyStats({ heading, stats }) {
     return (
         <>
             <div className="text-center mt-20 mb-12 px-4">
-                <h2 className="text-heading text-4xl sm:text-5xl font-semibold text-slate-900">
-                    {heading}
-                </h2>
-
-                <motion.div
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    whileInView={{ scaleX: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="origin-center w-24 sm:w-32 h-[3px] bg-gradient-to-r from-slate-900 via-slate-600 to-slate-900 mx-auto mt-4 rounded-full"
-                />
+                <AnimatedLines />
+                <h2 className="text-heading text-4xl sm:text-5xl font-semibold text-slate-900">{heading}</h2>
             </div>
             <section className="w-full bg-white pb-20 sm:pb-24 lg:pb-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

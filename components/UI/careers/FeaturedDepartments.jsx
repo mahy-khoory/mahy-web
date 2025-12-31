@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 import DepartmentCard from './DepartmentCard';
 import { motion, AnimatePresence } from "framer-motion";
+import AnimatedLines from '../AnimatedLines';
 
 const imageVariants = {
     hidden: { opacity: 0, scale: 1 },
@@ -46,7 +47,8 @@ function FeaturedDepartments({ title, departments, cta }) {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.55, ease: "easeOut" }}
                     viewport={{ once: true }}>
-                    <h2 className='text-4xl font-semibold mb-8 text-center'>{title}</h2>
+                    <AnimatedLines />
+                    <h2 className='text-4xl font-semibold mb-7 sm:mb-16 lg:mb-16 text-center'>{title}</h2>
                 </motion.div>
                 <div className="overflow-hidden">
                     <motion.div

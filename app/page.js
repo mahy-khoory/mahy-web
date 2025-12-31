@@ -155,13 +155,8 @@ export default async function Home() {
 
       <section id="enterprise">
         <EnterprisePinnedContainer />
-        {/* <PinnedScrollSection /> */}
-        {/* <PinnedSection /> */}
       </section>
 
-      {/* <div className="px-4 sm:px-6 lg:px-10 py-10"> */}
-      {/* </div> */}
-      {/* <SustainabilityPanels items={items2} cols={2} /> */}
       <section id="after-sales">
         <BusinessStepsContainer />
       </section>

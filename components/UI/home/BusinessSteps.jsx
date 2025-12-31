@@ -4,6 +4,7 @@ import Link from "next/link"
 import BusinessStepCard from "./BusinessStepCard"
 import { motion } from "framer-motion";
 import PrimaryButton from "../PrimaryButton";
+import AnimatedLines from "../AnimatedLines";
 
 const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -18,7 +19,8 @@ function BusinessSteps({ items, steps }) {
 
     return (
         <div className="py-20">
-            <h2 className="text-center font-bold text-4xl mb-30 mx-5">{items.heading}</h2>
+            <AnimatedLines />
+            <h2 className="text-center font-bold text-4xl mb-35 mx-5">{items.heading}</h2>
             <div className="grid lg:grid-cols-2 gap-32 gap-x-20 lg:gap-30 px-4 lg:px-40 xl:grid-cols-3">
                 {steps.map((step, i) => (
                     <motion.div

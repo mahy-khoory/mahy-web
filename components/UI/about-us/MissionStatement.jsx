@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
+import AnimatedLines from "../AnimatedLines";
 
 function MissionStatement({ missionStatement }) {
     return (
@@ -12,6 +13,7 @@ function MissionStatement({ missionStatement }) {
             viewport={{ once: true }}>
             <div className='py-18 px-10 lg:py-16 border-b border-gray-300'>
                 <div className='flex flex-col justify-center items-center max-w-4xl mx-auto text-center'>
+                    <AnimatedLines />
                     <h2 className='uppercase font-bold'>{missionStatement.heading}</h2>
                     <p className="font-bold uppercase mt-2 lg:mt-6 text-3xl sm:text-4xl lg:text-5xl">
                         {missionStatement.subHeading}

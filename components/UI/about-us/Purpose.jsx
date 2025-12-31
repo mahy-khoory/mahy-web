@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion";
 import Values from "./Values";
+import AnimatedLines from "../AnimatedLines";
 
 function Purpose({ purpose }) {
     return (
@@ -12,6 +13,7 @@ function Purpose({ purpose }) {
             <div className='py-15 lg:py-20 border-b border-gray-300'>
                 <div className='flex flex-col justify-center max-w-5xl mx-auto'>
                     <div className="text-center">
+                        <AnimatedLines />
                         <h2 className='uppercase font-bold px-10'>{purpose.heading}</h2>
                         <p className="font-bold uppercase mt-2 lg:mt-6 mb-1 text-3xl sm:text-4xl lg:text-5xl px-10">{purpose.subHeading}</p>
                     </div>

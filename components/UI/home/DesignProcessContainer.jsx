@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import DesignProcess from "./DesignProcess";
+import AnimatedLines from "../AnimatedLines";
 
 async function DesignProcessContainer() {
     const translations = await getTranslations('HomePage.Process');
@@ -40,10 +41,8 @@ async function DesignProcessContainer() {
     return (
         <div className="max-w-7xl mx-auto mb-20">
             <div className="text-center font-bold text-4xl my-20 md:mt-20 md:mb-0 mx-5">
-                <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
-                    {translations("Heading")}
-                </h2>
-                <div className="w-24 md:w-32 h-0.75 bg-linear-to-r from-slate-900 via-slate-700 to-slate-900 mx-auto my-4 rounded-full" />
+                <AnimatedLines />
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-900">{translations("Heading")}</h2>
             </div>
             <DesignProcess processes={processes} />
         </div>
