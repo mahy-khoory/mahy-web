@@ -61,7 +61,7 @@ function CompanyStructure() {
             <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                 <h2 className='font-bold text-2xl lg:text-4xl text-center uppercase'>Company Structure</h2>
             </motion.div>
-            <p className='text-2xl lgtext-3xl text-center font-medium mt-6 lg:mt-12 t-base'>Tencent</p>
+            <p className='text-2xl lgtext-3xl text-center font-medium mt-6 lg:mt-12 t-base'>MAHY KHOORY</p>
             <DesktopStructure items={items} itemVariants={itemVariants} containerVariants={containerVariants} />
             <MobileStructure items={items} itemVariants={itemVariants} />
         </section>
