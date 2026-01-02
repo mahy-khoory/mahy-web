@@ -14,6 +14,7 @@ import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingN
 import Explore from "@/components/UI/about-us/Explore";
 import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
+import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");
@@ -150,6 +151,7 @@ async function About() {
       />
       <Breadcrumb segments={[{ label: t("Page"), href: "/about-us" }]} locale={locale} />
       <MissionStatement missionStatement={missionStatement} />
+      <CompanyStructure />
       <Purpose purpose={purpose} />
       <div className="py-16 lg:py-24 border-b border-gray-300">
         <History history={history} />
