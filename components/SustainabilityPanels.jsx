@@ -61,7 +61,7 @@ export default function SustainabilityPanels({
     return () => observer.disconnect();
   }, []);
 
- 
+
   useEffect(() => {
     if (
       !isCompactLayout ||
@@ -225,7 +225,7 @@ function Panel({
       onFocus={onActivate}
       onClick={onActivate}
       className="
-        group relative flex-1 overflow-hidden text-left
+        group relative flex-1 overflow-hidden text-start
         focus:outline-none snap-start
         flex-[0_0_100%] sm:flex-[0_0_95%] md:flex-[0_0_90%]
         lg:flex-1 lg:min-w-0

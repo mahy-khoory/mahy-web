@@ -21,7 +21,7 @@ const Card = ({ item, itemVariants, i }) => {
             whileInView="visible"
             custom={i}
             viewport={{ once: true }}>
-            <button onClick={() => setShow(!show)} className="bg-white w-full rounded-2xl text-left">
+            <button onClick={() => setShow(!show)} className="bg-white w-full rounded-2xl text-start">
                 <div className="flex justify-between items-center gap-2 px-6 py-6">
                     <div className="flex items-center gap-3">
                         <p className="text-sm font-semibold w-20 text-center">{item.title}</p>

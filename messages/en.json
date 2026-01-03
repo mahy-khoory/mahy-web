@@ -70,7 +70,8 @@
             "Item2": "Dubai",
             "Item3": "Sharjah",
             "Item4": "Ras al Khaimah",
-            "Item5": "Al Ain"
+            "Item5": "Al Ain",
+            "Button": "Explore"
         },
         "KeyFacts": {
             "Heading": "Key Facts",
@@ -79,6 +80,19 @@
             "Fact3": "Certified Engineers",
             "Fact4": "Projects in UAE",
             "Fact5": "Distribution Partners"
+        },
+        "Sustainability": {
+            "Item1": "Green Procurement",
+            "Item1Text1": "Guided 100 suppliers in completing organizational-level carbon inventory.",
+            "Item1Text2": "Guided 10 suppliers in setting carbon reduction targets and measures.",
+            "Item2": "Green Manufacturing",
+            "Item2Text1": "Five major manufacturing bases saved 10.83M kWh electricity with a 4.57% YoY decrease in total industrial electricity consumption.",
+            "Item3": "Green Recycling",
+            "Item3Text1": "Establishing a dual-circulation model to reduce resource consumption.",
+            "Item3Text2": "Partnered with 89 recycling organizations globally. Reuse 660 tons of metals.",
+            "Item3Text3": "Reuse 70 tons of organic plastics from scrap materials.",
+            "Item4": "Green Logistics",
+            "Item4Text1": "Making reverse logistics processes standardized, intelligent, and efficient to enhance recycling rates."
         },
         "Partners": {
             "Heading": "Our Partners",
@@ -141,6 +155,28 @@
             "SubHeading": "We Make Flow Reliable",
             "Text": "To provide high-quality pumping products and engineered solutions through trusted partnerships, continuous innovation, and exceptional service, creating long-term value for our customers, stakeholders, and communities.",
             "Button": "Explore"
+        },
+        "Structure": {
+            "Heading": "Company Structure",
+            "Company": "MAHY Khoory",
+            "Item1": "Siemens",
+            "Item1SubTitle": "Industrial Automation & Energy",
+            "Item1Text": "Siemens provides advanced automation, electrification, and digitalization solutions for industrial and infrastructure projects worldwide.",
+            "Item2": "ABB",
+            "Item2SubTitle": "Power & Motion Technologies",
+            "Item2Text": "ABB delivers innovative solutions in electrification, robotics, automation, and motion, supporting industries to improve efficiency and sustainability.",
+            "Item3": "Schneider",
+            "Item3SubTitle": "Energy Management Solutions",
+            "Item3Text": "Schneider Electric specializes in energy management and automation solutions for homes, buildings, data centers, and industries.",
+            "Item4": "Grundfos",
+            "Item4SubTitle": "Advanced Pump Solutions",
+            "Item4Text": "Grundfos is a global leader in pumping solutions, focusing on water, wastewater, and energy-efficient technologies.",
+            "Item5": "Danfoss",
+            "Item5SubTitle": "Climate & Drive Solutions",
+            "Item5Text": "Danfoss provides engineering solutions that enable efficient cooling, heating, motor control, and mobile machinery applications.",
+            "Item6": "Wilo",
+            "Item6SubTitle": "Smart Pump Systems",
+            "Item6Text": "Wilo develops intelligent pumping systems for building services, water management, and industrial applications."
         },
         "Purpose": {
             "Heading": "Our Purpose",

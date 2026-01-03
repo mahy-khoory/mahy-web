@@ -70,7 +70,8 @@
             "Item2": "Dubai",
             "Item3": "Sharjah",
             "Item4": "Ras al Khaimah",
-            "Item5": "Al Ain"
+            "Item5": "Al Ain",
+            "Button": "Entdecken"
         },
         "KeyFacts": {
             "Heading": "Kennzahlen",
@@ -79,6 +80,19 @@
             "Fact3": "Zertifizierte Ingenieure",
             "Fact4": "Projekte in den VAE",
             "Fact5": "Vertriebspartner"
+        },
+        "Sustainability": {
+            "Item1": "Grüne Beschaffung",
+            "Item1Text1": "Anleitung von 100 Lieferanten zur Durchführung einer unternehmensweiten CO₂-Bilanz.",
+            "Item1Text2": "Unterstützung von 10 Lieferanten bei der Festlegung von CO₂-Reduktionszielen und -maßnahmen.",
+            "Item2": "Grüne Fertigung",
+            "Item2Text1": "Fünf große Produktionsstandorte sparten 10,83 Mio. kWh Strom ein, mit einem jährlichen Rückgang des gesamten industriellen Stromverbrauchs um 4,57%.",
+            "Item3": "Grünes Recycling",
+            "Item3Text1": "Etablierung eines Dual-Zirkulationsmodells zur Reduzierung des Ressourcenverbrauchs.",
+            "Item3Text2": "Partnerschaften mit 89 Recyclingorganisationen weltweit; Wiederverwendung von 660 Tonnen Metallen.",
+            "Item3Text3": "Wiederverwendung von 70 Tonnen organischer Kunststoffe aus Restmaterialien.",
+            "Item4": "Grüne Logistik",
+            "Item4Text1": "Standardisierung, Digitalisierung und Effizienzsteigerung der Reverse-Logistik-Prozesse zur Erhöhung der Recyclingquoten."
         },
         "Partners": {
             "Heading": "Unsere Partner",
@@ -141,6 +155,28 @@
             "SubHeading": "Wir machen Fluss zuverlässig",
             "Text": "Bereitstellung hochwertiger Pumpenprodukte und maßgeschneiderter Ingenieurlösungen durch vertrauensvolle Partnerschaften, kontinuierliche Innovation und exzellenten Service, um langfristigen Mehrwert für Kunden, Stakeholder und Gemeinschaften zu schaffen.",
             "Button": "Entdecken"
+        },
+        "Structure": {
+            "Heading": "Unternehmensstruktur",
+            "Company": "MAHY Khoory",
+            "Item1": "Siemens",
+            "Item1SubTitle": "Industrieautomation & Energie",
+            "Item1Text": "Siemens bietet fortschrittliche Lösungen in den Bereichen Automatisierung, Elektrifizierung und Digitalisierung für Industrie- und Infrastrukturprojekte weltweit.",
+            "Item2": "ABB",
+            "Item2SubTitle": "Energie- und Antriebstechnologien",
+            "Item2Text": "ABB liefert innovative Lösungen in den Bereichen Elektrifizierung, Robotik, Automatisierung und Antriebstechnik zur Steigerung von Effizienz und Nachhaltigkeit.",
+            "Item3": "Schneider",
+            "Item3SubTitle": "Energiemanagement-Lösungen",
+            "Item3Text": "Schneider Electric ist spezialisiert auf Energiemanagement- und Automatisierungslösungen für Wohngebäude, Gewerbe, Rechenzentren und Industrie.",
+            "Item4": "Grundfos",
+            "Item4SubTitle": "Fortschrittliche Pumpenlösungen",
+            "Item4Text": "Grundfos ist ein weltweit führender Anbieter von Pumpenlösungen mit Fokus auf Wasser, Abwasser und energieeffiziente Technologien.",
+            "Item5": "Danfoss",
+            "Item5SubTitle": "Klima- & Antriebslösungen",
+            "Item5Text": "Danfoss bietet technische Lösungen für effizientes Kühlen, Heizen, Motorsteuerung und mobile Maschinenanwendungen.",
+            "Item6": "Wilo",
+            "Item6SubTitle": "Intelligente Pumpensysteme",
+            "Item6Text": "Wilo entwickelt intelligente Pumpensysteme für Gebäudetechnik, Wassermanagement und industrielle Anwendungen."
         },
         "Purpose": {
             "Heading": "Unser Zweck",

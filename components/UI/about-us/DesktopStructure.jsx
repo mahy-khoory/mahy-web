@@ -25,7 +25,7 @@ function DesktopStructure({ items, itemVariants, containerVariants }) {
                 {items.map((item, i) => (
                     <motion.div key={i} variants={itemVariants} initial="hidden" whileInView="visible" custom={i} viewport={{ once: true }}>
                         <button onClick={() => setCurrentIndex(i)}
-                            className={`${i === currentIndex ? "bg-white" : "bg-gray-100"} py-12 px-4 rounded-2xl transition-all duration-500`}>
+                            className={`${i === currentIndex ? "bg-white" : "bg-gray-100 hover:bg-white"} py-12 px-4 w-full rounded-2xl transition-all duration-500`}>
                             <p className='text-3xl font-medium t-base'>{item.title}</p>
                             <p className='text-gray-700 font-light text-sm mt-2'>{item.subTitle}</p>
                         </button>

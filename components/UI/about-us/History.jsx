@@ -34,7 +34,7 @@ function History({ history }) {
     };
 
     return (
-        <>
+        <div className="py-16 lg:py-24 border-b border-gray-300">
             <motion.div
                 dir='ltr'
                 initial={{ opacity: 0, x: -20 }}
@@ -117,8 +117,7 @@ function History({ history }) {
 
                 </div>
             </motion.div>
-        </>
-
+        </div>
     )
 }
 

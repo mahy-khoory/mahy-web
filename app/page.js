@@ -35,53 +35,26 @@ export default async function Home() {
       cta: { label: t("Hero3CtaLabel") },
     },
   ];
-
-  const items = [
+  const sustainability = [
     {
-      title: "Green Procurement",
+      title: t("Sustainability.Item1"),
       image: "/al-quba.jpg",
-      bullets: [
-        "Guided 100 suppliers in completing organizational-level carbon inventory.",
-        "Guided 10 suppliers in setting carbon reduction targets and measures.",
-      ],
+      bullets: [t("Sustainability.Item1Text1"), t("Sustainability.Item1Text2")],
     },
     {
-      title: "Green Manufacturing",
+      title: t("Sustainability.Item2"),
       image: "/burj.jpg",
-      description:
-        "Five major manufacturing bases saved 10.83M kWh electricity with a 4.57% YoY decrease in total industrial electricity consumption.",
+      description: t("Sustainability.Item2Text1")
     },
     {
-      title: "Green Recycling",
+      title: t("Sustainability.Item3"),
       image: "/mosque.JPG",
-      bullets: [
-        'Establishing a "dual-circulation" model to reduce resource consumption.',
-        "Partnered with 89 recycling organizations globally. Reuse 660 tons of metals.",
-        "Reuse 70 tons of organic plastics from scrap materials.",
-      ],
+      bullets: [t("Sustainability.Item3Text1"), t("Sustainability.Item3Text2"), t("Sustainability.Item3Text3")],
     },
     {
-      title: "Green Logistics",
+      title: t("Sustainability.Item4"),
       image: "/dubai-pano.jpg",
-      description:
-        "Making reverse logistics processes standardized, intelligent, and efficient to enhance recycling rates.",
-    },
-  ];
-
-  const items2 = [
-    {
-      title: "Green Procurement",
-      image: "/al-quba.jpg",
-      bullets: [
-        "Guided 100 suppliers in completing organizational-level carbon inventory.",
-        "Guided 10 suppliers in setting carbon reduction targets and measures.",
-      ],
-    },
-    {
-      title: "Green Manufacturing",
-      image: "/burj.jpg",
-      description:
-        "Five major manufacturing bases saved 10.83M kWh electricity with a 4.57% YoY decrease in total industrial electricity consumption.",
+      description: t("Sustainability.Item4Text1")
     },
   ];
   const floatingMenuItems = [
@@ -143,11 +116,11 @@ export default async function Home() {
       </section>
 
       <section id="gallery">
-        <Gallery galleryItems={galleryItems} />
+        <Gallery galleryItems={galleryItems} cta={t("Gallery.Button")} />
       </section>
 
       <KeyStatsSection />
-      <SustainabilityPanels items={items} cols={4} />
+      <SustainabilityPanels items={sustainability} cols={4} />
 
       <section id="partners">
         <PartnersSection />

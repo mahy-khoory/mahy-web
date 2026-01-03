@@ -10,7 +10,7 @@ const imageVariants = {
     exit: { opacity: 0, scale: 1.05, transition: { duration: 0.8 } },
 };
 
-function Gallery({ galleryItems }) {
+function Gallery({ galleryItems, cta }) {
     const items = [
         {
             title: galleryItems[0],
@@ -68,11 +68,10 @@ function Gallery({ galleryItems }) {
                         -translate-y-15 transition-all duration-600 ease-out group-hover:opacity-100 group-hover:-translate-y-1
                         "></div>
                         <span className="block relative z-10 text-xl pt-12  font-bold">{item.title}</span>
-                        <Link
-                            href="/"
+                        <Link href="/"
                             className="absolute bottom-10 text-sm font-semibold opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:-translate-y-1"
                         >
-                            Explore
+                            {cta}
                         </Link>
                     </div>
                 ))}

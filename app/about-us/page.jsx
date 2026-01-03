@@ -26,7 +26,18 @@ async function About() {
     text: t("MissionStatement.Text"),
     button: t("MissionStatement.Button"),
   };
-
+  const structure = {
+    heading: t("Structure.Heading"),
+    company: t("Structure.Company"),
+    items: [
+      { title: t("Structure.Item1"), subTitle: t("Structure.Item1SubTitle"), text: t("Structure.Item1Text") },
+      { title: t("Structure.Item2"), subTitle: t("Structure.Item2SubTitle"), text: t("Structure.Item2Text") },
+      { title: t("Structure.Item3"), subTitle: t("Structure.Item3SubTitle"), text: t("Structure.Item3Text") },
+      { title: t("Structure.Item4"), subTitle: t("Structure.Item4SubTitle"), text: t("Structure.Item4Text") },
+      { title: t("Structure.Item5"), subTitle: t("Structure.Item5SubTitle"), text: t("Structure.Item5Text") },
+      { title: t("Structure.Item6"), subTitle: t("Structure.Item6SubTitle"), text: t("Structure.Item6Text") },
+    ]
+  };
   const purpose = {
     heading: t("Purpose.Heading"),
     subHeading: t("Purpose.SubHeading"),
@@ -47,7 +58,6 @@ async function About() {
     text1: t("Purpose.Text1"),
     text2: t("Purpose.Text2"),
   };
-
   const history = {
     heading: t("History.Heading"),
     subHeading: t("History.Text"),
@@ -151,12 +161,9 @@ async function About() {
       />
       <Breadcrumb segments={[{ label: t("Page"), href: "/about-us" }]} locale={locale} />
       <MissionStatement missionStatement={missionStatement} />
-      <CompanyStructure />
+      <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
-      <div className="py-16 lg:py-24 border-b border-gray-300">
-        <History history={history} />
-      </div>
-
+      <History history={history} />
       <HistoryTimelineClient
         title={t("History.Heading")}
         items={[
