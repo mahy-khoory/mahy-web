@@ -1,5 +1,6 @@
 import Cart from '@/components/UI/cart/Cart'
 import { combineProductsWithCart, getProductsByIds } from '@/constants/products';
+import { getTranslations } from 'next-intl/server';
 import { cookies } from 'next/headers';
 import React from 'react'
 
@@ -8,12 +9,19 @@ async function CartPage() {
     const cart = cookieStore.get("cart")
         ? JSON.parse(cookieStore.get("cart").value)
         : [];
-    const products = getProductsByIds(cart.map(cart => cart.productId))
+
+    const products = await getProductsByIds(cart.map(cart => cart.productId))
     const combined = combineProductsWithCart(products, cart);
+    const t = await getTranslations("CartPage");
 
     return (
         <main className='max-w-7xl mx-auto pt-25 pb-15'>
-            <Cart products={combined} />
+            <Cart products={combined}
+                columns={[t("Column1"), t("Column2"), t("Column3"), t("Column4")]}
+                currency={t("Currency")}
+                totalText={t("Total")}
+                checkout={t("Checkout")}
+            />
         </main>
     )
 }

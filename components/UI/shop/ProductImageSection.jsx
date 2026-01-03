@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react";
 
-function ProductImageSection({ images, alt }) {
+function ProductImageSection({ images, alt, locale }) {
     const [imageIndex, setImageIndex] = useState(0);
 
     const handlePrev = () => { setImageIndex(imageIndex === 0 ? images.length - 1 : imageIndex - 1); };
@@ -17,10 +17,20 @@ function ProductImageSection({ images, alt }) {
                 {isMultiple && (
                     <div className="absolute inset-0 flex items-center justify-between px-3 pt-2 opacity-70 transition-all duration-300 hover:opacity-100">
                         <button onClick={handlePrev} className="rounded-full bg-gray-50 p-2 shadow-lg">
-                            <ChevronLeft size={18} />
+                            {locale === "ar"
+                                ? (
+                                    <ChevronRight size={18} />
+                                ) : (
+                                    <ChevronLeft size={18} />)
+                            }
                         </button>
                         <button onClick={handleNext} className="rounded-full bg-gray-50 p-2 shadow-lg">
-                            <ChevronRight size={18} />
+                            {locale === "ar"
+                                ? (
+                                    <ChevronLeft size={18} />
+                                ) : (
+                                    <ChevronRight size={18} />)
+                            }
                         </button>
                     </div>
                 )}

@@ -76,10 +76,18 @@ export const getProductsByIds = async (ids) => {
 
     return products
         .filter(product => idSet.includes(product.id))
-        .map(product => ({
-            ...product,
-            name: t(`Product${product.id}`)
-        }));
+        .map(product => {
+            const models = [];
+            for (let i = 1; i < product.modelsCount; i++) {
+                models.push(t(`Product${product.id}.Models.Model${i}`));
+            }
+
+            return {
+                ...product,
+                name: t(`Product${product.id}.Name`),
+                models,
+            };
+        });
 };
 
 export const combineProductsWithCart = (products, cart) => {

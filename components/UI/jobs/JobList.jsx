@@ -70,7 +70,7 @@ function JobList({ params, formLabels, t, locale }) {
 
     return (
         <section id='list' className='max-w-7xl mx-auto px-5 py-10'>
-            <JobModal formLabels={formLabels} />
+            <JobModal formLabels={formLabels} toastText={t("Toast")} />
             <div className='grid gap-10 md:grid-cols-10 mt-8'>
                 <div className="col-span-3">
                     <Filters filters={filters} search={search} />

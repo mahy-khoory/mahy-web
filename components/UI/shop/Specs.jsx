@@ -1,22 +1,7 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Link from 'next/link';
 
-const tabs = ["Specs", "Support"]
-
-const specs = [
-    { title: "Convert", text: "Combo CCS1 DC to NACS vehicle port" },
-    { title: "Charging Compatibility", text: "Level 3 DC fast chargers only" },
-    { title: "Max Current", text: "500A" },
-    { title: "Max Voltage", text: "1000V" },
-    { title: "Compatibility", text: "CCS DC chargers" }
-];
-
-const support = [
-    { title: "Supporting Documents", text: "User Guide", link: "/" },
-    { title: "Warranty", text: "2 Years", link: "/" }
-];
-
-function Specs() {
+function Specs({ tabs, specs, support }) {
     return (
         <TabGroup className={"mt-15 w-full px-5 lg:px-0"}>
             <TabList className={"grid grid-cols-2"}>

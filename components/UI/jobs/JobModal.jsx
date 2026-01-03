@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Slide, ToastContainer, toast } from 'react-toastify';
 
-export default function JobModal({ formLabels }) {
+export default function JobModal({ formLabels, toastText }) {
     let [isOpen, setIsOpen] = useState(false)
 
     function closeModal() {
@@ -17,7 +17,7 @@ export default function JobModal({ formLabels }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        toast("You have succesfully applied to this job.");
+        toast(toastText);
         closeModal();
     }
 
