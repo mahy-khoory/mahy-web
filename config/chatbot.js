@@ -15,7 +15,16 @@ export const chatbotData = (t) => {
             type: t("Type"),
             change: t("Change"),
             submit1: t("Submit1"),
-            submit2: t("Submit2")
+            submit2: t("Submit2"),
+            locationPrompt: t("LocationPrompt"),
+            locationHint: t("LocationHint"),
+            locationUseCurrent: t("LocationUseCurrent"),
+            locationFetching: t("LocationFetching"),
+            locationShare: t("LocationShare"),
+            locationApprox: t("LocationApprox"),
+            locationFallback: t("LocationFallback"),
+            locationSuccess: t("LocationSuccess"),
+            locationConfirm: t("LocationConfirm")
         },
         flow: {
             q1_business: {
@@ -504,7 +513,7 @@ export const chatbotData = (t) => {
             },
             q_site_location: {
                 text: t("Flow60Text"),
-                type: "text",
+                type: "location",
                 field: "siteLocation",
                 next: "q_name",
             },

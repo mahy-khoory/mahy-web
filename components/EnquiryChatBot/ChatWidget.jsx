@@ -7,6 +7,7 @@ import ChatMessages from "./ChatMessages";
 import ChatOptionButtons from "./ChatOptionButtons";
 import CountryDropdown from "./CountryDropdown";
 import ChatInput from "./ChatInput";
+import ChatLocationPicker from "./ChatLocationPicker";
 import { COUNTRY_LIST } from "@/utils/countries";
 import LottieButton from "./LottieButton";
 import IdlePrompt from "./IdlePrompt";
@@ -98,15 +99,20 @@ export default function ChatWidget({ data, locale }) {
     setTimeout(() => messagesRef.current?.scrollToBottom?.(), 50);
   }
 
-  function saveAnswer(field, value) {
+  function saveAnswer(field, value, displayValue) {
     if (!field) return;
 
     const questionText = flow[current]?.text || "";
+    const storedValue =
+      typeof displayValue !== "undefined" ? displayValue : value;
 
     setAnswers((prev) => ({
       ...prev,
       [field]: value,
-      _qmap: [...(prev._qmap || []), { question: questionText, answer: value }],
+      _qmap: [
+        ...(prev._qmap || []),
+        { question: questionText, answer: storedValue },
+      ],
     }));
   }
 
@@ -205,6 +211,7 @@ export default function ChatWidget({ data, locale }) {
     question && ["text", "email", "phone"].includes(question.type);
 
   const isCountryStage = question?.type === "country";
+  const isLocationStage = question?.type === "location";
   const canInteract = current !== "done" && !isTyping;
   const prompt = current !== "done" ? question?.text : null;
   const canChangeSelection =
@@ -215,6 +222,19 @@ export default function ChatWidget({ data, locale }) {
     if (question.type === "email") return "name@company.com";
     if (question.type === "phone") return "+971 55 123 4567";
     return layout.type;
+  }
+
+  function handleLocationSelect({ lat, lng }) {
+    if (!question || question.type !== "location") return;
+
+    const formatted = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+    const confirmationText = layout.locationConfirm
+      ? `${layout.locationConfirm} (${formatted})`
+      : `Shared my location (${formatted})`;
+
+    addUser(confirmationText);
+    saveAnswer(question.field, { lat, lng }, formatted);
+    progress(question.next);
   }
 
   function handleChangeSelection() {
@@ -365,6 +385,21 @@ export default function ChatWidget({ data, locale }) {
                   <CountryDropdown
                     countries={COUNTRY_LIST}
                     onSubmit={handleCountrySelect}
+                  />
+                )}
+                {canInteract && isLocationStage && (
+                  <ChatLocationPicker
+                    onSelect={handleLocationSelect}
+                    strings={{
+                      prompt: layout.locationPrompt,
+                      hint: layout.locationHint,
+                      useCurrent: layout.locationUseCurrent,
+                      fetching: layout.locationFetching,
+                      share: layout.locationShare,
+                      approx: layout.locationApprox,
+                      fallback: layout.locationFallback,
+                      success: layout.locationSuccess,
+                    }}
                   />
                 )}
                 {canInteract && isTextStage && (
