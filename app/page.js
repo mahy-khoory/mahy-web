@@ -12,6 +12,7 @@ import SustainabilityPanels from "@/components/SustainabilityPanels";
 import NextAdvantagesSection from "@/components/NextAdvantagesSection";
 import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
+import Announcements from "@/components/UI/home/Announcements";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -108,6 +109,7 @@ export default async function Home() {
 
       <NextAdvantagesSection advantages={advantages} />
 
+      <Announcements />
       <ImageSlideShow data={slideshow} locale={locale} />
       <ScrollSectionWithImages data={scrollSection} />
 

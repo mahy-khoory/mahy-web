@@ -9,11 +9,7 @@ import Purpose from "@/components/UI/about-us/Purpose";
 import { getLocale, getTranslations } from "next-intl/server";
 import HistoryTimelineClient from "@/components/HistoryTimelineClient";
 import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
-import ManufacturingNetworkMap from "@/components/UI/about-us/ManufacturingNetworkMap";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
-import Explore from "@/components/UI/about-us/Explore";
-import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
-import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
 
 async function About() {
