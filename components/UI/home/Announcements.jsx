@@ -3,6 +3,12 @@
 import { ChevronRight, X } from 'lucide-react'
 import Image from 'next/image';
 import { useState } from 'react'
+import { motion } from "framer-motion";
+
+const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+};
 
 function Announcements() {
     const items = [
@@ -55,11 +61,11 @@ function Announcements() {
     ];
     return (
         <section className='max-w-7xl mx-auto'>
-            <div className='flex flex-nowrap overflow-x-scroll hide-scrollbar lg:overflow-visible lg:grid grid-cols-4 gap-6 px-5 lg:px-0'>
+            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className='flex flex-nowrap overflow-x-scroll hide-scrollbar lg:overflow-visible lg:grid grid-cols-4 gap-6 px-5 lg:px-0'>
                 {items.map((item, i) => (
                     <Card key={i} item={item} />
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };
