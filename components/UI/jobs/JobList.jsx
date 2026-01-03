@@ -2,58 +2,53 @@ import Filters from '../companies/Filters'
 import JobCard from './JobCard';
 import JobModal from './JobModal';
 
-function JobList({ params, formLabels }) {
+function JobList({ params, formLabels, t, locale }) {
     const search = params.search;
-    const filters = [
-        {
-            title: "Category",
-            key: "category",
-            options: ["Technology", "Healthcare", "Finance", "Education", "Retail"]
-        },
-        {
-            title: "Job Type",
-            key: "type",
-            options: ["Full-Time", "Part-Time"]
-        },
-        {
-            title: "Location",
-            key: "location",
-            options: ["Dubai", "Abu Dhabi"]
-        },
+
+    const categories = [
+        { id: 1, label: t("Filter1Label1") },
+        { id: 2, label: t("Filter1Label2") },
+        { id: 3, label: t("Filter1Label3") },
+        { id: 4, label: t("Filter1Label4") },
+        { id: 5, label: t("Filter1Label5") },
+    ];
+    const types = [
+        { id: 1, label: t("Filter2Label1") },
+        { id: 2, label: t("Filter2Label2") },
+    ];
+    const locations = [
+        { id: 1, label: t("Filter3Label1") },
+        { id: 2, label: t("Filter3Label2") },
     ];
 
-    const jobs = [
+    const filters = [
         {
-            name: "Frontend Developer",
-            category: "Technology",
-            type: "Full-Time",
-            location: "Dubai"
+            title: t("Filter1"),
+            key: "category",
+            options: categories,
+            count: categories.length.toLocaleString(locale)
         },
         {
-            name: "Healthcare Data Analyst",
-            category: "Healthcare",
-            type: "Full-Time",
-            location: "Abu Dhabi"
+            title: t("Filter2"),
+            key: "type",
+            options: types,
+            count: types.length.toLocaleString(locale)
         },
         {
-            name: "Financial Consultant",
-            category: "Finance",
-            type: "Part-Time",
-            location: "Dubai"
-        },
-        {
-            name: "Academic Program Coordinator",
-            category: "Education",
-            type: "Full-Time",
-            location: "Abu Dhabi"
-        },
-        {
-            name: "Retail Operations Manager",
-            category: "Retail",
-            type: "Part-Time",
-            location: "Dubai"
+            title: t("Filter3"),
+            key: "location",
+            options: locations,
+            count: locations.length.toLocaleString(locale)
         },
     ];
+    const jobs = [
+        { name: t("Job1"), category: 1, type: 1, location: 1 },
+        { name: t("Job2"), category: 2, type: 1, location: 2 },
+        { name: t("Job3"), category: 3, type: 2, location: 1 },
+        { name: t("Job4"), category: 4, type: 1, location: 2 },
+        { name: t("Job5"), category: 5, type: 2, location: 1 },
+    ];
+
     const getJobs = () => {
         let filteredJobs = search
             ? jobs.filter((job) =>
@@ -61,18 +56,14 @@ function JobList({ params, formLabels }) {
             )
             : jobs;
 
-        const categoryIdx = params.category?.split(",").map(Number) || [];
-        const typeIdx = params.type?.split(",").map(Number) || [];
-        const locationIdx = params.location?.split(",").map(Number) || [];
-
-        const categoryValues = categoryIdx.map((i) => filters[0].options[i]);
-        const typeValues = typeIdx.map((i) => filters[1].options[i]);
-        const locationValues = locationIdx.map((i) => filters[2].options[i]);
+        const categoryIds = params.category?.split(",").map(Number) || [];
+        const typeIds = params.type?.split(",").map(Number) || [];
+        const locationIds = params.location?.split(",").map(Number) || [];
 
         return filteredJobs.filter((job) => {
-            if (categoryValues.length && !categoryValues.includes(job.category)) return false;
-            if (typeValues.length && !typeValues.includes(job.type)) return false;
-            if (locationValues.length && !locationValues.includes(job.location)) return false;
+            if (categoryIds.length && !categoryIds.includes(job.category)) return false;
+            if (typeIds.length && !typeIds.includes(job.type)) return false;
+            if (locationIds.length && !locationIds.includes(job.location)) return false;
             return true;
         });
     };
@@ -80,13 +71,20 @@ function JobList({ params, formLabels }) {
     return (
         <section id='list' className='max-w-7xl mx-auto px-5 py-10'>
             <JobModal formLabels={formLabels} />
-            <div dir='ltr' className='grid gap-10 md:grid-cols-10 mt-8'>
+            <div className='grid gap-10 md:grid-cols-10 mt-8'>
                 <div className="col-span-3">
                     <Filters filters={filters} search={search} />
                 </div>
                 <div className="col-span-7 space-y-5 mt-3">
                     {getJobs().map((job, i) => (
-                        <JobCard key={i} job={job} />
+                        <JobCard
+                            key={i}
+                            name={job.name}
+                            category={categories.find(cat => cat.id === job.category)?.label}
+                            type={types.find(type => type.id === job.type)?.label}
+                            location={locations.find(loc => loc.id === job.location)?.label}
+                            cta={t("JobCta")}
+                        />
                     ))}
                 </div>
             </div>

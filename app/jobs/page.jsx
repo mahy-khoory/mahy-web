@@ -31,7 +31,7 @@ async function Jobs({ searchParams }) {
                 segments={[{ label: t2("Page"), href: "/careers" }, { label: t("Page"), href: "/jobs" }]}
                 locale={locale}
             />
-            <JobList params={params} formLabels={formLabels} />
+            <JobList params={params} formLabels={formLabels} t={t} locale={locale} />
         </main >
     )
 }

@@ -8,12 +8,16 @@ const partners = [
     { id: 4, image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765994347/Marathon_rqvumo.png", name: "Marathon Motor" },
     { id: 5, image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765994347/Artiston_dkapb8.png", name: "Ariston" },
     { id: 6, image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765994347/PakaWaste_ltpkeg.png", name: "Pakawaste" }
-]
-
+];
 
 export const getPartnerNames = async () => {
     const t = await getTranslations("Partners");
-    return partners.map((partner, i) => t(`Partner${i + 1}`));
+    return partners.map((partner, i) => {
+        return {
+            id: i,
+            label: t(`Partner${i + 1}`)
+        }
+    });
 }
 
 export default partners;

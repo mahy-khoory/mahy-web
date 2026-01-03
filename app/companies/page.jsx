@@ -5,82 +5,103 @@ import React from 'react'
 import Breadcrumb from '@/components/UI/Breadcrumb';
 import { getLocale, getTranslations } from 'next-intl/server';
 
-const filters = [
-    {
-        title: "Sectors",
-        key: "sector",
-        options: ["Technology", "Healthcare", "Finance", "Education", "Retail"]
-    },
-    {
-        title: "Company Size",
-        key: "size",
-        options: ["1-10", "11-50", "51-200", "201-500", "500+"]
-    },
-    {
-        title: "Location",
-        key: "location",
-        options: ["North America", "Europe", "Asia", "Australia", "Africa"]
-    }
-];
-
-const companies = [
-    {
-        name: "Tech Innovators",
-        image: "/companies/Grundfos.jpg",
-        sector: "Technology",
-        size: "201-500",
-        location: "North America"
-    },
-    {
-        name: "Health Plus",
-        image: "/companies/oventop.jpeg",
-        sector: "Healthcare",
-        size: "51-200",
-        location: "Europe"
-    },
-    {
-        name: "Finance Gurus",
-        image: "/companies/partners-ariston.jpg",
-        sector: "Finance",
-        size: "500+",
-        location: "Asia"
-    },
-    {
-        name: "EduWorld",
-        image: "/companies/partners-gaia.jpg",
-        sector: "Education",
-        size: "11-50",
-        location: "Australia"
-    }
-]
-
 async function Companies({ searchParams }) {
     const params = await searchParams;
     const search = params.search;
+    const t = await getTranslations('CompaniesPage');
+    const locale = await getLocale();
+
+    const sectors = [
+        { id: 1, label: t("Filter1Label1") },
+        { id: 2, label: t("Filter1Label2") },
+        { id: 3, label: t("Filter1Label3") },
+        { id: 4, label: t("Filter1Label4") },
+        { id: 5, label: t("Filter1Label5") },
+    ];
+    const sizes = [
+        { id: 1, label: t("Filter2Label1") },
+        { id: 2, label: t("Filter2Label2") },
+        { id: 3, label: t("Filter2Label3") },
+        { id: 4, label: t("Filter2Label4") },
+        { id: 5, label: t("Filter2Label5") },
+    ];
+    const locations = [
+        { id: 1, label: t("Filter3Label1") },
+        { id: 2, label: t("Filter3Label2") },
+        { id: 3, label: t("Filter3Label3") },
+        { id: 4, label: t("Filter3Label4") },
+        { id: 5, label: t("Filter3Label5") },
+    ];
+
+    const filters = [
+        {
+            title: t("Filter1"),
+            key: "sector",
+            options: sectors,
+            count: sectors.length.toLocaleString(locale)
+        },
+        {
+            title: t("Filter2"),
+            key: "size",
+            options: sizes,
+            count: sizes.length.toLocaleString(locale)
+        },
+        {
+            title: t("Filter3"),
+            key: "location",
+            options: locations,
+            count: locations.length.toLocaleString(locale)
+        },
+    ];
+    const companies = [
+        {
+            name: t("Comapny1"),
+            image: "/companies/Grundfos.jpg",
+            sectorId: 1,
+            sizeId: 4,
+            locationId: 1,
+        },
+        {
+            name: t("Comapny2"),
+            image: "/companies/oventop.jpeg",
+            sectorId: 2,
+            sizeId: 3,
+            locationId: 2,
+        },
+        {
+            name: t("Comapny3"),
+            image: "/companies/partners-ariston.jpg",
+            sectorId: 3,
+            sizeId: 5,
+            locationId: 3,
+        },
+        {
+            name: t("Comapny4"),
+            image: "/companies/partners-gaia.jpg",
+            sectorId: 4,
+            sizeId: 2,
+            locationId: 4,
+        },
+    ];
 
     const getCompanies = () => {
-        let filteredCompanies = search ? companies.filter((company) =>
-            company.name.toLowerCase().includes(search.toLowerCase())
-        ) : companies;
+        let filteredCompanies = search
+            ? companies.filter(c =>
+                c.name.toLowerCase().includes(search.toLowerCase())
+            )
+            : companies;
 
-        const sectorIdx = params.sector?.split(",").map(Number) || [];
-        const locationIdx = params.location?.split(",").map(Number) || [];
-        const sizeIdx = params.size?.split(",").map(Number) || [];
-
-        const sectorValues = sectorIdx.map((i) => filters[0].options[i]);
-        const locationValues = locationIdx.map((i) => filters[2].options[i]);
-        const sizeValues = sizeIdx.map((i) => filters[1].options[i]);
+        const sectorIds = params.sector?.split(",").map(Number) || [];
+        const sizeIds = params.size?.split(",").map(Number) || [];
+        const locationIds = params.location?.split(",").map(Number) || [];
 
         return filteredCompanies.filter((company) => {
-            if (sectorValues.length && !sectorValues.includes(company.sector)) return false;
-            if (locationValues.length && !locationValues.includes(company.location)) return false;
-            if (sizeValues.length && !sizeValues.includes(company.size)) return false;
+            if (sectorIds.length && !sectorIds.includes(company.sectorId)) return false;
+            if (sizeIds.length && !sizeIds.includes(company.sizeId)) return false;
+            if (locationIds.length && !locationIds.includes(company.locationId)) return false;
             return true;
         });
     };
-
-    const t = await getTranslations('CompaniesPage');
-    const locale = await getLocale();
 
     return (
         <main className='bg-gray-50 pb-14'>
@@ -89,10 +110,10 @@ async function Companies({ searchParams }) {
                 image={"/gallery/gallery-2.jpg"}
             />
             <Breadcrumb segments={[{ label: t("Page"), href: "/companies" }]} locale={locale} />
-            <div dir='ltr' id='list' className='relative max-w-7xl mx-auto lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20'>
+            <div id='list' className='relative max-w-7xl mx-auto lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20'>
                 <Filters filters={filters} search={search} />
                 <div className="col-span-8">
-                    <List companies={getCompanies()} />
+                    <List companies={getCompanies()} locale={locale} />
                 </div>
             </div>
         </main>
