@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { HiChevronDown, HiMenuAlt3, HiOutlineGlobeAlt, HiX } from "react-icons/hi";
-import Dropdown from "./Dropdown";
-import Button from "../UI/Button";
+import {
+  HiChevronDown,
+  HiMenuAlt3,
+  HiOutlineGlobeAlt,
+  HiX,
+} from "react-icons/hi";
 import Cookies from "js-cookie";
-import { usePathname, useRouter } from "next/navigation";
+import MegaMenuFlyOut from "../MegaMenuFlyOut";
 
 const languageOptions = [
   { code: "en", label: "English", icon: "/flags/en.svg" },
@@ -20,13 +23,11 @@ export default function Navbar({ navigation }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [currentLocale, setCurrentLocale] = useState("en");
+  const [currentLocale, setCurrentLocale] = useState(() => {
+    if (typeof window === "undefined") return "en";
+    return Cookies.get("locale") || "en";
+  });
   const languageMenuRef = useRef(null);
-  const router = useRouter();
-
-  const toggleDropdown = (id) => {
-    setOpenMenu((prev) => (prev === id ? null : id));
-  };
 
   const toggleMobileMenu = () => {
     setMobileOpen((prev) => {
@@ -43,20 +44,16 @@ export default function Navbar({ navigation }) {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target)) {
+      if (
+        languageMenuRef.current &&
+        !languageMenuRef.current.contains(event.target)
+      ) {
         setLanguageMenuOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    const storedLocale = Cookies.get("locale");
-    if (storedLocale) {
-      setCurrentLocale(storedLocale);
-    }
   }, []);
 
   const setLocale = (locale) => {
@@ -77,9 +74,12 @@ export default function Navbar({ navigation }) {
     languageOptions[0];
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full " style={{
-      paddingTop: "env(safe-area-inset-top)",
-    }}>
+    <header
+      className="fixed top-0 left-0 z-50 w-full "
+      style={{
+        paddingTop: "env(safe-area-inset-top)",
+      }}
+    >
       <nav className="mx-auto flex max-w-[90rem] items-center justify-between px-6 lg:px-12 py-2 min-h-[62px] rounded-b-full bg-black/50 backdrop-blur-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
         <div className="flex items-center pr-4">
           <Link
@@ -97,10 +97,9 @@ export default function Navbar({ navigation }) {
             />
           </Link>
         </div>
-
-        <ul className="hidden lg:flex flex-1 items-center justify-center gap-6 text-white text-sm font-medium">
+        {/* <ul className="hidden lg:flex flex-1 items-center justify-center gap-6 text-white text-sm font-medium">
           {navigation.links.map((item) => {
-            if (item.linkType === "dropdown") {
+            if (item.linkType === "mega") {
               return (
                 <li
                   key={item.id}
@@ -121,20 +120,19 @@ export default function Navbar({ navigation }) {
                       aria-expanded={openMenu === item.id}
                     >
                       <HiChevronDown
-                        className={`text-lg transition-transform ${openMenu === item.id ? "rotate-180" : ""
-                          }`}
+                        className={`text-lg transition-transform ${
+                          openMenu === item.id ? "rotate-180" : ""
+                        }`}
                       />
                     </button>
                   </div>
 
-                  <Dropdown
-                    isOpen={openMenu === item.id}
-                    items={item.items}
-                  />
+                  <Dropdown isOpen={openMenu === item.id} items={item.items} />
                 </li>
               );
             }
 
+           
             return (
               <li key={item.id}>
                 <Link
@@ -146,7 +144,47 @@ export default function Navbar({ navigation }) {
               </li>
             );
           })}
+        </ul> */}
+        <ul className="hidden lg:flex flex-1 items-center justify-center gap-6 text-white text-sm font-medium">
+          {navigation.links.map((item) => (
+            <li
+              key={item.id}
+              onMouseEnter={() =>
+                item.linkType === "mega"
+                  ? setOpenMenu(item.id)
+                  : setOpenMenu(null)
+              }
+              className="relative"
+            >
+              <div className="flex items-center gap-1">
+                <Link
+                  href={item.href}
+                  className="px-4 py-2 rounded-full hover:bg-white/10 transition"
+                >
+                  {item.label}
+                </Link>
+
+                {item.linkType === "mega" && (
+                  <HiChevronDown
+                    className={`text-lg transition-transform ${
+                      openMenu === item.id ? "rotate-180" : ""
+                    }`}
+                  />
+                )}
+              </div>
+            </li>
+          ))}
         </ul>
+        {navigation.links
+          .filter((item) => item.linkType === "mega")
+          .map((item) => (
+            <MegaMenuFlyOut
+              key={item.id}
+              isOpen={openMenu === item.id}
+              columns={item.columns || []}
+              onClose={() => setOpenMenu(null)}
+            />
+          ))}
 
         <div className="flex items-center gap-3">
           <div className="relative" ref={languageMenuRef}>
@@ -176,10 +214,11 @@ export default function Navbar({ navigation }) {
                   <button
                     key={option.code}
                     type="button"
-                    className={`flex w-full items-center gap-3 rounded-xl px-3 py-1.5 text-left text-[11px] transition ${option.code === currentLocale
-                      ? "bg-white/15 text-white"
-                      : "text-white/70 hover:bg-white/5 hover:text-white"
-                      }`}
+                    className={`flex w-full items-center gap-3 rounded-xl px-3 py-1.5 text-left text-[11px] transition ${
+                      option.code === currentLocale
+                        ? "bg-white/15 text-white"
+                        : "text-white/70 hover:bg-white/5 hover:text-white"
+                    }`}
                     onClick={() => handleLocaleSelection(option.code)}
                   >
                     <Image
@@ -201,16 +240,16 @@ export default function Navbar({ navigation }) {
             )}
           </div>
 
-          <div className="hidden xl:block">
-            <Button size="sm" onClick={() => router.push("/contact-us")}>{navigation.contact}</Button>
-          </div>
-
           <button
             type="button"
             className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white"
             onClick={toggleMobileMenu}
           >
-            {mobileOpen ? <HiX className="text-2xl" /> : <HiMenuAlt3 className="text-2xl" />}
+            {mobileOpen ? (
+              <HiX className="text-2xl" />
+            ) : (
+              <HiMenuAlt3 className="text-2xl" />
+            )}
           </button>
         </div>
       </nav>
@@ -226,7 +265,6 @@ export default function Navbar({ navigation }) {
                   return (
                     <li key={item.id}>
                       <div className="flex items-center justify-between rounded-2xl bg-white/5 px-4 py-3">
-
                         <Link
                           href={item.href}
                           onClick={closeMobileMenu}
@@ -246,8 +284,9 @@ export default function Navbar({ navigation }) {
                           aria-expanded={expanded}
                         >
                           <HiChevronDown
-                            className={`text-xl transition-transform ${expanded ? "rotate-180" : ""
-                              }`}
+                            className={`text-xl transition-transform ${
+                              expanded ? "rotate-180" : ""
+                            }`}
                           />
                         </button>
                       </div>
@@ -272,7 +311,6 @@ export default function Navbar({ navigation }) {
                   );
                 }
 
-
                 return (
                   <li key={item.id}>
                     <Link
@@ -286,11 +324,6 @@ export default function Navbar({ navigation }) {
                 );
               })}
 
-              <li className="pt-4">
-                <Button size="md" className="w-full" onClick={() => {router.push('/contact-us')}} >
-                  {navigation.contact}
-                </Button>
-              </li>
             </ul>
           </div>
         </div>
