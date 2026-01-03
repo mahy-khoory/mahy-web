@@ -1,6 +1,7 @@
 export default function ChatLayout({ children, onClose, className = "", data }) {
   return (
     <div
+      data-lenis-prevent
       className={`flex h-full flex-col overflow-hidden rounded-[32px] border border-slate-100/80 bg-white/95 shadow-[0_25px_70px_rgba(15,23,42,0.15)] ${className}`}
     >
       <header className="border-b border-slate-100/80 bg-white/85 px-5 py-4 backdrop-blur-sm sm:px-6 sm:py-5">

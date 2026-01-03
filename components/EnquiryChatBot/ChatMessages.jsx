@@ -23,6 +23,7 @@ function ChatMessages({ messages, isTyping, data, locale }, ref) {
     <section
       ref={chatRef}
       aria-live="polite"
+      data-lenis-prevent
       className="custom-scrollbar flex-1 overflow-y-auto bg-slate-50 px-5 py-5 sm:px-6 sm:py-6"
     >
       <div className="space-y-4">
