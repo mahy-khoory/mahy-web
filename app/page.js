@@ -16,6 +16,7 @@ import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
 import CompaniesList from "@/components/UI/home/CompaniesList";
 import ProjectsSection from "@/components/Home/ProjectsSection";
+import AwardsSection from "@/components/Awards/AwardsSection";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -207,6 +208,8 @@ export default async function Home() {
       <section id="stats">
         <KeyStatsSection />
       </section>
+
+      <AwardsSection/>
 
       <section id="partners">
         <PartnersSection />
