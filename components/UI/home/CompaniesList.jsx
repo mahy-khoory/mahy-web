@@ -20,7 +20,7 @@ function CompaniesList() {
       <TabGroup>
         <div className="flex justify-between gap-5">
           <h2 className="uppercase text-4xl font-semibold text-gray-700">
-            Businesses
+            Companies
           </h2>
           <div className="border-b border-gray-300 ">
             <TabList className={"flex items-center gap-5"}>

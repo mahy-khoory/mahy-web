@@ -35,7 +35,7 @@ const PROJECTS = [
 export default function ProjectsSection() {
   return (
     <>
-      <section className="relative bg-[#ffffff] py-14 md:py-20 pt-3">
+      <section className="relative py-14 md:py-20 pt-3">
         {/* <div className="mx-auto max-w-7xl px-5 sm:px-6 text-center">
 
         </div> */}
@@ -98,7 +98,7 @@ export default function ProjectsSection() {
                 PROJECTS
               </h2> */}
               <h2
-                className="text-[26px]
+                className="text-[36px] font-semibold
       tracking-[0.22em]
       text-[#2c3b45]
       text-center leading-[1] tracking-tight text-black"

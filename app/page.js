@@ -198,11 +198,12 @@ export default async function Home() {
         <WhoWeAre />
       </section>
 
+       <CompaniesList />
+       
       <section id="projects">
         <ProjectsSection />
       </section>
 
-       <CompaniesList />
       <section id="stats">
         <KeyStatsSection />
       </section>
