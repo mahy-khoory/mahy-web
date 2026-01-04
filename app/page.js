@@ -14,6 +14,7 @@ import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
 import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
+import CompaniesList from "@/components/UI/home/CompaniesList";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -157,7 +158,7 @@ export default async function Home() {
       </div>
 
       <WhoWeAre />
-
+      <CompaniesList />
       <NextAdvantagesSection advantages={advantages} />
 
       <Announcements items={announcements} cta={t("Announcements.Button")} locale={locale} />
