@@ -188,7 +188,10 @@ async function About() {
       <PageHeading
         title={t("Heading")}
         description={t("Description")}
-        image={"/gallery/MAHYABOUT.jpg"}
+        // image={"/gallery/MAHYABOUT.jpg"}
+        image={
+          "https://res.cloudinary.com/db3fd1qah/image/upload/v1766140489/office_m5htoa.png"
+        }
       />
       <Breadcrumb
         segments={[{ label: t("Page"), href: "/about-us" }]}
