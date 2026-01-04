@@ -14,6 +14,7 @@ import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
 import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
+import CompaniesList from "@/components/UI/home/CompaniesList";
 import ProjectsSection from "@/components/Home/ProjectsSection";
 
 export default async function Home() {
@@ -200,6 +201,8 @@ export default async function Home() {
       <section id="projects">
         <ProjectsSection />
       </section>
+
+       <CompaniesList />
       <section id="stats">
         <KeyStatsSection />
       </section>
