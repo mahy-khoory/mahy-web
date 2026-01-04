@@ -14,6 +14,7 @@ import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
 import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
 import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
+import ProjectsSection from "@/components/Home/ProjectsSection";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -46,17 +47,21 @@ export default async function Home() {
     {
       title: t("Sustainability.Item2"),
       image: "/burj.jpg",
-      description: t("Sustainability.Item2Text1")
+      description: t("Sustainability.Item2Text1"),
     },
     {
       title: t("Sustainability.Item3"),
       image: "/mosque.JPG",
-      bullets: [t("Sustainability.Item3Text1"), t("Sustainability.Item3Text2"), t("Sustainability.Item3Text3")],
+      bullets: [
+        t("Sustainability.Item3Text1"),
+        t("Sustainability.Item3Text2"),
+        t("Sustainability.Item3Text3"),
+      ],
     },
     {
       title: t("Sustainability.Item4"),
       image: "/dubai-pano.jpg",
-      description: t("Sustainability.Item4Text1")
+      description: t("Sustainability.Item4Text1"),
     },
   ];
   const floatingMenuItems = [
@@ -80,12 +85,29 @@ export default async function Home() {
     text1: t("Advantages.Text1"),
     text2: t("Advantages.Text2"),
     items: [
-      { title: t("Advantages.Title1"), heading: t("Advantages.Heading1"), description: t("Advantages.Description1") },
-      { title: t("Advantages.Title2"), heading: t("Advantages.Heading2"), description: t("Advantages.Description2") },
-      { title: t("Advantages.Title3"), description: t("Advantages.Description3") },
-      { title: t("Advantages.Title4"), description: t("Advantages.Description4") },
-      { title: t("Advantages.Title5"), description: t("Advantages.Description5") }
-    ]
+      {
+        title: t("Advantages.Title1"),
+        heading: t("Advantages.Heading1"),
+        description: t("Advantages.Description1"),
+      },
+      {
+        title: t("Advantages.Title2"),
+        heading: t("Advantages.Heading2"),
+        description: t("Advantages.Description2"),
+      },
+      {
+        title: t("Advantages.Title3"),
+        description: t("Advantages.Description3"),
+      },
+      {
+        title: t("Advantages.Title4"),
+        description: t("Advantages.Description4"),
+      },
+      {
+        title: t("Advantages.Title5"),
+        description: t("Advantages.Description5"),
+      },
+    ],
   };
   const announcements = [
     {
@@ -97,43 +119,43 @@ export default async function Home() {
       heading: t("Announcements.Heading2"),
       title: t("Announcements.Title2"),
       text: t("Announcements.Text2"),
-      img: "/gallery/gallery-7.webp"
+      img: "/gallery/gallery-7.webp",
     },
     {
       heading: t("Announcements.Heading3"),
       title: t("Announcements.Title3"),
       text: t("Announcements.Text3"),
-      img: "/gallery/gallery-8.jpeg"
+      img: "/gallery/gallery-8.jpeg",
     },
     {
       heading: t("Announcements.Heading4"),
       title: t("Announcements.Title4"),
       text: t("Announcements.Text4"),
-      img: "/gallery/gallery-9.jpeg"
+      img: "/gallery/gallery-9.jpeg",
     },
     {
       heading: t("Announcements.Heading5"),
       title: t("Announcements.Title5"),
       text: t("Announcements.Text5"),
-      img: "/gallery/gallery-4.jpg"
+      img: "/gallery/gallery-4.jpg",
     },
     {
       heading: t("Announcements.Heading6"),
       title: t("Announcements.Title6"),
       text: t("Announcements.Text6"),
-      img: "/gallery/gallery-5.jpg"
+      img: "/gallery/gallery-5.jpg",
     },
     {
       heading: t("Announcements.Heading7"),
       title: t("Announcements.Title7"),
       text: t("Announcements.Text7"),
-      img: "/gallery/gallery-6.jpg"
+      img: "/gallery/gallery-6.jpg",
     },
     {
       heading: t("Announcements.Heading8"),
       title: t("Announcements.Title8"),
       text: t("Announcements.Text8"),
-    }
+    },
   ];
   const slideshow = [
     { title: t("Slideshow.Title1"), subTitle: t("Slideshow.SubTitle1") },
@@ -143,9 +165,24 @@ export default async function Home() {
     { title: t("Slideshow.Title5"), subTitle: t("Slideshow.SubTitle5") },
   ];
   const scrollSection = [
-    { title1: t("ScrollSection.Item1Title1"), title2: t("ScrollSection.Item1Title2"), text: t("ScrollSection.Item1Text"), cta: t("ScrollSection.Item1Cta") },
-    { title1: t("ScrollSection.Item2Title1"), title2: t("ScrollSection.Item2Title2"), text: t("ScrollSection.Item2Text"), cta: t("ScrollSection.Item2Cta") },
-    { title1: t("ScrollSection.Item2Title1"), title2: t("ScrollSection.Item3Title2"), text: t("ScrollSection.Item3Text"), cta: t("ScrollSection.Item3Cta") }
+    {
+      title1: t("ScrollSection.Item1Title1"),
+      title2: t("ScrollSection.Item1Title2"),
+      text: t("ScrollSection.Item1Text"),
+      cta: t("ScrollSection.Item1Cta"),
+    },
+    {
+      title1: t("ScrollSection.Item2Title1"),
+      title2: t("ScrollSection.Item2Title2"),
+      text: t("ScrollSection.Item2Text"),
+      cta: t("ScrollSection.Item2Cta"),
+    },
+    {
+      title1: t("ScrollSection.Item2Title1"),
+      title2: t("ScrollSection.Item3Title2"),
+      text: t("ScrollSection.Item3Text"),
+      cta: t("ScrollSection.Item3Cta"),
+    },
   ];
 
   return (
@@ -156,31 +193,19 @@ export default async function Home() {
         <HeroVideo slides={slides} />
       </div>
 
-      <WhoWeAre />
-
-      <NextAdvantagesSection advantages={advantages} />
-
-      <Announcements items={announcements} cta={t("Announcements.Button")} locale={locale} />
-      <ImageSlideShow data={slideshow} locale={locale} />
-      <ScrollSectionWithImages data={scrollSection} />
-
-      <section id="about">
-        <DesignProcessContainer />
+      <section id="who-we-are">
+        <WhoWeAre />
       </section>
 
-      <section id="gallery">
-        <Gallery galleryItems={galleryItems} cta={t("Gallery.Button")} />
+      <section id="projects">
+        <ProjectsSection />
       </section>
-
-      <KeyStatsSection />
-      <SustainabilityPanels items={sustainability} cols={4} />
+      <section id="stats">
+        <KeyStatsSection />
+      </section>
 
       <section id="partners">
         <PartnersSection />
-      </section>
-
-      <section id="enterprise">
-        <EnterprisePinnedContainer />
       </section>
 
       <section id="after-sales">
@@ -192,4 +217,30 @@ export default async function Home() {
       </section>
     </main>
   );
+}
+
+{
+  /* <NextAdvantagesSection advantages={advantages} /> */
+}
+
+{
+  /* <Announcements items={announcements} cta={t("Announcements.Button")} locale={locale} />
+      <ImageSlideShow data={slideshow} locale={locale} />
+      <ScrollSectionWithImages data={scrollSection} /> */
+}
+
+{
+  /* <section id="about">
+        <DesignProcessContainer />
+      </section> */
+}
+{
+  /* 
+      <section id="gallery">
+        <Gallery galleryItems={galleryItems} cta={t("Gallery.Button")} />
+      </section> */
+}
+
+{
+  /* <SustainabilityPanels items={sustainability} cols={4} /> */
 }

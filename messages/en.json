@@ -165,12 +165,13 @@
     },
     "FloatingMenu": {
       "Item1": "Home",
-      "Item2": "About",
-      "Item3": "Gallery",
-      "Item4": "Partners",
-      "Item5": "Enterprise",
-      "Item6": "After Sales",
-      "Item7": "Why Us"
+      "Item2": "Who We Are",
+      "Item3": "Our Companies",
+      "Item4": "Our Projects",
+      "Item5": "Key Stats",
+      "Item6": "Partners",
+      "Item7": "After Sales",
+      "Item8": "Why Us"
     }
   },
   "AboutUsPage": {

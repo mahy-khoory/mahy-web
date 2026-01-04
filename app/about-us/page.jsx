@@ -11,6 +11,7 @@ import HistoryTimelineClient from "@/components/HistoryTimelineClient";
 import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
+import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");
@@ -26,13 +27,37 @@ async function About() {
     heading: t("Structure.Heading"),
     company: t("Structure.Company"),
     items: [
-      { title: t("Structure.Item1"), subTitle: t("Structure.Item1SubTitle"), text: t("Structure.Item1Text") },
-      { title: t("Structure.Item2"), subTitle: t("Structure.Item2SubTitle"), text: t("Structure.Item2Text") },
-      { title: t("Structure.Item3"), subTitle: t("Structure.Item3SubTitle"), text: t("Structure.Item3Text") },
-      { title: t("Structure.Item4"), subTitle: t("Structure.Item4SubTitle"), text: t("Structure.Item4Text") },
-      { title: t("Structure.Item5"), subTitle: t("Structure.Item5SubTitle"), text: t("Structure.Item5Text") },
-      { title: t("Structure.Item6"), subTitle: t("Structure.Item6SubTitle"), text: t("Structure.Item6Text") },
-    ]
+      {
+        title: t("Structure.Item1"),
+        subTitle: t("Structure.Item1SubTitle"),
+        text: t("Structure.Item1Text"),
+      },
+      {
+        title: t("Structure.Item2"),
+        subTitle: t("Structure.Item2SubTitle"),
+        text: t("Structure.Item2Text"),
+      },
+      {
+        title: t("Structure.Item3"),
+        subTitle: t("Structure.Item3SubTitle"),
+        text: t("Structure.Item3Text"),
+      },
+      {
+        title: t("Structure.Item4"),
+        subTitle: t("Structure.Item4SubTitle"),
+        text: t("Structure.Item4Text"),
+      },
+      {
+        title: t("Structure.Item5"),
+        subTitle: t("Structure.Item5SubTitle"),
+        text: t("Structure.Item5Text"),
+      },
+      {
+        title: t("Structure.Item6"),
+        subTitle: t("Structure.Item6SubTitle"),
+        text: t("Structure.Item6Text"),
+      },
+    ],
   };
   const purpose = {
     heading: t("Purpose.Heading"),
@@ -110,9 +135,19 @@ async function About() {
   const network = {
     text: [t("Network.Text1"), t("Network.Text2")],
     stats: [t("Network.Stat1"), t("Network.Stat2"), t("Network.Stat3")],
-    statsNo: [(300000).toLocaleString(locale), (60).toLocaleString(locale), (1200).toLocaleString(locale)],
+    statsNo: [
+      (300000).toLocaleString(locale),
+      (60).toLocaleString(locale),
+      (1200).toLocaleString(locale),
+    ],
     map: [t("Network.Map1"), t("Network.Map2"), t("Network.Map3")],
-    locations: [t("Network.Location1"), t("Network.Location2"), t("Network.Location3"), t("Network.Location4"), t("Network.Location5")]
+    locations: [
+      t("Network.Location1"),
+      t("Network.Location2"),
+      t("Network.Location3"),
+      t("Network.Location4"),
+      t("Network.Location5"),
+    ],
   };
   const ourPeople = {
     heading: t("OurPeople.Heading"),
@@ -145,7 +180,7 @@ async function About() {
     t("Industries.Item7"),
     t("Industries.Item8"),
     t("Industries.Item9"),
-    t("Industries.Item10")
+    t("Industries.Item10"),
   ];
 
   return (
@@ -155,7 +190,10 @@ async function About() {
         description={t("Description")}
         image={"/gallery/MAHYABOUT.jpg"}
       />
-      <Breadcrumb segments={[{ label: t("Page"), href: "/about-us" }]} locale={locale} />
+      <Breadcrumb
+        segments={[{ label: t("Page"), href: "/about-us" }]}
+        locale={locale}
+      />
       <MissionStatement missionStatement={missionStatement} />
       <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
@@ -208,7 +246,10 @@ async function About() {
           },
         ]}
       />
-      <IndustriesGrid heading={t("Industries.Heading")} industries={industries} />
+      <IndustriesGrid
+        heading={t("Industries.Heading")}
+        industries={industries}
+      />
       <ManufacturingNetworkSection network={network} locale={locale} />
       <ValuesSection
         title={ourPeople.heading}
@@ -230,6 +271,7 @@ async function About() {
         ctaLabel="Learn More"
         ctaHref="/people"
       />
+      <EnterprisePinnedContainer />
     </main>
   );
 }
