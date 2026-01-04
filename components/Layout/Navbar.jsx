@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -23,10 +24,8 @@ export default function Navbar({ navigation }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [currentLocale, setCurrentLocale] = useState(() => {
-    if (typeof window === "undefined") return "en";
-    return Cookies.get("locale") || "en";
-  });
+  const locale = useLocale();
+  const [currentLocale, setCurrentLocale] = useState(locale);
   const languageMenuRef = useRef(null);
 
   const toggleMobileMenu = () => {
@@ -55,6 +54,10 @@ export default function Navbar({ navigation }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    setCurrentLocale(locale);
+  }, [locale]);
 
   const setLocale = (locale) => {
     Cookies.set("locale", locale, { expires: 30 });

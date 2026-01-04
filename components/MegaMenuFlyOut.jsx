@@ -48,7 +48,7 @@ export default function MegaMenuFlyOut({
             backdrop-blur-[22px]
             border-t border-white/10
             shadow-[0_40px_120px_rgba(0,0,0,0.95)]
-            min-h-[700px]
+            min-h-[300px]
             pt-8
             pb-20
           "
@@ -83,8 +83,8 @@ export default function MegaMenuFlyOut({
                   <h4
                     className="
                       mb-8
-                      text-[12px]
-                      font-semibold
+                      text-[16px]
+                      font-bold
                       uppercase
                       tracking-[0.18em]
                       text-white/85
