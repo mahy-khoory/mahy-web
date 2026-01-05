@@ -15,6 +15,8 @@ import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImage
 import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
 import CompaniesList from "@/components/UI/home/CompaniesList";
+import NewsroomSection from "@/components/UI/home/NewsroomSection";
+import { getArticles } from "@/utlils/articles";
 import ProjectsSection from "@/components/Home/ProjectsSection";
 import AwardsSection from "@/components/Awards/AwardsSection";
 
@@ -186,7 +188,8 @@ export default async function Home() {
       cta: t("ScrollSection.Item3Cta"),
     },
   ];
-
+  const articleTranslations = await getTranslations('Articles');
+  const articles = await getArticles(0, 4, articleTranslations);
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
       <FloatingMenu floatingMenuItems={floatingMenuItems} />
