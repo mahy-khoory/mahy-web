@@ -67,7 +67,7 @@ function CompaniesList() {
                     <AnimatePresence mode="wait">
                         <TabPanel
                             key="companies"
-                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0.5"
                             as={motion.div}
                             initial={{ y: 10, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
