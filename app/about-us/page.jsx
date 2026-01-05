@@ -21,33 +21,31 @@ async function About() {
   const items = [
     {
       year: "2025/03",
-      title: "Enhanced AI Strategy",
+      title: "Enhanced Strategy",
       curveAt: 0.08,
       side: "above",
       description: [
-        "OPPO announced its enhanced AI strategy, positioning itself as a leader in AI experiences.",
-        "Comprehensive, secure, continuously evolving AI solutions during MWC2025.",
+        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
       ],
       rulerLabel: "2025",
     },
     {
       year: "2024/06",
-      title: "OPPO AI Phone Strategy",
+      title: "Strategy In Markey",
       curveAt: 0.28,
       side: "below",
       description: [
-        "Make AI Phones Accessible to Everyone:",
-        "About 50 million OPPO users will experience generative AI features on their smartphones by 2024.",
+        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
       ],
       rulerLabel: "2024",
     },
     {
       year: "2024/02",
-      title: "AI Phone White Paper",
+      title: "Paper Mills",
       curveAt: 0.42,
       side: "above",
       description: [
-        "Released in collaboration with IDC outlining AI phone vision.",
+        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
       ],
       rulerLabel: "2024",
     },
@@ -57,7 +55,7 @@ async function About() {
       curveAt: 0.58,
       side: "below",
       description: [
-        "Key internal milestones leading into AI-first experiences.",
+        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
       ],
       rulerLabel: "2023",
     },
@@ -66,9 +64,12 @@ async function About() {
       title: "Early Exploration",
       curveAt: 0.72,
       side: "above",
-      description: ["Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth"],
+      description: [
+        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
+      ],
       rulerLabel: "Before 2020",
     },
+    
   ];
   const missionStatement = {
     heading: t("MissionStatement.Heading"),
