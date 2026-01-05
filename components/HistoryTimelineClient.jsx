@@ -1,8 +1,8 @@
-"use client";
+// "use client";
 
-import HistoryTimeline from "./Layout/HistoryTimeline";
+// import HistoryTimeline from "./Layout/HistoryTimeline";
 
 
-export default function HistoryTimelineClient(props) {
-  return <HistoryTimeline {...props} />;
-}
+// export default function HistoryTimelineClient(props) {
+//   return <HistoryTimeline {...props} />;
+// }
