@@ -15,6 +15,8 @@ import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImage
 import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
 import CompaniesList from "@/components/UI/home/CompaniesList";
+import NewsroomSection from "@/components/UI/home/NewsroomSection";
+import { getArticles } from "@/utlils/articles";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -148,7 +150,8 @@ export default async function Home() {
     { title1: t("ScrollSection.Item2Title1"), title2: t("ScrollSection.Item2Title2"), text: t("ScrollSection.Item2Text"), cta: t("ScrollSection.Item2Cta") },
     { title1: t("ScrollSection.Item2Title1"), title2: t("ScrollSection.Item3Title2"), text: t("ScrollSection.Item3Text"), cta: t("ScrollSection.Item3Cta") }
   ];
-
+  const articleTranslations = await getTranslations('Articles');
+  const articles = await getArticles(0, 4, articleTranslations);
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
       <FloatingMenu floatingMenuItems={floatingMenuItems} />
@@ -159,6 +162,7 @@ export default async function Home() {
 
       <WhoWeAre />
       <CompaniesList />
+      <NewsroomSection articles={articles} locale={locale} />
       <NextAdvantagesSection advantages={advantages} />
 
       <Announcements items={announcements} cta={t("Announcements.Button")} locale={locale} />
