@@ -1,9 +1,10 @@
 "use client"
+import { useEffect, useRef } from 'react';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation, useInView } from "framer-motion";
 
 const tabs = ["Industeries", "Companies"];
 const industeries = [
@@ -43,12 +44,33 @@ const companies = [
 ];
 
 function CompaniesList() {
+    const sectionRef = useRef(null);
+    const controls = useAnimation();
+    const isSectionInView = useInView(sectionRef, { once: false, amount: 0.35 });
+
+    useEffect(() => {
+        if (isSectionInView) {
+            controls.start("visible");
+        } else {
+            controls.start("hidden");
+        }
+    }, [isSectionInView, controls]);
+
     return (
-        <section className="max-w-7xl mx-auto pt-10 md:pt-20 px-5">
+        <motion.section
+            ref={sectionRef}
+            className="max-w-7xl mx-auto pt-10 md:pt-20 px-5"
+            variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+            }}
+            initial="hidden"
+            animate={controls}
+        >
             <TabGroup>
                 <div className="flex justify-between flex-wrap gap-5">
                     <h2 className='uppercase text-3xl md:text-4xl font-semibold text-gray-700'>Businesses</h2>
-                    <div className='border-b border-gray-300 '>
+                    <div className=' '>
                         <TabList className={"flex items-center gap-5"}>
                             {tabs.map((tab, i) => (
                                 <Tab key={i}
@@ -67,7 +89,7 @@ function CompaniesList() {
                             as={motion.div}
                             initial={{ y: 10, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true, margin: "-100px" }}
+                            viewport={{ once: false, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -76,7 +98,7 @@ function CompaniesList() {
                                 ))}
                             </div>
 
-                            <div className="relative h-120 md:h-full">
+                            <div className="relative h-120 md:h-full w-158">
                                 <Image src="/gallery/gallery-9.jpeg" alt="Companies" fill />
                                 <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
                                 <div className='absolute bottom-7 left-7 text-gray-200'>
@@ -91,11 +113,11 @@ function CompaniesList() {
                         </TabPanel>
                         <TabPanel
                             key="companies"
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
                             as={motion.div}
                             initial={{ y: 10, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true, margin: "-100px" }}
+                            viewport={{ once: false, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             {companies.map((company, i) => (
@@ -105,7 +127,7 @@ function CompaniesList() {
                     </AnimatePresence>
                 </TabPanels>
             </TabGroup>
-        </section >
+        </motion.section>
     )
 };
 
