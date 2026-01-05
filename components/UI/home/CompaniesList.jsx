@@ -1,23 +1,14 @@
 "use client"
-import { useEffect, useRef } from 'react';
+
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaArrowRightLong } from 'react-icons/fa6';
-import { motion, AnimatePresence, useAnimation, useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import IndustryCard from './IndustryCard';
 import CompanyCard from './CompanyCard';
 
-const tabs = ["Industeries", "Companies"];
-const industeries = [
-    { label: "Trading", image: "/gallery/gallery-1.jpg" },
-    { label: "Manufacturing", image: "/gallery/gallery-2.jpg" },
-    { label: "Automobile", image: "/gallery/gallery-3.jpg" },
-    { label: "Waste Management", image: "/gallery/gallery-4.jpg" },
-    { label: "Logistics", image: "/gallery/gallery-5.jpg" },
-    { label: "Energy Transport", image: "/gallery/gallery-8.jpeg" },
-];
-const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
+const tabs = ["Companies", "Industeries"];
+
 const companies = [
     { label: "MAHY Khoory Group", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
     { label: "MAHY Khoory Trading", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
@@ -45,6 +36,16 @@ const companies = [
     { label: "SWMD", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" }
 ];
 
+const industeries = [
+    { label: "Trading", image: "/gallery/gallery-1.jpg" },
+    { label: "Manufacturing", image: "/gallery/gallery-2.jpg" },
+    { label: "Automobile", image: "/gallery/gallery-3.jpg" },
+    { label: "Waste Management", image: "/gallery/gallery-4.jpg" },
+    { label: "Logistics", image: "/gallery/gallery-5.jpg" },
+    { label: "Energy Transport", image: "/gallery/gallery-8.jpeg" },
+];
+const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
+
 function CompaniesList() {
     return (
         <section className="max-w-7xl mx-auto pt-10 md:pt-20 px-5">
@@ -64,6 +65,19 @@ function CompaniesList() {
                 </div>
                 <TabPanels className="mt-7 md:mt-10">
                     <AnimatePresence mode="wait">
+                        <TabPanel
+                            key="companies"
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
+                            as={motion.div}
+                            initial={{ y: 10, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: false, margin: "-100px" }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
+                            {companies.map((company, i) => (
+                                <CompanyCard key={i} item={company} />
+                            ))}
+                        </TabPanel>
                         <TabPanel
                             key="industries"
                             className="grid grid-cols-1 lg:grid-cols-2 gap-3"
@@ -90,19 +104,6 @@ function CompaniesList() {
                                     <Link href={"/"} className='border-b border-gray-200  pb-1'>Explore More</Link>
                                 </div>
                             </div>
-                        </TabPanel>
-                        <TabPanel
-                            key="companies"
-                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
-                            as={motion.div}
-                            initial={{ y: 10, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: false, margin: "-100px" }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                        >
-                            {companies.map((company, i) => (
-                                <CompanyCard key={i} item={company} />
-                            ))}
                         </TabPanel>
                     </AnimatePresence>
                 </TabPanels>
