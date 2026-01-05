@@ -15,7 +15,7 @@ function NewsroomSection({ articles, locale }) {
                     </div>
                 </Link>
             </div>
-            <div className='border-t border-gray-200 grid grid-cols-2'>
+            <div className='border-t border-gray-200 grid grid-cols-1 lg:grid-cols-2'>
                 <Link href={`/news/${articles[0].id}`}>
                     <div className='pt-5 pr-5 border-r border-gray-200'>
                         <div className='relative h-100'>
@@ -28,8 +28,8 @@ function NewsroomSection({ articles, locale }) {
                 <div className='pl-5'>
                     {Array.from({ length: 3 }).map((_, i) => (
                         <Link href={`/news/${articles[i + 1].id}`} key={i}>
-                            <div className='grid grid-cols-3 py-5 border-b border-gray-200' >
-                                <div className='col-span-2 flex flex-col justify-between'>
+                            <div className='grid grid-cols-1 md:grid-cols-3 py-5 border-b border-gray-200' >
+                                <div className='md:col-span-2 flex flex-col justify-between'>
                                     <p>{articles[i + 1].heading}</p>
                                     <p>{articles[i + 1].date.toLocaleString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
                                 </div>
