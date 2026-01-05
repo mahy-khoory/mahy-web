@@ -7,7 +7,7 @@ function NewsroomSection({ articles, locale }) {
     return (
         <section className='max-w-7xl mx-auto pt-15 lg:pt-35 px-5'>
             <div className='flex flex-wrap gap-3 justify-between items-center mb-20'>
-                <h2 className='text-heading text-3xl md:text-5xl font-semibold text-black tracking-tight uppercase'>News room</h2>
+                <h2 className='text-heading text-3xl md:text-5xl font-semibold text-black tracking-tight uppercase'>Newsroom</h2>
                 <Link className='flex items-center gap-3 group' href={"/news"}>
                     <p>Visit the newsroom</p>
                     <div className='bg-[#79c4e7] p-2 rounded-full group-hover:bg-[#2da5dc] transition-colors duration-500'>

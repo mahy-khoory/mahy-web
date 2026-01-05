@@ -188,7 +188,7 @@ export default async function Home() {
       cta: t("ScrollSection.Item3Cta"),
     },
   ];
-  const articleTranslations = await getTranslations('Articles');
+  const articleTranslations = await getTranslations("Articles");
   const articles = await getArticles(0, 4, articleTranslations);
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
@@ -202,10 +202,8 @@ export default async function Home() {
         <WhoWeAre />
       </section>
 
-       <CompaniesList />
+      <CompaniesList />
 
-        <NewsroomSection articles={articles} locale={locale} />
-       
       <section id="projects">
         <ProjectsSection />
       </section>
@@ -214,7 +212,8 @@ export default async function Home() {
         <KeyStatsSection />
       </section>
 
-      <AwardsSection/>
+      <AwardsSection />
+      <NewsroomSection articles={articles} locale={locale} />
 
       <section id="partners">
         <PartnersSection />
