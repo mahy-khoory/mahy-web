@@ -63,5 +63,21 @@ export const awardsData = [
       "ISO 45002 certification reflects DAS Holding's focus on occupational health and safety management systems.",
     ],
     image: "/awards/ISO.png",
+  },
+  {
+    id: "iso-45007-das",
+    title: "DAS Holding has been awarded ISO 45001:2018 certificate",
+    description: [
+      "ISO 45002 certification reflects DAS Holding's focus on occupational health and safety management systems.",
+    ],
+    image: "/awards/ISO.png",
+  },
+  {
+    id: "iso-45008-das",
+    title: "DAS Holding has been awarded ISO 45001:2018 certificate",
+    description: [
+      "ISO 45002 certification reflects DAS Holding's focus on occupational health and safety management systems.",
+    ],
+    image: "/awards/ISO.png",
   }
 ];
