@@ -126,3 +126,5 @@ const Card = ({ item }) => (
         </div>
     </div >
 )
+
+export default CompaniesList;
