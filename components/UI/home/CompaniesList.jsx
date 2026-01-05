@@ -46,29 +46,8 @@ const companies = [
 ];
 
 function CompaniesList() {
-    const sectionRef = useRef(null);
-    const controls = useAnimation();
-    const isSectionInView = useInView(sectionRef, { once: false, amount: 0.35 });
-
-    useEffect(() => {
-        if (isSectionInView) {
-            controls.start("visible");
-        } else {
-            controls.start("hidden");
-        }
-    }, [isSectionInView, controls]);
-
     return (
-        <motion.section
-            ref={sectionRef}
-            className="max-w-7xl mx-auto pt-10 md:pt-20 px-5"
-            variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-            }}
-            initial="hidden"
-            animate={controls}
-        >
+        <section className="max-w-7xl mx-auto pt-10 md:pt-20 px-5">
             <TabGroup>
                 <div className="flex justify-between flex-wrap gap-5">
                     <h2 className='uppercase text-3xl md:text-4xl font-semibold text-gray-700'>Businesses</h2>
@@ -128,7 +107,7 @@ function CompaniesList() {
                     </AnimatePresence>
                 </TabPanels>
             </TabGroup>
-        </motion.section>
+        </section>
     )
 };
 
