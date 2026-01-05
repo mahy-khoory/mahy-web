@@ -12,11 +12,64 @@ import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
 import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
+import HistoryTimeline from "@/components/Layout/HistoryTimeline";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");
   const locale = await getLocale();
 
+  const items = [
+    {
+      year: "2025/03",
+      title: "Enhanced AI Strategy",
+      curveAt: 0.08,
+      side: "above",
+      description: [
+        "OPPO announced its enhanced AI strategy, positioning itself as a leader in AI experiences.",
+        "Comprehensive, secure, continuously evolving AI solutions during MWC2025.",
+      ],
+      rulerLabel: "2025",
+    },
+    {
+      year: "2024/06",
+      title: "OPPO AI Phone Strategy",
+      curveAt: 0.28,
+      side: "below",
+      description: [
+        "Make AI Phones Accessible to Everyone:",
+        "About 50 million OPPO users will experience generative AI features on their smartphones by 2024.",
+      ],
+      rulerLabel: "2024",
+    },
+    {
+      year: "2024/02",
+      title: "AI Phone White Paper",
+      curveAt: 0.42,
+      side: "above",
+      description: [
+        "Released in collaboration with IDC outlining AI phone vision.",
+      ],
+      rulerLabel: "2024",
+    },
+    {
+      year: "2023",
+      title: "Foundation Milestone",
+      curveAt: 0.58,
+      side: "below",
+      description: [
+        "Key internal milestones leading into AI-first experiences.",
+      ],
+      rulerLabel: "2023",
+    },
+    {
+      year: "Before 2020",
+      title: "Early Exploration",
+      curveAt: 0.72,
+      side: "above",
+      description: ["Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth"],
+      rulerLabel: "Before 2020",
+    },
+  ];
   const missionStatement = {
     heading: t("MissionStatement.Heading"),
     subHeading: t("MissionStatement.SubHeading"),
@@ -198,10 +251,11 @@ async function About() {
         locale={locale}
       />
       <MissionStatement missionStatement={missionStatement} />
+      <HistoryTimeline title="History Of MAHY Khoory" items={items} />
       <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
       <History history={history} />
-      <HistoryTimelineClient
+      {/* <HistoryTimelineClient
         title={t("History.Heading")}
         items={[
           {
@@ -248,7 +302,7 @@ async function About() {
             ],
           },
         ]}
-      />
+      /> */}
       <IndustriesGrid
         heading={t("Industries.Heading")}
         industries={industries}
