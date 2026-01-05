@@ -203,6 +203,8 @@ export default async function Home() {
       </section>
 
        <CompaniesList />
+
+        <NewsroomSection articles={articles} locale={locale} />
        
       <section id="projects">
         <ProjectsSection />
