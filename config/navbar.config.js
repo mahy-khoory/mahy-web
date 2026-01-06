@@ -24,7 +24,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("VisionMissionValues"),
-                href: "/about-us/vision-mission-values",
+                href: "/about-us/mission-vision-values",
               },
             ],
           },
