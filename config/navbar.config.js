@@ -16,15 +16,15 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("CompanyProfile"),
-                href: "/about/company-profile",
+                href: "/about-us/company-profile",
               },
               {
                 label: t("GroupHistoryLegacy"),
-                href: "/about/history",
+                href: "/about-us/history",
               },
               {
                 label: t("VisionMissionValues"),
-                href: "/about/vision-mission-values",
+                href: "/about-us/vision-mission-values",
               },
             ],
           },
@@ -33,15 +33,15 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("LeadershipManagement"),
-                href: "/about/leadership-management",
+                href: "/about-us/leadership-management",
               },
               {
                 label: t("BoardDirectors"),
-                href: "/about/board-of-directors",
+                href: "/about-us/board-of-directors",
               },
               {
                 label: t("CorporateGovernance"),
-                href: "/about/corporate-governance",
+                href: "/about-us/corporate-governance",
               },
             ],
           },
@@ -50,19 +50,19 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("CertificationsAccreditations"),
-                href: "/about/certifications",
+                href: "/about-us/certifications",
               },
               {
                 label: t("QualityManagementSystems"),
-                href: "/about/qms",
+                href: "/about-us/qms",
               },
               {
                 label: t("HSE"),
-                href: "/about/hse",
+                href: "/about-us/hse",
               },
               {
                 label: t("PoliciesCodeConduct"),
-                href: "/about/policies",
+                href: "/about-us/policies",
               },
             ],
           },
