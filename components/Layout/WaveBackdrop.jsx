@@ -10,7 +10,7 @@ const WaveBackdrop = forwardRef(function WaveBackdrop(
     <div className={`pointer-events-none absolute inset-x-0 ${className}`}>
       <svg
         ref={svgRef}
-        className="w-full h-170"
+        className="w-full h-140"
         viewBox="0 0 1600 420"
         preserveAspectRatio="none"
       >
@@ -25,12 +25,10 @@ const WaveBackdrop = forwardRef(function WaveBackdrop(
 
         <path
           ref={pathRef}
-          d="
-M -80 150
-C 220 80, 380 80, 560 140
-C 760 200, 960 200, 1120 140
-C 1320 80, 1500 80, 1680 120
-"
+          d="M -80 150
+         C 220 120, 380 120, 560 140
+         C 760 160, 960 160, 1120 140
+         C 1320 120, 1500 120, 1680 130"
           fill="none"
           stroke="url(#waveFade)"
           strokeWidth="4"

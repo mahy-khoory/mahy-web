@@ -10,7 +10,7 @@ export default function TimelineCard({ item, progress, accent }) {
   // STRICT rows (reference)
   const rowY = item.side === "above"
     ? -(pathClearance / 2 + 100)
-    : (pathClearance / 2 + 130);
+    : (pathClearance / 2 + 120);
 
   return (
     <motion.article
@@ -41,9 +41,9 @@ export default function TimelineCard({ item, progress, accent }) {
         {item.title}
       </h3>
 
-      <div className="mt-1 text-xs leading-7 text-black/55 max-w-[45ch]">
+      <div className="mt-2 text-xs leading-5 text-black/55 max-w-[45ch]">
         {item.description.map((d, i) => (
-          <p key={i} className={i ? "mt-2" : ""}>{d}</p>
+          <p key={i} className={i ? "mt-1" : ""}>{d}</p>
         ))}
       </div>
     </motion.article>

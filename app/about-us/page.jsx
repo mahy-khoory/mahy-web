@@ -7,7 +7,6 @@ import LeadersSection from "@/components/UI/about-us/LeadersSection";
 import MissionStatement from "@/components/UI/about-us/MissionStatement";
 import Purpose from "@/components/UI/about-us/Purpose";
 import { getLocale, getTranslations } from "next-intl/server";
-import HistoryTimelineClient from "@/components/HistoryTimelineClient";
 import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
@@ -18,59 +17,6 @@ async function About() {
   const t = await getTranslations("AboutUsPage");
   const locale = await getLocale();
 
-  const items = [
-    {
-      year: "2025/03",
-      title: "Enhanced Strategy",
-      curveAt: 0.08,
-      side: "above",
-      description: [
-        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
-      ],
-      rulerLabel: "2025",
-    },
-    {
-      year: "2024/06",
-      title: "Strategy In Markey",
-      curveAt: 0.28,
-      side: "below",
-      description: [
-        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
-      ],
-      rulerLabel: "2024",
-    },
-    {
-      year: "2024/02",
-      title: "Paper Mills",
-      curveAt: 0.42,
-      side: "above",
-      description: [
-        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
-      ],
-      rulerLabel: "2024",
-    },
-    {
-      year: "2023",
-      title: "Foundation Milestone",
-      curveAt: 0.58,
-      side: "below",
-      description: [
-        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
-      ],
-      rulerLabel: "2023",
-    },
-    {
-      year: "Before 2020",
-      title: "Early Exploration",
-      curveAt: 0.72,
-      side: "above",
-      description: [
-        "Launched Creative Solutions for energy & sustainability consulting, Entered renewable energy as UAE partner for SolarEdge 2024: Re-entered automotive sector with Dongfeng Motor Corporation Focus on EVs, clean energy & innovation-driven growth",
-      ],
-      rulerLabel: "Before 2020",
-    },
-    
-  ];
   const missionStatement = {
     heading: t("MissionStatement.Heading"),
     subHeading: t("MissionStatement.SubHeading"),
@@ -133,6 +79,65 @@ async function About() {
     text1: t("Purpose.Text1"),
     text2: t("Purpose.Text2"),
   };
+  const items = [
+    {
+      year: t("History.Item1Title"),
+      title: t("History.Item1Text"),
+      curveAt: 0.08,
+      side: "above",
+      description: [
+        t("History.Item1Description1"),
+        t("History.Item1Description2"),
+        t("History.Item1Description3"),
+        t("History.Item1Description4"),
+        t("History.Item1Description5"),
+      ],
+      rulerLabel: t("History.Item1Title"),
+    },
+    {
+      year: t("History.Item2Title"),
+      title: t("History.Item2Text"),
+      curveAt: 0.28,
+      side: "below",
+      description: [
+        t("History.Item2Description1"),
+        t("History.Item2Description2"),
+        t("History.Item2Description3"),
+        t("History.Item2Description4"),
+      ],
+      rulerLabel: t("History.Item2Title"),
+    },
+    {
+      year: t("History.Item3Title"),
+      title: t("History.Item3Text"),
+      curveAt: 0.42,
+      side: "above",
+      description: [
+        t("History.Item3Description1"),
+        t("History.Item3Description2"),
+        t("History.Item3Description3"),
+        t("History.Item3Description4"),
+        t("History.Item3Description5"),
+      ],
+      rulerLabel: t("History.Item3Title"),
+    },
+    {
+      year: t("History.Item4Title"),
+      title: t("History.Item4Text"),
+      curveAt: 0.58,
+      side: "below",
+      description: [
+        t("History.Item4Description1"),
+        t("History.Item4Description2"),
+        t("History.Item4Description3"),
+        t("History.Item4Description4"),
+        t("History.Item4Description5"),
+      ],
+      rulerLabel: "2023",
+    },
+
+
+  ];
   const history = {
     heading: t("History.Heading"),
     subHeading: t("History.Text"),

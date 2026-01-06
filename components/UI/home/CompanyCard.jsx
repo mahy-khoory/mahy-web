@@ -2,8 +2,6 @@ import { useEffect, useRef } from "react";
 
 function CompanyCard({ item, shouldPlay = false, onHoverStart, onHoverEnd }) {
     const videoRef = useRef(null);
-
-    // Trigger video playback only while a card is hovered anywhere in the grid.
     useEffect(() => {
         const videoElement = videoRef.current;
         if (!videoElement) return;
