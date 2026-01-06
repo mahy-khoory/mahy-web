@@ -331,19 +331,19 @@ export function getNavigation(t) {
         linkType: "mega",
         columns: [
           {
-            title: t("GeneralContact"),
+            title: t("Contact"),
             links: [
               { label: t("ContactInformation"), href: "/contact-us" },
-              { label: t("OfficeLocationsMaps"), href: "/contact/locations" },
-              { label: t("GeneralEnquiry"), href: "/contact/enquiry" },
+              { label: t("OfficeLocationsMaps"), href: "/contact-us/locations" },
+              { label: t("Contact"), href: "/contact-us/enquiry" },
             ],
           },
           {
             title: t("SalesBusinessEnquiries"),
             links: [
-              { label: t("SalesEnquiry"), href: "/contact/sales" },
+              { label: t("SalesEnquiry"), href: "/contact-us/sales" },
               { label: t("RequestQuotation"), href: "/rfq" },
-              { label: t("KeyAccountContacts"), href: "/contact/key-accounts" },
+              { label: t("KeyAccountContacts"), href: "/contact-us/key-accounts" },
             ],
           },
           {
@@ -352,7 +352,7 @@ export function getNavigation(t) {
               { label: t("CustomerSupportOverview"), href: "/support" },
               { label: t("ServiceRequest"), href: "/services/request" },
               { label: t("SiteVisitRequest"), href: "/services/site-visit" },
-              { label: t("CustomerComplaint"), href: "/complaint" },
+              { label: t("CustomerComplaint"), href: "/services/complaint" },
               { label: t("CustomerDocumentUpdate"), href: "/document-update" },
             ],
           },
