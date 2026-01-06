@@ -55,29 +55,6 @@ export default function MissionVisionSection() {
         </div>
 
         <div className="space-y-24">
-          <motion.section
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <h2 className="text-3xl font-semibold tracking-tight mb-4">
-              Our Vision
-            </h2>
-            <div className="h-px w-20 bg-orange-500 mb-6" />
-            <p className="text-[15px] leading-relaxed text-gray-700">
-              To achieve sustainable long-term growth through innovation,
-              diversification, and geographical expansion, while consistently
-              delivering value that exceeds stakeholder expectations.
-              <br />
-              <br />
-              We aim to strengthen our presence across regional and
-              international markets by building resilient businesses, enhancing
-              industrial and environmental capabilities, and maintaining the
-              highest standards of governance, performance, and responsibility.
-            </p>
-          </motion.section>
-
           {/* <motion.section
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
