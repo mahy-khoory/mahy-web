@@ -83,7 +83,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("SustainabilityCSR"),
-                href: "/sustainability",
+                href: "/about-us/sustainability",
               },
             ],
           },

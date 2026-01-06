@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function AnimatedLines() {
+function AnimatedLines({ bg = "bg-gray-500" }) {
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function AnimatedLines() {
     return (
         <div ref={containerRef} className="mx-auto mb-3 flex justify-center gap-1">
             {Array.from({ length: 14 }).map((_, i) => (
-                <span key={i} className="h-2.5 w-0.5 rounded-full bg-gray-500" />
+                <span key={i} className={`h-2.5 w-0.5 rounded-full ${bg}`} />
             ))}
         </div>
     );
