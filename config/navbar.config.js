@@ -271,7 +271,7 @@ export function getNavigation(t) {
                 label: t("InternshipOpportunities"),
                 href: "/careers/internships",
               },
-              { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
+              // { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
             ],
           },
           {
@@ -314,7 +314,7 @@ export function getNavigation(t) {
             title: t("RecruitmentProcessApplications"),
             links: [
               { label: t("ApplyPosition"), href: "/careers/apply" },
-              { label: t("SubmitCV"), href: "/careers/submit-cv" },
+              // { label: t("SubmitCV"), href: "/careers/submit-cv" },
               {
                 label: t("RecruitmentSelectionProcess"),
                 href: "/careers/process",
