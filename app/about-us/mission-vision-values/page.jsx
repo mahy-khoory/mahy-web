@@ -2,6 +2,8 @@ import React from "react";
 
 import { getLocale, getTranslations } from "next-intl/server";
 import AboutUsSection from "@/components/UI/about-us/mission-vision-values/AboutUsSection";
+import MissionVisionSection from "@/components/UI/about-us/mission-vision-values/MissionVisionSection";
+import AnimatedLines from "@/components/UI/AnimatedLines";
 
 async function MissionVisionValues() {
   const t = await getTranslations("AboutUsPage");
@@ -235,6 +237,7 @@ async function MissionVisionValues() {
   return (
     <main className="bg-gray-50">
      <AboutUsSection/>
+     <MissionVisionSection/>
     </main>
   );
 }

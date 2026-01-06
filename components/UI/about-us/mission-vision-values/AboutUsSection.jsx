@@ -8,7 +8,6 @@ export default function AboutUsSection() {
     <section className="relative w-full overflow-hidden bg-white">
       <div className="mx-auto max-w-[1600px]">
         <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] items-stretch">
-          
           <div className="relative h-[320px] sm:h-[420px] lg:h-[700px]">
             <div
               className="
@@ -33,8 +32,10 @@ export default function AboutUsSection() {
             </div>
           </div>
 
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div className="px-6 sm:px-10 lg:px-20 py-16 max-w-xl">
+              <div className="h-px w-20 bg-orange-500 mb-6" />
+
               <h3 className="text-[28px] font-semibold tracking-wide text-orange-500 mb-6">
                 ABOUT US
               </h3>
@@ -57,8 +58,32 @@ export default function AboutUsSection() {
                 excellence, and long-term value for all stakeholders.
               </p>
             </div>
-          </div>
+          </div> */}
+          <div className="flex items-center">
+            <div className="px-6 sm:px-10 lg:px-20 py-16 max-w-xl">
+              <div className="h-px w-20 b-base mb-6" />
 
+              <h3 className="text-heading text-[28px] t-base mb-6">ABOUT US</h3>
+
+              <p className="text-body text-[15px] text-[var(--foreground)] mb-6">
+                MAHY Khoory Group is a diversified holding company with
+                operations spanning trading, engineering, industrial
+                manufacturing, packaging, recycling, environmental services,
+                transportation, energy, automotive, hospitality, and food
+                services. Through a portfolio of specialized companies, the
+                Group serves industrial, commercial, institutional, and
+                hospitality sectors across regional and international markets.
+              </p>
+
+              <p className="text-body text-[15px] text-[var(--foreground)]">
+                Our businesses are built on strong operational foundations,
+                vertical integration, and long-term partnerships. Guided by a
+                clear vision, a focused mission, and shared values, we are
+                committed to delivering sustainable growth, operational
+                excellence, and long-term value for all stakeholders.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
