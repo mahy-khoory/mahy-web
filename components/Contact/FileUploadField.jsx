@@ -40,11 +40,18 @@ export default function FileUploadField({ label, register, error, upload }) {
           {...register("attachment")}
           onChange={(e) => {
             const file = e.target.files?.[0];
-            if (!file || file.size > 5 * 1024 * 1024) {
+            if (!file) return;
+
+            const allowed = ["image/jpeg", "image/png", "application/pdf"];
+            if (!allowed.includes(file.type)) {
+              toast.error("Only JPG, JPEG, PNG, or PDF files are allowed.");
+              return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
               toast.error("File must be less than 5MB.");
               return;
             }
-            setFileName(file ? file.name : null);
+            setFileName(file.name);
           }}
         />
 
