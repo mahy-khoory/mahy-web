@@ -4,10 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function TimelineCard({ item, progress, accent }) {
+  const pathClearance = 80;
   const visible = progress >= item.curveAt - 0.08;
 
   // STRICT rows (reference)
-  const rowY = item.side === "above" ? -110 : 110;
+  const rowY = item.side === "above"
+    ? -(pathClearance / 2 + 100)
+    : (pathClearance / 2 + 130);
 
   return (
     <motion.article
@@ -20,8 +23,8 @@ export default function TimelineCard({ item, progress, accent }) {
       className="relative w-[360px] lg:w-[420px]"
     >
       {/* marker */}
-      <div className="mb-4 flex items-center gap-3">
-        <span className="relative inline-flex h-5 w-5">
+      <div className="mb-1 flex items-center gap-1">
+        <span className="relative flex items-center h-5 w-5">
           <span
             className="absolute h-[12px] w-[12px] rotate-45 rounded-[3px]"
             style={{ background: accent }}
@@ -31,14 +34,14 @@ export default function TimelineCard({ item, progress, accent }) {
             style={{ background: accent, opacity: 0.85 }}
           />
         </span>
-        <span className="text-[14px] text-black/55">{item.year}</span>
+        <span className="text-sm text-black/55">{item.year}</span>
       </div>
 
-      <h3 className="text-[22px] lg:text-[24px] font-semibold text-black">
+      <h3 className="font-semibold text-black">
         {item.title}
       </h3>
 
-      <div className="mt-4 text-[15px] leading-7 text-black/55 max-w-[42ch]">
+      <div className="mt-1 text-xs leading-7 text-black/55 max-w-[45ch]">
         {item.description.map((d, i) => (
           <p key={i} className={i ? "mt-2" : ""}>{d}</p>
         ))}

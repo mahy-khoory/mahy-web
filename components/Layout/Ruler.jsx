@@ -55,7 +55,7 @@ export default function Ruler({ accent, progress, years, onChangeProgress }) {
         onTouchStart={onPointerDown}
       >
         {/* ticks */}
-        <div className="absolute left-0 right-0 top-0 flex items-end gap-[5px] opacity-80">
+        <div className="absolute left-0 right-0 top-8 flex items-end gap-[5px] opacity-80">
           {Array.from({ length: 210 }).map((_, i) => (
             <span
               key={i}
@@ -69,7 +69,7 @@ export default function Ruler({ accent, progress, years, onChangeProgress }) {
 
         {/* scrubber pill */}
         <div
-          className="absolute top-[6px] -translate-x-1/2"
+          className="absolute top-7 -translate-x-1/2"
           style={{ left: `${progress * 100}%` }}
         >
           <div

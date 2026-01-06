@@ -27,7 +27,7 @@ export default function HistoryTimeline({
 
   const years = useMemo(() => {
     const y = items.map((i) => i.rulerLabel ?? i.year).filter(Boolean);
-    return y.length ? y : ["2025", "2024", "2023", "2020", "2020",  "2002", "1990"];
+    return y.length ? y : ["2025", "2024", "2023", "2020", "2020", "2002", "1990"];
   }, [items]);
 
   useLayoutEffect(() => {
@@ -123,8 +123,8 @@ export default function HistoryTimeline({
   return (
     <section ref={sectionRef} className="relative w-full bg-white">
       <div ref={pinWrapRef} className="relative min-h-screen overflow-hidden">
-        <div className="mx-auto max-w-[900px] px-6 lg:px-10 pt-16 lg:pt-24">
-          <h2 className="text-[30px] leading-[1.05] lg:text-[56px] font-semibold tracking-tight text-black">
+        <div className="mx-auto max-w-225 px-6 lg:px-10 pt-16 lg:pt-24">
+          <h2 className="text-[30px] leading-[1.05] lg:text-5xl font-semibold tracking-tight text-black">
             {title}
           </h2>
         </div>
