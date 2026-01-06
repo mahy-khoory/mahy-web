@@ -189,7 +189,7 @@ export default function Navbar({ navigation }) {
             />
           ))}
 
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           <div className="relative" ref={languageMenuRef}>
             <button
               type="button"
@@ -254,7 +254,7 @@ export default function Navbar({ navigation }) {
               <HiMenuAlt3 className="text-2xl" />
             )}
           </button>
-        </div>
+        </div> */}
       </nav>
 
       {mobileOpen && (
