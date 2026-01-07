@@ -16,7 +16,7 @@ export default function CodeOfConductSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="text-center lg:text-left"
           >
-            <div className="mb-4 flex justify-center lg:justify-start border">
+            <div className="mb-4 flex justify-center lg:justify-start">
               <AnimatedLines bg="bg-neutral-400" />
             </div>
 
