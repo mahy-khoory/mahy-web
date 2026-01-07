@@ -58,7 +58,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("HSE"),
-                href: "/about-us/hse",
+                href: "/about-us/health-safety-environment",
               },
               {
                 label: t("PoliciesCodeConduct"),
