@@ -348,4 +348,12 @@ button {
   .animate-accordion-up {
     animation: accordion-up 280ms ease-out;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

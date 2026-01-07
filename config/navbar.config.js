@@ -33,7 +33,7 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("LeadershipManagement"),
-                href: "/about-us/leadership-management",
+                href: "/about-us/leadership-and-management",
               },
               {
                 label: t("BoardDirectors"),
