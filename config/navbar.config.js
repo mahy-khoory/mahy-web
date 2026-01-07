@@ -62,7 +62,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("PoliciesCodeConduct"),
-                href: "/about-us/policies",
+                href: "/about-us/code-of-conduct",
               },
             ],
           },
