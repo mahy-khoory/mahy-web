@@ -50,7 +50,7 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("CertificationsAccreditations"),
-                href: "/about-us/certifications",
+                href: "/about-us/certifications-and-accreditations",
               },
               {
                 label: t("QualityManagementSystems"),
