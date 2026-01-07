@@ -75,7 +75,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("KeyCapabilitiesExpertise"),
-                href: "/capabilities",
+                href: "/about-us/capabilities",
               },
               {
                 label: t("StrategicPartnershipsOverview"),
