@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from "framer-motion";
 import { useCallback, useState } from "react";
 import IndustryCard from './IndustryCard';
-import CompanyCard from './CompanyCard';
 
 const tabs = ["Companies", "Industeries"];
 
@@ -152,18 +151,27 @@ const Companies = ({ companies }) => {
                     </div>
                 ))}
             </div>
-            <div className='absolute inset-0'>
-                <video
-                    key={companies[currentIndex].video}
-                    muted
-                    loop
-                    autoPlay
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-cover"
-                >
-                    <source src={companies[currentIndex].video} type="video/mp4" />
-                </video>
+            <div className="absolute inset-0 overflow-hidden">
+                <AnimatePresence mode="wait">
+                    <motion.video
+                        key={companies[currentIndex].video}
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                        initial={{ scale: 1, opacity: 1 }}
+                        animate={{ scale: 1.1, opacity: 1 }}
+                        exit={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                        <source
+                            src={companies[currentIndex].video}
+                            type="video/mp4"
+                        />
+                    </motion.video>
+                </AnimatePresence>
             </div>
         </div>
     )
