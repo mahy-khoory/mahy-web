@@ -38,12 +38,12 @@ const companies = [
 ];
 
 const industeries = [
-  { label: "Trading", image: "/gallery/gallery-1.jpg" },
-  { label: "Manufacturing", image: "/gallery/gallery-2.jpg" },
-  { label: "Automobile", image: "/gallery/gallery-3.jpg" },
-  { label: "Waste Management", image: "/gallery/gallery-4.jpg" },
-  { label: "Logistics", image: "/gallery/gallery-5.jpg" },
-  { label: "Energy Transport", image: "/gallery/gallery-8.jpeg" },
+    { label: "Trading", image: "/gallery/gallery-1.jpg" },
+    { label: "Manufacturing", image: "/gallery/gallery-2.jpg" },
+    { label: "Automobile", image: "/gallery/gallery-3.jpg" },
+    { label: "Waste Management", image: "/gallery/gallery-4.jpg" },
+    { label: "Logistics", image: "/gallery/gallery-5.jpg" },
+    { label: "Energy Transport", image: "/gallery/gallery-8.jpeg" },
 ];
 const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
 
@@ -78,7 +78,15 @@ function CompaniesList() {
                 </div>
                 <TabPanels className="mt-7 md:mt-10">
                     <AnimatePresence mode="wait">
-                        <TabPanel
+                        <TabPanel key="companies" as={motion.div}
+                            initial={{ y: 10, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: false, margin: "-100px" }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
+                            <Companies companies={companies} />
+                        </TabPanel>
+                        {/* <TabPanel
                             key="companies"
                             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0.5"
                             as={motion.div}
@@ -96,7 +104,7 @@ function CompaniesList() {
                                     onHoverEnd={handleCardHoverEnd}
                                 />
                             ))}
-                        </TabPanel>
+                        </TabPanel> */}
                         <TabPanel
                             key="industries"
                             className="grid grid-cols-1 lg:grid-cols-2 gap-3"
@@ -120,7 +128,7 @@ function CompaniesList() {
                                             <Link href={"/"} key={i} className='bg-black/40 py-2 px-4 rounded-xl text-sm'>{item}</Link>
                                         ))}
                                     </div>
-                                    <Link href={"/"} className='border-b border-gray-200  pb-1'>Explore More</Link>
+                                    <Link href={"/"} className='border-b border-gray-200 pb-1'>Explore More</Link>
                                 </div>
                             </div>
                         </TabPanel>
@@ -131,25 +139,38 @@ function CompaniesList() {
     )
 };
 
-const Card = ({ item }) => (
-    <div className="relative h-60 md:h-45 group overflow-hidden">
-        <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3] group-hover:blur-xs">
-            <Image src={item.image} alt={item.label} fill style={{ objectFit: "cover" }} />
-        </div>
-        <div className="absolute inset-0 z-10 bg-linear-to-t from-black/30 to-transparent">
-            <div className='absolute bottom-5 left-0 right-0'>
-                <div className='flex justify-between gap-3 px-7'>
-                    <p className='text-gray-50'>{item.label}</p>
-                    <FaArrowRightLong size={20} color='white'
-                        className='translate-x-40 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500' />
-                </div>
-                <div className='h-px w-full bg-white mt-3 -translate-x-120 group-hover:translate-x-0 transition-all duration-500' />
+const Companies = ({ companies }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    return (
+        <div className='relative'>
+            <div className='relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0.5'>
+                {companies.map((company, i) => (
+                    <div key={i} onMouseEnter={() => setCurrentIndex(i)} onTouchEnd={() => setCurrentIndex(i)}
+                        className={`border-px border-gray-300 flex items-end h-40 p-2 ${currentIndex === i ? "bg-black/30" : "bg-black/10"}
+                        duration-500 transition-all `}>
+                        <p className='text-white text-sm'>{company.label}</p>
+                    </div>
+                ))}
+            </div>
+            <div className='absolute inset-0'>
+                <video
+                    key={companies[currentIndex].video}
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                >
+                    <source src={companies[currentIndex].video} type="video/mp4" />
+                </video>
             </div>
         </div>
-    </div >
-)
+    )
+};
 
 export default CompaniesList;
+
 
 
 
