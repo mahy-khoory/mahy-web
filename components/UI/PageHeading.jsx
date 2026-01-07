@@ -5,7 +5,6 @@ import Image from "next/image";
 function PageHeading({ title, description, image }) {
     return (
         <div className="lg:grid lg:grid-cols-5 relative z-40">
-
             <div className="col-span-2 overflow-hidden">
                 <motion.div
                     initial={{ opacity: 0, scale: 1.05 }}
@@ -22,7 +21,6 @@ function PageHeading({ title, description, image }) {
                     />
                 </motion.div>
             </div>
-
             <div className="col-span-3 px-10 py-20 lg:px-16 flex flex-col justify-end bg-slate-950 relative">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -71,7 +69,6 @@ function PageHeading({ title, description, image }) {
                             "
                         />
                     </motion.div>
-
                 </motion.div>
             </div>
         </div>

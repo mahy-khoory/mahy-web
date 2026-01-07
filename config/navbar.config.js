@@ -54,7 +54,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("QualityManagementSystems"),
-                href: "/about-us/qms",
+                href: "/about-us/quality-management-systems",
               },
               {
                 label: t("HSE"),
