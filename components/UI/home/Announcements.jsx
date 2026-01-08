@@ -26,20 +26,33 @@ function Announcements({ items, cta, locale }) {
 const Card = ({ item, cta, locale }) => {
     const [show, setShow] = useState(false);
     return (
-        <div className='flex-none lg:h-110 w-[70vw] lg:w-full relative b-base text-white group hover:scale-[103%] transition-transform duration-500 ease-in-out overflow-hidden select-none'>
-            <div className='flex flex-col justify-between py-8 px-6 relative z-10 lg:h-110'>
+        <div className='flex-none lg:h-125 w-[70vw] lg:w-full relative b-base text-white group hover:scale-[103%] transition-transform duration-500 ease-in-out overflow-hidden select-none'>
+            <div className=' py-8 px-6 relative z-10 lg:h-125'>
                 <button onClick={() => setShow(false)} className={`absolute right-5 top-6 lg:hidden transition-all duration-500 ${show ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
                     <X stroke='white' size={25} />
                 </button>
                 <div>
                     <h3 className='uppercase font-semibold'>{item.heading}</h3>
-                    <p className='font-medium lg:text-lg mt-6'>{item.title}</p>
-                    <p className={`font-light mt-6 ${show ? "translate-x-0 opacity-100" : "translate-x-80 opacity-0"}
-                    group-hover:translate-x-0 group-hover:opacity-100 transition-all ease-in-out duration-500`}>
-                        {item.text}
+                    <p className='text-sm mt-2'>{item.text1}</p>
+                    {item.points && (
+                        <div className={`font-light ${show ? "translate-x-0 opacity-100" : "translate-x-80 opacity-0"}
+                                group-hover:translate-x-0 group-hover:opacity-100 transition-all ease-in-out duration-500 text-sm`} >
+                            <p className='mt-4 text-sm'>{item.points.text}</p>
+                            <ul className='mt-2 list-disc list-inside space-y-2'>
+                                {item.points.items.map((point, i) => (
+                                    <li key={i} >
+                                        {point}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    <p className={`font-light mt-4 ${show ? "translate-x-0 opacity-100" : "translate-x-80 opacity-0"}
+                    group-hover:translate-x-0 group-hover:opacity-100 transition-all ease-in-out duration-500 text-sm`}>
+                        {item.text2}
                     </p>
                 </div>
-                <div className={`flex justify-end mt-5 lg:mt-2 ${show ? "translate-y-0 opacity-100" : "translate-y-15 opacity-0"}
+                <div className={`absolute right-6 bottom-6 flex justify-end mt-8 lg:mt-2 ${show ? "translate-y-0 opacity-100" : "translate-y-15 opacity-0"}
                     group-hover:translate-y-0 group-hover:opacity-100 transition-all ease-in-out duration-500`}>
                     <Link href={"/"} className='flex gap-2 items-center group/btn overflow-hidden relative z-30'>
                         <div>
