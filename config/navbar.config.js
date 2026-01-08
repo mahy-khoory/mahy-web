@@ -97,71 +97,95 @@ export function getNavigation(t) {
         linkType: "mega",
         columns: [
           {
-            title: t("BusinessVerticals"),
+            title: t("TheHolding"),
             links: [
               {
-                label: t("InfrastructureUtilities"),
-                href: "/companies/infrastructure",
+                label: t("HoldingCompanyOverview"),
+                href: "/companies/holding-overview",
               },
               {
-                label: t("IndustrialManufacturing"),
-                href: "/companies/industrial",
+                label: t("GroupStructure"),
+                href: "/companies/group-structure",
               },
               {
-                label: t("EnvironmentalWasteSolutions"),
-                href: "/companies/environmental",
-              },
-              {
-                label: t("CommercialResidential"),
-                href: "/companies/commercial",
-              },
-              {
-                label: t("HospitalityLifestyle"),
-                href: "/companies/hospitality",
-              },
-              { label: t("FurnitureInteriors"), href: "/companies/furniture" },
-            ],
+                label: t("GovernanceOversight"),
+                href: "/companies/governance-oversight",
+              }
+            ]
           },
           {
-            title: t("HowWeWork"),
+            title: t("BusinessSectors"),
             links: [
               {
-                label: t("ProjectDelivery"),
-                href: "/companies/project-delivery",
+                label: t("Trading&Distribution"),
+                href: "/companies/trading",
               },
               {
-                label: t("ManufacturingAssembly"),
+                label: t("Engineering&TechnicalServices"),
+                href: "/companies/engineering-services",
+              },
+              {
+                label: t("Paper&CorrugatedManufacturing"),
                 href: "/companies/manufacturing",
               },
-              { label: t("TradingDistribution"), href: "/companies/trading" },
-              { label: t("ServiceAfterSales"), href: "/companies/service" },
               {
-                label: t("IntegratedSolutions"),
-                href: "/companies/integrated",
+                label: t("WasteCollection&EnvironmentalServices"),
+                href: "/companies/environmental-services",
               },
-            ],
+              {
+                label: t("Transportation&Logistics"),
+                href: "/companies/logistics",
+              },
+              {
+                label: t("Automotive"),
+                href: "/companies/automotive",
+              },
+              {
+                label: t("Energy&RenewableSolutions"),
+                href: "/companies/energy-solutions",
+              },
+              {
+                label: t("Hospitality"),
+                href: "/companies/hospitality",
+              },
+              {
+                label: t("Food&Beverage"),
+                href: "/companies/food-beverage",
+              }
+            ]
           },
           {
-            title: t("CompanyDirectory"),
+            title: t("Operations&Capabilities"),
             links: [
               {
-                label: t("CompanyDirectorySearch"),
-                href: "/companies/directory",
+                label: t("ManufacturingFacilities"),
+                href: "/companies/factories",
               },
-              { label: t("AllGroupCompaniesAZ"), href: "/companies/all" },
-              { label: t("GroupStructure"), href: "/companies/structure" },
-              { label: t("GroupLocations"), href: "/companies/locations" },
               {
-                label: t("GovernanceOwnershipOverview"),
-                href: "/companies/governance",
+                label: t("Warehousing&Logistics"),
+                href: "/companies/warehousing-logistics"
               },
-              { label: t("DownloadGroupProfile"), href: "/companies/profile" },
-            ],
+              {
+                label: t("Technology&Innovation"),
+                href: "/companies/technology-innovation"
+              },
+              {
+                label: t("QualitySafety&Compliance"),
+                href: "/companies/quality-safety-compliance"
+              },
+              {
+                label: t("Sustainability&Environment"),
+                href: "/companies/sustainability-environment",
+              }
+            ]
           },
           {
             title: t("GroupCompanies"),
             links: [
-              { label: t("AllGroupCompaniesAZ"), href: "/companies/all" },
+              {
+                label: t("AllGroupCompanies"),
+                href: "/companies/all"
+              },
             ],
           },
         ],
