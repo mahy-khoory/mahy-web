@@ -1,10 +1,10 @@
-import { getTranslations } from 'next-intl/server'
-import Explore from './Explore';
+// import { getTranslations } from 'next-intl/server'
+// import Explore from './Explore';
 
-async function ExploreSection() {
-    return (
+// async function ExploreSection() {
+//     return (
         
-    )
-}
+//     )
+// }
 
-export default ExploreSection
+// export default ExploreSection
