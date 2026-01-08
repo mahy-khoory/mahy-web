@@ -3,12 +3,12 @@ import Image from "next/image";
 const BusinessStepCard = ({ id, title, description, icon }) => {
     return (
         <div className="relative group step-card-container" dir="ltr">
-            <div className="relative lg:absolute inset-0 z-20 flex items-center justify-between pointer-events-none mr-6 lg:mr-0">
-                <div dir="rtl" className="mt-15 lg:mt-10">
-                    <span className=" font-semibold">{title}</span>
+            <div className="relative lg:absolute inset-0 h-50 lg:h-68 z-20 flex items-center justify-between pointer-events-none mr-6 lg:mr-0">
+                <div dir="ltr" className="">
+                    <span className="font-semibold">{title}</span>
                     <p className="mt-2 text-sm font-medium">{description}</p>
                 </div>
-                <div className="number mt-8 lg:mt-7 relative -right-1  lg:-right-3 text-4xl font-bold">0{id}</div>
+                <div className="number relative -right-1 lg:-right-3 text-4xl font-bold">0{id}</div>
             </div>
             <div className="step-card absolute top-0 right-9 lg:relative lg:right-0 rotate-45 w-50 h-50 lg:w-auto lg:h-64">
                 <div className="card-content relative z-10 bg-white w-full h-full">
