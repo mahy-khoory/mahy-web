@@ -79,7 +79,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("StrategicPartnershipsOverview"),
-                href: "/partners",
+                href: "/about-us/partners",
               },
               {
                 label: t("SustainabilityCSR"),

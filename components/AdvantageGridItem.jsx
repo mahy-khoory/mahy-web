@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 export default function AdvantageGridItem({
   image,
   title,
-  heading,
-  description,
+  text1,
+  text2,
   variant = "small",
 }) {
   const isLarge = variant === "large";
-  const hasDetails = !!(heading || description);
+  const hasDetails = !!(text1 || text2);
 
   return (
     <motion.div
@@ -83,42 +83,41 @@ export default function AdvantageGridItem({
           }}
         >
           <div
-            className={`${
-              isLarge ? "max-w-[420px]" : "max-w-[320px] mx-auto"
-            } overflow-hidden`}
+            className={`${isLarge ? "max-w-[420px]" : "max-w-[320px] mx-auto"
+              } overflow-hidden`}
           >
             {!isLarge && (
-              <div className="text-[16px] sm:text-[18px] font-semibold text-white">
+              <div className="text-[16px] sm:text-[18px] font-semibold text-white pt-6">
                 {title}
               </div>
             )}
 
-            {heading && (
+            {text1 && (
               <div
                 className="
             mt-2 sm:mt-3
-            text-[14px] sm:text-[18px]
-            font-semibold leading-snug text-white
+            text-sm
+            font-light leading-snug text-white
             line-clamp-2 sm:line-clamp-none
             mb-1.5
           "
               >
-                {heading}
+                {text1}
               </div>
             )}
 
-            {description && (
+            {text2 && (
               <div
                 className="
             mt-2 sm:mt-4
             max-w-[340px]
-            text-[13px] sm:text-[15px] lg:text-[16px]
+            text-sm
             font-light leading-relaxed text-white/85
             line-clamp-3 sm:line-clamp-none
             mb-6
           "
               >
-                {description}
+                {text2}
               </div>
             )}
           </div>
@@ -129,7 +128,7 @@ export default function AdvantageGridItem({
         className="absolute bottom-4 sm:bottom-5 left-5 sm:left-6 z-30 text-[16px] sm:text-[18px] font-semibold text-white"
         variants={{
           rest: { opacity: 1, y: 0 },
-          hover: { opacity: 1, y: 0 },
+          hover: { opacity: 0, y: 0 },
         }}
       >
         {title}
