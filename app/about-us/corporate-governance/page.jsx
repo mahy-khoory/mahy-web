@@ -6,7 +6,8 @@ function CorporateGovernancePage() {
         <main>
             <SubPageHeading
                 title={"Corporate Governance"}
-                description={"Our Corporate Governance framework ensures transparency, accountability, and ethical decision-making across all operations. We adhere to robust policies, regulatory compliance, and clear oversight structures to protect stakeholder interests. This governance approach strengthens trust, sustainability, and long-term organizational integrity."}
+                description={"MAHY Khoory Group is committed to maintaining high standards of corporate governance across all its businesses. Strong governance is fundamental to the Group's long-term success, supporting responsible decision-making, operational integrity, and sustainable value creation for all stakeholders."}
+                description2={"The Group's governance framework is designed to ensure transparency, accountability, and effective oversight, while enabling management teams to operate efficiently and respond to evolving market conditions."}
                 image={"/gallery/gallery-1.jpg"}
             />
             <CorporateGovernance />

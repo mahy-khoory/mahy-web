@@ -46,14 +46,12 @@ async function CapabilitiesPage() {
     return (
         <main>
             <SubPageHeading
-                title={"Our Key Capabilities & Expertise"}
-                description={"Our key capabilities and expertise span strategic planning, advanced technology integration, and operational excellence. We deliver tailored solutions through deep industry knowledge, innovation-driven processes, and skilled teams. This enables us to consistently achieve high-quality outcomes and long-term value for our partners."}
+                title={"Key Capabilities & Expertise"}
+                description={"MAHY Khoory Group brings together decades of experience, deep sector knowledge, and strong operational capabilities across a diversified portfolio of businesses. Our expertise has been built over time through disciplined growth, long-term partnerships, and consistent execution across industrial, commercial, environmental, and service sectors."}
+                description2={"The Group's capabilities are anchored in physical assets, skilled teams, and integrated operations that allow us to deliver reliable solutions at scale, while maintaining high standards of governance, safety, and performance."}
                 image={"/gallery/gallery-1.jpg"}
             />
-            <NextAdvantagesSection
-                heading={"Key Capabilities & Expertise"}
-                data={data}
-            />
+            <NextAdvantagesSection data={data} />
         </main>
     )
 }

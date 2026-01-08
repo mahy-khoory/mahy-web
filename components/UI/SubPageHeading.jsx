@@ -7,9 +7,10 @@ import clsx from "clsx";
 export default function SubPageHeading({
   title,
   description,
+  description2,
   image,
   align = "center",
-  height = "h-[80vh]", 
+  height = "h-[80vh]",
 }) {
   return (
     <section
@@ -85,6 +86,23 @@ export default function SubPageHeading({
               "
             >
               {description}
+            </motion.p>
+          )}
+
+          {description2 && (
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="
+                mt-4
+                text-white/85
+                text-[16px]
+                md:text-[18px]
+                leading-relaxed
+              "
+            >
+              {description2}
             </motion.p>
           )}
         </div>
