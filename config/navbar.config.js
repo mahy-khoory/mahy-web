@@ -166,6 +166,8 @@ export function getNavigation(t) {
           },
         ],
       },
+      { id: "product-services", label: "Product & Services", href: "/" },
+
       {
         id: "shop",
         label: t("Shop"),
@@ -256,74 +258,75 @@ export function getNavigation(t) {
           },
         ],
       },
-      {
-        id: "careers",
-        label: t("Careers"),
-        href: "/careers",
-        linkType: "mega",
-        columns: [
-          {
-            title: t("CareerOpportunities"),
-            links: [
-              { label: t("CareersAtMahy"), href: "/careers" },
-              { label: t("CurrentVacancies"), href: "/careers/jobs" },
-              {
-                label: t("InternshipOpportunities"),
-                href: "/careers/internships",
-              },
-              // { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
-            ],
-          },
-          {
-            title: t("LifeAtMahy"),
-            links: [
-              { label: t("WorkingAtMahy"), href: "/careers/life" },
-              {
-                label: t("CultureValuesEnvironment"),
-                href: "/careers/culture",
-              },
-              {
-                label: t("EmployeeBenefitsRewards"),
-                href: "/careers/benefits",
-              },
-              {
-                label: t("DiversityEquityInclusion"),
-                href: "/careers/diversity",
-              },
-            ],
-          },
-          {
-            title: t("LearningProfessionalDevelopment"),
-            links: [
-              {
-                label: t("LearningDevelopmentFramework"),
-                href: "/careers/learning",
-              },
-              { label: t("CareerProgressionGrowth"), href: "/careers/growth" },
-              {
-                label: t("PerformanceManagementRecognition"),
-                href: "/careers/performance",
-              },
-              {
-                label: t("LeadershipTalentDevelopment"),
-                href: "/careers/leadership",
-              },
-            ],
-          },
-          {
-            title: t("RecruitmentProcessApplications"),
-            links: [
-              { label: t("ApplyPosition"), href: "/careers/apply" },
-              // { label: t("SubmitCV"), href: "/careers/submit-cv" },
-              {
-                label: t("RecruitmentSelectionProcess"),
-                href: "/careers/process",
-              },
-              { label: t("CandidateFAQs"), href: "/careers/faqs" },
-            ],
-          },
-        ],
-      },
+
+      // {
+      //   id: "careers",
+      //   label: t("Careers"),
+      //   href: "/careers",
+      //   linkType: "mega",
+      //   columns: [
+      //     {
+      //       title: t("CareerOpportunities"),
+      //       links: [
+      //         { label: t("CareersAtMahy"), href: "/careers" },
+      //         { label: t("CurrentVacancies"), href: "/careers/jobs" },
+      //         {
+      //           label: t("InternshipOpportunities"),
+      //           href: "/careers/internships",
+      //         },
+      //         // { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
+      //       ],
+      //     },
+      //     {
+      //       title: t("LifeAtMahy"),
+      //       links: [
+      //         { label: t("WorkingAtMahy"), href: "/careers/life" },
+      //         {
+      //           label: t("CultureValuesEnvironment"),
+      //           href: "/careers/culture",
+      //         },
+      //         {
+      //           label: t("EmployeeBenefitsRewards"),
+      //           href: "/careers/benefits",
+      //         },
+      //         {
+      //           label: t("DiversityEquityInclusion"),
+      //           href: "/careers/diversity",
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       title: t("LearningProfessionalDevelopment"),
+      //       links: [
+      //         {
+      //           label: t("LearningDevelopmentFramework"),
+      //           href: "/careers/learning",
+      //         },
+      //         { label: t("CareerProgressionGrowth"), href: "/careers/growth" },
+      //         {
+      //           label: t("PerformanceManagementRecognition"),
+      //           href: "/careers/performance",
+      //         },
+      //         {
+      //           label: t("LeadershipTalentDevelopment"),
+      //           href: "/careers/leadership",
+      //         },
+      //       ],
+      //     },
+      //     {
+      //       title: t("RecruitmentProcessApplications"),
+      //       links: [
+      //         { label: t("ApplyPosition"), href: "/careers/apply" },
+      //         // { label: t("SubmitCV"), href: "/careers/submit-cv" },
+      //         {
+      //           label: t("RecruitmentSelectionProcess"),
+      //           href: "/careers/process",
+      //         },
+      //         { label: t("CandidateFAQs"), href: "/careers/faqs" },
+      //       ],
+      //     },
+      //   ],
+      // },
       {
         id: "contact",
         label: t("Contact"),
@@ -334,7 +337,10 @@ export function getNavigation(t) {
             title: t("Contact"),
             links: [
               { label: t("ContactInformation"), href: "/contact-us" },
-              { label: t("OfficeLocationsMaps"), href: "/contact-us/locations" },
+              {
+                label: t("OfficeLocationsMaps"),
+                href: "/contact-us/locations",
+              },
               { label: t("Contact"), href: "/contact-us/enquiry" },
             ],
           },
@@ -343,7 +349,10 @@ export function getNavigation(t) {
             links: [
               { label: t("SalesEnquiry"), href: "/contact-us/sales" },
               { label: t("RequestQuotation"), href: "/rfq" },
-              { label: t("KeyAccountContacts"), href: "/contact-us/key-accounts" },
+              {
+                label: t("KeyAccountContacts"),
+                href: "/contact-us/key-accounts",
+              },
             ],
           },
           {
