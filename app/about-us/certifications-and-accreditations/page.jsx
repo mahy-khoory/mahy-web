@@ -1,6 +1,5 @@
 import AwardsAccordion from "@/components/Awards/AwardsAccordion";
 import { awardsData } from "@/components/Awards/awardsData";
-import ExploreSection from "@/components/UI/about-us/ExploreSection";
 import AnimatedLines from "@/components/UI/AnimatedLines";
 import SubPageHeading from "@/components/UI/SubPageHeading";
 
