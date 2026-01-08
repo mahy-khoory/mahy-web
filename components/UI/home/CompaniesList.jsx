@@ -146,28 +146,35 @@ const Companies = ({ companies }) => {
                 {companies.map((company, i) => (
                     <div key={i} onMouseEnter={() => setCurrentIndex(i)} onTouchEnd={() => setCurrentIndex(i)} onMouseLeave={() => setCurrentIndex(false)}
                         className={`border-px border-gray-300 flex items-end h-40 p-2 ${currentIndex === i ? "bg-black/30" : "bg-black/10"}
-                        duration-500 transition-all relative`}>
+                        duration-500 transition-all relative overflow-hidden`}>
                         <div className='relative z-10'>
                             <p className='text-white text-sm'>{company.label}</p>
                         </div>
-                        {currentIndex === false && (
-                            <div className='absolute inset-0'>
-                                <video
-                                    muted
-                                    playsInline
-                                    preload="metadata"
-                                    className="w-full h-full object-cover"
-                                >
-                                    <source src={companies[i].video} type="video/mp4" />
-                                </video>
-                            </div>
-                        )}
+                        <AnimatePresence mode="wait">
+                            {currentIndex === false && (
+                                <motion.div key={currentIndex}
+                                    initial={{ scale: 1, opacity: 1 }}
+                                    animate={{ scale: 1.1, opacity: 1 }}
+                                    exit={{ scale: 1, opacity: 1 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                    className='absolute inset-0'>
+                                    <video
+                                        muted
+                                        playsInline
+                                        preload="metadata"
+                                        className="w-full h-full object-cover"
+                                    >
+                                        <source src={companies[i].video} type="video/mp4" />
+                                    </video>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 ))}
             </div>
-            {currentIndex && (
-                <div className="absolute inset-0 overflow-hidden">
-                    <AnimatePresence mode="wait">
+            <div className="absolute inset-0 overflow-hidden">
+                <AnimatePresence mode="wait">
+                    {currentIndex && (
                         <motion.video
                             key={companies[currentIndex].video}
                             muted
@@ -186,9 +193,9 @@ const Companies = ({ companies }) => {
                                 type="video/mp4"
                             />
                         </motion.video>
-                    </AnimatePresence>
-                </div>
-            )}
+                    )}
+                </AnimatePresence>
+            </div>
         </div>
     )
 };
