@@ -231,7 +231,7 @@ export default async function Home() {
 }
 
 {
-  /* <NextAdvantagesSection advantages={advantages} /> */
+  /*  */
 }
 
 
