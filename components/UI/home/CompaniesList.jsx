@@ -139,40 +139,56 @@ function CompaniesList() {
 };
 
 const Companies = ({ companies }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(false);
     return (
         <div className='relative'>
             <div className='relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0.5'>
                 {companies.map((company, i) => (
-                    <div key={i} onMouseEnter={() => setCurrentIndex(i)} onTouchEnd={() => setCurrentIndex(i)}
+                    <div key={i} onMouseEnter={() => setCurrentIndex(i)} onTouchEnd={() => setCurrentIndex(i)} onMouseLeave={() => setCurrentIndex(false)}
                         className={`border-px border-gray-300 flex items-end h-40 p-2 ${currentIndex === i ? "bg-black/30" : "bg-black/10"}
-                        duration-500 transition-all `}>
-                        <p className='text-white text-sm'>{company.label}</p>
+                        duration-500 transition-all relative`}>
+                        <div className='relative z-10'>
+                            <p className='text-white text-sm'>{company.label}</p>
+                        </div>
+                        {currentIndex === false && (
+                            <div className='absolute inset-0'>
+                                <video
+                                    muted
+                                    playsInline
+                                    preload="metadata"
+                                    className="w-full h-full object-cover"
+                                >
+                                    <source src={companies[i].video} type="video/mp4" />
+                                </video>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
-            <div className="absolute inset-0 overflow-hidden">
-                <AnimatePresence mode="wait">
-                    <motion.video
-                        key={companies[currentIndex].video}
-                        muted
-                        loop
-                        autoPlay
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover"
-                        initial={{ scale: 1, opacity: 1 }}
-                        animate={{ scale: 1.1, opacity: 1 }}
-                        exit={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                    >
-                        <source
-                            src={companies[currentIndex].video}
-                            type="video/mp4"
-                        />
-                    </motion.video>
-                </AnimatePresence>
-            </div>
+            {currentIndex && (
+                <div className="absolute inset-0 overflow-hidden">
+                    <AnimatePresence mode="wait">
+                        <motion.video
+                            key={companies[currentIndex].video}
+                            muted
+                            loop
+                            autoPlay
+                            playsInline
+                            preload="metadata"
+                            className="w-full h-full object-cover"
+                            initial={{ scale: 1, opacity: 1 }}
+                            animate={{ scale: 1.1, opacity: 1 }}
+                            exit={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                        >
+                            <source
+                                src={companies[currentIndex].video}
+                                type="video/mp4"
+                            />
+                        </motion.video>
+                    </AnimatePresence>
+                </div>
+            )}
         </div>
     )
 };
