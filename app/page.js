@@ -234,11 +234,10 @@ export default async function Home() {
   /* <NextAdvantagesSection advantages={advantages} /> */
 }
 
-{
-  /* <Announcements items={announcements} cta={t("Announcements.Button")} locale={locale} />
-      <ImageSlideShow data={slideshow} locale={locale} />
-      <ScrollSectionWithImages data={scrollSection} /> */
-}
+
+// <ImageSlideShow data={slideshow} locale={locale} />
+// <ScrollSectionWithImages data={scrollSection} />
+
 
 {
   /* <section id="about">

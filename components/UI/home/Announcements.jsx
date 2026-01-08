@@ -13,8 +13,8 @@ const containerVariants = {
 
 function Announcements({ items, cta, locale }) {
     return (
-        <section className='max-w-7xl mx-auto'>
-            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className='flex flex-nowrap overflow-x-scroll hide-scrollbar lg:overflow-visible lg:grid grid-cols-4 gap-6 px-5 lg:px-0'>
+        <section className='max-w-7xl mx-auto py-20'>
+            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className='flex flex-nowrap overflow-x-scroll hide-scrollbar lg:overflow-visible lg:grid grid-cols-3 gap-6 px-5 lg:px-0'>
                 {items.map((item, i) => (
                     <Card key={i} item={item} cta={cta} locale={locale} />
                 ))}

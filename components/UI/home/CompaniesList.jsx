@@ -10,30 +10,30 @@ import IndustryCard from './IndustryCard';
 const tabs = ["Companies", "Industeries"];
 
 const companies = [
-    { label: "MAHY Khoory Group", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
-    { label: "MAHY Khoory Trading", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
-    { label: "AKE", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631855/AKE_n3re9d.mp4" },
-    { label: "EIEME", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631847/EIEME_eijv5u.mp4" },
-    { label: "GEMD", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631824/GEMD_ijbifl.mp4" },
-    { label: "Al Mehwar", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631801/AL_mehwar_zsb9aq.mp4" },
-    { label: "UwW", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631792/UWW_wv3vrz.mp4" },
-    { label: "UPM", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631801/AL_mehwar_zsb9aq.mp4" },
-    { label: "ALDPM", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631796/ADPM_klrv0d.mp4" },
-    { label: "MKA", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/MKA_ubyddr.mp4" },
-    { label: "MKM", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631851/MKM_e6ygxa.mp4" },
-    { label: "Greenland General Transport", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/Clean_Energy_qutcys.mp4" },
-    { label: "RWMD", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631806/RWMD_cndabr.mp4" },
-    { label: "AL dhafra waste collection", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631796/Al_Dafra_Waste_de0eqk.mp4" },
-    { label: "Around continent", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631822/Around_Continent_nez8f2.mp4" },
-    { label: "Ettihad waste management", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631802/Etihad_Waste_ta4qnh.mp4" },
-    { label: "Hote", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631876/Hotel_kod8dw.mp4" },
-    { label: "Restaurant", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631852/Restaurant_sd74o3.mp4" },
-    { label: "NPI", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631851/MKM_e6ygxa.mp4" },
-    { label: "Senan", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" },
-    { label: "Pure Energy", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631864/Pure_Energy_vvrszs.mp4" },
-    { label: "Clean Energy Solution", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/Clean_Energy_qutcys.mp4" },
-    { label: "Union Sustainability", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" },
-    { label: "SWMD", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" }
+    { label: "MAHY Khoory Group", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
+    { label: "MAHY Khoory Trading", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
+    { label: "AKE", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631855/AKE_n3re9d.mp4" },
+    { label: "EIEME", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631847/EIEME_eijv5u.mp4" },
+    { label: "GEMD", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631824/GEMD_ijbifl.mp4" },
+    { label: "Al Mehwar", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631801/AL_mehwar_zsb9aq.mp4" },
+    { label: "UwW", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631792/UWW_wv3vrz.mp4" },
+    { label: "UPM", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631801/AL_mehwar_zsb9aq.mp4" },
+    { label: "ALDPM", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631796/ADPM_klrv0d.mp4" },
+    { label: "MKA", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/MKA_ubyddr.mp4" },
+    { label: "MKM", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631851/MKM_e6ygxa.mp4" },
+    { label: "Greenland General Transport", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/Clean_Energy_qutcys.mp4" },
+    { label: "RWMD", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631806/RWMD_cndabr.mp4" },
+    { label: "AL dhafra waste collection", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631796/Al_Dafra_Waste_de0eqk.mp4" },
+    { label: "Around continent", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631822/Around_Continent_nez8f2.mp4" },
+    { label: "Ettihad waste management", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631802/Etihad_Waste_ta4qnh.mp4" },
+    { label: "Hote", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631876/Hotel_kod8dw.mp4" },
+    { label: "Restaurant", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631852/Restaurant_sd74o3.mp4" },
+    { label: "NPI", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631851/MKM_e6ygxa.mp4" },
+    { label: "Senan", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" },
+    { label: "Pure Energy", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631864/Pure_Energy_vvrszs.mp4" },
+    { label: "Clean Energy Solution", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/Clean_Energy_qutcys.mp4" },
+    { label: "Union Sustainability", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" },
+    { label: "SWMD", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" }
 ];
 
 const industeries = [
@@ -153,19 +153,12 @@ const Companies = ({ companies }) => {
                         <AnimatePresence mode="wait">
                             {currentIndex === false && (
                                 <motion.div key={currentIndex}
-                                    initial={{ scale: 1, opacity: 1 }}
+                                    initial={{ scale: 1, opacity: 0 }}
                                     animate={{ scale: 1.1, opacity: 1 }}
-                                    exit={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 1, opacity: 0 }}
                                     transition={{ duration: 0.4, ease: "easeOut" }}
                                     className='absolute inset-0'>
-                                    <video
-                                        muted
-                                        playsInline
-                                        preload="metadata"
-                                        className="w-full h-full object-cover"
-                                    >
-                                        <source src={companies[i].video} type="video/mp4" />
-                                    </video>
+                                    <Image src={company.image} alt={company.label} fill style={{ objectFit: "cover" }} />
                                 </motion.div>
                             )}
                         </AnimatePresence>
