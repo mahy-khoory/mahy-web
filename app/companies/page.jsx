@@ -12,7 +12,7 @@ async function Companies({ searchParams }) {
     const t = await getTranslations('CompaniesPage');
     const locale = await getLocale();
 
-       const sectorsI = [
+    const sectorsI = [
         {
             title: "Engineered Wood & Recycled Materials Manufacturing",
             items: [
@@ -88,7 +88,7 @@ async function Companies({ searchParams }) {
             ],
             image: "/gallery/gallery-5.jpg"
         },
-        
+
     ];
 
 
@@ -198,7 +198,6 @@ async function Companies({ searchParams }) {
                 </div>
             </div>
             <SectorsSection sectors={sectorsI} />
-            <SectorsSection sectors={sectorsI}/>
         </main>
     )
 }
