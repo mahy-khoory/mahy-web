@@ -321,6 +321,7 @@ button {
       opacity: 0;
       transform: translateY(-4px);
     }
+
     to {
       height: var(--radix-accordion-content-height);
       opacity: 1;
@@ -334,6 +335,7 @@ button {
       opacity: 1;
       transform: translateY(0);
     }
+
     to {
       height: 0;
       opacity: 0;
@@ -352,8 +354,13 @@ button {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
 }

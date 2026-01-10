@@ -4,6 +4,7 @@ import List from '@/components/UI/companies/List';
 import React from 'react'
 import Breadcrumb from '@/components/UI/Breadcrumb';
 import { getLocale, getTranslations } from 'next-intl/server';
+import SectorsSection from '@/components/UI/companies/SectorsSection';
 
 async function Companies({ searchParams }) {
     const params = await searchParams;
@@ -116,6 +117,7 @@ async function Companies({ searchParams }) {
                     <List companies={getCompanies()} locale={locale} />
                 </div>
             </div>
+            <SectorsSection />
         </main>
     )
 }
