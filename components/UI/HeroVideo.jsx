@@ -28,7 +28,7 @@ function HeroVideo({ slides }) {
                 playsInline
             >
                 <source type="video/mp4"
-                    src="https://res.cloudinary.com/db3fd1qah/video/upload/v1765963725/hero-video_bs65jw.mp4" />
+                    src="https://res.cloudinary.com/db3fd1qah/video/upload/v1768039578/Main_Video_nwteha.mp4" />
             </video>
             <div className="absolute inset-0 bg-black opacity-20"></div>
             <AnimatePresence mode="wait">
