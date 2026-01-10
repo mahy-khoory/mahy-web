@@ -14,7 +14,7 @@ function List({ companies, locale }) {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true, amount: 0.3 }}
                 >
-                    <CompaniesCard category={company.sector} title={company.name} logo={company.image} locale={locale}
+                    <CompaniesCard id={index} category={company.sector} title={company.name} logo={company.image} locale={locale}
                         onClick={() => { console.log('clicked'); }} />
                 </motion.div>
             ))}

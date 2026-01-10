@@ -147,7 +147,7 @@ const Mobile = ({ sectors }) => (
             </div>
         ))}
     </div>
-)
+);
 
 const Desktop = ({ sectors }) => {
     const [hoverIndex, setHoverIndex] = useState(false);
@@ -191,6 +191,6 @@ const Desktop = ({ sectors }) => {
             </div>
         </div>
     )
-}
+};
 
 export default SectorsSection
