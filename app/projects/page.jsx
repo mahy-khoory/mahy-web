@@ -1,4 +1,6 @@
 import ProjectCard from "@/components/Home/ProjectCard";
+import ProjectHighlightsGrid from "@/components/Projects/ProjectHighlightsGrid";
+import ProjectsOverview from "@/components/Projects/ProjectsOverview";
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import JobList from "@/components/UI/jobs/JobList";
 import PageHeading from "@/components/UI/PageHeading";
@@ -74,6 +76,8 @@ async function Jobs({ searchParams }) {
           </div>
         </div>
       </section>
+      <ProjectsOverview />
+      <ProjectHighlightsGrid />
     </main>
   );
 }
