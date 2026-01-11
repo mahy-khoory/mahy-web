@@ -144,25 +144,27 @@ const Companies = ({ companies }) => {
         <div className='relative'>
             <div className='relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0.5'>
                 {companies.map((company, i) => (
-                    <div key={i} onMouseEnter={() => setCurrentIndex(i)} onTouchEnd={() => setCurrentIndex(i)} onMouseLeave={() => setCurrentIndex(false)}
-                        className={`border-px border-gray-300 flex items-end h-40 p-2 ${currentIndex === i ? "bg-black/30" : "bg-black/10"}
+                    <Link key={i} href={`/companies/${i + 1}`}>
+                        <div onMouseEnter={() => setCurrentIndex(i)} onTouchEnd={() => setCurrentIndex(i)} onMouseLeave={() => setCurrentIndex(false)}
+                            className={`border-px border-gray-300 flex items-end h-40 p-2 ${currentIndex === i ? "bg-black/30" : "bg-black/10"}
                         duration-500 transition-all relative overflow-hidden`}>
-                        <div className='relative z-10'>
-                            <p className='text-white text-sm'>{company.label}</p>
+                            <div className='relative z-10'>
+                                <p className='text-white text-sm'>{company.label}</p>
+                            </div>
+                            <AnimatePresence mode="wait">
+                                {currentIndex === false && (
+                                    <motion.div key={currentIndex}
+                                        initial={{ scale: 1, opacity: 0 }}
+                                        animate={{ scale: 1.1, opacity: 1 }}
+                                        exit={{ scale: 1, opacity: 0 }}
+                                        transition={{ duration: 0.4, ease: "easeOut" }}
+                                        className='absolute inset-0'>
+                                        <Image src={company.image} alt={company.label} fill style={{ objectFit: "cover" }} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
-                        <AnimatePresence mode="wait">
-                            {currentIndex === false && (
-                                <motion.div key={currentIndex}
-                                    initial={{ scale: 1, opacity: 0 }}
-                                    animate={{ scale: 1.1, opacity: 1 }}
-                                    exit={{ scale: 1, opacity: 0 }}
-                                    transition={{ duration: 0.4, ease: "easeOut" }}
-                                    className='absolute inset-0'>
-                                    <Image src={company.image} alt={company.label} fill style={{ objectFit: "cover" }} />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
+                    </Link>
                 ))}
             </div>
             <div className="absolute inset-0 overflow-hidden">
