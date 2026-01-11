@@ -10,12 +10,12 @@ function CompanyDetailPage() {
     return (
         <main>
             <CompanyOverview />
+            <CompanyVisionPurpose />
             <ServicesGlobally />
             <CompanyDetailMenu />
             <CompanyDetailCards />
-            <CompanyTextOnBackground />
             <CompanyTextGrid />
-            <CompanyVisionPurpose />
+            <CompanyTextOnBackground />
         </main>
     )
 }

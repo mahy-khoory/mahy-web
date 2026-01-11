@@ -110,24 +110,26 @@ export default function ProjectsSection() {
 
             <div className="max-w-[780px] text-body text-[#23313a] ml-4">
               <p className="font-medium leading-[1.9]">
-                At BCG, we're proud to be involved with a vast array of
-                different projects spanning multiple sectors. Driven by our
-                strong, value-based culture, we've spent half a century
-                providing customers with a 100% success rate.
+                Over the decades, MAHY Khoory Group has played a vital role in
+                delivering reliable, high-performance solutions across a wide
+                range of landmark projects in the UAE and beyond. From premium
+                residential developments and mixed-use communities to industrial
+                facilities, educational buildings, and international exhibition
+                pavilions, our projects reflect our commitment to quality,
+                innovation, and long-term value.
               </p>
 
               <p className="mt-5 leading-[2] opacity-90">
-                We've worked on projects ranging from public and leisure
-                buildings to airports, high rises, and electromechanical and
-                plumbing installations. Whatever you require of us, rest assured
-                we'll endeavour to exceed your expectations and deliver on your
-                budget and specification.
+                Working closely with developers, consultants, and contractors,
+                we provide tailored HVAC and engineering solutions designed to
+                meet the unique requirements of each project. Our scope of work
+                extends beyond product supply to include technical support,
+                system selection, and integration of advanced technologies that
+                enhance efficiency, comfort, and sustainability.
               </p>
             </div>
 
-            <div
-              className=" flex flex-col  justify-end items-center lg:items-end"
-            >
+            <div className=" flex flex-col  justify-end items-center lg:items-end">
               {" "}
               <PrimaryButton
                 label="View all projects"
