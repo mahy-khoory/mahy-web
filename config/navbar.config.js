@@ -190,8 +190,51 @@ export function getNavigation(t) {
           },
         ],
       },
-      { id: "product-services", label: "Product & Services", href: "/" },
-
+      {
+        id: "product-services",
+        label: "Product & Services",
+        href: "/",
+        linkType: "mega",
+        columns: [
+          {
+            title: t("Products"),
+            links: [
+              { label: t("PumpingSolutions"), href: "/products/pumping-solutions" },
+              { label: t("BoosterPumps"), href: "/products/booster-pumps" },
+              { label: t("TransferPumps"), href: "/products/transfer-pumps" },
+              { label: t("SubmersiblePumps"), href: "/products/submersible-pumps" },
+              { label: t("Sewage&WastewaterPumps"), href: "/products/sewage-wastewater-pumps" },
+              { label: t("ChilledWaterPumps"), href: "/products/chilled-water-pumps" },
+              { label: t("ARISTONWaterHeaters"), href: "/products/ariston-water-heaters" },
+              { label: t("GlobalWaterSolutionsPressureTanks"), href: "/products/global-water-pressure-tanks" },
+              { label: t("DX&VRFAirConditioningSystems"), href: "/products/dx-vrf-air-conditioning" },
+              { label: t("AKAS&RYNEVentilationFans"), href: "/products/akas-ryne-ventilation-fans" },
+              { label: t("ECOLINKLEDBulbs&LightingProducts"), href: "/products/ecolink-led-bulbs-lighting" },
+              { label: t("DEWALTPowerTools&SafetyShoes"), href: "/products/dewalt-tools-safety-shoes" },
+              { label: t("VINZORAluminumLadders"), href: "/products/vinzor-aluminum-ladders" },
+              { label: t("CorrugatedBoxes"), href: "/products/corrugated-boxes" },
+              { label: t("PlasticJerryCans"), href: "/products/plastic-jerry-cans" },
+              { label: t("PalletBlocks"), href: "/products/pallet-blocks" },
+              { label: t("PremiumWoodenPallets"), href: "/products/premium-wooden-pallets" },
+            ]
+          },
+          {
+            title: t("Services"),
+            links: [
+              { label: t("Engineering&TechnicalServices"), href: "/services/engineering-technical-services" },
+              { label: t("ComprehensivePumpingSystem&HVACServices"), href: "/services/comprehensive-pumping-hvac" },
+              { label: t("PumpingSystemServices"), href: "/services/pumping-system-services" },
+              { label: t("AnnualMaintenanceContracts"), href: "/services/annual-maintenance-contracts" },
+              { label: t("AirConditioningServices"), href: "/services/air-conditioning-services" },
+              { label: t("SolarPanelInstallation&O&MServices"), href: "/services/solar-panel-installation" },
+              { label: t("WasteCollection&RecyclingServices"), href: "/services/waste-collection-recycling" },
+              { label: t("ServicedHotelApartments"), href: "/services/serviced-hotel-apartments" },
+              { label: t("Restaurant&DiningServices"), href: "/services/restaurant-dining-services" },
+              { label: t("KitchenDesigningSolutions"), href: "/services/kitchen-designing-solutions" },
+            ]
+          },
+        ]
+      },
       {
         id: "shop",
         label: t("Shop"),
