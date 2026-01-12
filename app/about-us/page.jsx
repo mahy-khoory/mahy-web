@@ -12,6 +12,7 @@ import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingN
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
 import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
 import HistoryTimeline from "@/components/Layout/HistoryTimeline";
+import VisionSection from "@/components/UI/about-us/BenchMarks";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");
@@ -258,6 +259,7 @@ async function About() {
       />
       <MissionStatement missionStatement={missionStatement} />
       <HistoryTimeline title="History Of MAHY Khoory" items={items} />
+      <VisionSection/>
       <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
       <History history={history} />
