@@ -1,3 +1,26 @@
 export const companies = [
-
+    { id: 1, label: "MAHY Khoory Group", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
+    { id: 2, label: "MAHY Khoory Trading", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631811/mahy_trade_fvkjlg.mp4" },
+    { id: 3, label: "AKE", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631855/AKE_n3re9d.mp4" },
+    { id: 4, label: "EIEME", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631847/EIEME_eijv5u.mp4" },
+    { id: 5, label: "GEMD", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631824/GEMD_ijbifl.mp4" },
+    { id: 6, label: "Al Mehwar", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631801/AL_mehwar_zsb9aq.mp4" },
+    { id: 7, label: "UwW", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631792/UWW_wv3vrz.mp4" },
+    { id: 8, label: "UPM", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631801/AL_mehwar_zsb9aq.mp4" },
+    { id: 9, label: "ALDPM", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631796/ADPM_klrv0d.mp4" },
+    { id: 10, label: "MKA", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/MKA_ubyddr.mp4" },
+    { id: 11, label: "MKM", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631851/MKM_e6ygxa.mp4" },
+    { id: 12, label: "Greenland General Transport", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/Clean_Energy_qutcys.mp4" },
+    { id: 13, label: "RWMD", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631806/RWMD_cndabr.mp4" },
+    { id: 14, label: "AL dhafra waste collection", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631796/Al_Dafra_Waste_de0eqk.mp4" },
+    { id: 15, label: "Around continent", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631822/Around_Continent_nez8f2.mp4" },
+    { id: 16, label: "Ettihad waste management", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631802/Etihad_Waste_ta4qnh.mp4" },
+    { id: 17, label: "Hote", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631876/Hotel_kod8dw.mp4" },
+    { id: 18, label: "Restaurant", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631852/Restaurant_sd74o3.mp4" },
+    { id: 19, label: "NPI", image: "/gallery/gallery-1.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631851/MKM_e6ygxa.mp4" },
+    { id: 20, label: "Senan", image: "/gallery/gallery-2.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" },
+    { id: 21, label: "Pure Energy", image: "/gallery/gallery-3.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631864/Pure_Energy_vvrszs.mp4" },
+    { id: 22, label: "Clean Energy Solution", image: "/gallery/gallery-4.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631850/Clean_Energy_qutcys.mp4" },
+    { id: 23, label: "Union Sustainability", image: "/gallery/gallery-5.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" },
+    { id: 24, label: "SWMD", image: "/gallery/gallery-6.jpg", video: "https://res.cloudinary.com/db3fd1qah/video/upload/v1767631839/Senan_efiz8q.mp4" }
 ];
