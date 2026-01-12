@@ -1,14 +1,9 @@
-import KitchenBackgroundGrid from '@/components/Home/Products/Kitchen/KitchenBackgroundGrid'
-import KitchenImageGrid from '@/components/Home/Products/Kitchen/KitchenImageGrid'
-import KitchenMenu from '@/components/Home/Products/Kitchen/KitchenMenu'
-import React from 'react'
+import PumpingSystemServicesScrollSection from '@/components/Services/PumpingSystemServicesScrollSection'
 
 function KitchenPage() {
     return (
         <main>
-            <KitchenImageGrid />
-            <KitchenMenu />
-            <KitchenBackgroundGrid />
+            <PumpingSystemServicesScrollSection />
         </main>
     )
 };
