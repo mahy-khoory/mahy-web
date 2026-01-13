@@ -24,7 +24,7 @@ function PumpingServiceHorizontalScroll() {
 };
 
 const Mobile = ({ items }) => (
-    <div className="px-5 py-13 bg-gray-50">
+    <div className="px-5 py-13 bg-gray-50 md:hidden">
         <h2 className="font-medium uppercase t-base text-center">Steps to success</h2>
         <p className="font-semibold text-2xl mt-3 mb-10 max-w-xs mx-auto text-center">We follow a simple work process</p>
         <div className="space-y-10">
@@ -82,7 +82,7 @@ const Desktop = ({ items }) => {
     return (
         <div ref={sectionRef} className="h-screen w-full bg-gray-50 py-10 md:py-20 hidden md:block">
             <div className="flex flex-col items-center h-full max-w-7xl mx-auto px-5">
-                <h2 className="font-medium uppercase t-base pt-18">Steps to success</h2>
+                <h2 className="font-medium uppercase t-base pt-13">Steps to success</h2>
                 <p className="font-semibold text-4xl max-w-md text-center mt-5 mb-20">We follow a simple work process</p>
                 <div className="relative grid grid-cols-4 gap-20 w-full">
                     {items.map((item, i) => (

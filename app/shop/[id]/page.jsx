@@ -3,6 +3,7 @@ import Product from '@/components/UI/shop/Product';
 import Specs from '@/components/UI/shop/Specs';
 import { getProduct, getProducts } from '@/constants/products';
 import { getLocale, getTranslations } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
 async function ProductPage({ params, searchParams }) {
     const { id } = await params;
@@ -10,6 +11,7 @@ async function ProductPage({ params, searchParams }) {
 
     const t = await getTranslations('ShopPage');
     const product = await getProduct(id);
+    if (!product) notFound();
     const moreProducts = await getProducts();
     const locale = await getLocale();
 
