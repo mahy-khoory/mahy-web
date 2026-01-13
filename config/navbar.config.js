@@ -159,23 +159,23 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("ManufacturingFacilities"),
-                href: "/companies/factories",
+                href: "/companies/operations-and-capabilities/factories",
               },
               {
                 label: t("Warehousing&Logistics"),
-                href: "/companies/warehousing-logistics"
+                href: "/companies/operations-and-capabilities/warehousing-logistics"
               },
               {
                 label: t("Technology&Innovation"),
-                href: "/companies/technology-innovation"
+                href: "/companies/operations-and-capabilities/technology-innovation"
               },
               {
                 label: t("QualitySafety&Compliance"),
-                href: "/companies/quality-safety-compliance"
+                href: "/companies/operations-and-capabilities/quality-safety-compliance"
               },
               {
                 label: t("Sustainability&Environment"),
-                href: "/companies/sustainability-environment",
+                href: "/companies/operations-and-capabilities/sustainability-environment",
               }
             ]
           },
