@@ -14,10 +14,10 @@ function KitchenMenu() {
 
     return (
         <section className="max-w-7xl mx-auto px-5 py-8 md:py-15">
-            <h2 className="t-base font-bold text-lg">Services</h2>
+            <h2 className="t-base font-bold text-lg text-center md:text-start">Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-40">
                 <div>
-                    <p className="mt-3 md:mt-6 mb-7 md:mb-12 md:text-xl text-gray-600">Our unique methodology is designed to empower organizations, driving transformative change and sustainable growth. Discover the key pillars of our collaborative process:</p>
+                    <p className="mt-3 md:mt-6 mb-7 md:mb-12 md:text-xl text-gray-600 text-center md:text-start">Our unique methodology is designed to empower organizations, driving transformative change and sustainable growth. Discover the key pillars of our collaborative process:</p>
                     <div className="overflow-hidden">
                         <AnimatePresence mode="wait">
                             <motion.div

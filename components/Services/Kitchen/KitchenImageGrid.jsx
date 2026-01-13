@@ -10,10 +10,10 @@ function KitchenImageGrid() {
         <section className="md:h-screen w-full relative">
             <div className="relative md:absolute inset-0 z-20 flex flex-col justify-between pt-22 pb-10 md:pb-13 max-w-7xl mx-auto px-5">
                 <div>
-                    <h1 className="t-base font-bold text-lg">Achievements</h1>
-                    <h2 className="text-white font-bold text-4xl md:text-6xl mt-6 md:mt-10">Achievement <span className="block t-base mt-2">in numbers</span></h2>
+                    <h1 className="t-base font-bold text-lg text-center md:text-start">Achievements</h1>
+                    <h2 className="text-white font-bold text-4xl md:text-6xl mt-4 md:mt-10 text-center md:text-start">Achievement <span className="block t-base mt-2">in numbers</span></h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mt-10 md:mt-0">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mt-8 md:mt-0">
                     {items.map((item, i) => (
                         <Card key={i} item={item} />
                     ))}

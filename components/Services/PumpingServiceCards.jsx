@@ -13,7 +13,7 @@ function PumpingServiceCards() {
                 <h2 className="text-3xl md:text-6xl text-center font-semibold">The Easy Journey <span className="block md:mt-3">From Concept to Creation</span></h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mt-12 md:mt-15">
                     {items.map((item, i) => (
-                        <div className="backdrop-blur-xs border border-gray-800 p-8">
+                        <div key={i} className="backdrop-blur-xs border border-gray-800 p-8">
                             <div className="flex justify-between">
                                 <div className="bg-gray-800 size-12 flex justify-center items-center">
                                     <span className="text-2xl">{i + 1}</span>

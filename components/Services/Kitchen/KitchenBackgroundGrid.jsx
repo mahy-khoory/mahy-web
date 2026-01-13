@@ -8,9 +8,9 @@ function KitchenBackgroundGrid() {
     return (
         <section className="md:h-screen w-full relative bg-slate-800">
             <div className="relative md:absolute inset-0 z-20 flex flex-col justify-between py-8 md:py-15 max-w-7xl mx-auto px-5">
-                <div className="flex justify-between flex-wrap gap-3">
-                    <h2 className="t-base font-bold text-lg">How we work</h2>
-                    <p className="max-w-lg md:text-xl text-white">Our unique methodology is designed to empower organizations, driving transformative change and sustainable growth. Discover the key pillars of our collaborative process:</p>
+                <div className="flex justify-center md:justify-between flex-wrap gap-3">
+                    <h2 className="t-base font-bold text-lg text-center md:text-start">How we work</h2>
+                    <p className="max-w-lg md:text-xl text-white text-center md:text-start">Our unique methodology is designed to empower organizations, driving transformative change and sustainable growth. Discover the key pillars of our collaborative process:</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mt-10 md:mt-0">
                     {items.map((item, i) => (

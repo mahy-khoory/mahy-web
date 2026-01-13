@@ -1,7 +1,8 @@
-import KitchenBackgroundGrid from '@/components/Products/Kitchen/KitchenBackgroundGrid'
-import KitchenImageGrid from '@/components/Products/Kitchen/KitchenImageGrid'
-import KitchenItems from '@/components/Products/Kitchen/KitchenItems'
-import KitchenMenu from '@/components/Products/Kitchen/KitchenMenu'
+import KitchenBackgroundGrid from '@/components/Services/Kitchen/KitchenBackgroundGrid'
+import KitchenImageGrid from '@/components/Services/Kitchen/KitchenImageGrid'
+import KitchenImageScaledGrid from '@/components/Services/Kitchen/KitchenImageScaledGrid'
+import KitchenItems from '@/components/Services/Kitchen/KitchenItems'
+import KitchenMenu from '@/components/Services/Kitchen/KitchenMenu'
 import React from 'react'
 
 function KitchenDesignPage() {
@@ -11,6 +12,7 @@ function KitchenDesignPage() {
             <KitchenMenu />
             <KitchenBackgroundGrid />
             <KitchenItems />
+            <KitchenImageScaledGrid />
         </main>
     )
 }
