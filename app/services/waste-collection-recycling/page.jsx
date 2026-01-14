@@ -1,4 +1,6 @@
+import WasteCollectionGrid from "@/components/Services/WasteCollection/WasteCollectionGrid"
 import WasteCollectionItems from "@/components/Services/WasteCollection/WasteCollectionItems"
+import WasteCollectionMenu from "@/components/Services/WasteCollection/WasteCollectionMenu"
 import WasteCollectionScrollMovingCards from "@/components/Services/WasteCollection/WasteCollectionScrollMovingCards"
 import WasteCollectionTimeline from "@/components/Services/WasteCollection/WasteCollectionTimeline"
 import SubPageHeading from "@/components/UI/SubPageHeading"
@@ -12,8 +14,10 @@ function WasteCollectionServicesPage() {
                 image={"/gallery/gallery-8.jpeg"}
             />
             <WasteCollectionTimeline />
+            <WasteCollectionMenu />
             <WasteCollectionItems />
             <WasteCollectionScrollMovingCards />
+            <WasteCollectionGrid />
         </main>
     )
 }
