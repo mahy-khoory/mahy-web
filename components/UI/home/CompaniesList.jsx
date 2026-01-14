@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCallback, useState } from "react";
 import IndustryCard from './IndustryCard';
 import { companies } from '@/constants/companies';
+import CompanyCard from './CompanyCard';
 
 const tabs = ["Companies", "Industeries"];
 
@@ -21,17 +22,17 @@ const industeries = [
 const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
 
 function CompaniesList() {
-    const [hoveredCards, setHoveredCards] = useState(0);
+    // const [hoveredCards, setHoveredCards] = useState(0);
 
-    const handleCardHoverStart = useCallback(() => {
-        setHoveredCards((count) => count + 1);
-    }, []);
+    // const handleCardHoverStart = useCallback(() => {
+    //     setHoveredCards((count) => count + 1);
+    // }, []);
 
-    const handleCardHoverEnd = useCallback(() => {
-        setHoveredCards((count) => Math.max(0, count - 1));
-    }, []);
+    // const handleCardHoverEnd = useCallback(() => {
+    //     setHoveredCards((count) => Math.max(0, count - 1));
+    // }, []);
 
-    const shouldPlayVideos = hoveredCards > 0;
+    // const shouldPlayVideos = hoveredCards > 0;
 
     return (
         <section className="max-w-7xl mx-auto pt-10 md:pt-20 px-5">
@@ -51,17 +52,17 @@ function CompaniesList() {
                 </div>
                 <TabPanels className="mt-7 md:mt-10">
                     <AnimatePresence mode="wait">
-                        <TabPanel key="companies" as={motion.div}
+                        {/* <TabPanel key="companies" as={motion.div}
                             initial={{ y: 10, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: false, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <Companies companies={companies} />
-                        </TabPanel>
-                        {/* <TabPanel
+                        </TabPanel> */}
+                        <TabPanel
                             key="companies"
-                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0.5"
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1"
                             as={motion.div}
                             initial={{ y: 10, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
@@ -72,12 +73,12 @@ function CompaniesList() {
                                 <CompanyCard
                                     key={i}
                                     item={company}
-                                    shouldPlay={shouldPlayVideos}
-                                    onHoverStart={handleCardHoverStart}
-                                    onHoverEnd={handleCardHoverEnd}
+                                // shouldPlay={shouldPlayVideos}
+                                // onHoverStart={handleCardHoverStart}
+                                // onHoverEnd={handleCardHoverEnd}
                                 />
                             ))}
-                        </TabPanel> */}
+                        </TabPanel>
                         <TabPanel
                             key="industries"
                             className="grid grid-cols-1 lg:grid-cols-2 gap-3"
