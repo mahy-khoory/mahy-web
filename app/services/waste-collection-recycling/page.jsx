@@ -1,4 +1,8 @@
-import WasteCollectionServices from "@/components/Services/WasteCollectionServices"
+import WasteCollectionGrid from "@/components/Services/WasteCollection/WasteCollectionGrid"
+import WasteCollectionItems from "@/components/Services/WasteCollection/WasteCollectionItems"
+import WasteCollectionMenu from "@/components/Services/WasteCollection/WasteCollectionMenu"
+import WasteCollectionScrollMovingCards from "@/components/Services/WasteCollection/WasteCollectionScrollMovingCards"
+import WasteCollectionTimeline from "@/components/Services/WasteCollection/WasteCollectionTimeline"
 import SubPageHeading from "@/components/UI/SubPageHeading"
 
 function WasteCollectionServicesPage() {
@@ -9,7 +13,11 @@ function WasteCollectionServicesPage() {
                 description={"Efficient and responsible waste collection solutions designed to meet modern environmental standards. We ensure safe recycling processes that support sustainability and a cleaner future."}
                 image={"/gallery/gallery-8.jpeg"}
             />
-            <WasteCollectionServices />
+            <WasteCollectionTimeline />
+            <WasteCollectionMenu />
+            <WasteCollectionItems />
+            <WasteCollectionScrollMovingCards />
+            <WasteCollectionGrid />
         </main>
     )
 }
