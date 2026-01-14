@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 function SparePartsTimeline() {
     const items = [
         { year: "2002", title: "Founding & Growth", text: "Lorem ipsum dolor sit amet consectetur. Nunc sed at morbi neque viverra sem." },

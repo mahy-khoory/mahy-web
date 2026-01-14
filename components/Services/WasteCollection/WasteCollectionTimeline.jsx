@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function WasteCollectionServices() {
+function WasteCollectionTimeline() {
     const items = [
         { title: "Research", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-1.jpg" },
         { title: "Proposals", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-2.jpg" },
@@ -48,4 +48,4 @@ const ImageElement = ({ item }) => (
     </div>
 );
 
-export default WasteCollectionServices
+export default WasteCollectionTimeline
