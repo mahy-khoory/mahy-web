@@ -1,113 +1,137 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
 import { motion } from "framer-motion";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
     title: "Market research",
-    desc: "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
   },
   {
     title: "Business consulting",
-    desc: "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
   },
   {
     title: "Finance strategy",
-    desc: "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    desc:
+      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
   },
   {
     title: "Business planning",
-    desc: "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
-    inactive: true,
+    desc:
+      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
   },
 ];
 
 export default function ComprehensiveProcessSection() {
-  return (
-    <section className="relative bg-[#f4f7fb] overflow-hidden">
-      {/* diagonal background */}
-      <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#e8edf6_0px,#e8edf6_1px,transparent_1px,transparent_12px)]" />
+  const sectionRef = useRef(null);
+  const lineRef = useRef(null);
 
-      <div className="relative max-w-7xl mx-auto px-6 py-32">
-        {/* HEADER */}
-        <div className="text-center mb-24">
-          <p className="text-[#4f46ff] tracking-widest text-sm mb-3">
-            OUR PROCESS
+  useEffect(() => {
+    const lenis = new Lenis({ smoothWheel: true });
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+
+    gsap.fromTo(
+      lineRef.current,
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        transformOrigin: "top",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 30%",
+          end: "bottom 80%",
+          scrub: true,
+        },
+      }
+    );
+
+    return () => lenis.destroy();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative bg-[#F5F7FB] py-32 overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,#E8ECF4_1px,transparent_1px)] bg-[length:18px_18px] opacity-60" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="text-center mb-20">
+          <p className="text-xs tracking-widest uppercase text-indigo-600 font-semibold mb-3">
+            Our process
           </p>
-          <h2 className="text-[36px] md:text-[44px] font-semibold text-[#0b2a5b]">
-            A simple yet powerful and
-            <br />
-            efficient process
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#0F1F3E] leading-tight">
+            A simple yet powerful and <br /> efficient process
           </h2>
         </div>
-
-        {/* CONTENT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-[420px_48px_1fr] gap-x-12 items-start">
-          
-          {/* IMAGE COLUMN */}
-          <div className="flex justify-center lg:justify-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative rounded-2xl overflow-hidden shadow-xl"
+          >
             <Image
-              src="https://res.cloudinary.com/db3fd1qah/image/upload/v1765961312/gallery-3_o7q6xp.jpg"
+              src="/gallery/gallery-1.jpg"
               alt="Process"
-              width={420}
-              height={560}
-              className="object-cover rounded-md"
-              priority
+              width={500}
+              height={600}
+              className="object-cover w-full h-full"
             />
-          </div>
+          </motion.div>
+          <div className="relative">
+            <div className="absolute left-[18px] top-0 bottom-0 w-px bg-indigo-200">
+              <div
+                ref={lineRef}
+                className="absolute top-0 left-0 w-px h-full bg-indigo-600"
+              />
+            </div>
 
-          {/* TIMELINE COLUMN */}
-          <div className="relative flex justify-center">
-            {/* vertical line */}
-            <div className="absolute top-3 bottom-3 w-px bg-[#4f46ff]/40" />
-
-            <div className="flex flex-col justify-between py-3 h-full">
+            <div className="space-y-16">
               {steps.map((step, i) => (
-                <div key={i} className="relative z-10">
-                  <div
-                    className={`
-                      w-4 h-4 rounded-full border-4
-                      ${step.inactive
-                        ? "border-gray-300 bg-[#f4f7fb]"
-                        : "border-[#4f46ff] bg-white"}
-                    `}
-                  />
+                <div key={i} className="relative flex gap-10">
+                  <div className="relative z-10">
+                    <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white rounded-full" />
+                    </div>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="pt-1"
+                  >
+                    <h3 className="text-xl font-semibold text-[#0F1F3E]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-gray-600 leading-relaxed max-w-lg">
+                      {step.desc}
+                    </p>
+                    <button className="mt-4 text-sm font-semibold text-red-500 hover:underline">
+                      Read more →
+                    </button>
+                  </motion.div>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* CONTENT COLUMN */}
-          <div className="space-y-16">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-              >
-                <h3 className="text-lg font-semibold text-[#0b2a5b] mb-2">
-                  {step.title}
-                </h3>
-
-                <p className="text-sm text-[#4b5d7a] leading-7 max-w-lg">
-                  {step.desc}
-                </p>
-
-                {!step.inactive && (
-                  <a
-                    href="#"
-                    className="inline-block mt-3 text-sm font-medium text-[#ff4d4f]"
-                  >
-                    Read more →
-                  </a>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
         </div>
       </div>
     </section>

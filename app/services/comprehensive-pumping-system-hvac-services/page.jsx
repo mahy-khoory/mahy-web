@@ -11,7 +11,7 @@ function PumpingSystemServicesPage() {
                 image={"/gallery/gallery-8.jpeg"}
             />
  <HoverableColumns />
- {/* <ComprehensiveProcessSection/> */}
+ <ComprehensiveProcessSection/>
       <ServicesPumping/>
 
         </main>
