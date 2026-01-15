@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react"
 import Image from "next/image"
-import PrimaryButton from "../UI/PrimaryButton"
+import PrimaryButton from "../../UI/PrimaryButton"
 import { useEffect, useState } from "react";
 
 function SolarPanelInstallations() {
