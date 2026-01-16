@@ -19,6 +19,7 @@ import NewsroomSection from "@/components/UI/home/NewsroomSection";
 import { getArticles } from "@/utlils/articles";
 import ProjectsSection from "@/components/Home/ProjectsSection";
 import AwardsSection from "@/components/Awards/AwardsSection";
+import ScrollToTop from "@/components/UI/ScrollToTop";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -226,6 +227,7 @@ export default async function Home() {
       <section id="why-us">
         <WhyUsContainer />
       </section>
+      {/* <ScrollToTop /> */}
     </main>
   );
 }

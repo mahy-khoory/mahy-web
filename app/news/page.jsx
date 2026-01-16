@@ -63,6 +63,7 @@ async function NewsContent({ searchParams }) {
         {news.map((item) => (
           <NewsCard
             key={item.id}
+            id={item.id}
             image={item.image}
             date={item.date.toLocaleString(locale, { day: 'numeric', month: 'long', year: 'numeric' })}
             title={item.heading}

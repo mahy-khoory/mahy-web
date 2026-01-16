@@ -72,7 +72,7 @@ export default function AwardsItem({ item }) {
                 "w-[170px] md:w-[210px]",
                 "rounded-md",
                 "border border-[#E3EDF3]",
-                "bg-white shadow-sm"
+                "bg-white shadow-sm object-contain"
               )}
             />
           </div>
