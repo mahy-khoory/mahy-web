@@ -49,8 +49,8 @@ export default function MegaMenuFlyOut({
             border-t border-white/10
             shadow-[0_40px_120px_rgba(0,0,0,0.95)]
             min-h-[300px]
-            pt-8
-            pb-20
+            pt-2
+            pb-8
           "
         >
           <button
@@ -82,7 +82,7 @@ export default function MegaMenuFlyOut({
                 <div key={idx}>
                   <h4
                     className="
-                      mb-8
+                      mb-4
                       text-[16px]
                       font-bold
                       uppercase
@@ -115,10 +115,6 @@ export default function MegaMenuFlyOut({
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="mt-12 pt-4">
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
           </div>
         </motion.div>
       )}
