@@ -105,6 +105,7 @@ export default function MegaMenuFlyOut({
                             text-white/65
                             hover:text-white
                             transition-colors
+                            text-start
                           "
                         >
                           {link.label}
