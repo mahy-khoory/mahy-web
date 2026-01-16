@@ -78,7 +78,7 @@ export default function Navbar({ navigation }) {
 
   return (
     <header
-      className="fixed top-0 left-0 z-50 w-full "
+      className="fixed top-0 left-0 z-50 w-full"
       style={{
         paddingTop: "env(safe-area-inset-top)",
       }}
