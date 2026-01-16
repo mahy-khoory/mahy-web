@@ -1,22 +1,25 @@
 import ComprehensiveProcessSection from "@/components/ComprehensiveProcessSection";
 import HoverableColumns from "@/components/HoverableColumns";
-import ServicedHotelApartments from "@/components/Services/ServicedHotelApartments";
+import EngProcessSection from "@/components/Services/EngProcessSection";
+import FeaturesEngineeringSection from "@/components/Services/FeaturesEngineeringSection";
+import OfferingsSection from "@/components/Services/OfferingsSection";
 import ServicesPumping from "@/components/ServicesPumping";
 import SubPageHeading from "@/components/UI/SubPageHeading";
 function PumpingSystemServicesPage() {
   return (
     <main>
       <SubPageHeading
-        title={"Comprehensive Pumping"}
+        title={"Engineering & Technical Services"}
         description={
           "Reliable pumping system services delivering optimal performance and long-term efficiency. From installation to maintenance, we ensure smooth and uninterrupted operations."
         }
-        image={"/gallery/gallery-8.jpeg"}
+        image={"/gallery/gallery-5.jpg"}
       />
-      <HoverableColumns />
-      <ServicedHotelApartments />
-      <ComprehensiveProcessSection />
-      <ServicesPumping />
+      <FeaturesEngineeringSection />
+      <OfferingsSection/>
+      {/* <EngProcessSection/> */}
+
+
     </main>
   );
 }
