@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { X } from "lucide-react";
 import gsap from "gsap";
+import ScrollToTop from "./UI/ScrollToTop";
 
 export default function MegaMenuFlyOut({
   isOpen = false,
@@ -96,7 +96,7 @@ export default function MegaMenuFlyOut({
                   <ul className="space-y-3">
                     {(col.links || []).map((link, i) => (
                       <li key={i}>
-                        <Link
+                        <ScrollToTop
                           href={link.href}
                           className="
                             block
@@ -108,7 +108,7 @@ export default function MegaMenuFlyOut({
                           "
                         >
                           {link.label}
-                        </Link>
+                        </ScrollToTop>
                       </li>
                     ))}
                   </ul>

@@ -12,6 +12,8 @@ import {
 } from "react-icons/hi";
 import Cookies from "js-cookie";
 import MegaMenuFlyOut from "../MegaMenuFlyOut";
+import { useRouter } from "next/navigation";
+import ScrollToTop from "../UI/ScrollToTop";
 
 const languageOptions = [
   { code: "en", label: "English", icon: "/flags/en.svg" },
@@ -85,9 +87,9 @@ export default function Navbar({ navigation }) {
     >
       <nav className="mx-auto flex max-w-[90rem] items-center justify-between px-6 lg:px-12 py-2 min-h-[62px] rounded-b-full bg-black/50 backdrop-blur-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
         <div className="flex items-center pr-4">
-          <Link
+          <ScrollToTop
             href="/"
-            aria-label="MAHY Home"
+            ariaLabel="MAHY Home"
             className="inline-flex items-center"
           >
             <Image
@@ -98,7 +100,7 @@ export default function Navbar({ navigation }) {
               priority
               className="w-[150px] sm:w-[160px] md:w-[170px] lg:w-[180px] xl:w-[200px] object-contain"
             />
-          </Link>
+          </ScrollToTop>
         </div>
         {/* <ul className="hidden lg:flex flex-1 items-center justify-center gap-6 text-white text-sm font-medium">
           {navigation.links.map((item) => {
@@ -160,12 +162,12 @@ export default function Navbar({ navigation }) {
               className="relative"
             >
               <div className="flex items-center gap-1">
-                <Link
+                <ScrollToTop
                   href={item.href}
                   className="px-4 py-2 rounded-full hover:bg-white/10 transition"
                 >
                   {item.label}
-                </Link>
+                </ScrollToTop>
 
                 {item.linkType === "mega" && (
                   <HiChevronDown
@@ -343,13 +345,13 @@ export default function Navbar({ navigation }) {
                     return (
                       <li key={item.id} className="rounded-2xl bg-white/5 px-4 py-3">
                         <div className="flex items-center justify-between gap-3">
-                          <Link
+                          <ScrollToTop
                             href={item.href}
                             onClick={closeMobileMenu}
                             className="text-base font-semibold text-white"
                           >
                             {item.label}
-                          </Link>
+                          </ScrollToTop>
                           <button
                             type="button"
                             aria-expanded={expanded}
@@ -384,14 +386,14 @@ export default function Navbar({ navigation }) {
                                 </p>
                                 <div className="flex flex-col gap-2 text-[15px]">
                                   {(column.links || []).map((link, linkIndex) => (
-                                    <Link
+                                    <ScrollToTop
                                       key={`${column.title}-${linkIndex}`}
                                       href={link.href}
                                       onClick={closeMobileMenu}
-                                      className="text-sm text-white/80 hover:text-white"
+                                      className="text-sm text-white/80 hover:text-white text-start"
                                     >
                                       {link.label}
-                                    </Link>
+                                    </ScrollToTop>
                                   ))}
                                 </div>
                               </div>
@@ -409,13 +411,13 @@ export default function Navbar({ navigation }) {
                     return (
                       <li key={item.id}>
                         <div className="flex items-center justify-between rounded-2xl bg-white/5 px-4 py-3">
-                          <Link
+                          <ScrollToTop
                             href={item.href}
                             onClick={closeMobileMenu}
                             className="text-white"
                           >
                             {item.label}
-                          </Link>
+                          </ScrollToTop>
 
                           <button
                             type="button"
@@ -443,14 +445,14 @@ export default function Navbar({ navigation }) {
                           >
                             {item.items.map((group, i) =>
                               group.children?.map((child, j) => (
-                                <Link
+                                <ScrollToTop
                                   key={`${i}-${j}`}
                                   href={child.href}
                                   onClick={closeMobileMenu}
                                   className="block py-2 text-sm text-white/80 hover:text-white"
                                 >
                                   {child.label}
-                                </Link>
+                                </ScrollToTop>
                               ))
                             )}
                           </div>
@@ -461,13 +463,13 @@ export default function Navbar({ navigation }) {
 
                   return (
                     <li key={item.id}>
-                      <Link
+                      <ScrollToTop
                         href={item.href}
                         onClick={closeMobileMenu}
-                        className="block rounded-2xl bg-white/5 px-4 py-3"
+                        className="block rounded-2xl bg-white/5 px-4 py-3 w-full text-start"
                       >
                         {item.label}
-                      </Link>
+                      </ScrollToTop>
                     </li>
                   );
                 })}
