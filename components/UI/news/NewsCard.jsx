@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import ArrowActionButton from "../about-us/ArrowActionButton";
+import { useRouter } from "next/navigation";
 
 export default function NewsCard(
   {
+    id,
     image,
     date,
     title,
@@ -14,8 +16,13 @@ export default function NewsCard(
     priority = false,
     cta
   }) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/news/${id}`);
+  };
   return (
-    <article className="w-full group flex flex-col cursor-pointer">
+    <article className="w-full group flex flex-col">
       {" "}
       <Link href={href} className="block">
         <div
@@ -117,7 +124,7 @@ export default function NewsCard(
           >
             {cta}
           </span>
-          <ArrowActionButton />
+          <ArrowActionButton onClick={handleClick} />
         </div>
       </div>
     </article>

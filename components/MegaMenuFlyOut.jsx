@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { X } from "lucide-react";
 import gsap from "gsap";
+import ScrollToTop from "./UI/ScrollToTop";
 
 export default function MegaMenuFlyOut({
   isOpen = false,
@@ -49,8 +49,8 @@ export default function MegaMenuFlyOut({
             border-t border-white/10
             shadow-[0_40px_120px_rgba(0,0,0,0.95)]
             min-h-[300px]
-            pt-8
-            pb-20
+            pt-2
+            pb-8
           "
         >
           <button
@@ -82,7 +82,7 @@ export default function MegaMenuFlyOut({
                 <div key={idx}>
                   <h4
                     className="
-                      mb-8
+                      mb-4
                       text-[16px]
                       font-bold
                       uppercase
@@ -96,7 +96,7 @@ export default function MegaMenuFlyOut({
                   <ul className="space-y-3">
                     {(col.links || []).map((link, i) => (
                       <li key={i}>
-                        <Link
+                        <ScrollToTop
                           href={link.href}
                           className="
                             block
@@ -105,20 +105,17 @@ export default function MegaMenuFlyOut({
                             text-white/65
                             hover:text-white
                             transition-colors
+                            text-start
                           "
                         >
                           {link.label}
-                        </Link>
+                        </ScrollToTop>
                       </li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="mt-12 pt-4">
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
           </div>
         </motion.div>
       )}

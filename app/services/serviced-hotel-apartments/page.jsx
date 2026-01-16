@@ -3,7 +3,7 @@ import ServicedHotelApartments from '@/components/Services/ServicedHotelApartmen
 function ServicedHotelApartmentsPage() {
     return (
         <main>
-            <ServicedHotelApartments />
+
         </main>
     )
 }
