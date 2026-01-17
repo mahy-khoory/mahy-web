@@ -32,12 +32,12 @@ const itemVariants = {
 
 function KeyStats({ heading, stats }) {
     return (
-        <>
-            <div className="text-center mt-20 mb-12 px-4">
-                <AnimatedLines />
-                <h2 className="text-heading text-4xl sm:text-5xl font-semibold text-slate-900">{heading}</h2>
+        <div className="bg-slate-900 py-10 md:py-20">
+            <div className="text-center mb-12 px-4">
+                <AnimatedLines bg="bg-gray-200" />
+                <h2 className="text-heading text-4xl sm:text-5xl font-semibold text-gray-100">{heading}</h2>
             </div>
-            <section className="w-full bg-white pb-20 sm:pb-24 lg:pb-32">
+            <section className="w-full pb-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         variants={containerVariants}
@@ -73,12 +73,12 @@ function KeyStats({ heading, stats }) {
     xl:text-6xl
     font-semibold
     tracking-tight
-    text-[var(--accent-color)]
+    text-gray-200
   "
                                     />
                                 </div>
 
-                                <p className="mt-3 text-sm sm:text-base lg:text-sm xl:text-base font-normal text-slate-700 leading-snug max-w-[240px]">
+                                <p className="mt-3 text-sm sm:text-base lg:text-sm xl:text-base font-normal text-gray-300 leading-snug max-w-[240px]">
                                     {item.label}
                                 </p>
                             </motion.div>
@@ -86,7 +86,7 @@ function KeyStats({ heading, stats }) {
                     </motion.div>
                 </div>
             </section>
-        </>
+        </div>
 
     )
 }

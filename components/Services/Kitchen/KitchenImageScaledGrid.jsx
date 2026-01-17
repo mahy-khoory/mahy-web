@@ -22,7 +22,7 @@ function KitchenImageScaledGrid() {
                         ))}
                     </div>
                 </div>
-                <div className="relative h-80 md:h-full md:scale-y-110">
+                <div className="relative h-80 md:h-full">
                     <Image src={"/gallery/gallery-2.jpg"} alt={"Kitchen Grid"} fill style={{ objectFit: "cover" }} />
                 </div>
             </div>

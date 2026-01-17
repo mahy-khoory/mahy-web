@@ -134,7 +134,7 @@ export default async function Home() {
         <WhoWeAre />
       </section>
 
-      <CompaniesList />
+      <CompaniesList darkBg={true} />
 
       <section id="projects">
         <ProjectsSection />
