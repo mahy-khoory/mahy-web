@@ -193,7 +193,7 @@ export function getNavigation(t) {
       {
         id: "product-services",
         label: "Product & Services",
-        href: "/",
+        href: "/products-and-services",
         linkType: "mega",
         columns: [
           {

@@ -1,18 +1,10 @@
 import PartnersSection from "@/components/Layout/PartnersSection";
-import DesignProcessContainer from "@/components/UI/home/DesignProcessContainer";
 import HeroVideo from "@/components/UI/HeroVideo";
 import FloatingMenu from "@/components/UI/FloatingMenu";
-import Gallery from "@/components/UI/home/Gallery";
 import KeyStatsSection from "@/components/UI/home/KeyStatsSection";
 import { getLocale, getTranslations } from "next-intl/server";
-import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
 import BusinessStepsContainer from "@/components/UI/home/BusinessStepsContainer";
 import WhyUsContainer from "@/components/UI/home/WhyUsContainer";
-import SustainabilityPanels from "@/components/SustainabilityPanels";
-import NextAdvantagesSection from "@/components/NextAdvantagesSection";
-import ImageSlideShow from "@/components/UI/home/ImageSlideShow";
-import ScrollSectionWithImages from "@/components/UI/home/ScrollSectionWithImages";
-import Announcements from "@/components/UI/home/Announcements";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
 import CompaniesList from "@/components/UI/home/CompaniesList";
 import NewsroomSection from "@/components/UI/home/NewsroomSection";
@@ -42,32 +34,6 @@ export default async function Home() {
       cta: { label: t("Hero3CtaLabel") },
     },
   ];
-  const sustainability = [
-    {
-      title: t("Sustainability.Item1"),
-      image: "/al-quba.jpg",
-      bullets: [t("Sustainability.Item1Text1"), t("Sustainability.Item1Text2")],
-    },
-    {
-      title: t("Sustainability.Item2"),
-      image: "/burj.jpg",
-      description: t("Sustainability.Item2Text1"),
-    },
-    {
-      title: t("Sustainability.Item3"),
-      image: "/mosque.JPG",
-      bullets: [
-        t("Sustainability.Item3Text1"),
-        t("Sustainability.Item3Text2"),
-        t("Sustainability.Item3Text3"),
-      ],
-    },
-    {
-      title: t("Sustainability.Item4"),
-      image: "/dubai-pano.jpg",
-      description: t("Sustainability.Item4Text1"),
-    },
-  ];
   const floatingMenuItems = [
     t("FloatingMenu.Item1"),
     t("FloatingMenu.Item2"),
@@ -76,13 +42,6 @@ export default async function Home() {
     t("FloatingMenu.Item5"),
     t("FloatingMenu.Item6"),
     t("FloatingMenu.Item7"),
-  ];
-  const galleryItems = [
-    t("Gallery.Item1"),
-    t("Gallery.Item2"),
-    t("Gallery.Item3"),
-    t("Gallery.Item4"),
-    t("Gallery.Item5"),
   ];
   const advantages = {
     heading: t("Advantages.Heading"),
@@ -161,33 +120,6 @@ export default async function Home() {
       text: t("Announcements.Text8"),
     },
   ];
-  const slideshow = [
-    { title: t("Slideshow.Title1"), subTitle: t("Slideshow.SubTitle1") },
-    { title: t("Slideshow.Title2"), subTitle: t("Slideshow.SubTitle2") },
-    { title: t("Slideshow.Title3"), subTitle: t("Slideshow.SubTitle3") },
-    { title: t("Slideshow.Title4"), subTitle: t("Slideshow.SubTitle4") },
-    { title: t("Slideshow.Title5"), subTitle: t("Slideshow.SubTitle5") },
-  ];
-  const scrollSection = [
-    {
-      title1: t("ScrollSection.Item1Title1"),
-      title2: t("ScrollSection.Item1Title2"),
-      text: t("ScrollSection.Item1Text"),
-      cta: t("ScrollSection.Item1Cta"),
-    },
-    {
-      title1: t("ScrollSection.Item2Title1"),
-      title2: t("ScrollSection.Item2Title2"),
-      text: t("ScrollSection.Item2Text"),
-      cta: t("ScrollSection.Item2Cta"),
-    },
-    {
-      title1: t("ScrollSection.Item2Title1"),
-      title2: t("ScrollSection.Item3Title2"),
-      text: t("ScrollSection.Item3Text"),
-      cta: t("ScrollSection.Item3Cta"),
-    },
-  ];
   const articleTranslations = await getTranslations("Articles");
   const articles = await getArticles(0, 4, articleTranslations);
   return (
@@ -228,29 +160,4 @@ export default async function Home() {
       </section>
     </main>
   );
-}
-
-{
-  /*  */
-}
-
-
-// <ImageSlideShow data={slideshow} locale={locale} />
-// <ScrollSectionWithImages data={scrollSection} />
-
-
-{
-  /* <section id="about">
-        <DesignProcessContainer />
-      </section> */
-}
-{
-  /* 
-      <section id="gallery">
-        <Gallery galleryItems={galleryItems} cta={t("Gallery.Button")} />
-      </section> */
-}
-
-{
-  /* <SustainabilityPanels items={sustainability} cols={4} /> */
 }
