@@ -239,7 +239,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("DEWALTPowerTools&SafetyShoes"),
-                href: "/products/dewalt-tools-safety-shoes",
+                href: "/products/dewalt",
               },
               {
                 label: t("VINZORAluminumLadders"),
