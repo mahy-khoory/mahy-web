@@ -29,7 +29,7 @@ function WhoWeAre() {
   return (
     <>
       {" "}
-      <section className="max-w-7xl mx-auto pt-15 md:pt-20">
+      <section className="max-w-7xl mx-auto py-15 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-18 md:h-[80vh]">
           <motion.div
             variants={container1}
