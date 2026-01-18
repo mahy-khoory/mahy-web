@@ -33,7 +33,7 @@ function CompanyCard({ item, shouldPlay = false, onHoverStart, onHoverEnd }) {
     const [play, setPlay] = useState(false);
 
     return (
-        <div className="relative h-80 md:h-45 group overflow-hidden" onMouseEnter={() => setPlay(true)} onMouseLeave={() => setPlay(false)} onTouchEnd={() => (setPlay(!play))}>
+        <div className="relative h-80 md:h-40 group overflow-hidden" onMouseEnter={() => setPlay(true)} onMouseLeave={() => setPlay(false)} onTouchEnd={() => (setPlay(!play))}>
             <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3]">
                 <Image src={item.image} alt={item.label} fill objectFit="cover" />
                 {play && (
