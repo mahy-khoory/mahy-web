@@ -3,14 +3,25 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function TimelineCard({ item, progress, accent }) {
+export default function TimelineCard({ idx, item, progress, accent }) {
   const pathClearance = 80;
   const visible = progress >= item.curveAt - 0.08;
 
   // STRICT rows (reference)
-  const rowY = item.side === "above"
-    ? -(pathClearance / 2 + 100)
-    : (pathClearance / 2 + 120);
+  const offsets = {
+    0: { above: -80, below: 220 },
+    1: { above: -220, below: 100 },
+    2: { above: 140, below: 300 },
+    3: { above: -300, below: -140 },
+  };
+
+  const base =
+    item.side === "above"
+      ? -(pathClearance / 2)
+      : pathClearance / 2;
+
+  const rowY =
+    base + (offsets[idx]?.[item.side] ?? 0);
 
   return (
     <motion.article
@@ -20,7 +31,7 @@ export default function TimelineCard({ item, progress, accent }) {
         y: visible ? rowY : rowY + 24,
       }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="relative w-[360px] lg:w-[420px]"
+      className={`relative w-90 lg:w-105 ${idx === 2 && "-translate-x-4"} ${idx === 3 && "translate-x-210"}`}
     >
       {/* marker */}
       <div className="mb-1 flex items-center gap-1">

@@ -1,13 +1,22 @@
 "use client";
 
 import React, { forwardRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const WaveBackdrop = forwardRef(function WaveBackdrop(
   { accent, pathRef, className = "" },
   svgRef
 ) {
+  const { scrollYProgress } = useScroll();
+
+  // Move left as page scrolls down
+  const x = useTransform(scrollYProgress, [0, 1], [0, -1000]);
+
   return (
-    <div className={`pointer-events-none absolute inset-x-0 ${className}`}>
+    <motion.div
+      className={`pointer-events-none absolute -translate-y-16 inset-x-0 ${className}`}
+      style={{ x }}
+    >
       <svg
         ref={svgRef}
         className="w-full h-140"
@@ -25,10 +34,11 @@ const WaveBackdrop = forwardRef(function WaveBackdrop(
 
         <path
           ref={pathRef}
-          d="M -80 150
-         C 220 120, 380 120, 560 140
-         C 760 160, 960 160, 1120 140
-         C 1320 120, 1500 120, 1680 130"
+          d="M -80 320
+               C 100 280, 200 100, 400 80
+               C 600 60, 700 120, 800 200
+               C 900 280, 1000 340, 1200 300
+               C 1400 260, 1500 180, 1680 120"
           fill="none"
           stroke="url(#waveFade)"
           strokeWidth="4"
@@ -40,7 +50,7 @@ const WaveBackdrop = forwardRef(function WaveBackdrop(
           }}
         />
       </svg>
-    </div>
+    </motion.div>
   );
 });
 

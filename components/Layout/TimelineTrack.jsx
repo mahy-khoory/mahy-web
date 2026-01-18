@@ -14,7 +14,7 @@ const TimelineTrack = forwardRef(function TimelineTrack(
       <div
         ref={ref}
         className="
-    relative flex w-max gap-24
+    relative flex w-max gap-56
     pl-[6vw] pr-[55vw]
     min-h-[420px]
     items-center
@@ -23,6 +23,7 @@ const TimelineTrack = forwardRef(function TimelineTrack(
         {items.map((item, idx) => (
           <TimelineCard
             key={idx}
+            idx={idx}
             item={item}
             accent={accent}
             progress={progress}
