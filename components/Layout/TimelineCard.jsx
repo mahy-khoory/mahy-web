@@ -9,7 +9,7 @@ export default function TimelineCard({ idx, item, progress, accent }) {
 
   // STRICT rows (reference)
   const offsets = {
-    0: { above: -80, below: 220 },
+    0: { above: -89, below: 220 },
     1: { above: -220, below: 100 },
     2: { above: 140, below: 300 },
     3: { above: -300, below: -140 },
