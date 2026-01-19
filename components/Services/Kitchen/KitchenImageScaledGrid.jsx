@@ -6,7 +6,7 @@ function KitchenImageScaledGrid() {
         { text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.", icon: "/kitchen/kitchenGrid-2.svg" }
     ];
     return (
-        <section className="bg-slate-950 md:my-8 text-white">
+        <section className="bg-slate-950 text-white">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-15">
                 <div className="py-14 md:py-25 px-5">
                     <h2 className="font-semibold text-3xl md:text-5xl leading-10 md:leading-15 text-center md:text-start">Our vision for lasting impact</h2>

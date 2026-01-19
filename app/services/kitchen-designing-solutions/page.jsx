@@ -1,4 +1,5 @@
 import KitchenBackgroundGrid from '@/components/Services/Kitchen/KitchenBackgroundGrid'
+import KitchenHorizontalItems from '@/components/Services/Kitchen/KitchenHorizontalItems'
 import KitchenImageGrid from '@/components/Services/Kitchen/KitchenImageGrid'
 import KitchenImageScaledGrid from '@/components/Services/Kitchen/KitchenImageScaledGrid'
 import KitchenItems from '@/components/Services/Kitchen/KitchenItems'
@@ -11,8 +12,9 @@ function KitchenDesignPage() {
             <KitchenImageGrid />
             <KitchenMenu />
             <KitchenBackgroundGrid />
-            <KitchenItems />
+            <KitchenHorizontalItems />
             <KitchenImageScaledGrid />
+            <KitchenItems />
         </main>
     )
 }
