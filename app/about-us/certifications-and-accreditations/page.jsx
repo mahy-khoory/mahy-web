@@ -28,7 +28,7 @@ function CapabilitiesPage() {
         </div>
       </section>
 
-      <DisplayAwards/>
+      <DisplayAwards />
     </main>
   );
 }

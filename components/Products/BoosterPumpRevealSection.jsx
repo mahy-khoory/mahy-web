@@ -42,7 +42,7 @@ export default function BoosterPumpRevealSection() {
     return (
         <section ref={sectionRef} className="relative h-screen w-full overflow-hidden">
             <div className="flex h-full items-center justify-center">
-                <h2 className="text-5xl font-semibold leading-15 tracking-tighter max-w-2xl text-center">We believe in pushing boundaries, into stunning digital masterpieces.</h2>
+                <h2 className="text-2xl md:text-5xl font-semibold md:leading-15 tracking-tighter max-w-2xl text-center px-5">We believe in pushing boundaries, into stunning digital masterpieces.</h2>
             </div>
             <div ref={boxRef} className="absolute inset-0 flex items-center justify-center">
                 <Image src={"/gallery/gallery-2.jpg"} alt="Booster Pump Reveal Image" fill style={{ objectFit: "cover" }} />
