@@ -122,7 +122,7 @@ export default function StackedCardsSection() {
 };
 
 const Mobile = ({ data }) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:hidden px-4 my-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:hidden px-4 my-4 max-w-7xl mx-auto">
         {data.map((dataItem, i) => (
             <Card key={i} dataItem={dataItem} i={i} />
         ))}
@@ -194,7 +194,7 @@ const Desktop = ({ data }) => {
             <div className="absolute inset-0 flex items-center justify-center">
                 {data.map(
                     (dataItem, i) => (
-                        <div key={i} ref={(el) => (cardsRef.current[i] = el)} style={{ zIndex: i }} className="absolute w-full h-175 rounded-2xl bg-black">
+                        <div key={i} ref={(el) => (cardsRef.current[i] = el)} style={{ zIndex: i }} className="absolute w-full h-165 rounded-2xl bg-black">
                             <Card dataItem={dataItem} i={i} />
                         </div>
                     )
@@ -216,9 +216,9 @@ const Card = ({ dataItem, i }) => {
                 <div className="size-8 rounded-full border border-white flex justify-center items-center">
                     <span>{i + 1}</span>
                 </div>
-                <h2 className="text-2xl lg:text-5xl font-semibold mt-3">{dataItem.title}</h2>
-                <p className="text-gray-100 mt-3 lg:mt-5 max-w-lg text-sm md:text-md">{dataItem.text}</p>
-                <ul className="mt-10 space-y-5">
+                <h2 className="text-2xl lg:text-4xl font-semibold mt-3">{dataItem.title}</h2>
+                <p className="text-gray-100 mt-3 lg:mt-4 max-w-lg text-sm md:text-md">{dataItem.text}</p>
+                <ul className="mt-8 space-y-5">
                     {dataItem.items.map((item, j) => (
                         <li key={j} className="border-b border-gray-500 pb-4">
                             <button onClick={() => handleClick(j)} className="uppercase font-semibold flex justify-between w-full">
@@ -240,7 +240,7 @@ const Card = ({ dataItem, i }) => {
                 <p className="mt-8 mb-6 text-gray-300 text-sm max-w-md">{dataItem.text2}</p>
                 <PrimaryButton label={dataItem.cta} />
             </div>
-            <div className="absolute inset-0 md:relative lg:rounded-r-2xl overflow-hidden">
+            <div className="absolute inset-0 lg:relative lg:rounded-r-2xl overflow-hidden">
                 <Image src={dataItem.image} alt={dataItem.title} fill style={{ objectFit: "cover" }} />
                 <div className="absolute inset-0 bg-linear-to-r from-black to-transparent" />
             </div>
