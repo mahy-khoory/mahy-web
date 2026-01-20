@@ -1,3 +1,4 @@
+import BlobImageSection from '@/components/Services/Kitchen/BlobImageSection'
 import KitchenBackgroundGrid from '@/components/Services/Kitchen/KitchenBackgroundGrid'
 import KitchenHorizontalItems from '@/components/Services/Kitchen/KitchenHorizontalItems'
 import KitchenImageGrid from '@/components/Services/Kitchen/KitchenImageGrid'
@@ -15,6 +16,7 @@ function KitchenDesignPage() {
             <KitchenHorizontalItems />
             <KitchenImageScaledGrid />
             <KitchenItems />
+            <BlobImageSection />
         </main>
     )
 }
