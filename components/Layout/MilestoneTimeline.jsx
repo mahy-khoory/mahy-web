@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-
 const MilestoneTimeline = ({ title, milestones }) => {
     const containerRef = useRef(null);
     const [dims, setDims] = useState({
@@ -110,6 +109,21 @@ const MilestoneTimeline = ({ title, milestones }) => {
         };
     }, [dims.viewportW]);
 
+    const [activeIndex, setActiveIndex] = useState(0);
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.on("change", (progress) => {
+            const index = Math.floor(progress * milestones.length);
+            setActiveIndex(Math.min(Math.max(0, index), milestones.length - 1));
+        });
+        return unsubscribe;
+    }, [scrollYProgress]);
+
+    const getCardRevealThresholds = (index) => {
+        const cardPosition = startPad + index * (cardW + gap);
+        const revealPoint = cardPosition / (dims.contentW - dims.viewportW / 2);
+        return Math.max(0, Math.min(0.95, revealPoint * 0.8));
+    };
+
     return (
         <div
             ref={containerRef}
@@ -125,7 +139,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                 </div>
                 {/* Track */}
                 <motion.div
-                    className="absolute top-5 left-0 h-full will-change-transform"
+                    className="absolute top-8 left-0 h-full will-change-transform"
                     style={{ x, width: dims.contentW || "auto" }}
                 >
                     {/* Line layer */}
@@ -201,27 +215,36 @@ const MilestoneTimeline = ({ title, milestones }) => {
                     >
                         {milestones.map((m, i) => {
                             const isTop = i % 2 === 0;
-                            const translateY = isTop ? -200 : 170;
+                            const translateY = isTop ? "translate-y-[-200px]" : "translate-y-[155px]";
+                            const revealThreshold = getCardRevealThresholds(i);
 
                             return (
-                                <div
+                                <motion.div
                                     key={`${m.year}-${m.title}`}
-                                    className="relative shrink-0"
+                                    className={`relative shrink-0 ${translateY}`}
                                     style={{
                                         width: cardW,
                                         marginRight: gap,
-                                        transform: `translateY(${translateY}px)`,
-                                    }}
-                                >
+                                        opacity: useTransform(
+                                            scrollYProgress,
+                                            [Math.max(0, revealThreshold - 0.08), revealThreshold],
+                                            [0, 1]
+                                        ),
+                                        x: useTransform(
+                                            scrollYProgress,
+                                            [Math.max(0, revealThreshold - 0.08), revealThreshold],
+                                            [60, 0]
+                                        ),
+                                    }}>
                                     <div className="">
-                                        <div className="inline-flex items-center gap-2 mb-2">
+                                        <div className="inline-flex items-center gap-2 mb-1">
                                             <div className="w-2 h-2 rounded-full b-base milestone-pulse" />
                                             <span className="text-sm font-semibold text-timeline-line">
                                                 {m.year}
                                             </span>
                                         </div>
 
-                                        <h3 className="text-lg font-semibold text-foreground mb-2">
+                                        <h3 className="font-semibold text-foreground mb-1">
                                             {m.title}
                                         </h3>
                                         <ul className="list-disc list-inside space-y-1">
@@ -229,7 +252,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                                                 <li
                                                     key={i}
                                                     className={`text-xs ${i === m.description.length - 1
-                                                        ? 'list-none font-medium pt-1'
+                                                        ? 'list-none font-medium pt-0.5'
                                                         : 'font-light'
                                                         }`}
                                                 >
@@ -238,7 +261,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                                             ))}
                                         </ul>
                                     </div>
-                                </div>
+                                </motion.div>
                             );
                         })}
 
@@ -257,6 +280,9 @@ const MilestoneTimeline = ({ title, milestones }) => {
                     <div className="flex justify-between mt-3 text-xs text-muted-foreground">
                         <span>1930</span>
                         <span>Present</span>
+                    </div>
+                    <div className="absolute left-0 right-0 bottom-3 flex justify-center items-center">
+                        <span className="text-xs border-2 border-[#79c4e7] t-base font-medium px-4 py-2 bg-white rounded-2xl">{milestones[activeIndex]?.year}</span>
                     </div>
                 </div>
             </div>
