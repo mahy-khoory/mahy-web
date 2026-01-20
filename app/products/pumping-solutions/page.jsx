@@ -3,6 +3,7 @@ import PumpingSystemServices from "@/components/Services/PumpingSystemServices";
 import SubPageHeading from "@/components/UI/SubPageHeading";
 import SplitScrollShowcase from "@/components/UI/SplitScrollShowcase";
 import PumpingServiceHorizontalScroll from "@/components/Services/PumpingServiceHorizontalScroll";
+import StackingCardsSection from "@/components/Services/StackingCardsSection";
 
 function PumpingSystemServicesPage() {
   return (
@@ -14,6 +15,8 @@ function PumpingSystemServicesPage() {
         }
         image={"/gallery/gallery-6.jpg"}
       />
+      <div></div>
+      <StackingCardsSection />
       <PumpingServiceHorizontalScroll />
 
       {/* <PumpingSystemServices /> */}
