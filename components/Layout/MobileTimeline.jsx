@@ -2,10 +2,13 @@
 
 import React from "react";
 
-export default function MobileTimeline({ items, accent }) {
+export default function MobileTimeline({ title, items, accent }) {
   return (
-    <div className="mx-auto max-w-[720px] px-6 pt-10 pb-16">
-      <ul className="space-y-14 border-l border-black/15 pl-7">
+    <div className="px-6 pt-10 pb-16">
+      <h2 className="text-2xl text-center md:text-5xl font-semibold text-foreground">
+        {title}
+      </h2>
+      <ul className="space-y-14 border-l border-black/15 pl-7 mt-10">
         {items.map((item, idx) => (
           <li key={idx} className="relative pl-6">
             <span

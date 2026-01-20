@@ -376,3 +376,12 @@ button {
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
 }
+
+.milestone-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.timeline-flow {
+  stroke-dasharray: 10 26;
+  animation: timeline-dash 1.1s linear infinite;
+}

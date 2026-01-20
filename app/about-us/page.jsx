@@ -13,6 +13,8 @@ import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
 import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
 import HistoryTimeline from "@/components/Layout/HistoryTimeline";
 import VisionSection from "@/components/UI/about-us/BenchMarks";
+import MilestoneTimeline from "@/components/Layout/MilestoneTimeline";
+import TimelineContainer from "@/components/Layout/TimelineContainer";
 
 async function About() {
   const t = await getTranslations("AboutUsPage");
@@ -80,7 +82,7 @@ async function About() {
     text1: t("Purpose.Text1"),
     text2: t("Purpose.Text2"),
   };
-  const items = [
+  const milestones = [
     {
       year: t("History.Item1Title"),
       title: t("History.Item1Text"),
@@ -258,8 +260,10 @@ async function About() {
         locale={locale}
       />
       <MissionStatement missionStatement={missionStatement} />
-      <HistoryTimeline title="History Of MAHY Khoory" items={items} />
-      <VisionSection/>
+      {/* <HistoryTimeline title="History Of MAHY Khoory" items={items} /> */}
+      {/* <MilestoneTimeline title="History Of MAHY Khoory" milestones={milestones} /> */}
+      <TimelineContainer title={"History Of MAHY Khoory"} milestones={milestones} />
+      <VisionSection />
       <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
       <History history={history} />
