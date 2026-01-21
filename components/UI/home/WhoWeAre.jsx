@@ -42,15 +42,19 @@ function WhoWeAre() {
               Who We Are
             </h2>
             <p className="font-semibold text-4xl md:text-5xl mt-3 leading-12 md:leading-15">
-              Pioneering Transformation
+              MAHY Khoory
             </p>
             <p className="mt-5 md:mt-8 font-light text-gray-700">
-              The M.A.H.Y. Khoory Group is one of the UAE's most trusted
-              business groups, delivering world-class technological solutions
-              across diverse industries. Headquartered in Dubai, the group
-              employs over 3,100 professionals from 30 nationalities, operates
-              17 offices across the UAE, and serves clients in more than 29
-              countries across the Middle East, the Levant, and Africa.
+              MAHY Khoory Group of Companies is a Dubai-based diversified
+              holding group comprising 25+ operating companies and business
+              divisions across multiple industries. The Group has built a strong
+              presence in the UAE and the wider region through long-term
+              commercial relationships, technical capability, and integrated
+              operations. With businesses spanning trading, engineering,
+              industrial manufacturing, recycling, sustainability, logistics,
+              automotive, hospitality, and food & beverage, the Group operates a
+              balanced and resilient portfolio designed to support both
+              traditional industries and future-focused sectors.
             </p>
             <Link href={"/about-us"}>
               <PrimaryButton
