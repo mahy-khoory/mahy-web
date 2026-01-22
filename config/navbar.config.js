@@ -509,6 +509,7 @@ export function getNavigation(t) {
             links: [
               { label: t("PartnerRegistration"), href: "/partners/register" },
               { label: t("VendorRegistration"), href: "/vendors/register" },
+              { label : "Customer Registration", href: "/customer-registration"},
             ],
           },
         ],
