@@ -266,7 +266,6 @@ async function About() {
       {/* <MilestoneTimeline title="History Of MAHY Khoory" milestones={milestones} /> */}
       <VisionSection />
       <TimelineContainer title={"History Of MAHY Khoory"} milestones={milestones} />
-
       <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
       <History history={history} />
