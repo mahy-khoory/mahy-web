@@ -25,7 +25,7 @@ const container2 = {
   },
 };
 
-function WhoWeAre() {
+function WhoWeAre({image}) {
   return (
     <>
       {" "}
@@ -71,7 +71,7 @@ function WhoWeAre() {
             className="relative h-100 md:h-full"
           >
             <Image
-              src={"/gallery/gallery-9.jpeg"}
+              src={image}
               alt="About Us"
               fill
               style={{ objectFit: "cover" }}
