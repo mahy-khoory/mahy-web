@@ -74,7 +74,7 @@ function WhoWeAre({image}) {
               src={image}
               alt="About Us"
               fill
-              style={{ objectFit: "object-contain" }}
+              style={{ objectFit: "cover" }}
             />
           </motion.div>
         </div>

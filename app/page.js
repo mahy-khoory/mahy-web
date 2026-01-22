@@ -131,7 +131,7 @@ export default async function Home() {
       </div>
 
       <section id="who-we-are">
-        <WhoWeAre image={"/company-profile.jpeg"} />
+        <WhoWeAre image={"/gallery/gallery-1.jpg"} />
       </section>
 
       <CompaniesList darkBg={true} />
