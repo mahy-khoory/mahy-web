@@ -88,7 +88,8 @@ const companyProfile = () => {
         // description2={
         //   "The Group's capabilities are anchored in physical assets, skilled teams, and integrated operations that allow us to deliver reliable solutions at scale, while maintaining high standards of governance, safety, and performance."
         // }
-        image={"/gallery/gallery-1.jpg"}
+        image={"/profile/bg.jpg"}
+        height="h-screen"
       />
       <WhoWeAre />
       <div className="text-center px-4 bg-black p-20">
