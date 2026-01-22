@@ -260,10 +260,13 @@ async function About() {
         locale={locale}
       />
       <MissionStatement missionStatement={missionStatement} />
+      <EnterprisePinnedContainer />
+
       {/* <HistoryTimeline title="History Of MAHY Khoory" items={items} /> */}
       {/* <MilestoneTimeline title="History Of MAHY Khoory" milestones={milestones} /> */}
-      <TimelineContainer title={"History Of MAHY Khoory"} milestones={milestones} />
       <VisionSection />
+      <TimelineContainer title={"History Of MAHY Khoory"} milestones={milestones} />
+
       <CompanyStructure data={structure} />
       <Purpose purpose={purpose} />
       <History history={history} />
@@ -340,7 +343,6 @@ async function About() {
         ctaLabel="Learn More"
         ctaHref="/people"
       />
-      <EnterprisePinnedContainer />
     </main>
   );
 }
