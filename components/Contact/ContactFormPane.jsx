@@ -115,7 +115,7 @@ export default function ContactFormPane({ data, agreement, submit }) {
   );
 }
 
-function Field({ label, error, required = false, children }) {
+export function Field({ label, error, required = false, children }) {
   const inputClass =
     "w-full h-12 rounded-md border border-slate-300 px-4 text-sm focus:border-black focus:outline-none";
 
@@ -138,7 +138,7 @@ function Field({ label, error, required = false, children }) {
   );
 }
 
-function SelectField({ label, options, error, ...props }) {
+export function SelectField({ label, options, error, ...props }) {
   return (
     <div>
       <label className="mb-1 block text-sm font-medium text-slate-700">

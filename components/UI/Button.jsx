@@ -26,7 +26,9 @@ const sizeClasses = {
   },
 };
 
-export default function Button({ children = "", onClick, size = "md" }) {
+export { buttonVariants };
+
+export default function Button({ children = "", onClick, size = "md", bg = false }) {
   const selected = sizeClasses[size] || sizeClasses.md;
 
   return (
@@ -40,6 +42,7 @@ export default function Button({ children = "", onClick, size = "md" }) {
         damping: 20,
       }}
       className={`
+        ${bg ? "b-base text-white hover:bg-[#79c4e7]" : "hover:bg-black hover:border-black"}
         cursor-pointer
         group
         inline-flex items-center gap-2 md:gap-3
@@ -48,7 +51,7 @@ export default function Button({ children = "", onClick, size = "md" }) {
         border border-gray-300
         shadow-sm
         font-medium
-        hover:bg-black hover:text-white hover:border-black
+        hover:text-white 
         transition-colors duration-300 ease-out
         ${selected.button}
       `}
