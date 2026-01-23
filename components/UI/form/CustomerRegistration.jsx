@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -15,7 +15,11 @@ import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
-import { AnimatedField, AnimatedGroup, AnimatedGroupItem } from "@/components/form/AnimatedField";
+import {
+  AnimatedField,
+  AnimatedGroup,
+  AnimatedGroupItem,
+} from "@/components/form/AnimatedField";
 
 import { customerFormSchema } from "@/lib/customerFormSchema";
 import {
@@ -29,7 +33,8 @@ import {
   COUNTRIES,
   ADDRESS_TYPES,
   COUNTRY_CODES,
-  getCitiesForCountry
+  getCitiesForCountry,
+  customer_classification_group,
 } from "@/lib/formConstants";
 import Button from "../Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
@@ -78,6 +83,7 @@ export default function CustomerRegistration() {
       vatRegistration: "with_trn",
       country: "UAE",
       paymentTerms: "cash",
+      customerClassification : "one_time",
       paymentMethod: "cash",
       telCountryCode: "+971",
       mobileCountryCode: "+971",
@@ -140,9 +146,12 @@ export default function CustomerRegistration() {
                     <Building2 className="h-7 w-7" />
                   </div>
                   <div>
-                    <CardTitle className="text-2xl">Customer Registration</CardTitle>
+                    <CardTitle className="text-2xl">
+                      Customer Registration
+                    </CardTitle>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Please fill in all required fields to complete registration
+                      Please fill in all required fields to complete
+                      registration
                     </p>
                   </div>
                 </motion.div>
@@ -400,9 +409,14 @@ export default function CustomerRegistration() {
                         </AnimatedGroupItem>
                       </AnimatedGroup>
 
-                      <AnimatedField show={!isOrganization && !showPassport && !showEmiratesId}>
+                      <AnimatedField
+                        show={
+                          !isOrganization && !showPassport && !showEmiratesId
+                        }
+                      >
                         <p className="text-sm text-muted-foreground col-span-full">
-                          Select customer type and country to see document requirements.
+                          Select customer type and country to see document
+                          requirements.
                         </p>
                       </AnimatedField>
                     </FormSection>
@@ -420,6 +434,20 @@ export default function CustomerRegistration() {
                             value={field.value}
                             onChange={field.onChange}
                             options={[...PAYMENT_TERMS]}
+                            required
+                            error={errors.paymentTerms?.message}
+                          />
+                        )}
+                      />
+                      <Controller
+                        name="customerClassification"
+                        control={control}
+                        render={({ field }) => (
+                          <SelectField
+                            label="Customer Classification"
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={[...customer_classification_group]}
                             required
                             error={errors.paymentTerms?.message}
                           />
@@ -620,10 +648,7 @@ export default function CustomerRegistration() {
                         {...register("website")}
                       />
 
-                      <InputField
-                        label="Fax"
-                        {...register("fax")}
-                      />
+                      <InputField label="Fax" {...register("fax")} />
                     </FormSection>
                   </motion.div>
 
@@ -636,10 +661,7 @@ export default function CustomerRegistration() {
                       name="consent"
                       control={control}
                       render={({ field }) => (
-                        <FormField
-                          label=""
-                          error={errors.consent?.message}
-                        >
+                        <FormField label="" error={errors.consent?.message}>
                           <div className="flex items-start gap-3">
                             <Checkbox
                               id="consent"
@@ -651,7 +673,9 @@ export default function CustomerRegistration() {
                               htmlFor="consent"
                               className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
                             >
-                              I confirm that the information provided is accurate and I consent to its use for customer registration and system processing.
+                              I confirm that the information provided is
+                              accurate and I consent to its use for customer
+                              registration and system processing.
                             </label>
                           </div>
                         </FormField>
@@ -664,19 +688,11 @@ export default function CustomerRegistration() {
                       transition={{ delay: 0.6, duration: 0.4 }}
                       className="mt-6 flex justify-end"
                     >
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        bg={true}
-                      >
+                      <Button type="submit" disabled={isSubmitting} bg={true}>
                         {isSubmitting ? (
-                          <>
-                            Submitting...
-                          </>
+                          <>Submitting...</>
                         ) : (
-                          <>
-                            Submit Registration
-                          </>
+                          <>Submit Registration</>
                         )}
                       </Button>
                     </motion.div>
