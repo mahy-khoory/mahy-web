@@ -17,11 +17,12 @@ export default function MobileTimeline({ title, items, accent }) {
             />
             <div className="text-sm font-medium text-black/60">{item.year}</div>
             <h3 className="mt-1 text-xl font-semibold text-black">{item.title}</h3>
-            <div className="mt-3 text-[15px] leading-7 text-black/55">
+            <p className="text-gray-700 text-sm mt-2">{item.text}</p>
+            {/* <div className="mt-3 text-[15px] leading-7 text-black/55">
               {Array.isArray(item.description)
                 ? item.description.join(" ")
                 : item.description}
-            </div>
+            </div> */}
           </li>
         ))}
       </ul>

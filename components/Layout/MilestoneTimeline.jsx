@@ -132,8 +132,8 @@ const MilestoneTimeline = ({ title, milestones }) => {
             style={{ height: dims.containerH > 0 ? dims.containerH : "350vh" }}
         >
             <div className="sticky top-8 h-screen overflow-hidden">
-                <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20">
-                    <h2 className="text-3xl md:text-5xl font-semibold text-foreground">
+                <div className="absolute top-16 left-8 right-8 z-20">
+                    <h2 className="text-3xl md:text-5xl font-semibold text-foreground text-center">
                         {title}
                     </h2>
                 </div>
@@ -215,7 +215,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                     >
                         {milestones.map((m, i) => {
                             const isTop = i % 2 === 0;
-                            const translateY = isTop ? "translate-y-[-200px]" : "translate-y-[155px]";
+                            const translateY = isTop ? "translate-y-[-170px]" : "translate-y-[120px]";
                             const revealThreshold = getCardRevealThresholds(i);
 
                             return (
@@ -237,17 +237,18 @@ const MilestoneTimeline = ({ title, milestones }) => {
                                         ),
                                     }}>
                                     <div className="">
-                                        <div className="inline-flex items-center gap-2 mb-1">
+                                        <div className="inline-flex items-center gap-2 mb-1.5">
                                             <div className="w-2 h-2 rounded-full b-base milestone-pulse" />
                                             <span className="text-sm font-semibold text-timeline-line">
                                                 {m.year}
                                             </span>
                                         </div>
 
-                                        <h3 className="font-semibold text-foreground mb-1">
+                                        <h3 className="font-semibold text-foreground mb-1.5">
                                             {m.title}
                                         </h3>
-                                        <ul className="list-disc list-inside space-y-1">
+                                        <p className="text-gray-700 text-sm">{m.text}</p>
+                                        {/* <ul className="list-disc list-inside space-y-1">
                                             {m.description.map((item, i) => (
                                                 <li
                                                     key={i}
@@ -259,7 +260,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                                                     {item}
                                                 </li>
                                             ))}
-                                        </ul>
+                                        </ul> */}
                                     </div>
                                 </motion.div>
                             );
@@ -278,8 +279,8 @@ const MilestoneTimeline = ({ title, milestones }) => {
                         />
                     </div>
                     <div className="flex justify-between mt-3 text-xs text-muted-foreground">
-                        <span>1930</span>
-                        <span>Present</span>
+                        <span>1929</span>
+                        <span>2026</span>
                     </div>
                     <div className="absolute left-0 right-0 bottom-3 flex justify-center items-center">
                         <span className="text-xs border-2 border-[#79c4e7] t-base font-medium px-4 py-2 bg-white rounded-2xl">{milestones[activeIndex]?.year}</span>
