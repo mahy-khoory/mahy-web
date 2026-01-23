@@ -49,6 +49,8 @@ import {
 import {
     vendorFormSchema
 } from "@/lib/vendorFormSchema";
+import { FormField } from "@/components/form/FormField";
+import { Checkbox } from "../checkbox";
 
 // Page animation variants
 const pageVariants = {
@@ -656,15 +658,12 @@ export default function VendorRegistration() {
                                                     />
                                                 )}
                                             />
-
-                                            <TextareaField
+                                            <InputField
                                                 label="Street"
                                                 required
                                                 error={errors.street?.message}
                                                 {...register("street")}
-                                                rows={3}
                                             />
-
                                             <AnimatedField show={isPerson}>
                                                 <Controller
                                                     name="state"
@@ -849,6 +848,32 @@ export default function VendorRegistration() {
                                             />
                                         </FormSection>
                                     </motion.div>
+
+                                    <Controller
+                                        name="consent"
+                                        control={control}
+                                        render={({ field }) => (
+                                            <FormField
+                                                label=""
+                                                error={errors.consent?.message}
+                                            >
+                                                <div className="flex items-start gap-3">
+                                                    <Checkbox
+                                                        id="consent"
+                                                        checked={field.value}
+                                                        onCheckedChange={field.onChange}
+                                                        className="mt-1"
+                                                    />
+                                                    <label
+                                                        htmlFor="consent"
+                                                        className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
+                                                    >
+                                                        I confirm that the information provided is accurate and I consent to its use for vendor registration and system processing.
+                                                    </label>
+                                                </div>
+                                            </FormField>
+                                        )}
+                                    />
 
                                     {/* Submit Button */}
                                     <motion.div variants={sectionVariants} className="flex justify-end pt-4">
