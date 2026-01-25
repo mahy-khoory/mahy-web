@@ -4,7 +4,7 @@ import PageHeading from "@/components/UI/PageHeading";
 import ProductCard from "@/components/UI/shop/ProductCard";
 import TopFilter from "@/components/UI/shop/TopFilter";
 import { getPartnerNames } from "@/constants/partners";
-import { getProducts } from "@/constants/products";
+import products, { getProducts, newProducts } from "@/constants/products";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -43,7 +43,9 @@ async function Shop({ searchParams }) {
             (item) => !partnerIds.length || partnerIds.includes(item.partnerId)
         );
     };
-    const items = await getItems();
+    // const items = await getItems();
+    const items = newProducts;
+    console.log(items);
 
     return (
         <main className="pb-14">
@@ -62,11 +64,12 @@ async function Shop({ searchParams }) {
                         {items.map((item, i) => (
                             <div key={i}>
                                 <ProductCard
-                                    title={item.name}
+                                    title={item.overview}
+                                    category={item.category}
                                     models={item.models}
-                                    price={item.price}
+                                    price={item.standardPrice}
                                     image={item.images[0]}
-                                    href={`/shop/${item.id}`}
+                                    href={`/shop/${item.partNumber}`}
                                     modelHeading={t("Model")}
                                     modelsHeading={t("Models")}
                                     currency={t("Currency")}
