@@ -44,6 +44,7 @@ import {
     DISTRICTS,
     COUNTIES,
     ADDRESS_BOOKS,
+    COMPANY_CHAINS,
 } from "@/lib/vendorFormconstants";
 
 import {
@@ -101,14 +102,19 @@ export default function VendorRegistration() {
     });
 
     const vendorType = watch("vendorType");
+    const vendorClassificationGroup = watch("vendorClassificationGroup");
     const trnType = watch("trnType");
     const countryRegion = watch("countryRegion");
 
     const isOrganization = vendorType === "organization";
     const isPerson = vendorType === "person";
+    const isRegular = vendorClassificationGroup === "regular";
     const isUAE = countryRegion === "UAE";
     const showPassport = isPerson && !isUAE;
     const showEmiratesId = isPerson && isUAE;
+
+    // Show extended address fields for Regular + Organization OR for Person
+    const showExtendedAddress = (isOrganization && isRegular) || isPerson;
 
     const onSubmit = async (data) => {
         setIsSubmitting(true);
@@ -163,7 +169,6 @@ export default function VendorRegistration() {
                                     </div>
                                 </motion.div>
                             </CardHeader>
-
                             <CardContent className="p-6">
                                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                                     {/* Basic Vendor Details */}
@@ -201,7 +206,7 @@ export default function VendorRegistration() {
                                                 name="vendorClassificationGroup"
                                                 control={control}
                                                 render={({ field }) => (
-                                                    <SelectField
+                                                    <RadioGroupField
                                                         label="Vendor classification group"
                                                         value={field.value || ""}
                                                         onChange={field.onChange}
@@ -314,7 +319,7 @@ export default function VendorRegistration() {
                                                     name="trnType"
                                                     control={control}
                                                     render={({ field }) => (
-                                                        <SelectField
+                                                        <RadioGroupField
                                                             label="TRN type"
                                                             value={field.value || ""}
                                                             onChange={field.onChange}
@@ -370,6 +375,48 @@ export default function VendorRegistration() {
                                                     label="Company name"
                                                     {...register("companyName")}
                                                 />
+
+                                                {/* Regular-specific organization fields */}
+                                                <AnimatedField show={isRegular}>
+                                                    <div className="flex items-center gap-2">
+                                                        <Controller
+                                                            name="holdingCompany"
+                                                            control={control}
+                                                            render={({ field }) => (
+                                                                <div className="flex items-center gap-3">
+                                                                    <label className="text-sm font-medium">Holding company</label>
+                                                                    <div className="flex items-center gap-2">
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            checked={field.value || false}
+                                                                            onChange={(e) => field.onChange(e.target.checked)}
+                                                                            className="h-4 w-4 rounded border-input"
+                                                                        />
+                                                                        <span className="text-sm text-muted-foreground">
+                                                                            {field.value ? "Yes" : "No"}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        />
+                                                    </div>
+                                                </AnimatedField>
+
+                                                <AnimatedField show={isRegular}>
+                                                    <Controller
+                                                        name="companyChain"
+                                                        control={control}
+                                                        render={({ field }) => (
+                                                            <SelectField
+                                                                label="Company chain"
+                                                                value={field.value || ""}
+                                                                onChange={field.onChange}
+                                                                options={[...COMPANY_CHAINS]}
+                                                                placeholder="Select company chain"
+                                                            />
+                                                        )}
+                                                    />
+                                                </AnimatedField>
 
                                                 <Controller
                                                     name="methodOfPayment"
@@ -599,10 +646,18 @@ export default function VendorRegistration() {
                                     <motion.div variants={sectionVariants}>
                                         <FormSection title="Address">
                                             <AnimatedField show={isOrganization}>
-                                                <InputField
-                                                    label="Country/region"
-                                                    value="ARE"
-                                                    disabled
+                                                <Controller
+                                                    name="countryRegion"
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <SelectField
+                                                            label="Country/region"
+                                                            value={field.value || ""}
+                                                            onChange={field.onChange}
+                                                            options={[...COUNTRIES]}
+                                                            required
+                                                        />
+                                                    )}
                                                 />
                                             </AnimatedField>
 
@@ -622,7 +677,7 @@ export default function VendorRegistration() {
                                                 />
                                             </AnimatedField>
 
-                                            <AnimatedField show={isPerson}>
+                                            <AnimatedField show={showExtendedAddress}>
                                                 <InputField
                                                     label="Post box"
                                                     {...register("postBox")}
@@ -658,13 +713,22 @@ export default function VendorRegistration() {
                                                     />
                                                 )}
                                             />
+
                                             <InputField
                                                 label="Street"
+                                                {...register("street")}
                                                 required
                                                 error={errors.street?.message}
-                                                {...register("street")}
                                             />
-                                            <AnimatedField show={isPerson}>
+
+                                            <AnimatedField show={showExtendedAddress}>
+                                                <InputField
+                                                    label="Makani number"
+                                                    {...register("makaniNumber")}
+                                                />
+                                            </AnimatedField>
+
+                                            <AnimatedField show={showExtendedAddress}>
                                                 <Controller
                                                     name="state"
                                                     control={control}
@@ -680,14 +744,14 @@ export default function VendorRegistration() {
                                                 />
                                             </AnimatedField>
 
-                                            <AnimatedField show={isPerson}>
+                                            <AnimatedField show={showExtendedAddress}>
                                                 <InputField
                                                     label="Street number"
                                                     {...register("streetNumber")}
                                                 />
                                             </AnimatedField>
 
-                                            <AnimatedField show={isPerson}>
+                                            <AnimatedField show={showExtendedAddress}>
                                                 <Controller
                                                     name="district"
                                                     control={control}
@@ -703,14 +767,14 @@ export default function VendorRegistration() {
                                                 />
                                             </AnimatedField>
 
-                                            <AnimatedField show={isPerson}>
+                                            <AnimatedField show={showExtendedAddress}>
                                                 <InputField
                                                     label="Building complement"
                                                     {...register("buildingComplement")}
                                                 />
                                             </AnimatedField>
 
-                                            <AnimatedField show={isPerson}>
+                                            <AnimatedField show={showExtendedAddress}>
                                                 <Controller
                                                     name="county"
                                                     control={control}
@@ -726,19 +790,21 @@ export default function VendorRegistration() {
                                                 />
                                             </AnimatedField>
 
-                                            <Controller
-                                                name="addressBooks"
-                                                control={control}
-                                                render={({ field }) => (
-                                                    <SelectField
-                                                        label="Address books"
-                                                        value={field.value || ""}
-                                                        onChange={field.onChange}
-                                                        options={[...ADDRESS_BOOKS]}
-                                                        placeholder="Select address book"
-                                                    />
-                                                )}
-                                            />
+                                            <AnimatedField show={showExtendedAddress}>
+                                                <Controller
+                                                    name="addressBooks"
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <SelectField
+                                                            label="Address books"
+                                                            value={field.value || ""}
+                                                            onChange={field.onChange}
+                                                            options={[...ADDRESS_BOOKS]}
+                                                            placeholder="Select address book"
+                                                        />
+                                                    )}
+                                                />
+                                            </AnimatedField>
                                         </FormSection>
                                     </motion.div>
 
@@ -902,3 +968,4 @@ export default function VendorRegistration() {
         </>
     );
 }
+
