@@ -3,8 +3,8 @@ import { getTranslations } from "next-intl/server";
 export const getNewProducts = (category) => {
     if (category === "ariston")
         return aristonProducts;
-    else if (category === "craneVijay")
-        return craneVijayProducts;
+    else if (category === "crane")
+        return craneProducts;
     else if (category === "craneFarah")
         return craneFarahProducts;
     else if (category === "dewalt")
@@ -975,7 +975,7 @@ const aristonProducts = [
         ]
     }
 ];
-const craneVijayProducts = [
+const craneProducts = [
     {
         category: "Crane Bronze Gate Valve",
         partNumber: "0EA04306P",
@@ -2319,7 +2319,7 @@ const grundfosProducts = [
 
 const productsSources = [
     aristonProducts,
-    craneVijayProducts,
+    craneProducts,
     craneFarahProducts,
     dewaltProducts,
     franklinMotors,

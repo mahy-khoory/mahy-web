@@ -18,8 +18,8 @@ async function Shop({ searchParams }) {
     const partnerNames = await getPartnerNames();
     const topFilters = [
         { key: "ariston", label: "Ariston", text: t("Filter1Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769338670/Picture1_ld0xap.png" },
-        { key: "craneVijay", label: "Crane Vijay", text: t("Filter2Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418510/valve_converted_xgfz0v.png" },
-        { key: "craneFarah", label: "Crane Farah", text: t("Filter3Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420943/Picture1_b8bwbg.png" },
+        { key: "crane", label: "Crane", text: t("Filter2Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418510/valve_converted_xgfz0v.png" },
+        { key: "craneFarah", label: "Crane", text: t("Filter3Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420943/Picture1_b8bwbg.png" },
         { key: "dewalt", label: "Dewalt Tools", text: t("Filter4Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421634/61oaKFTEUJL._AC_SL1200__awsn9m.png" },
         { key: "franklin", label: "Franklin Motors", text: t("Filter5Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422322/Picture1_uvoma3.png" },
         { key: "globalWater", label: "Global Water Solutions", text: t("Filter6Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422636/Picture1_yiezev.png" },
