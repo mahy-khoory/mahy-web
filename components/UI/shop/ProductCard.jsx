@@ -7,10 +7,10 @@ export default function ProductCard({ title, category, image, models, price, hre
   const [selectedModel, setSelectedModel] = useState(0);
 
   return (
-    <div className="relative rounded-3xl bg-gray-50 px-6 pt-10 pb-8 hover:bg-gray-100 duration-500 transition-all h-full flex flex-col justify-between">
+    <div className="relative rounded-3xl shadow-xl px-6 pt-10 pb-8 hover:bg-gray-50 duration-500 transition-all h-full flex flex-col justify-between">
       <div>
-        <span className="text-gray-600 text-sm">{category}</span>
-        <div className="relative mt-6 h-50 w-full">
+        {/* <span className="text-gray-600 text-sm">{category}</span> */}
+        <div className="relative h-50 w-full">
           <Image
             src={image}
             alt={title}

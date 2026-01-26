@@ -1,21 +1,10 @@
 "use client"
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 
-function TopFilter({ topFilters, locale }) {
-    const items = [
-        { label: topFilters[0].label, image: "/products/pump.png", text: topFilters[0].text },
-        { label: topFilters[1].label, image: "/products/pump.png", text: topFilters[1].text },
-        { label: topFilters[2].label, image: "/products/pump.png", text: topFilters[2].text },
-        { label: topFilters[3].label, image: "/products/pump.png", text: topFilters[3].text },
-        { label: topFilters[4].label, image: "/products/pump.png", text: topFilters[4].text },
-        { label: topFilters[5].label, image: "/products/pump.png", text: topFilters[5].text },
-        { label: topFilters[6].label, image: "/products/pump.png", text: topFilters[6].text },
-        { label: topFilters[7].label, image: "/products/pump.png", text: topFilters[7].text },
-        { label: topFilters[8].label, image: "/products/pump.png", text: topFilters[8].text }
-    ];
-    const [index, setIndex] = useState(0);
+function TopFilter({ items, locale, topFilter }) {
     const [scrollProgress, setScrollProgress] = useState(0);
     const containerRef = useRef(null);
 
@@ -54,19 +43,19 @@ function TopFilter({ topFilters, locale }) {
             {/* Horizontal scroll container */}
             <div className='flex gap-4 flex-nowrap overflow-x-scroll hide-scrollbar' ref={containerRef}>
                 {items.map((item, i) => (
-                    <button key={i} onClick={() => setIndex(i)}
+                    <Link key={i} href={`/shop?brand=${item.key}`}
                         className={`flex-none transition-all h-35 duration-500 w-50 bg-gray-50 rounded-xl px-5 py-4 
-                            ${i === index && "w-70 border flex items-center gap-4"}`}>
+                            ${topFilter === item.key && "w-70 border flex items-center gap-4"}`}>
                         <div>
-                            <p className={`text-sm font-medium mb-2 ${i !== index && "h-9"}`}>{item.label}</p>
-                            {i === index && <p className='text-gray-600 text-xs'>{item.text}</p>}
+                            <p className={`text-sm font-medium mb-2 ${topFilter !== item.key && "h-9"}`}>{item.label}</p>
+                            {topFilter === item.key && <p className='text-gray-600 text-xs'>{item.text}</p>}
                         </div>
                         <div className="flex justify-center">
                             <div className='relative w-14 h-14'>
                                 <Image src={item.image} alt={item.label} fill style={{ objectFit: "cover" }} />
                             </div>
                         </div>
-                    </button>
+                    </Link>
                 ))}
             </div>
             {/* Scroll progress and buttons */}

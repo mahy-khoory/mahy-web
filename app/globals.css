@@ -385,3 +385,14 @@ button {
   stroke-dasharray: 10 26;
   animation: timeline-dash 1.1s linear infinite;
 }
+
+@keyframes slideFade {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideFade {
+  animation: slideFade 300ms ease-out forwards;
+}

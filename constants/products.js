@@ -1,7 +1,31 @@
 import { getTranslations } from "next-intl/server";
 
-export const newProducts = [
-    // Ariston Water Heater
+export const getNewProducts = (category) => {
+    if (category === "ariston")
+        return aristonProducts;
+    else if (category === "craneVijay")
+        return craneVijayProducts;
+    else if (category === "craneFarah")
+        return craneFarahProducts;
+    else if (category === "dewalt")
+        return dewaltProducts;
+    else if (category === "franklin")
+        return franklinMotors;
+    else if (category === "globalWater")
+        return globalWaterProducts;
+    else if (category === "grundfos")
+        return grundfosProducts;
+};
+
+export const getNewProduct = (id) => {
+    for (const products of productsSources) {
+        const found = products.find(p => p.partNumber === id);
+        if (found) return found;
+    }
+    return null;
+};
+
+const aristonProducts = [
     {
         category: "Ariston Electric Water Heater",
         partNumber: "3100631",
@@ -950,6 +974,1357 @@ export const newProducts = [
             { title: "Country of Origin", text: "Italy" }
         ]
     }
+];
+const craneVijayProducts = [
+    {
+        category: "Crane Bronze Gate Valve",
+        partNumber: "0EA04306P",
+        stockAllocated: 0,
+        overview: "CRANE D151 1/2\" GATE VALVE HANDWHEEL OPERATED BRONZE BODY & DISC WRAS BSPT PN20",
+        standardPrice: "35.70",
+        amazonPrice: "",
+        weight: "0.269",
+        freightCharges: "",
+        sellingPriceWithFreight: "",
+        newAmazonSellingPrice: "",
+        brand: "CRANE",
+        amazonLink: "",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418510/valve_converted_xgfz0v.png"
+        ],
+        about: [
+            "Crane gate valves offer the ultimate in dependable service wherever minimum pressure drop is important",
+            "The D151 carries the British Standards Institution kitemark - your assurance of exacting quality standards",
+            "WRAS approved for use on wholesome (potable) water"
+        ],
+        description: "Bronze Gate Valve, Non-Rising Stem, Solid Wedge, Screwed Bonnet, in accordance with BS EN 12288:2010, PN20 rated. Body, Bonnet and disc to Bronze to BS EN 1982 CC491K. Valves are manufactured in accordance with BS EN 12288: 2010 PN20 Series B and are BSI Kitemark approved.",
+        specs: [
+            { title: "Brand", text: "Crane" },
+            { title: "Size", text: "1/2\"" },
+            { title: "Material", text: "Bronze" },
+            { title: "Pressure Rating", text: "PN20" },
+            { title: "Temperature Range", text: "-10 to 180°C" }
+        ],
+        technical: [
+            { title: "Manufacturer", text: "Crane" },
+            { title: "Part Number", text: "0EA04306P" },
+            { title: "Item Number", text: "D151" },
+            { title: "Item Weight", text: "0.269 kg" },
+            { title: "Dimensions", text: "50mm x 78mm x 52.5mm" },
+            { title: "Body Material", text: "Bronze BS EN 1982 CC491K" },
+            { title: "Stem Material", text: "DZR Brass BS EN 12164 CW602N" },
+            { title: "Disc Material", text: "Bronze BS EN 1982 CC491K" },
+            { title: "Packing", text: "Asbestos Free" },
+            { title: "UK End Connection", text: "Taper threaded to BS EN 10226-2 (ISO 7-1)" },
+            { title: "Operator", text: "Handwheel" }
+        ]
+    },
+    {
+        category: "Crane Bronze Gate Valve",
+        partNumber: "0EA04307Q",
+        stockAllocated: 0,
+        overview: "CRANE D151 3/4\" GATE VALVE HANDWHEEL OPERATED BRONZE BODY & DISC WRAS BSPT PN20",
+        standardPrice: "51.40",
+        amazonPrice: "",
+        weight: "0.5",
+        freightCharges: "",
+        sellingPriceWithFreight: "",
+        newAmazonSellingPrice: "",
+        brand: "CRANE",
+        amazonLink: "https://www.amazon.ae/dp/B0D9B9YVVC",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418511/51_6DNn2eWL._AC__hdgbpm.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418510/41BvgwWS1lL._AC_SL1500__fumnxd.png"
+        ],
+        about: [
+            "Application: HVAC",
+            "Main Material: Bronze",
+            "Nominal Pressure: 20",
+            "Disc Material: Bronze"
+        ],
+        description: "WRAS Approved Bronze Gate Valve, body, disc and wedge material in bronze, DZR brass stem, PTFE packing, PN20 rated, threaded ends to ISO 228/1",
+        specs: [
+            { title: "Brand", text: "Generic" },
+            { title: "Size", text: "PN20 3/4''" },
+            { title: "Material", text: "Bronze" },
+            { title: "Colour", text: "Golden" },
+            { title: "Exterior Finish", text: "Bronze" }
+        ],
+        technical: [
+            { title: "Manufacturer", text: "Generic" },
+            { title: "Part Number", text: "0EA04307Q" },
+            { title: "Item Weight", text: "500 g" },
+            { title: "Product Dimensions", text: "9.2 x 4.9 x 9.2 cm" },
+            { title: "Item Model Number", text: "3/4''" },
+            { title: "ASIN", text: "B0D9B9YVVC" },
+            { title: "Included Components", text: "Valve" }
+        ]
+    },
+    {
+        category: "Crane Bronze Gate Valve",
+        partNumber: "0EA04308R",
+        stockAllocated: 0,
+        overview: "CRANE D151 1\" GATE VALVE HANDWHEEL OPERATED BRONZE BODY & DISC WRAS BSPT PN20",
+        standardPrice: "74.60",
+        amazonPrice: "",
+        weight: "0.593",
+        freightCharges: "",
+        sellingPriceWithFreight: "",
+        newAmazonSellingPrice: "",
+        brand: "CRANE",
+        amazonLink: "",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418513/valve_image_1_unlxgk.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418511/valve_image_2_m2kupy.png"
+        ],
+        about: [
+            "Crane gate valves offer the ultimate in dependable service wherever minimum pressure drop is important",
+            "The D151 carries the British Standards Institution kitemark - your assurance of exacting quality standards",
+            "WRAS approved for use on wholesome (potable) water in sizes 1/2\" - 2\" only",
+            "Non-rising stem design to minimise installation height",
+            "Full bore design to ensure minimal pressure drop",
+            "Adjustable gland packing for ease of maintenance",
+            "Body, bonnet and disc are made from low lead content bronze, typically 4-6%",
+            "Conforms with BS EN12288:2010 and generally conforms with MSS SP 80"
+        ],
+        description: "Bronze Gate Valve, Non-Rising Stem, Solid Wedge, Screwed Bonnet, in accordance with BS EN 12288:2010, PN20 rated. Body, Bonnet and disc to Bronze to BS EN 1982 CC491K. DZR Brass Stem to CW602N. PTFE packing ring complete with Brass packing gland and nut design. WRAS approved and BSI Kitemark approved.",
+        specs: [
+            { title: "Brand", text: "Crane" },
+            { title: "Size", text: "1\"" },
+            { title: "Material", text: "Bronze" },
+            { title: "Pressure Rating", text: "PN20" },
+            { title: "Temperature Range", text: "-10 to 180°C" }
+        ],
+        technical: [
+            { title: "Manufacturer", text: "Crane" },
+            { title: "Part Number", text: "0EA04308R" },
+            { title: "Item Number", text: "D151" },
+            { title: "Item Weight", text: "0.593 kg" },
+            { title: "Dimensions", text: "62mm x 105mm x 65mm" },
+            { title: "Body Material", text: "Bronze BS EN 1982 CC491K" },
+            { title: "Stem Material", text: "DZR Brass BS EN 12164 CW602N" },
+            { title: "Disc Material", text: "Bronze BS EN 1982 CC491K" },
+            { title: "Packing", text: "Asbestos Free" },
+            { title: "UK End Connection", text: "Taper threaded to BS EN 10226-2 (ISO 7-1)" },
+            { title: "US End Connection", text: "ANSI B1.20.1" },
+            { title: "Operator", text: "Handwheel" }
+        ]
+    },
+    {
+        category: "Crane Bronze Gate Valve",
+        partNumber: "0EA04309S",
+        stockAllocated: 0,
+        overview: "CRANE D151 1.1/4\" GATE VALVE HANDWHEEL OPERATED BRONZE BODY & DISC WRAS BSPT PN20",
+        standardPrice: "109.30",
+        amazonPrice: "",
+        weight: "0.844",
+        freightCharges: "",
+        sellingPriceWithFreight: "",
+        newAmazonSellingPrice: "",
+        brand: "CRANE",
+        amazonLink: "",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418509/valve_final_xhdqa7.png"
+        ],
+        about: [
+            "Crane gate valves offer the ultimate in dependable service wherever minimum pressure drop is important",
+            "The D151 carries the British Standards Institution kitemark – your assurance of exacting quality standards",
+            "WRAS approved for use on wholesome (potable) water in sizes 1/2\"-2\" only"
+        ],
+        description: "PN20 Bronze Gate Valve with taper threaded connection to BS EN 10226-2 (ISO 7-1) formerly BS 21. Available in sizes 1/4\" to 4\".",
+        specs: [
+            { title: "Brand", text: "Crane" },
+            { title: "Size", text: "1.1/4\"" },
+            { title: "Valve Body Material", text: "Bronze" },
+            { title: "Pressure Class", text: "PN20" },
+            { title: "Connection Type", text: "Taper threaded to BS EN 10226-2 (ISO 7-1)" }
+        ],
+        technical: [
+            { title: "Manufacturer", text: "Crane" },
+            { title: "Part Number", text: "0EA04309S" },
+            { title: "Item Number", text: "D151" },
+            { title: "Item Weight", text: "0.844 kg" },
+            { title: "Dimensions", text: "71mm x 111mm x 70mm" },
+            { title: "Size Range", text: "1/4\" to 4\"" }
+        ]
+    }
+];
+const craneFarahProducts = [
+    // DM931 Variable Orifice Double Regulating Valves
+    {
+        category: "Crane Variable Orifice Double Regulating Valve",
+        partNumber: "0JG90606A",
+        overview: "CRANE F678L 2.1/2\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
+        standardPrice: "220.90",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420943/Picture1_b8bwbg.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420945/Picture2_v8o8vd.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420960/Picture3_q2kecj.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420953/Picture4_e1cd1j.png"
+        ],
+        about: [
+            "These are Y-Pattern globe valves supplied with two pressure test points P84 to provide flow measurement, regulation and isolation",
+            "The Double Regulating feature allows the valve to be used for isolation and to be reopened to its pre-set position to maintain required flow rate",
+            "Primarily used in injection or other circuits requiring a double regulating valve for system balancing",
+            "Accuracy of flow measurement is ±10% at the full open position of the valve",
+            "Some reduction in accuracy occurs at partial openings of the valve in accordance with BS 7350"
+        ],
+        description: "Variable Orifice Double Regulating Valve (DRV) – Ductile Iron. These are Y-Pattern globe valves supplied with two pressure test points P84 to provide flow measurement, regulation and isolation.",
+        specs: [
+            { title: "Size Range", text: "DN65 to DN300" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "10 - 120°C" },
+            { title: "End Connections", text: "Flanged" },
+            { title: "Material", text: "Ductile Iron" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron - BS EN 1563 GJS-450-10" },
+            { title: "Bonnet", text: "Ductile Iron - BS EN 1563 GJS-450-10" },
+            { title: "Bonnet Gasket", text: "Non-asbestos" },
+            { title: "Disc", text: "EPDM, Coated Cast Iron" },
+            { title: "Disc Bush", text: "Bronze" },
+            { title: "Stem", text: "410 SS" },
+            { title: "Gland (65-150mm)", text: "Brass" },
+            { title: "Gland (200-300mm)", text: "Cast Iron" },
+            { title: "Packing", text: "Non-asbestos" },
+            { title: "Seat Ring", text: "Bronze" }
+        ]
+    },
+    {
+        category: "Crane Variable Orifice Double Regulating Valve",
+        partNumber: "0JG90607B",
+        overview: "CRANE DM931 6\" VARIABLE ORIFICE DOUBLE REGULATING VALVE(VODRV) RF FLANGED Y-PATTERN WITH TEST POINT P84 PN16",
+        standardPrice: "2,190.80",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420962/Picture1_da7q6l.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420964/Picture2_d05p1v.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420974/Picture3_fa3lpk.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420967/Picture4_c9azai.png"
+        ],
+        about: [
+            "These are Y-Pattern globe valves supplied with two pressure test points P84 to provide flow measurement, regulation and isolation",
+            "The Double Regulating feature allows the valve to be used for isolation and to be reopened to its pre-set position to maintain required flow rate",
+            "Primarily used in injection or other circuits requiring a double regulating valve for system balancing",
+            "Accuracy of flow measurement is ±10% at the full open position of the valve",
+            "Some reduction in accuracy occurs at partial openings of the valve in accordance with BS 7350"
+        ],
+        description: "DM931 Variable Orifice Double Regulating Valve (DRV) – Ductile Iron DN65 to DN300.",
+        specs: [
+            { title: "Size Range", text: "DN65 to DN300" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "10 - 120°C" },
+            { title: "End Connections", text: "Flanged" },
+            { title: "Material", text: "Ductile Iron" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron - BS EN 1563 GJS-450-10" },
+            { title: "Bonnet", text: "Ductile Iron - BS EN 1563 GJS-450-10" },
+            { title: "Bonnet Gasket", text: "Non-asbestos" },
+            { title: "Disc", text: "EPDM, Coated Cast Iron" },
+            { title: "Disc Bush", text: "Bronze" },
+            { title: "Stem", text: "410 SS" },
+            { title: "Packing", text: "Non-asbestos" },
+            { title: "Seat Ring", text: "Bronze" }
+        ]
+    },
+    // D298 Bronze Strainers
+    {
+        category: "Crane Bronze Strainer",
+        partNumber: "0JG91288L",
+        overview: "CRANE D298 1/2\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
+        standardPrice: "30.30",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420980/Screenshot_2026-01-23_162658_oofjyl.png"
+        ],
+        about: [
+            "A generous use of pipeline strainers will make a significant contribution to the reliability of a piping system and to optimise performance of the equipment - pumps, valves, flow measuring devices, traps etc",
+            "Strainers are a low cost investment for any piping system and result in reduced maintenance costs as well as minimising 'downtime' by protecting the circuit from damage by foreign matter"
+        ],
+        description: "D298 Bronze Strainer with SS304 mesh, WRAS approved, BSPT connection, PN16 rated.",
+        specs: [
+            { title: "Size", text: "1/2\" (DN15)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 100°C" },
+            { title: "WRAS Approval", text: "-10 to 85°C" },
+            { title: "Connection", text: "BSPT" }
+        ],
+        technical: [
+            { title: "Body", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "Mesh", text: "Stainless Steel to A.I.S.I. Type 304" },
+            { title: "Cap Seal", text: "PTFE" },
+            { title: "Cap", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "ID Plate", text: "Aluminium" },
+            { title: "Mesh Hole", text: "0.75mm" },
+            { title: "Weight", text: "0.16 kg" }
+        ]
+    },
+    {
+        category: "Crane Bronze Strainer",
+        partNumber: "0JG91289M",
+        overview: "CRANE D298 3/4\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
+        standardPrice: "41.60",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420989/Screenshot_2026-01-23_162658_e1kfny.png"
+        ],
+        about: [
+            "A generous use of pipeline strainers will make a significant contribution to the reliability of a piping system and to optimise performance of the equipment - pumps, valves, flow measuring devices, traps etc",
+            "Strainers are a low cost investment for any piping system and result in reduced maintenance costs as well as minimising 'downtime' by protecting the circuit from damage by foreign matter"
+        ],
+        description: "D298 Bronze Strainer with SS304 mesh, WRAS approved, BSPT connection, PN16 rated.",
+        specs: [
+            { title: "Size", text: "3/4\" (DN20)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 100°C" },
+            { title: "WRAS Approval", text: "-10 to 85°C" },
+            { title: "Connection", text: "BSPT" }
+        ],
+        technical: [
+            { title: "Body", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "Mesh", text: "Stainless Steel to A.I.S.I. Type 304" },
+            { title: "Cap Seal", text: "PTFE" },
+            { title: "Cap", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "ID Plate", text: "Aluminium" },
+            { title: "Mesh Hole", text: "0.75mm" },
+            { title: "Weight", text: "0.28 kg" }
+        ]
+    },
+    {
+        category: "Crane Bronze Strainer",
+        partNumber: "0JG91290E",
+        overview: "CRANE D298 1\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
+        standardPrice: "63.90",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420981/Screenshot_2026-01-23_162658_sykxzs.png"
+        ],
+        about: [
+            "A generous use of pipeline strainers will make a significant contribution to the reliability of a piping system and to optimise performance of the equipment - pumps, valves, flow measuring devices, traps etc",
+            "Strainers are a low cost investment for any piping system and result in reduced maintenance costs as well as minimising 'downtime' by protecting the circuit from damage by foreign matter"
+        ],
+        description: "D298 Bronze Strainer with SS304 mesh, WRAS approved, BSPT connection, PN16 rated.",
+        specs: [
+            { title: "Size", text: "1\" (DN25)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 100°C" },
+            { title: "WRAS Approval", text: "-10 to 85°C" },
+            { title: "Connection", text: "BSPT" }
+        ],
+        technical: [
+            { title: "Body", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "Mesh", text: "Stainless Steel to A.I.S.I. Type 304" },
+            { title: "Cap Seal", text: "PTFE" },
+            { title: "Cap", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "ID Plate", text: "Aluminium" },
+            { title: "Mesh Hole", text: "0.75mm" },
+            { title: "Weight", text: "0.38 kg" }
+        ]
+    },
+    {
+        category: "Crane Bronze Strainer",
+        partNumber: "0JG91291F",
+        overview: "CRANE D298 1.1/4\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
+        standardPrice: "102.90",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420955/Screenshot_2026-01-23_162658_kgnzt8.png"
+        ],
+        about: [
+            "A generous use of pipeline strainers will make a significant contribution to the reliability of a piping system and to optimise performance of the equipment - pumps, valves, flow measuring devices, traps etc",
+            "Strainers are a low cost investment for any piping system and result in reduced maintenance costs as well as minimising 'downtime' by protecting the circuit from damage by foreign matter"
+        ],
+        description: "D298 Bronze Strainer with SS304 mesh, WRAS approved, BSPT connection, PN16 rated.",
+        specs: [
+            { title: "Size", text: "1.1/4\" (DN32)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 100°C" },
+            { title: "WRAS Approval", text: "-10 to 85°C" },
+            { title: "Connection", text: "BSPT" }
+        ],
+        technical: [
+            { title: "Body", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "Mesh", text: "Stainless Steel to A.I.S.I. Type 304" },
+            { title: "Cap Seal", text: "PTFE" },
+            { title: "Cap", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "ID Plate", text: "Aluminium" },
+            { title: "Mesh Hole", text: "1.4mm" },
+            { title: "Weight", text: "0.64 kg" }
+        ]
+    },
+    {
+        category: "Crane Bronze Strainer",
+        partNumber: "0JG91292G",
+        overview: "CRANE D298 1.1/2\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
+        standardPrice: "145.00",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420958/Screenshot_2026-01-23_162658_sraqqv.png"
+        ],
+        about: [
+            "A generous use of pipeline strainers will make a significant contribution to the reliability of a piping system and to optimise performance of the equipment - pumps, valves, flow measuring devices, traps etc",
+            "Strainers are a low cost investment for any piping system and result in reduced maintenance costs as well as minimising 'downtime' by protecting the circuit from damage by foreign matter"
+        ],
+        description: "D298 Bronze Strainer with SS304 mesh, WRAS approved, BSPT connection, PN16 rated.",
+        specs: [
+            { title: "Size", text: "1.1/2\" (DN40)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 100°C" },
+            { title: "WRAS Approval", text: "-10 to 85°C" },
+            { title: "Connection", text: "BSPT" }
+        ],
+        technical: [
+            { title: "Body", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "Mesh", text: "Stainless Steel to A.I.S.I. Type 304" },
+            { title: "Cap Seal", text: "PTFE" },
+            { title: "Cap", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "ID Plate", text: "Aluminium" },
+            { title: "Mesh Hole", text: "1.4mm" },
+            { title: "Weight", text: "0.88 kg" }
+        ]
+    },
+    {
+        category: "Crane Bronze Strainer",
+        partNumber: "0JG91293H",
+        overview: "CRANE D298 2\" STRAINER BRONZE BODY SS304 MESH WRAS PN16",
+        standardPrice: "231.20",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420988/Screenshot_2026-01-23_162658_g47noe.png"
+        ],
+        about: [
+            "A generous use of pipeline strainers will make a significant contribution to the reliability of a piping system and to optimise performance of the equipment - pumps, valves, flow measuring devices, traps etc",
+            "Strainers are a low cost investment for any piping system and result in reduced maintenance costs as well as minimising 'downtime' by protecting the circuit from damage by foreign matter"
+        ],
+        description: "D298 Bronze Strainer with SS304 mesh, WRAS approved, PN16 rated.",
+        specs: [
+            { title: "Size", text: "2\" (DN50)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 100°C" },
+            { title: "WRAS Approval", text: "-10 to 85°C" }
+        ],
+        technical: [
+            { title: "Body", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "Mesh", text: "Stainless Steel to A.I.S.I. Type 304" },
+            { title: "Cap Seal", text: "PTFE" },
+            { title: "Cap", text: "Bronze to BS EN 1982 CC491K" },
+            { title: "ID Plate", text: "Aluminium" },
+            { title: "Mesh Hole", text: "1.4mm" },
+            { title: "Weight", text: "1.40 kg" }
+        ]
+    },
+    // F678L Butterfly Valves
+    {
+        category: "Crane Butterfly Valve",
+        partNumber: "0JG92984J",
+        overview: "CRANE F678L 2.1/2\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
+        standardPrice: "220.90",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420969/Picture1_nqrpok.png"
+        ],
+        about: [
+            "Valves are suitable for use with flanges conforming to BS EN 1092-2 PN16",
+            "Valve to BS EN593",
+            "Ductile Iron, Stainless Steel, Aluminium Bronze Disc Options",
+            "EPDM and Nitrile Seat Liner Options",
+            "420 Stainless Steel Shafts for superior strength"
+        ],
+        description: "F678L Fully Lugged Lever Operated Butterfly Valve with Ductile Iron body, EPDM liner, and Aluminium Bronze disc.",
+        specs: [
+            { title: "Size Range", text: "50mm to 200mm" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 120°C" },
+            { title: "End Connections", text: "Fully Lugged, compatible with BS EN1092-2 PN16 flanges" },
+            { title: "Operator", text: "Trigger Lever" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron (EN-GJS-400-15)" },
+            { title: "Disc", text: "Aluminium Bronze (ASTM B148 C95400)" },
+            { title: "Liner", text: "EPDM" },
+            { title: "Shaft", text: "Stainless Steel 420 (ASTM A276 420)" },
+            { title: "Taper Pin", text: "Stainless Steel 431 (ASTM A276 431)" },
+            { title: "O-Ring", text: "Nitrile Rubber" },
+            { title: "Bushing", text: "PTFE" },
+            { title: "Lever & Screw", text: "Malleable Iron ASTM Gr.32510" },
+            { title: "Shell Test Pressure", text: "24 bar" },
+            { title: "Seat Test Pressure", text: "17.6 bar" }
+        ]
+    },
+    {
+        category: "Crane Butterfly Valve",
+        partNumber: "0JG92985K",
+        overview: "CRANE F678L 3\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
+        standardPrice: "253.10",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420963/Picture1_dswqya.png"
+        ],
+        about: [
+            "Valves are suitable for use with flanges conforming to BS EN 1092-2 PN16",
+            "Valve to BS EN593",
+            "Ductile Iron, Stainless Steel, Aluminium Bronze Disc Options",
+            "EPDM and Nitrile Seat Liner Options",
+            "420 Stainless Steel Shafts for superior strength"
+        ],
+        description: "F678L Fully Lugged Lever Operated Butterfly Valve with Ductile Iron body, EPDM liner, and Aluminium Bronze disc.",
+        specs: [
+            { title: "Size Range", text: "50mm to 200mm" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 120°C" },
+            { title: "End Connections", text: "Fully Lugged, compatible with BS EN1092-2 PN16 flanges" },
+            { title: "Operator", text: "Trigger Lever" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron (EN-GJS-400-15)" },
+            { title: "Disc", text: "Aluminium Bronze (ASTM B148 C95400)" },
+            { title: "Liner", text: "EPDM" },
+            { title: "Shaft", text: "Stainless Steel 420 (ASTM A276 420)" },
+            { title: "Taper Pin", text: "Stainless Steel 431 (ASTM A276 431)" },
+            { title: "O-Ring", text: "Nitrile Rubber" },
+            { title: "Bushing", text: "PTFE" },
+            { title: "Lever & Screw", text: "Malleable Iron ASTM Gr.32510" },
+            { title: "Shell Test Pressure", text: "24 bar" },
+            { title: "Seat Test Pressure", text: "17.6 bar" }
+        ]
+    },
+    {
+        category: "Crane Butterfly Valve",
+        partNumber: "0JG92986L",
+        overview: "CRANE F678L 4\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
+        standardPrice: "424.10",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420972/Picture1_wkasqh.png"
+        ],
+        about: [
+            "Valves are suitable for use with flanges conforming to BS EN 1092-2 PN16",
+            "Valve to BS EN593",
+            "Ductile Iron, Stainless Steel, Aluminium Bronze Disc Options",
+            "EPDM and Nitrile Seat Liner Options",
+            "420 Stainless Steel Shafts for superior strength"
+        ],
+        description: "F678L Fully Lugged Lever Operated Butterfly Valve with Ductile Iron body, EPDM liner, and Aluminium Bronze disc.",
+        specs: [
+            { title: "Size", text: "4\" (100mm)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 120°C" },
+            { title: "End Connections", text: "Fully Lugged, compatible with BS EN1092-2 PN16 flanges" },
+            { title: "Operator", text: "Trigger Lever" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron (EN-GJS-400-15)" },
+            { title: "Disc", text: "Aluminium Bronze (ASTM B148 C95400)" },
+            { title: "Liner", text: "EPDM" },
+            { title: "Shaft", text: "Stainless Steel 420 (ASTM A276 420)" },
+            { title: "Taper Pin", text: "Stainless Steel 431 (ASTM A276 431)" },
+            { title: "O-Ring", text: "Nitrile Rubber" },
+            { title: "Bushing", text: "PTFE" },
+            { title: "Weight", text: "7.3 kg" },
+            { title: "Shell Test Pressure", text: "24 bar" },
+            { title: "Seat Test Pressure", text: "17.6 bar" }
+        ]
+    },
+    {
+        category: "Crane Butterfly Valve",
+        partNumber: "0JG92987M",
+        overview: "CRANE F678L 5\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
+        standardPrice: "591.40",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420984/Picture1_micw9q.png"
+        ],
+        about: [
+            "Valves are suitable for use with flanges conforming to BS EN 1092-2 PN16",
+            "Valve to BS EN593",
+            "Ductile Iron, Stainless Steel, Aluminium Bronze Disc Options",
+            "EPDM and Nitrile Seat Liner Options",
+            "420 Stainless Steel Shafts for superior strength"
+        ],
+        description: "F678L Fully Lugged Lever Operated Butterfly Valve with Ductile Iron body, EPDM liner, and Aluminium Bronze disc.",
+        specs: [
+            { title: "Size", text: "5\" (125mm)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 120°C" },
+            { title: "End Connections", text: "Fully Lugged, compatible with BS EN1092-2 PN16 flanges" },
+            { title: "Operator", text: "Trigger Lever" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron (EN-GJS-400-15)" },
+            { title: "Disc", text: "Aluminium Bronze (ASTM B148 C95400)" },
+            { title: "Liner", text: "EPDM" },
+            { title: "Shaft", text: "Stainless Steel 420 (ASTM A276 420)" },
+            { title: "Taper Pin", text: "Stainless Steel 431 (ASTM A276 431)" },
+            { title: "O-Ring", text: "Nitrile Rubber" },
+            { title: "Bushing", text: "PTFE" },
+            { title: "Weight", text: "9.8 kg" },
+            { title: "Shell Test Pressure", text: "24 bar" },
+            { title: "Seat Test Pressure", text: "17.6 bar" }
+        ]
+    },
+    {
+        category: "Crane Butterfly Valve",
+        partNumber: "0JG92988N",
+        overview: "CRANE F678L 6\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
+        standardPrice: "813.40",
+        brand: "CRANE",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420976/Picture1_drjylw.png"
+        ],
+        about: [
+            "Valves are suitable for use with flanges conforming to BS EN 1092-2 PN16",
+            "Valve to BS EN593",
+            "Ductile Iron, Stainless Steel, Aluminium Bronze Disc Options",
+            "EPDM and Nitrile Seat Liner Options",
+            "420 Stainless Steel Shafts for superior strength"
+        ],
+        description: "F678L Fully Lugged Lever Operated Butterfly Valve with Ductile Iron body, EPDM liner, and Aluminium Bronze disc.",
+        specs: [
+            { title: "Size", text: "6\" (150mm)" },
+            { title: "Pressure Rating", text: "PN16" },
+            { title: "Temperature Rating", text: "-10 to 120°C" },
+            { title: "End Connections", text: "Fully Lugged, compatible with BS EN1092-2 PN16 flanges" },
+            { title: "Operator", text: "Trigger Lever" }
+        ],
+        technical: [
+            { title: "Body", text: "Ductile Iron (EN-GJS-400-15)" },
+            { title: "Disc", text: "Aluminium Bronze (ASTM B148 C95400)" },
+            { title: "Liner", text: "EPDM" },
+            { title: "Shaft", text: "Stainless Steel 420 (ASTM A276 420)" },
+            { title: "Taper Pin", text: "Stainless Steel 431 (ASTM A276 431)" },
+            { title: "O-Ring", text: "Nitrile Rubber" },
+            { title: "Bushing", text: "PTFE" },
+            { title: "Weight", text: "10.7 kg" },
+            { title: "Shell Test Pressure", text: "24 bar" },
+            { title: "Seat Test Pressure", text: "17.6 bar" }
+        ]
+    }
+];
+const dewaltProducts = [
+    // 1. D25133K-B5 - SDS Plus Hammer
+    {
+        category: "DeWalt SDS Plus Hammer",
+        partNumber: "D25133K-B5",
+        stockAllocated: "",
+        overview: "DEWALT 26MM 3 MODE SDS PLUS HAMMER",
+        standardPrice: "510",
+        amazonPrice: "",
+        weight: "4.3",
+        freightCharges: "49",
+        sellingPriceWithFreight: "497.21",
+        newAmazonSellingPrice: "557",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DEWD25133K",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421634/61oaKFTEUJL._AC_SL1200__awsn9m.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421630/81D2e2wZkEL._AC_SL1500__pjnjwy.png"
+        ],
+        about: [
+            "3-in-1 Functionality: Rotary drilling, hammer drilling, and chiselling – all powered by an 800W motor",
+            "Variable Speed Trigger: Smooth control with forward/reverse options for total versatility",
+            "Rotation-Stop Mode: Perfect for light chiselling in brick, soft masonry, and occasional concrete work",
+            "Mechanical Clutch: Protects against sudden torque spikes if the bit jams",
+            "Ergonomic Design: Rounded grip ensures comfort during extended use",
+            "Professional Range: Ideal for anchor and fixing holes in concrete/masonry (4–26 mm diameter)"
+        ],
+        description: "DEWALT D25133K 26mm 3-Mode SDS Plus Hammer with 800W motor, 2.6 joules impact energy, rotating brush ring, and dust extraction compatibility.",
+        specs: [
+            { title: "Power", text: "800W" },
+            { title: "Impact Energy", text: "2.6 Joules" },
+            { title: "Max Speed", text: "1500 RPM" },
+            { title: "Voltage", text: "240V AC" },
+            { title: "Amperage", text: "7 Amps" }
+        ],
+        technical: [
+            { title: "Weight", text: "4.3 kg" },
+            { title: "Colour", text: "Yellow/Black" },
+            { title: "Material", text: "Metal" },
+            { title: "Torque", text: "3.6 Newton Meters" },
+            { title: "Power Source", text: "Corded Electric" }
+        ]
+    },
+    // 2. DCD771D2T-GB - Drill Driver
+    {
+        category: "DeWalt Drill Driver",
+        partNumber: "DCD771D2T-GB",
+        stockAllocated: "",
+        overview: "DEWALT 18V XR HAMMER DRILL DRIVER 2*2AH BATTERY & CHARGER",
+        standardPrice: "480",
+        amazonPrice: "",
+        weight: "4.6",
+        freightCharges: "49",
+        sellingPriceWithFreight: "435.75",
+        newAmazonSellingPrice: "489",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DCD796D2W",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421593/61G0GECDsSL._AC_SL1200__btvkds.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421587/610VxMj66zL._AC_SL1200__sdko9g.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421591/518lx4XQYEL._AC_SL1200__b7r08x.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421591/518lx4XQYEL._AC_SL1200__b7r08x.png"
+        ],
+        about: [
+            "Ultra-Compact & Lightweight Design: Designed for comfortable handling and extended use",
+            "Advanced Brushless Motor Technology: Delivers higher efficiency, longer runtime, and extended tool life",
+            "Hammer Drill Driver Functionality: Ideal for drilling and fastening across wood, metal, and masonry",
+            "Two-Speed High-Performance Transmission: Allows precise speed control",
+            "Professional-Grade Portability: Supplied with a tough nylon kit bag"
+        ],
+        description: "DEWALT DCD796D2W XR 18V Cordless Hammer Drill Driver with brushless motor, 2x 2.0Ah batteries, charger, and kit bag.",
+        specs: [
+            { title: "Voltage", text: "18V" },
+            { title: "Battery Type", text: "Lithium-Ion" },
+            { title: "Battery Capacity", text: "2.0 Ah" },
+            { title: "Number of Batteries", text: "2" },
+            { title: "Motor", text: "Brushless" }
+        ],
+        technical: [
+            { title: "Weight", text: "4.6 kg" },
+            { title: "Colour", text: "Yellow" },
+            { title: "Material", text: "Metal" },
+            { title: "Included", text: "2x Batteries, Charger, Belt Hook, Bit Holder, Nylon Kit Bag" }
+        ]
+    },
+    // 3. DCD776D2T-GB - Hammer Drill Driver
+    {
+        category: "DeWalt Hammer Drill Driver",
+        partNumber: "DCD776D2T-GB",
+        stockAllocated: "",
+        overview: "DEWALT 18V XR HAMMER DRILL DRIVER KINGFISHER",
+        standardPrice: "505",
+        amazonPrice: "",
+        weight: "4.1",
+        freightCharges: "49",
+        sellingPriceWithFreight: "451.50",
+        newAmazonSellingPrice: "509",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DCD776S2-B5",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421583/71RDkb-CH5L._AC_SL1500__xvaxxk.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421583/31TnOlSqP6L._AC__kkc4wf.png"
+        ],
+        about: [
+            "18V XR Li-Ion Compact Drill Driver with XR 1.3Ah battery technology",
+            "Two-speed settings with variable speed and reverse switch",
+            "15-position adjustable torque control for consistent screw driving",
+            "Bright white LED with delay feature for improved visibility",
+            "13mm single sleeve chuck & spindle lock for quick bit changes",
+            "Ergonomic design with rubber grip for enhanced comfort"
+        ],
+        description: "Dewalt DCD776S2-B5 18V Li-Ion Cordless Compact Hammer Drill Driver with two-speed gearbox, 15-position torque control, and 13mm chuck.",
+        specs: [
+            { title: "Voltage", text: "18V" },
+            { title: "Max Speed", text: "1500 RPM" },
+            { title: "Chuck Size", text: "13mm" },
+            { title: "Max Power", text: "400W" },
+            { title: "Torque", text: "42 Nm" }
+        ],
+        technical: [
+            { title: "Weight", text: "4.1 kg" },
+            { title: "Dimensions", text: "39 x 34 x 11.8 cm" },
+            { title: "Battery Capacity", text: "1.5 Ah" },
+            { title: "Battery Type", text: "Lithium-Ion" },
+            { title: "Colour", text: "Yellow/Black" }
+        ]
+    },
+    // 4. DCH133M1EXP-GB - Cordless SDS Hammer
+    {
+        category: "DeWalt SDS Plus Cordless Hammer",
+        partNumber: "DCH133M1EXP-GB",
+        stockAllocated: "",
+        overview: "DEWALT DCH133M1 18V Li-ion 26mm SDS-Plus 3-Mode Cordless Hammer with Brushless Motor",
+        standardPrice: "880",
+        amazonPrice: "",
+        weight: "2.0",
+        freightCharges: "49",
+        sellingPriceWithFreight: "840",
+        newAmazonSellingPrice: "942",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DCH133M1",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421591/61_8ev0eJXL._AC_SL1000__vbdhct.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421586/51K_y2sMDqL._AC_SL1000__l2nxcm.png"
+        ],
+        about: [
+            "18V Brushless Motor for maximum efficiency and longer life",
+            "26mm SDS-Plus chuck for fast, secure bit changes",
+            "3 Modes: drilling, hammer drilling, and chiselling",
+            "Compact & Lightweight (2 kg) for reduced fatigue",
+            "4.0Ah Li-ion Battery included for extended runtime",
+            "Ergonomic design with comfortable grip"
+        ],
+        description: "DEWALT DCH133M1 18V brushless cordless hammer with 26mm SDS-Plus chuck, 3-mode operation, and 4.0Ah battery.",
+        specs: [
+            { title: "Voltage", text: "18V" },
+            { title: "Chuck Type", text: "SDS-Plus 26mm" },
+            { title: "Modes", text: "3 (Drill, Hammer Drill, Chisel)" },
+            { title: "Max Speed", text: "1550 RPM" },
+            { title: "Max Power", text: "72W" }
+        ],
+        technical: [
+            { title: "Weight", text: "2 kg (tool only)" },
+            { title: "Battery Capacity", text: "4.0 Ah" },
+            { title: "Battery Type", text: "Lithium-Ion" },
+            { title: "Motor", text: "Brushless" },
+            { title: "Colour", text: "Black" }
+        ]
+    },
+    // 5. DWD024-B5 - Percussion Drill
+    {
+        category: "DeWalt Percussion Drill",
+        partNumber: "DWD024-B5",
+        stockAllocated: "",
+        overview: "DEWALT PERCUSSION DRILL 750W WITH CARTON BOX",
+        standardPrice: "210",
+        amazonPrice: "",
+        weight: "2.99",
+        freightCharges: "49",
+        sellingPriceWithFreight: "195.72",
+        newAmazonSellingPrice: "239",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DWD024-B5",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421635/71LZFrdaulS._AC_SL1500__u1fgvu.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421653/81N51tEPbUS._AC_SL1500__o7fuoh.png"
+        ],
+        about: [
+            "Powerful 750W motor for consistent performance",
+            "Drilling Capacity: Wood – 25 mm, Steel – 13 mm, Concrete – 16 mm",
+            "Variable speed trigger (0–2800 RPM) for precision control",
+            "13mm chuck with spindle lock for quick bit changes",
+            "Compact & lightweight design for improved handling",
+            "Rubber back handle for user comfort"
+        ],
+        description: "DEWALT DWD024-B5 Percussion Drill with 750W motor, 13mm chuck, variable speed 0-2800 RPM, for wood, steel, and concrete drilling.",
+        specs: [
+            { title: "Power", text: "750W" },
+            { title: "Max Speed", text: "2800 RPM" },
+            { title: "Chuck Size", text: "13mm" },
+            { title: "Voltage", text: "240V AC" },
+            { title: "Drilling Capacity", text: "Wood 25mm, Steel 13mm, Concrete 16mm" }
+        ],
+        technical: [
+            { title: "Weight", text: "2.99 kg" },
+            { title: "Dimensions", text: "31 x 26 x 8 cm" },
+            { title: "Colour", text: "Yellow/Black" },
+            { title: "Material", text: "Plastic, Metal, Rubber" },
+            { title: "Power Source", text: "AC Corded" }
+        ]
+    },
+    // 6. DWE4010T-B5 - Angle Grinder 730W
+    {
+        category: "DeWalt Angle Grinder",
+        partNumber: "DWE4010T-B5",
+        stockAllocated: "",
+        overview: "DEWALT 115MM, 730W TOGGLE SWITCH ANGLE GRINDER",
+        standardPrice: "200",
+        amazonPrice: "",
+        weight: "2.4",
+        freightCharges: "49",
+        sellingPriceWithFreight: "187.61",
+        newAmazonSellingPrice: "210",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DWE4010T-B5",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421603/51IL4uVw7mL._AC_SL1500__avzejp.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421596/513i86x3PiL._AC_SL1392__-_Copy_-_Copy_vgqsxe.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421675/81S4BwmXETL._AC_SL1500__kt6joq.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421606/71GOOhcsiwL._AC_SL1500__ndojqo.png"
+        ],
+        about: [
+            "730W motor for reliable grinding performance",
+            "115mm disc diameter for versatile applications",
+            "Toggle switch for easy operation",
+            "Compact design for access to tight spaces",
+            "Ergonomic grip for user comfort"
+        ],
+        description: "DEWALT DWE4010T-B5 115mm Angle Grinder with 730W motor, toggle switch, and compact design for cutting and grinding.",
+        specs: [
+            { title: "Power", text: "730W" },
+            { title: "Disc Size", text: "115mm" },
+            { title: "Voltage", text: "220V AC" },
+            { title: "Switch Type", text: "Toggle" }
+        ],
+        technical: [
+            { title: "Weight", text: "2.4 kg" },
+            { title: "Dimensions", text: "37.6 x 11 x 8 cm" },
+            { title: "Colour", text: "Yellow" },
+            { title: "Material", text: "Metal" },
+            { title: "Power Source", text: "AC Corded" }
+        ]
+    },
+    // 7. DWE4120-B5 - Angle Grinder 900W
+    {
+        category: "DeWalt Angle Grinder",
+        partNumber: "DWE4120-B5",
+        stockAllocated: "",
+        overview: "DEWALT 115MM, 900W PADDLE SWITCH ANGLE GRINDER",
+        standardPrice: "230",
+        amazonPrice: "",
+        weight: "0.62",
+        freightCharges: "49",
+        sellingPriceWithFreight: "215.18",
+        newAmazonSellingPrice: "302",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DWE4120-B5",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421648/51K06n6XenL._AC_SL1275__vhxc2t.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421671/71-rIAZzXjL._AC_SL1500__jh7ftz.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421673/71a_CfU2PjS._AC_SL1500__movx2r.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421633/71c56bK0C3L._AC_SL1500__jottzl.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421689/81Cp6a2ODTL._AC_SL1500__agm3aq.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421674/81EWmO_bKMS._AC_SL1500__gbpnv4.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421673/81HpkIvQ0HS._AC_SL1500__ybjgty.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421668/91hA87_i2GL._AC_SL1500__zym3vs.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421664/91hSjxz3z4L._AC_SL1500__vmhmb0.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421653/91B7XzKKDoL._AC_SL1500__r9uxvo.png"
+        ],
+        about: [
+            "Powerful 900W motor delivers up to 12,000 RPM",
+            "Slim, ergonomic design for better control",
+            "One-Touch Adjustable Guard with 360° rotation",
+            "Low-Profile Gear Case for tight spaces",
+            "Quick-Change Wheel Release (tool-free)",
+            "2-Position Side Handle for comfort and control"
+        ],
+        description: "DEWALT DWE4120-B5 Angle Grinder with 900W motor, 115mm disc, paddle switch, 12,000 RPM, and tool-free wheel change.",
+        specs: [
+            { title: "Power", text: "900W" },
+            { title: "Disc Size", text: "115mm" },
+            { title: "No-Load Speed", text: "12,000 RPM" },
+            { title: "Voltage", text: "220V AC" },
+            { title: "Spindle Thread", text: "5/8\"-11" }
+        ],
+        technical: [
+            { title: "Weight", text: "620g" },
+            { title: "Dimensions", text: "36.6 x 12.6 x 15.6 cm" },
+            { title: "Colour", text: "Black" },
+            { title: "Switch Type", text: "Paddle Switch" },
+            { title: "Material", text: "Metal" }
+        ]
+    },
+    // 8. DWE4212-B5 - Angle Grinder 1200W
+    {
+        category: "DeWalt Angle Grinder",
+        partNumber: "DWE4212-B5",
+        stockAllocated: "",
+        overview: "DEWALT 115MM, 1200W PADDLE SWITCH SMALL ANGLE GRINDER",
+        standardPrice: "310",
+        amazonPrice: "",
+        weight: "2.2",
+        freightCharges: "49",
+        sellingPriceWithFreight: "257.25",
+        newAmazonSellingPrice: "289",
+        brand: "DEWALT",
+        amazonLink: "https://www.amazon.ae/dp/DWE4212-B5",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421605/81kifZlm9gL._AC_SL1500__aaorqk.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421618/81W6Exo4XOL._AC_SL1500__nbdppd.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421620/91EruL-9SPL._AC_SL1500__1_mi9o3s.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421623/91EruL-9SPL._AC_SL1500__ksqfhj.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421629/91JnX4MEffL._AC_SL1500__o6za3t.png"
+        ],
+        about: [
+            "Non-locking paddle switch for enhanced safety",
+            "High-efficiency 1200W motor for demanding applications",
+            "Dust ejection system extends motor life",
+            "Small girth body for comfortable grip",
+            "Anti-vibration side handle reduces fatigue",
+            "Pop-off carbon brushes protect armature"
+        ],
+        description: "DeWalt DWE4212-B5 Angle Grinder with 1200W motor, 115mm disc, 11,000 RPM, paddle switch, dust ejection, and anti-vibration handle.",
+        specs: [
+            { title: "Power", text: "1200W" },
+            { title: "Disc Size", text: "115mm" },
+            { title: "No-Load Speed", text: "11,000 RPM" },
+            { title: "Voltage", text: "220V" },
+            { title: "Spindle Thread", text: "M14" }
+        ],
+        technical: [
+            { title: "Weight", text: "2.2 kg" },
+            { title: "Dimensions", text: "286 x 80 mm" },
+            { title: "Switch Type", text: "Paddle" },
+            { title: "Warranty", text: "3 Years" },
+            { title: "Power Source", text: "Corded" }
+        ]
+    }
+];
+const franklinMotors = [
+    {
+        category: "Submersible Motor for Borewell Pumps",
+        partNumber: "2247526700L",
+        stockAllocated: "3 Nos (DXB18)",
+        overview: "Franklin borehole motor 2.2Kw,1ph,230V,4\"",
+        standardPrice: "1200",
+        amazonPrice: "1200",
+        weight: "17 kg",
+        freightCharges: "54",
+        sellingPriceWithFreight: "1254",
+        newAmazonSellingPrice: "1316.7",
+        brand: "FRANKLIN",
+        amazonLink: "",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422322/Picture1_uvoma3.png"
+        ],
+        about: [
+            "Hermetically sealed stator with anti-track, self-healing stator resin prevents motor burn out",
+            "High efficiency electrical design for low operation cost and cooler winding temperature",
+            "Removable 'Water Bloc' lead connector",
+            "Cable material according to drinking water regulations (KTW approved)",
+            "Water lubricated radial and thrust bearings",
+            "All motors prefilled and 100% tested",
+            "Non contaminating, water-filled design",
+            "Offers highest starting torque of all single phase motors"
+        ],
+        description: "Franklin Electric 4\" encapsulated 3-wire capacitor start single phase motor, manufactured to ISO 9001 standards. Together with Franklin Electric Control Boxes, offers maintenance-free long life operation with high starting torque and included motor protection.",
+        specs: [
+            { title: "Power", text: "2.2 kW" },
+            { title: "Phase", text: "Single Phase (1ph)" },
+            { title: "Voltage", text: "230V" },
+            { title: "Motor Size", text: "4\" / 100mm" },
+            { title: "Flange", text: "4\" NEMA flange" },
+            { title: "Protection", text: "IP68" }
+        ],
+        technical: [
+            { title: "Rotation", text: "CCW facing shaft end" },
+            { title: "Insulation", text: "Class B" },
+            { title: "Rated Ambient Temp", text: "30°C" },
+            { title: "Cooling Flow", text: "min 8 cm/sec (for 2.2 kW and larger)" },
+            { title: "Starts per Hour", text: "20" },
+            { title: "Mounting", text: "Vertical/Horizontal" },
+            { title: "Voltage Tolerance", text: "+6% / -10% UN" },
+            { title: "Motor Protection", text: "Included via Franklin Electric Control Boxes" }
+        ]
+    }
+];
+const globalWaterProducts = [
+    {
+        category: "Under the Sink RO System",
+        partNumber: "AW-PRM-75-38-J-C",
+        stockAllocated: "10 Nos (DXB18)",
+        overview: "GWS AQUAWAVE PREMIUM, ALL IN ONE UNDER THE SINK RO SYSTEM 75GPD, 5 STAGES, 2.2GAL TANK, WITH PRV & PUMP",
+        standardPrice: "1100",
+        amazonPrice: "1300",
+        weight: "10.1 kg",
+        freightCharges: "40.2",
+        sellingPriceWithFreight: "1340.2",
+        newAmazonSellingPrice: "1407.21",
+        brand: "GLOBAL WATER SOLUTIONS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422636/Picture1_yiezev.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422639/Picture2_md01xh.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422642/Picture3_idjiba.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422645/Picture6_fbmjuk.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422648/Picture4_twgq7t.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422651/Picture5_mxc3vz.png"
+        ],
+        about: ["Reverse Osmosis purification method", "Under sink installation", "75GPD capacity with 5 stages", "2.2 gallon tank included", "With PRV & Pump", "Made in Turkey"],
+        description: "GWS Aqua wave Premium 75gpd 5 stage Under the Sink RO system for Domestic Use. 1 year warranty from the date of Invoice against Manufacturing Defect.",
+        specs: [{ title: "Capacity", text: "2.2 Gallons / 75GPD" }, { title: "Stages", text: "5" }, { title: "Material", text: "Polyamide" }, { title: "Installation", text: "Under Sink" }, { title: "Power Source", text: "Corded Electric" }],
+        technical: [{ title: "Purification Method", text: "Reverse Osmosis" }, { title: "Origin", text: "Turkey" }]
+    },
+    {
+        category: "Pressure Vessel",
+        partNumber: "FLXCON-V-0060",
+        stockAllocated: "10 Nos (DXB18)",
+        overview: "GWS Challenger Series 60 Litres Pressure Steel Tank, 10 Bar, With round base",
+        standardPrice: "675",
+        amazonPrice: "800",
+        weight: "12.25 kg",
+        freightCharges: "44.5",
+        sellingPriceWithFreight: "844.5",
+        newAmazonSellingPrice: "886.725",
+        brand: "GLOBAL WATER SOLUTIONS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422658/Picture1_j3lbbm.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422661/Picture2_tgf80g.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422663/Picture3_cvdhqt.png"
+        ],
+        about: ["60 Liter capacity", "Pressure vessel for water systems", "3 years warranty against Manufacturing Defect", "Made in USA"],
+        description: "GWS Pressure Vessel Vertical Floor Standing type with Stand. GWS Challenger Series 60 Litres Pressure Steel Tank, 10 Bar, With round base.",
+        specs: [{ title: "Capacity", text: "60 Liters" }, { title: "Material", text: "Steel" }, { title: "Colour", text: "White" }, { title: "Shape", text: "Round" }],
+        technical: [{ title: "Dimensions", text: "80 x 40 x 40 cm" }, { title: "Item Weight", text: "10 kg" }, { title: "Origin", text: "USA" }]
+    },
+    {
+        category: "Anti Scaling System",
+        partNumber: "OSP-20JB",
+        stockAllocated: "2 Nos (DXB18)",
+        overview: "GWS 20\" JUMBO ONESTOP PLUS HOUSING KIT (BSP VERSION) FOR DOMESTIC USE",
+        standardPrice: "850",
+        amazonPrice: "900",
+        weight: "7.75 kg",
+        freightCharges: "35.5",
+        sellingPriceWithFreight: "935.5",
+        newAmazonSellingPrice: "982.275",
+        brand: "GLOBAL WATER SOLUTIONS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422674/Picture1_ekgoon.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422677/Picture2_d2rxzg.png"
+        ],
+        about: ["Anti scaling system for domestic use", "20\" Jumbo housing kit", "BSP version"],
+        description: "GWS Anti scaling System for Domestic Use 20\" JUMBO ONESTOP PLUS HOUSING KIT (BSP VERSION).",
+        specs: [{ title: "Size", text: "20\" Jumbo" }, { title: "Type", text: "BSP Version" }, { title: "Category", text: "Water Purification Unit" }],
+        technical: [{ title: "Manufacturer", text: "GLOBAL WATER SOLUTIONS" }]
+    },
+    {
+        category: "Pressure Vessel",
+        partNumber: "PEB-24L",
+        overview: "GWS Econowave Series 24 Litres Pressure Steel Tank, 10 Bar, Inline Type, Without base",
+        standardPrice: "120",
+        amazonPrice: "200",
+        weight: "4.1 kg",
+        freightCharges: "25",
+        sellingPriceWithFreight: "63",
+        newAmazonSellingPrice: "200",
+        brand: "GLOBAL WATER SOLUTIONS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422628/Picture1_ks7tfa.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422630/Picture2_jxct3y.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422633/Picture3_h1aivs.png"
+        ],
+        about: ["24 Liter capacity", "Max Pressure: 10 Bar", "Test Pressure: 14.3 Bar", "Standard Recharge: 2 Bar", "Corrosion-resistant design", "Reduces pump cycling and prolongs pump life"],
+        description: "Oracz (Global Water Solutions) 24 Liter Water Pressure Tank. Built with premium-grade steel for domestic, commercial, and light industrial applications.",
+        specs: [{ title: "Capacity", text: "24 Liters" }, { title: "Max Pressure", text: "10 Bar" }, { title: "Test Pressure", text: "14.3 Bar" }, { title: "Standard Recharge", text: "2 Bar" }, { title: "Colour", text: "Off-White" }],
+        technical: [{ title: "Dimensions", text: "30 x 30 x 45 cm" }, { title: "Item Weight", text: "3.9 kg" }, { title: "Model", text: "PEB-24LX" }]
+    },
+    {
+        category: "Pressure Vessel",
+        partNumber: "PWB-60LV",
+        overview: "GWS Pressure Wave Series 60 Litres Pressure Steel Tank, 10 Bar, With round base",
+        standardPrice: "405",
+        amazonPrice: "886",
+        weight: "12.25 kg",
+        freightCharges: "40",
+        sellingPriceWithFreight: "273",
+        newAmazonSellingPrice: "700",
+        brand: "GLOBAL WATER SOLUTIONS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422666/Picture1_g9nkde.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422669/Picture2_gen8em.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422672/Picture3_lck4ot.png"
+        ],
+        about: ["Ideal for booster systems, thermal expansion, irrigation systems, and hydraulic hammer arresting", "Virgin polypropylene liner with FDA approved high grade butyl diaphragm", "Patented stainless steel water connection", "UV and salt spray protection coating"],
+        description: "Global Water Solution Pressure Wave tanks represent the best value and are the best quality pressure vessels available. 1 year warranty.",
+        specs: [{ title: "Capacity", text: "60 Liters" }, { title: "Pre-charge", text: "1.9 bar / 28 psi" }, { title: "Max Working Pressure", text: "10 bar / 150 psi" }, { title: "Max Working Temp", text: "90°C / 194°F" }],
+        technical: [{ title: "Weight", text: "15 kg" }, { title: "Dimensions", text: "64 x 40 x 16.5 cm" }, { title: "Special Feature", text: "UV protection" }]
+    },
+    {
+        category: "Pressure Vessel",
+        partNumber: "PWB-100LV",
+        overview: "GWS Challenger Pressure Vessel 100L Pressure Steel Tank, 10 Bar, With round base",
+        standardPrice: "560",
+        amazonPrice: "800",
+        weight: "20.1 kg",
+        sellingPriceWithFreight: "367.5",
+        newAmazonSellingPrice: "800",
+        brand: "GLOBAL WATER SOLUTIONS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422652/Picture1_p9b6ws.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422655/Picture2_ij7pyv.png"
+        ],
+        about: ["Virgin polypropylene liner and high-grade butyl diaphragm", "Patented stainless-steel water connection with dual water/air seal", "Ideal for booster systems and thermal expansion", "3 years warranty against Manufacturing Defect", "Made in USA"],
+        description: "The Pressure Wave 100-liter vertical pressure tank is built for durability and reliability in demanding pressure applications. Robust carbon steel shell with dual-layer polyurethane paint for excellent corrosion resistance.",
+        specs: [{ title: "Capacity", text: "100 Liters / 26.42 Gallons" }, { title: "Connection", text: "1\" FNPT" }, { title: "Pre-charge", text: "1.9 bar / 28 psi" }, { title: "Max Pressure", text: "10 bar / 150 psi" }, { title: "Max Temp", text: "90°C / 194°F" }, { title: "Diameter", text: "43 cm / 16.9 in" }],
+        technical: [{ title: "Weight", text: "19.72 kg" }, { title: "Material", text: "Steel" }, { title: "Colour", text: "White" }, { title: "Origin", text: "USA" }]
+    }
+];
+const grundfosProducts = [
+    {
+        category: "Booster Pump",
+        partNumber: "92867630",
+        overview: "Grundfos Electronic Pressure Control Kit PM1-15, 1.5 BAR",
+        standardPrice: "275",
+        freightCharges: "20",
+        sellingPriceWithFreight: "350",
+        weight: "1.65 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423150/Picture1_eivc8u.png"
+        ],
+        about: ["Automatic start/stop control", "Dry running protection", "1.5 bar start cut-in pressure", "Automatic restart"],
+        description: "Grundfos PM START pressure manager designed for automatic start/stop control of water supply pumps with dry-running protection.",
+        specs: [{ title: "Pressure", text: "1.5 BAR" }],
+        technical: [{ title: "Weight", text: "1.06 kg" }, { title: "Dimensions", text: "28 x 17.8 x 17.2 cm" }]
+    },
+    {
+        category: "Horizontal Multistage Centrifugal Pump",
+        partNumber: "92914823",
+        overview: "Grundfos CM5-5 (2.0HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
+        standardPrice: "1850",
+        amazonPrice: "2797",
+        freightCharges: "50",
+        weight: "17.4 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423121/Picture1_j4ks9d.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423125/Picture2_ffvdsd.png"
+        ],
+        about: ["Installation services available", "Self-priming design", "Dry run protection", "Compact design"],
+        description: "Multipurpose pump for optimal water pressure. Applications: Private homes/villas, Gardens, Schools, Hotels, Small office buildings.",
+        specs: [{ title: "Power", text: "2.0 HP" }, { title: "Material", text: "Stainless Steel" }],
+        technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "49.2 x 25 x 20.8 cm" }, { title: "Style", text: "Circulator" }]
+    },
+    {
+        category: "Horizontal Multistage Centrifugal Pump",
+        partNumber: "92914824",
+        overview: "Grundfos CM5-4 (1.5HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
+        standardPrice: "1300",
+        amazonPrice: "1990",
+        freightCharges: "50",
+        weight: "16.1 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423129/Picture1_rmyum5.png"
+        ],
+        about: ["Installation services available", "Self-priming design", "Compact design"],
+        description: "Multipurpose pump ensuring optimal water pressure for homes, gardens, schools, hotels, small office buildings.",
+        specs: [{ title: "Power", text: "1.5 HP" }, { title: "Material", text: "Stainless Steel" }],
+        technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "39.6 x 24.2 x 20.5 cm" }, { title: "Style", text: "Above Ground" }]
+    },
+    {
+        category: "Horizontal Multistage Centrifugal Pump",
+        partNumber: "92914826",
+        overview: "Grundfos CM5-3 (1HP), 1ph, 230V, 1.0\" X 1.0\" Connections",
+        standardPrice: "895",
+        amazonPrice: "1098",
+        freightCharges: "45",
+        weight: "14.4 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423143/Picture1_bdi5wl.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423147/Picture2_nzxzqs.png"
+        ],
+        about: ["Friendly user control panel", "One year warranty", "Self priming design"],
+        description: "Multipurpose pump for optimal water pressure in residential and commercial applications.",
+        specs: [{ title: "Power", text: "1 HP" }, { title: "Material", text: "Stainless Steel" }],
+        technical: [{ title: "Color", text: "Black" }, { title: "Power Source", text: "Corded Electric" }]
+    },
+    {
+        category: "Booster Pump",
+        partNumber: "93013322",
+        overview: "Grundfos SCALA2 Intelligent Booster Pump for Domestic Application",
+        standardPrice: "2250",
+        amazonPrice: "2625",
+        freightCharges: "40",
+        weight: "12 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423159/Picture1_fst0pr.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423162/Picture2_aiuiii.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423166/Picture3_lrn2cj.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423169/Picture4_va3xpf.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423173/Picture5_phaepy.png"
+        ],
+        about: ["Intelligent pump control", "Low noise operation (47 dba)", "Up to 80% energy savings", "Suitable for villas with 3 floors and 8 taps"],
+        description: "Smart water pump with intelligent boosting system. Perfect water pressure with automatic adjustment.",
+        specs: [{ title: "Material", text: "Cast Iron" }, { title: "Style", text: "Submersible" }],
+        technical: [{ title: "Weight", text: "3.94 kg" }, { title: "Dimensions", text: "46.4 x 37.4 x 25.4 cm" }, { title: "Power Source", text: "Smart Electric Pump" }]
+    },
+    {
+        category: "Horizontal Multistage Centrifugal Pump",
+        partNumber: "97900686",
+        overview: "Grundfos CM5-5 (2.0HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
+        standardPrice: "1500",
+        amazonPrice: "1842.54",
+        freightCharges: "54.8",
+        weight: "17.4 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423153/Picture1_qnr0yw.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423156/Picture2_u3rgxs.png"
+        ],
+        about: ["Installation services available", "Self-priming design", "Dry run protection"],
+        description: "Multipurpose pump for optimal water pressure. Applications: Private homes, gardens, schools, hotels.",
+        specs: [{ title: "Power", text: "2.0 HP" }, { title: "Material", text: "Stainless Steel" }],
+        technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "49.2 x 25 x 20.8 cm" }, { title: "Style", text: "Circulator" }]
+    },
+    {
+        category: "Horizontal Multistage Centrifugal Pump",
+        partNumber: "97901003",
+        overview: "Grundfos CM5-4 (1.5HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
+        standardPrice: "900",
+        amazonPrice: "1157.31",
+        freightCharges: "52.2",
+        weight: "16.1 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422998/Picture1_kuh0ph.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423000/Picture2_onboqz.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423002/Picture3_wnkmuu.png"
+        ],
+        about: ["Installation services available", "Self-priming design", "Compact design"],
+        description: "Multipurpose pump ensuring optimal water pressure for residential and commercial applications.",
+        specs: [{ title: "Power", text: "1.5 HP" }, { title: "Material", text: "Stainless Steel" }],
+        technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "39.6 x 24.2 x 20.5 cm" }]
+    },
+    {
+        category: "Horizontal Multistage Centrifugal Pump",
+        partNumber: "98279546",
+        overview: "Grundfos CM5-3 (1HP), 1ph, 230V, 1.0\" X 1.0\" Connections",
+        standardPrice: "625",
+        amazonPrice: "838.74",
+        freightCharges: "48.8",
+        weight: "14.4 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423131/Picture1_b8irxb.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423134/Picture2_dkhcij.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423137/Picture3_i0pv8j.png"
+        ],
+        about: ["Installation services available", "Self-priming design", "Dry run protection"],
+        description: "Multipurpose pump for optimal water pressure in private homes, gardens, schools, hotels.",
+        specs: [{ title: "Power", text: "1 HP" }, { title: "Material", text: "Stainless Steel" }],
+        technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "39.4 x 25.4 x 20.6 cm" }]
+    },
+    {
+        category: "Booster Pump",
+        partNumber: "98562870",
+        overview: "Grundfos SCALA2 Intelligent Booster Pump for Domestic Application",
+        standardPrice: "1900",
+        amazonPrice: "2460.78",
+        freightCharges: "43.6",
+        weight: "11.8 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423006/Picture1_pzyvtj.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423065/Picture2_bn11iz.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423085/Picture3_b8akjm.png",
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423119/Picture4_hwpnvl.png"
+        ],
+        about: ["Intelligent pump control", "Low noise (47 dba)", "Up to 80% energy savings", "Pumps from 8m depth"],
+        description: "Smart water pump perfect for villas with up to 3 floors and 8 taps with intelligent boosting.",
+        specs: [{ title: "Material", text: "Cast Iron" }, { title: "Well Depth", text: "8 meters" }],
+        technical: [{ title: "Weight", text: "3.94 kg" }, { title: "Dimensions", text: "46.4 x 37.4 x 25.4 cm" }]
+    },
+    {
+        category: "Inline Circulator Pump",
+        partNumber: "99206629",
+        overview: "Grundfos ALPHA SOLAR 25-75 N 180 Hot Water Circulation Pump, 1X230V",
+        standardPrice: "625",
+        sellingPriceWithFreight: "850",
+        freightCharges: "25",
+        weight: "2.7 kg",
+        brand: "GRUNDFOS",
+        images: [
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423140/Picture1_mjidnc.png"
+        ],
+        about: ["EC permanent magnet motor", "Suitable for solar systems", "PWM signal control", "4 constant speeds", "Maintenance-free"],
+        description: "High-efficiency circulation pump for solar systems with variable or constant flow rate. Energy efficiency index ≤ 0.20.",
+        specs: [{ title: "Max Height", text: "7.5 m" }, { title: "Max Pressure", text: "10 bar" }, { title: "Power", text: "2-45 watts" }],
+        technical: [{ title: "Weight", text: "2.14 kg" }, { title: "Voltage", text: "230V" }, { title: "Temperature Range", text: "2-110°C" }, { title: "Installation Length", text: "180 mm" }]
+    }
+];
+
+const productsSources = [
+    aristonProducts,
+    craneVijayProducts,
+    craneFarahProducts,
+    dewaltProducts,
+    franklinMotors,
+    globalWaterProducts,
+    grundfosProducts,
 ];
 
 const products = [
