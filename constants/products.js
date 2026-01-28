@@ -1,28 +1,96 @@
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
 
-export const getNewProducts = (category) => {
-    if (category === "ariston")
-        return aristonProducts;
-    else if (category === "crane")
-        return craneProducts;
-    else if (category === "craneFarah")
-        return craneFarahProducts;
-    else if (category === "dewalt")
-        return dewaltProducts;
-    else if (category === "franklin")
-        return franklinMotors;
-    else if (category === "globalWater")
-        return globalWaterProducts;
-    else if (category === "grundfos")
-        return grundfosProducts;
+const productsPerPage = 15;
+
+export const getNewProducts = async (brand, page) => {
+    if (brand === "ariston")
+        return getPaginatedProducts(aristonProducts, page)
+    else if (brand === "crane")
+        return getPaginatedProducts(craneProducts, page)
+    else if (brand === "dewalt")
+        return getPaginatedProducts(dewaltProducts, page)
+    else if (brand === "franklin")
+        return getPaginatedProducts(franklinMotors, page)
+    else if (brand === "globalWater")
+        return getPaginatedProducts(globalWaterProducts, page)
+    else if (brand === "grundfos")
+        return getPaginatedProducts(grundfosProducts, page)
+    else {
+        return await getPaginatedRandomProducts(page);
+    }
 };
 
-export const getNewProduct = (id) => {
+export const getNewProduct = async (id) => {
     for (const products of productsSources) {
         const found = products.find(p => p.partNumber === id);
         if (found) return found;
     }
     return null;
+};
+
+const getPaginatedProducts = (products, page) => {
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+
+    return {
+        items: products.slice(startIndex, endIndex),
+        total: products.length,
+        totalPages: Math.ceil(products.length / productsPerPage),
+        cookieKey: null,
+        stored: null
+    };
+};
+
+const getPaginatedRandomProducts = async (page) => {
+    const cookieStore = await cookies();
+    const cookieKey = "randomProductsByPage";
+
+    const storedCookie = cookieStore.get(cookieKey)?.value;
+    const stored = storedCookie ? JSON.parse(storedCookie) : {};
+
+    const pageKey = `page_${page}`;
+    const allProducts = productsSources.flat();
+    const total = allProducts.length;
+    const totalPages = Math.ceil(total / productsPerPage);
+
+    // 1️⃣ If this page already has products, return them immediately
+    if (Array.isArray(stored[pageKey]) && stored[pageKey].length > 0) {
+        const cachedPartNumbers = stored[pageKey];
+        return {
+            items: allProducts.filter(p => cachedPartNumbers.includes(p.partNumber)),
+            totalPages,
+            total,
+            cookieKey,
+            stored,
+        };
+    }
+
+    // 2️⃣ Collect used partNumbers from other pages only
+    const usedPartNumbers = Object.entries(stored)
+        .filter(([key]) => key !== pageKey)
+        .flatMap(([_, partNumbers]) => partNumbers);
+
+    // 3️⃣ Filter remaining products
+    const available = allProducts.filter(
+        p => !usedPartNumbers.includes(p.partNumber)
+    );
+
+    // 4️⃣ Pick random products
+    const selectedObjects = available
+        .sort(() => Math.random() - 0.5)
+        .slice(0, productsPerPage);
+
+    // 5️⃣ Store only partNumbers in cookie object
+    stored[pageKey] = selectedObjects.map(p => p.partNumber);
+
+    return {
+        items: selectedObjects,
+        totalPages,
+        total,
+        cookieKey,
+        stored,
+    };
 };
 
 const aristonProducts = [
@@ -1147,9 +1215,7 @@ const craneProducts = [
             { title: "Dimensions", text: "71mm x 111mm x 70mm" },
             { title: "Size Range", text: "1/4\" to 4\"" }
         ]
-    }
-];
-const craneFarahProducts = [
+    },
     // DM931 Variable Orifice Double Regulating Valves
     {
         category: "Crane Variable Orifice Double Regulating Valve",
@@ -2320,7 +2386,6 @@ const grundfosProducts = [
 const productsSources = [
     aristonProducts,
     craneProducts,
-    craneFarahProducts,
     dewaltProducts,
     franklinMotors,
     globalWaterProducts,
@@ -2417,7 +2482,7 @@ export const getProductsByIds = async (ids) => {
         });
 };
 
-export const combineProductsWithCart = (products, cart) => {
+export const combineProductsWithCart = async (products, cart) => {
     if (!Array.isArray(products) || !Array.isArray(cart)) return [];
 
     return cart

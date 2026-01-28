@@ -2,11 +2,11 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
-export default async function Breadcrumb({ segments, locale }) {
+export default async function Breadcrumb({ segments, locale, maxWidth = true }) {
   const t = await getTranslations("HomePage");
   return (
     <nav aria-label="Breadcrumb" className="w-full border-b border-black/1">
-      <div className="max-w-7xl mx-auto px-3 pt-5">
+      <div className={`${maxWidth && "max-w-7xl mx-auto"} px-5 pt-5`}>
         <ol className="flex flex-wrap items-center text-sm text-black/70">
           <li className="flex items-center"><Link href="/" className="hover:text-black transition">{t("Page")}</Link></li>
           {segments.map((segment, index) => (

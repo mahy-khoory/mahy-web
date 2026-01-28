@@ -1,7 +1,9 @@
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import Filters from "@/components/UI/companies/Filters";
 import PageHeading from "@/components/UI/PageHeading";
+import Pagination from "@/components/UI/shop/Pagination";
 import ProductCard from "@/components/UI/shop/ProductCard";
+import StoreProductsInCookies from "@/components/UI/shop/StoreProductsInCookies";
 import TopFilter from "@/components/UI/shop/TopFilter";
 import { getPartnerNames } from "@/constants/partners";
 import products, { getNewProducts, getProducts } from "@/constants/products";
@@ -11,15 +13,18 @@ import React from "react";
 async function Shop({ searchParams }) {
     const params = await searchParams;
     const locale = await getLocale();
-    const search = params.search;
-    const topFilter = params.brand || "ariston";
+    const {
+        search = "",
+        brand,
+        page = 1,
+    } = params;
+
     const t = await getTranslations("ShopPage");
 
     const partnerNames = await getPartnerNames();
     const topFilters = [
         { key: "ariston", label: "Ariston", text: t("Filter1Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769338670/Picture1_ld0xap.png" },
         { key: "crane", label: "Crane", text: t("Filter2Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418510/valve_converted_xgfz0v.png" },
-        { key: "craneFarah", label: "Crane", text: t("Filter3Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769420943/Picture1_b8bwbg.png" },
         { key: "dewalt", label: "Dewalt Tools", text: t("Filter4Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421634/61oaKFTEUJL._AC_SL1200__awsn9m.png" },
         { key: "franklin", label: "Franklin Motors", text: t("Filter5Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422322/Picture1_uvoma3.png" },
         { key: "globalWater", label: "Global Water Solutions", text: t("Filter6Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422636/Picture1_yiezev.png" },
@@ -43,21 +48,16 @@ async function Shop({ searchParams }) {
         );
     };
     // const items = await getItems();
-    const items = getNewProducts(topFilter);
+    const { items, cookieKey, stored, total, totalPages } = await getNewProducts(brand, Number(page));
 
     return (
-        <main className="pb-14">
-            <PageHeading
-                title={t("Heading")}
-                description={t("Description")}
-                image={"/gallery/gallery-2.jpg"}
-            />
-            <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }]} locale={locale} />
-            <TopFilter items={topFilters} locale={locale} topFilter={topFilter} />
-            <div id="list" className="relative max-w-7xl mx-auto lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20" >
+        <main className="pb-14 pt-16 max-w-350 mx-auto ">
+            <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }]} locale={locale} maxWidth={false} />
+            <TopFilter items={topFilters} locale={locale} topFilter={brand} />
+            <div id="list" className="relative lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20" >
                 <Filters filters={filters} search={search} />
                 <div className="col-span-8">
-                    <div className="text-sm font-medium text-gray-700">{t("Results")} ({items.length.toLocaleString(locale)})</div>
+                    <div className="text-sm font-medium text-gray-700">Showing {items.length.toLocaleString(locale)} out of {total} {t("Results")} </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                         {items.map((item, i) => (
                             <div key={i}>
@@ -66,6 +66,7 @@ async function Shop({ searchParams }) {
                                     category={item.category}
                                     models={item.models}
                                     price={item.standardPrice}
+                                    specs={item.specs}
                                     image={item.images[0]}
                                     href={`/shop/${item.partNumber}`}
                                     modelHeading={t("Model")}
@@ -76,8 +77,10 @@ async function Shop({ searchParams }) {
                             </div>
                         ))}
                     </div>
+                    <Pagination currentPage={Number(page)} totalPages={totalPages} />
                 </div>
             </div>
+            <StoreProductsInCookies cookieKey={cookieKey} stored={stored} />
         </main>
     );
 }

@@ -38,24 +38,31 @@ function TopFilter({ items, locale, topFilter }) {
         return () => container.removeEventListener('scroll', updateScroll);
     }, []);
 
+    const Card = ({ item }) => {
+        const href = topFilter === item.key ? "/shop" : `/shop?brand=${item.key}`;
+        return (
+            <Link href={href}
+                className={`flex-none transition-all h-35 duration-500 w-50 bg-gray-50 rounded-xl px-5 py-4 
+                            ${topFilter === item.key && "w-70 border flex items-center gap-4"}`}>
+                <div>
+                    <p className={`text-sm font-medium mb-2 ${topFilter !== item.key && "h-9"}`}>{item.label}</p>
+                    {topFilter === item.key && <p className='text-gray-600 text-xs'>{item.text}</p>}
+                </div>
+                <div className="flex justify-center">
+                    <div className='relative w-14 h-14'>
+                        <Image src={item.image} alt={item.label} fill style={{ objectFit: "cover" }} />
+                    </div>
+                </div>
+            </Link>
+        )
+    };
+
     return (
-        <div className='max-w-7xl mx-auto mt-8 px-4'>
+        <div className='mt-8 px-4'>
             {/* Horizontal scroll container */}
             <div className='flex gap-4 flex-nowrap overflow-x-scroll hide-scrollbar' ref={containerRef}>
                 {items.map((item, i) => (
-                    <Link key={i} href={`/shop?brand=${item.key}`}
-                        className={`flex-none transition-all h-35 duration-500 w-50 bg-gray-50 rounded-xl px-5 py-4 
-                            ${topFilter === item.key && "w-70 border flex items-center gap-4"}`}>
-                        <div>
-                            <p className={`text-sm font-medium mb-2 ${topFilter !== item.key && "h-9"}`}>{item.label}</p>
-                            {topFilter === item.key && <p className='text-gray-600 text-xs'>{item.text}</p>}
-                        </div>
-                        <div className="flex justify-center">
-                            <div className='relative w-14 h-14'>
-                                <Image src={item.image} alt={item.label} fill style={{ objectFit: "cover" }} />
-                            </div>
-                        </div>
-                    </Link>
+                    <Card key={i} item={item} />
                 ))}
             </div>
             {/* Scroll progress and buttons */}
@@ -74,6 +81,6 @@ function TopFilter({ items, locale, topFilter }) {
             </div>
         </div>
     )
-}
+};
 
 export default TopFilter;
