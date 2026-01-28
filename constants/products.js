@@ -21,7 +21,7 @@ export const getNewProducts = async (brand, page) => {
     }
 };
 
-export const getNewProduct = async (id) => {
+export const getNewProduct = (id) => {
     for (const products of productsSources) {
         const found = products.find(p => p.partNumber === id);
         if (found) return found;
@@ -42,7 +42,7 @@ const getPaginatedProducts = (products, page) => {
     };
 };
 
-const getPaginatedRandomProducts = async (page) => {
+export const getPaginatedRandomProducts = async (page) => {
     const cookieStore = await cookies();
     const cookieKey = "randomProductsByPage";
 

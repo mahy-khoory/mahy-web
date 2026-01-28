@@ -78,7 +78,7 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                     ))}
                 </div>
             )}
-            <div className="lg:flex gap-4 mt-10">
+            <div className="lg:flex gap-4 mt-7 md:mt-10">
                 <div className="bg-white border border-gray-100 rounded-xl py-2 px-6 flex justify-between items-center gap-10 lg:w-fit">
                     <button onClick={decrement}>
                         <HiMinus />
@@ -88,7 +88,7 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                         <HiPlus />
                     </button>
                 </div>
-                <button onClick={addToCart} className="mt-4 lg:mt-0 b-base b-base-hover rounded-xl py-2 px-14 flex items-center justify-center gap-4 w-full lg:w-fit" >
+                <button onClick={addToCart} className="mt-3 lg:mt-0 b-base b-base-hover rounded-xl py-2 px-14 flex items-center justify-center gap-4 w-full lg:w-fit" >
                     <ShoppingCart stroke='white' size={20} />
                     <p className="text-white font-medium py-1">{addToCartText}</p>
                 </button>

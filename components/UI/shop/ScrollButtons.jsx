@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
-function ScrollButons({ scrollRef, length, locale }) {
+function ScrollButtons({ scrollRef, length, locale }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const getOffset = () => {
@@ -76,4 +76,4 @@ function ScrollButons({ scrollRef, length, locale }) {
     )
 }
 
-export default ScrollButons
+export default ScrollButtons

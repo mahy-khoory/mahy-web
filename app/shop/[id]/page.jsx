@@ -2,7 +2,7 @@ import MoreProducts from '@/components/UI/shop/MoreProducts';
 import Product from '@/components/UI/shop/Product';
 import ProductAbout from '@/components/UI/shop/ProductAbout';
 import Specs from '@/components/UI/shop/Specs';
-import { getNewProduct, getNewProducts, getProduct, getProducts, newProducts } from '@/constants/products';
+import { getNewProduct, getNewProducts, getPaginatedRandomProducts, getProduct, getProducts, newProducts } from '@/constants/products';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
@@ -14,7 +14,11 @@ async function ProductPage({ params, searchParams }) {
     // const product = await getProduct(id);
     const product = getNewProduct(id);
     if (!product) notFound();
-    const moreProducts = await getProducts();
+
+    // const moreProducts = await getProducts();
+    const { items } = await getPaginatedRandomProducts(1);
+    console.log(items);
+
     const locale = await getLocale();
 
     const productDetail = { text: t("Text"), text1: t("Text1"), text2: t("Text2"), text3: t("Text3") };
@@ -28,7 +32,7 @@ async function ProductPage({ params, searchParams }) {
                 <ProductAbout about={product.about} description={product.description} />
                 <Specs tabs={tabs} technical={product.technical} specs={product.specs} />
                 <MoreProducts
-                    products={moreProducts}
+                    products={items}
                     modelHeading={t("Model")}
                     modelsHeading={t("Models")}
                     currency={t("Currency")}

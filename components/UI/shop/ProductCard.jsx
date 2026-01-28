@@ -29,7 +29,7 @@ export default function ProductCard({ title, image, specs, models, price, href, 
             <span className="text-sm">4.1</span>
             <div className="flex gap-0.5 pt-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star size={14} fill={i < 4 ? "orange" : "white"} stroke="orange" />
+                <Star k={i} size={14} fill={i < 4 ? "orange" : "white"} stroke="orange" />
               ))}
             </div>
             <span className="text-xs text-gray-600">(41)</span>
@@ -56,6 +56,7 @@ export default function ProductCard({ title, image, specs, models, price, href, 
             ))}
           </div>
         </div>
+
         <div>
           {/* Stock */}
           <p className="text-red-500 mt-3 text-sm">8 left in stock</p>

@@ -63,7 +63,6 @@ async function Shop({ searchParams }) {
                             <div key={i}>
                                 <ProductCard
                                     title={item.overview}
-                                    category={item.category}
                                     models={item.models}
                                     price={item.standardPrice}
                                     specs={item.specs}
