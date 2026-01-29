@@ -1,23 +1,24 @@
 import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
+import categories from "./categories";
 
 const productsPerPage = 15;
 
-export const getNewProducts = async (brand, page) => {
+export const getNewProducts = async (brand, page, category) => {
     if (brand === "ariston")
-        return getPaginatedProducts(aristonProducts, page)
+        return getPaginatedProducts(aristonProducts, page, category)
     else if (brand === "crane")
-        return getPaginatedProducts(craneProducts, page)
+        return getPaginatedProducts(craneProducts, page, category)
     else if (brand === "dewalt")
-        return getPaginatedProducts(dewaltProducts, page)
+        return getPaginatedProducts(dewaltProducts, page, category)
     else if (brand === "franklin")
-        return getPaginatedProducts(franklinMotors, page)
+        return getPaginatedProducts(franklinMotors, page, category)
     else if (brand === "globalWater")
-        return getPaginatedProducts(globalWaterProducts, page)
+        return getPaginatedProducts(globalWaterProducts, page, category)
     else if (brand === "grundfos")
-        return getPaginatedProducts(grundfosProducts, page)
+        return getPaginatedProducts(grundfosProducts, page, category)
     else {
-        return await getPaginatedRandomProducts(page);
+        return await getPaginatedRandomProducts(page, category);
     }
 };
 
@@ -29,9 +30,16 @@ export const getNewProduct = (id) => {
     return null;
 };
 
-const getPaginatedProducts = (products, page) => {
+const getPaginatedProducts = (products, page, category) => {
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
+
+    if (category) {
+        const categoryObj = categories.find(c => c.value === category);
+        if (categoryObj) products = products.filter(
+            (item) => item.category === categoryObj.label
+        );
+    }
 
     return {
         items: products.slice(startIndex, endIndex),
@@ -42,7 +50,7 @@ const getPaginatedProducts = (products, page) => {
     };
 };
 
-export const getPaginatedRandomProducts = async (page) => {
+export const getPaginatedRandomProducts = async (page, category) => {
     const cookieStore = await cookies();
     const cookieKey = "randomProductsByPage";
 
@@ -50,9 +58,25 @@ export const getPaginatedRandomProducts = async (page) => {
     const stored = storedCookie ? JSON.parse(storedCookie) : {};
 
     const pageKey = `page_${page}`;
-    const allProducts = productsSources.flat();
+    let allProducts = productsSources.flat();
     const total = allProducts.length;
     const totalPages = Math.ceil(total / productsPerPage);
+
+    if (category) {
+        const categoryObj = categories.find(c => c.value === category);
+        if (categoryObj) {
+            allProducts = allProducts.filter(
+                (item) => item.category === categoryObj.label
+            );
+        }
+        return {
+            items: allProducts.slice((page - 1) * productsPerPage, page * productsPerPage),
+            total: allProducts.length,
+            totalPages: Math.ceil(allProducts.length / productsPerPage),
+            cookieKey: null,
+            stored: null,
+        };
+    };
 
     // 1️⃣ If this page already has products, return them immediately
     if (Array.isArray(stored[pageKey]) && stored[pageKey].length > 0) {

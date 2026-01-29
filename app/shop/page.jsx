@@ -1,10 +1,13 @@
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import Filters from "@/components/UI/companies/Filters";
 import PageHeading from "@/components/UI/PageHeading";
+import FilterOptions from "@/components/UI/shop/FilterOptions";
 import Pagination from "@/components/UI/shop/Pagination";
 import ProductCard from "@/components/UI/shop/ProductCard";
+import RangeSlider from "@/components/UI/shop/RangeSlider";
 import StoreProductsInCookies from "@/components/UI/shop/StoreProductsInCookies";
 import TopFilter from "@/components/UI/shop/TopFilter";
+import categories from "@/constants/categories";
 import { getPartnerNames } from "@/constants/partners";
 import products, { getNewProducts, getProducts } from "@/constants/products";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -16,6 +19,7 @@ async function Shop({ searchParams }) {
     const {
         search = "",
         brand,
+        category,
         page = 1,
     } = params;
 
@@ -48,34 +52,66 @@ async function Shop({ searchParams }) {
         );
     };
     // const items = await getItems();
-    const { items, cookieKey, stored, total, totalPages } = await getNewProducts(brand, Number(page));
+    const { items, cookieKey, stored, total, totalPages } = await getNewProducts(brand, Number(page), category);
+
+    const reviews = [
+        { rating: "4", value: "4" }
+    ];
 
     return (
-        <main className="pb-14 pt-16 max-w-350 mx-auto ">
+        <main className="pb-14 pt-16 max-w-350 mx-auto px-4">
             <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }]} locale={locale} maxWidth={false} />
             <TopFilter items={topFilters} locale={locale} topFilter={brand} />
-            <div id="list" className="relative lg:grid gap-5 px-3 grid-cols-1 lg:grid-cols-10 pt-20" >
-                <Filters filters={filters} search={search} />
-                <div className="col-span-8">
+            <div id="list" className="flex min-h-screen">
+                {/* <Filters filters={filters} search={search} /> */}
+                <aside className="w-64 shrink-0 h-screen overflow-y-auto sticky top-14 p-6 space-y-8">
+                    <FilterOptions
+                        title="Category"
+                        paramKey="category"
+                        options={categories}
+                        initialVisibleCount={5}
+                    />
+                    <FilterOptions
+                        title="Customer Reviews"
+                        paramKey="rating"
+                        options={reviews}
+                        initialVisibleCount={5}
+                    />
+                    <RangeSlider
+                        title="Price"
+                        paramKey="price"
+                        min={0}
+                        max={80000}
+                        step={100}
+                    />
+                </aside>
+                <div className="flex-1 p-6 overflow-y-auto">
                     <div className="text-sm font-medium text-gray-700">Showing {items.length.toLocaleString(locale)} out of {total} {t("Results")} </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                        {items.map((item, i) => (
-                            <div key={i}>
-                                <ProductCard
-                                    title={item.overview}
-                                    models={item.models}
-                                    price={item.standardPrice}
-                                    specs={item.specs}
-                                    image={item.images[0]}
-                                    href={`/shop/${item.partNumber}`}
-                                    modelHeading={t("Model")}
-                                    modelsHeading={t("Models")}
-                                    currency={t("Currency")}
-                                    buy={t("Buy")}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                    {/* No Products */}
+                    {items.length === 0 ? (
+                        <div className="text-center text-gray-500 mt-20">
+                            <p className="text-lg">No products found</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                            {items.map((item, i) => (
+                                <div key={i}>
+                                    <ProductCard
+                                        title={item.overview}
+                                        models={item.models}
+                                        price={item.standardPrice}
+                                        specs={item.specs}
+                                        image={item.images[0]}
+                                        href={`/shop/${item.partNumber}`}
+                                        modelHeading={t("Model")}
+                                        modelsHeading={t("Models")}
+                                        currency={t("Currency")}
+                                        buy={t("Buy")}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                     <Pagination currentPage={Number(page)} totalPages={totalPages} />
                 </div>
             </div>

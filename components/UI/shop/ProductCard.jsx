@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function ProductCard({ title, image, specs, models, price, href, modelHeading, modelsHeading, currency, buy }) {
-  const [selectedModel, setSelectedModel] = useState(0);
+  // const [selectedModel, setSelectedModel] = useState(0);
 
   return (
     <div className="relative rounded-2xl border border-gray-100 duration-500 transition-all h-full bg-gray-50 overflow-hidden flex flex-col">
@@ -29,7 +29,7 @@ export default function ProductCard({ title, image, specs, models, price, href, 
             <span className="text-sm">4.1</span>
             <div className="flex gap-0.5 pt-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star k={i} size={14} fill={i < 4 ? "orange" : "white"} stroke="orange" />
+                <Star key={i} size={14} fill={i < 4 ? "orange" : "white"} stroke="orange" />
               ))}
             </div>
             <span className="text-xs text-gray-600">(41)</span>
@@ -60,7 +60,7 @@ export default function ProductCard({ title, image, specs, models, price, href, 
         <div>
           {/* Stock */}
           <p className="text-red-500 mt-3 text-sm">8 left in stock</p>
-          <Link href={`${href}?model=${selectedModel}`}>
+          <Link href={`${href}`}>
             <button className="py-2 w-full b-base text-white text-center rounded-2xl mt-4 text-sm">{buy}</button>
           </Link>
         </div>
