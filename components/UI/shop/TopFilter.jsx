@@ -58,7 +58,7 @@ function TopFilter({ items, locale, topFilter }) {
     };
 
     return (
-        <div className='mt-8 px-4'>
+        <div className='mt-5'>
             {/* Horizontal scroll container */}
             <div className='flex gap-4 flex-nowrap overflow-x-scroll hide-scrollbar' ref={containerRef}>
                 {items.map((item, i) => (
@@ -66,7 +66,7 @@ function TopFilter({ items, locale, topFilter }) {
                 ))}
             </div>
             {/* Scroll progress and buttons */}
-            <div className='flex mt-6 items-center gap-8 max-w-lg md:max-w-xl mx-auto px-4'>
+            <div className='flex mt-4 items-center gap-8 max-w-lg md:max-w-xl mx-auto px-4'>
                 <div className='bg-gray-200 h-2 w-11/12 relative rounded-2xl overflow-hidden'>
                     <div className={`absolute bottom-0 top-0 ${locale === "ar" ? "right-0" : "left-0"} bottom-0 b-base rounded-2xl`} style={{ width: `${scrollProgress}%` }} />
                 </div>

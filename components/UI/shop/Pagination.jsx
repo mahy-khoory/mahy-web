@@ -57,7 +57,7 @@ const Pagination = ({ currentPage, totalPages }) => {
     const visiblePages = getVisiblePages();
 
     return (
-        <nav className="flex justify-center mt-10">
+        <nav className="flex justify-center mt-8">
             <div className="inline-flex items-center justify-center gap-1 border border-gray-200 bg-white rounded-2xl p-1.5">
                 {/* Previous Button */}
                 <button

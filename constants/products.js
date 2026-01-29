@@ -4,21 +4,21 @@ import categories from "./categories";
 
 const productsPerPage = 15;
 
-export const getNewProducts = async (brand, page, category) => {
+export const getNewProducts = async (brand, page, category, price_min, price_max) => {
     if (brand === "ariston")
-        return getPaginatedProducts(aristonProducts, page, category)
+        return getPaginatedProducts(aristonProducts, page, category, price_min, price_max)
     else if (brand === "crane")
-        return getPaginatedProducts(craneProducts, page, category)
+        return getPaginatedProducts(craneProducts, page, category, price_min, price_max)
     else if (brand === "dewalt")
-        return getPaginatedProducts(dewaltProducts, page, category)
+        return getPaginatedProducts(dewaltProducts, page, category, price_min, price_max)
     else if (brand === "franklin")
-        return getPaginatedProducts(franklinMotors, page, category)
+        return getPaginatedProducts(franklinMotors, page, category, price_min, price_max)
     else if (brand === "globalWater")
-        return getPaginatedProducts(globalWaterProducts, page, category)
+        return getPaginatedProducts(globalWaterProducts, page, category, price_min, price_max)
     else if (brand === "grundfos")
-        return getPaginatedProducts(grundfosProducts, page, category)
+        return getPaginatedProducts(grundfosProducts, page, category, price_min, price_max)
     else {
-        return await getPaginatedRandomProducts(page, category);
+        return await getPaginatedRandomProducts(page, category, price_min, price_max);
     }
 };
 
@@ -30,7 +30,7 @@ export const getNewProduct = (id) => {
     return null;
 };
 
-const getPaginatedProducts = (products, page, category) => {
+const getPaginatedProducts = (products, page, category, price_min, price_max) => {
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
 
@@ -38,6 +38,18 @@ const getPaginatedProducts = (products, page, category) => {
         const categoryObj = categories.find(c => c.value === category);
         if (categoryObj) products = products.filter(
             (item) => item.category === categoryObj.label
+        );
+    }
+
+    if (price_min) {
+        products = products.filter(
+            (item) => parseFloat(item.standardPrice) >= price_min
+        );
+    }
+
+    if (price_max) {
+        products = products.filter(
+            (item) => parseFloat(item.standardPrice) <= price_max
         );
     }
 
@@ -50,7 +62,7 @@ const getPaginatedProducts = (products, page, category) => {
     };
 };
 
-export const getPaginatedRandomProducts = async (page, category) => {
+export const getPaginatedRandomProducts = async (page, category, price_min, price_max) => {
     const cookieStore = await cookies();
     const cookieKey = "randomProductsByPage";
 
