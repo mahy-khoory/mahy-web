@@ -6,9 +6,9 @@ import ScrollButtons from './ScrollButtons';
 function MoreProducts({ products, modelHeading, modelsHeading, currency, buy, locale }) {
     const scrollRef = useRef(null);
     return (
-        <section className='mt-12 md:mt-40'>
-            <h3 className='text-lg md:text-3xl font-semibold px-5 lg:px-0'>You may also like</h3>
-            <div className='flex flex-nowrap overflow-scroll hide-scrollbar gap-5 mt-4 md:mt-10 pl-5 lg:pl-0 items-stretch' ref={scrollRef}>
+        <section className='mt-15 pt-10 border-t border-gray-300'>
+            <h3 className='text-lg md:text-2xl font-semibold'>You may also like</h3>
+            <div className='flex flex-nowrap overflow-scroll hide-scrollbar gap-5 mt-4 md:mt-8 pl-5 lg:pl-0 items-stretch' ref={scrollRef}>
                 {products.map((product, i) => (
                     <div className='flex-none w-11/12 lg:w-4/12' key={i}>
                         <ProductCard

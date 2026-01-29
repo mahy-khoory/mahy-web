@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { ShoppingCart } from 'lucide-react';
+import { Star, ShoppingCart, Van } from 'lucide-react';
 import React, { useState } from 'react'
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { toast } from 'react-toastify';
@@ -27,11 +27,48 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
     };
 
     return (
-        <div className="flex flex-col mt-4 px-5 lg:px-14 select-none">
-            <p className="t-base font-medium">{product.category}</p>
-            <h1 className={`text-2xl font-semibold leading-tight mt-2 ${locale !== "ar" && "tracking-tighter"}`}>{product.overview}</h1>
+        <div className="md:col-span-3 mt-4 px-5 select-none flex flex-col lg:flex-row gap-6">
+            <div className='lg:w-4/6'>
+                <h1 className={`text-3xl font-semibold leading-tight mt-2 ${locale !== "ar" && "tracking-tighter"}`}>{product.overview}</h1>
+                {/* Rating */}
+                <div className="flex gap-2 mt-2 items-start">
+                    <span className="text-xs">4.1</span>
+                    <div className="flex gap-0.5">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                            <Star key={i} size={14} fill={i < 4 ? "orange" : "white"} stroke="orange" />
+                        ))}
+                    </div>
+                    <span className="text-xs text-gray-600">(41)</span>
+                </div>
 
-            <div className="grid grid-cols-2 gap-y-4 gap-x-6 rounded-xl border border-gray-100 p-6 bg-white mt-6 text-sm">
+                <p className='mt-2 text-xs border-b border-gray-300 pb-3 mb-4'><span className='font-semibold '>200+ bought</span> in past month</p>
+
+                <div className="flex gap-0.5 mt-3">
+                    <span className="text-gray-700 font-medium text-xs">AED</span>
+                    <p className="font-medium text-3xl">{product.standardPrice.toLocaleString()}</p>
+                    <span className="text-gray-700 font-medium text-xs">00</span>
+                </div>
+
+                <div className='space-y-2 mt-5 text-sm'>
+                    {product.specs.map((spec, i) => (
+                        <div key={i} className="flex gap-2">
+                            <span className="text-gray-900 font-medium w-40">{spec.title}</span>
+                            <p className="text-gray-800">{spec.text}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <div className='mt-8 border-t border-gray-300 pt-4 md:pt-6'>
+                    <h2 className='font-semibold text-gray-700 '>About this item</h2>
+                    <ul className='list-disc list-inside space-y-1 text-gray-900 font-light tracking-tight mt-2 md:mt-2 text-sm md:text-base'>
+                        {product.about.map((item, i) => (
+                            <li key={i} className='text-justify'>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+
+
+                {/* <div className="grid grid-cols-2 gap-y-4 gap-x-6 rounded-xl border border-gray-100 p-6 bg-white text-sm">
                 <p className=" text-gray-500">Standard Price</p>
                 <p className="font-medium text-gray-900">
                     {product.standardPrice}
@@ -65,33 +102,40 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                 <p className="font-medium text-gray-900 ">
                     {product.newAmazonSellingPrice}
                 </p>
-            </div>
+            </div> */}
 
-            {product.models && (
-                <div className='mt-10'>
-                    <p className='font-medium uppercase text-sm text-gray-600 mb-2'>{product.models.length > 1 ? modelsHeading : modelHeading}</p>
-                    {product.models.map((model, i) => (
-                        <button key={i} onClick={() => setModelIndex(i)}
-                            className={`rounded-xl border border-[#79c4e7] ${i === modelIndex ? "text-white bg-[#79c4e7]" : "text-[#79c4e7]"}  py-1 px-4 mr-2 text-sm hover:text-white hover:bg-[#79c4e7] transition-colors duration-300`}>
-                            {model}
+                {product.models && (
+                    <div className='mt-10'>
+                        <p className='font-medium uppercase text-sm text-gray-600 mb-2'>{product.models.length > 1 ? modelsHeading : modelHeading}</p>
+                        {product.models.map((model, i) => (
+                            <button key={i} onClick={() => setModelIndex(i)}
+                                className={`rounded-xl border border-[#79c4e7] ${i === modelIndex ? "text-white bg-[#79c4e7]" : "text-[#79c4e7]"}  py-1 px-4 mr-2 text-sm hover:text-white hover:bg-[#79c4e7] transition-colors duration-300`}>
+                                {model}
+                            </button>
+                        ))}
+                    </div>
+                )}
+                <div className="lg:flex gap-4 mt-7 md:mt-10">
+                    <div className="bg-white border border-gray-100 rounded-xl py-2 px-6 flex justify-between items-center gap-10 lg:w-fit">
+                        <button onClick={decrement}>
+                            <HiMinus />
                         </button>
-                    ))}
-                </div>
-            )}
-            <div className="lg:flex gap-4 mt-7 md:mt-10">
-                <div className="bg-white border border-gray-100 rounded-xl py-2 px-6 flex justify-between items-center gap-10 lg:w-fit">
-                    <button onClick={decrement}>
-                        <HiMinus />
-                    </button>
-                    <p className="font-medium text-lg">{quantity}</p>
-                    <button onClick={() => setQuantity(quantity + 1)} >
-                        <HiPlus />
+                        <p className="font-medium text-lg">{quantity}</p>
+                        <button onClick={() => setQuantity(quantity + 1)} >
+                            <HiPlus />
+                        </button>
+                    </div>
+                    <button onClick={addToCart} className="mt-3 lg:mt-0 b-base b-base-hover rounded-xl py-2 px-14 flex items-center justify-center gap-4 w-full lg:w-fit" >
+                        <ShoppingCart stroke='white' size={20} />
+                        <p className="text-white font-medium py-1">{addToCartText}</p>
                     </button>
                 </div>
-                <button onClick={addToCart} className="mt-3 lg:mt-0 b-base b-base-hover rounded-xl py-2 px-14 flex items-center justify-center gap-4 w-full lg:w-fit" >
-                    <ShoppingCart stroke='white' size={20} />
-                    <p className="text-white font-medium py-1">{addToCartText}</p>
-                </button>
+            </div>
+            <div className='lg:w-2/6'>
+                <div className='border border-gray-400 rounded-lg py-3 px-4'>
+                    <Van stroke='#79c4e7' size={35} />
+                    <p className='text-sm mt-2'>Reliable delivery and great deals on quality products delivered to your door.</p>
+                </div>
             </div>
         </div>
     )

@@ -5,14 +5,12 @@ import ProductDetailSection from './ProductDetailSection';
 
 function Product({ product, model, locale, currency, addToCart, company, modelHeading, modelsHeading, productDetail, toastText }) {
     return (
-        <div className='bg-gray-50 pt-22 pb-10 md:pb-15'>
-            <div className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-2'>
-                <ProductImageSection images={product.images} alt={product.overview} locale={locale} />
-                <ProductDetailSection product={product} model={model} locale={locale} currency={currency} addToCartText={addToCart} company={company}
-                    modelHeading={modelHeading} modelsHeading={modelsHeading} productDetail={productDetail} toastText={toastText} />
-                <ToastContainer transition={Slide} autoClose={3000} position="top-right" hideProgressBar
-                    toastStyle={{ transition: "all 0.5s ease-in-out", }} />
-            </div>
+        <div className='grid grid-cols-1 md:grid-cols-5 gap-2 mt-8'>
+            <ProductImageSection images={product.images} alt={product.overview} locale={locale} />
+            <ProductDetailSection product={product} model={model} locale={locale} currency={currency} addToCartText={addToCart} company={company}
+                modelHeading={modelHeading} modelsHeading={modelsHeading} productDetail={productDetail} toastText={toastText} />
+            <ToastContainer transition={Slide} autoClose={3000} position="top-right" hideProgressBar
+                toastStyle={{ transition: "all 0.5s ease-in-out", }} />
         </div>
     )
 }
