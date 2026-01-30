@@ -29,9 +29,9 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
     return (
         <div className="md:col-span-3 mt-4 px-5 select-none flex flex-col lg:flex-row gap-6">
             <div className='lg:w-4/6'>
-                <h1 className={`text-3xl font-semibold leading-tight mt-2 ${locale !== "ar" && "tracking-tighter"}`}>{product.overview}</h1>
+                <h1 className={`text-2xl md:text-3xl font-semibold leading-tight mt-2 ${locale !== "ar" && "tracking-tighter"}`}>{product.overview}</h1>
                 {/* Rating */}
-                <div className="flex gap-2 mt-2.5 items-start">
+                <div className="flex gap-2 mt-4 md:mt-2.5 items-start">
                     <span className="text-xs">4.1</span>
                     <div className="flex gap-0.5">
                         {Array.from({ length: 5 }).map((_, i) => (
@@ -41,7 +41,7 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                     <span className="text-xs text-gray-600">(41)</span>
                 </div>
 
-                <p className='mt-3 text-xs border-b border-gray-300 pb-4'><span className='font-semibold '>200+ bought</span> in past month</p>
+                <p className='mt-4 md:mt-3 text-xs border-b border-gray-300 pb-4'><span className='font-semibold '>200+ bought</span> in past month</p>
 
                 {/* Specs */}
                 <div className='space-y-2 mt-4 text-sm'>
@@ -116,11 +116,11 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                 )}
             </div>
             <div className='lg:w-2/6'>
-                <div className='border border-gray-300 rounded-lg py-3 px-4'>
+                <div className='border border-gray-300 rounded-lg p-5'>
                     <Van stroke='#79c4e7' size={35} />
-                    <p className='text-sm mt-2 text-gray-700'>Reliable delivery and great deals on quality products delivered to your door.</p>
+                    <p className='text-sm mt-2.5 text-gray-700'>Reliable delivery and great deals on quality products delivered to your door.</p>
                 </div>
-                <div className='border border-gray-300 rounded-lg py-5 px-6 mt-4'>
+                <div className='border border-gray-300 rounded-lg p-5 mt-4'>
                     <span className='font-medium text-sm'>Buy New:</span>
                     <div className='flex justify-between gap-2 mt-3 text-xs'>
                         <span className="text-gray-700">Standard Price</span>

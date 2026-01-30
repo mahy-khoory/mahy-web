@@ -35,7 +35,7 @@ function ScrollButtons({ scrollRef, length, locale }) {
     const disabledBtn = "opacity-30 cursor-not-allowed";
 
     return (
-        <div className="relative mt-8 flex items-center justify-between lg:justify-center px-7 gap-3">
+        <div className="relative mt-8 flex items-center justify-between lg:justify-center gap-3">
             {locale === "ar" ? (
                 <>
                     <button

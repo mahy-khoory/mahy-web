@@ -27,21 +27,25 @@ async function ProductPage({ params, searchParams }) {
     const tabs = ["Technical", "Specs"];
 
     return (
-        <main className='max-w-350 px-5 mx-auto pt-15 pb-15'>
-            <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }, { label: product.overview }]} locale={locale} maxWidth={false} />
+        <main className='max-w-350 mx-auto pt-15 pb-15'>
+            <div className='px-5'>
+                <Breadcrumb segments={[{ label: t("Page"), href: "/shop" }, { label: product.category }]} locale={locale} maxWidth={false} />
+            </div>
             <Product product={product} model={model} locale={locale} currency={t("Currency")} addToCart={t("AddToCart")} company={t("Company")}
                 modelHeading={t("Model")} modelsHeading={t("Models")} productDetail={productDetail} toastText={t("Toast")} />
-            <ProductInfo technical={product.technical} description={product.description} />
-            {/* <ProductAbout about={product.about} description={product.description} /> */}
-            {/* <Specs tabs={tabs} technical={product.technical} specs={product.specs} /> */}
-            <MoreProducts
-                products={items}
-                modelHeading={t("Model")}
-                modelsHeading={t("Models")}
-                currency={t("Currency")}
-                buy={t("Buy")}
-                locale={locale}
-            />
+            <div className='px-5'>
+                <ProductInfo technical={product.technical} description={product.description} />
+                {/* <ProductAbout about={product.about} description={product.description} /> */}
+                {/* <Specs tabs={tabs} technical={product.technical} specs={product.specs} /> */}
+                <MoreProducts
+                    products={items}
+                    modelHeading={t("Model")}
+                    modelsHeading={t("Models")}
+                    currency={t("Currency")}
+                    buy={t("Buy")}
+                    locale={locale}
+                />
+            </div>
         </main>
     )
 }

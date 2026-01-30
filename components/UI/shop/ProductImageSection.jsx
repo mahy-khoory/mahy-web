@@ -11,9 +11,9 @@ function ProductImageSection({ images, alt, locale }) {
     const isMultiple = images.length > 1;
 
     return (
-        <div className="md:col-span-2 sticky top-16 self-start">
-            <div className="flex flex-col md:flex-row-reverse gap-2 justify-between">
-                <div className="relative h-[50vh] lg:h-120 w-7/8 overflow-hidden rounded-xl bg-white">
+        <div className="md:col-span-2 md:sticky top-16 self-start">
+            <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-2 justify-between">
+                <div className="relative h-90 lg:h-120 md:w-7/8 overflow-hidden rounded-xl bg-white">
                     <Image
                         key={imageIndex}
                         src={images[imageIndex]}
