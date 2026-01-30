@@ -31,7 +31,7 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
             <div className='lg:w-4/6'>
                 <h1 className={`text-3xl font-semibold leading-tight mt-2 ${locale !== "ar" && "tracking-tighter"}`}>{product.overview}</h1>
                 {/* Rating */}
-                <div className="flex gap-2 mt-2 items-start">
+                <div className="flex gap-2 mt-2.5 items-start">
                     <span className="text-xs">4.1</span>
                     <div className="flex gap-0.5">
                         {Array.from({ length: 5 }).map((_, i) => (
@@ -41,24 +41,23 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                     <span className="text-xs text-gray-600">(41)</span>
                 </div>
 
-                <p className='mt-2 text-xs border-b border-gray-300 pb-3 mb-4'><span className='font-semibold '>200+ bought</span> in past month</p>
+                <p className='mt-3 text-xs border-b border-gray-300 pb-4'><span className='font-semibold '>200+ bought</span> in past month</p>
 
-                <div className="flex gap-0.5 mt-3">
-                    <span className="text-gray-700 font-medium text-xs">AED</span>
-                    <p className="font-medium text-3xl">{product.standardPrice.toLocaleString()}</p>
-                    <span className="text-gray-700 font-medium text-xs">00</span>
-                </div>
-
-                <div className='space-y-2 mt-5 text-sm'>
+                {/* Specs */}
+                <div className='space-y-2 mt-4 text-sm'>
                     {product.specs.map((spec, i) => (
                         <div key={i} className="flex gap-2">
                             <span className="text-gray-900 font-medium w-40">{spec.title}</span>
                             <p className="text-gray-800">{spec.text}</p>
                         </div>
                     ))}
+                    <div className='flex gap-2'>
+                        <span className="text-gray-900 font-medium w-40">Weight</span>
+                        <p className="text-gray-800">{product.weight} lbs</p>
+                    </div>
                 </div>
 
-                <div className='mt-8 border-t border-gray-300 pt-4 md:pt-6'>
+                <div className='mt-4 border-t border-gray-300 pt-4'>
                     <h2 className='font-semibold text-gray-700 '>About this item</h2>
                     <ul className='list-disc list-inside space-y-1 text-gray-900 font-light tracking-tight mt-2 md:mt-2 text-sm md:text-base'>
                         {product.about.map((item, i) => (
@@ -115,26 +114,42 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                         ))}
                     </div>
                 )}
-                <div className="lg:flex gap-4 mt-7 md:mt-10">
-                    <div className="bg-white border border-gray-100 rounded-xl py-2 px-6 flex justify-between items-center gap-10 lg:w-fit">
-                        <button onClick={decrement}>
-                            <HiMinus />
-                        </button>
-                        <p className="font-medium text-lg">{quantity}</p>
-                        <button onClick={() => setQuantity(quantity + 1)} >
-                            <HiPlus />
-                        </button>
-                    </div>
-                    <button onClick={addToCart} className="mt-3 lg:mt-0 b-base b-base-hover rounded-xl py-2 px-14 flex items-center justify-center gap-4 w-full lg:w-fit" >
-                        <ShoppingCart stroke='white' size={20} />
-                        <p className="text-white font-medium py-1">{addToCartText}</p>
-                    </button>
-                </div>
             </div>
             <div className='lg:w-2/6'>
-                <div className='border border-gray-400 rounded-lg py-3 px-4'>
+                <div className='border border-gray-300 rounded-lg py-3 px-4'>
                     <Van stroke='#79c4e7' size={35} />
-                    <p className='text-sm mt-2'>Reliable delivery and great deals on quality products delivered to your door.</p>
+                    <p className='text-sm mt-2 text-gray-700'>Reliable delivery and great deals on quality products delivered to your door.</p>
+                </div>
+                <div className='border border-gray-300 rounded-lg py-5 px-6 mt-4'>
+                    <span className='font-medium text-sm'>Buy New:</span>
+                    <div className='flex justify-between gap-2 mt-3 text-xs'>
+                        <span className="text-gray-700">Standard Price</span>
+                        <p className="text-gray-800">{product.standardPrice} {currency}</p>
+                    </div>
+                    <div className='flex justify-between gap-2 mt-1 text-xs'>
+                        <span className="text-gray-700">Freight Charges</span>
+                        <p className="text-gray-800">{product.freightCharges} {currency}</p>
+                    </div>
+                    <div className="flex gap-0.5 mt-4">
+                        <span className="text-gray-700 font-medium text-xs">AED</span>
+                        <p className="font-medium text-3xl">{product.standardPrice.toLocaleString()}</p>
+                        <span className="text-gray-700 font-medium text-xs">00</span>
+                    </div>
+                    <div className="flex flex-col gap-3 mt-5 text-sm">
+                        <div className="bg-white border border-gray-100 rounded-xl py-1.5 px-4 flex justify-between items-center gap-10">
+                            <button onClick={decrement}>
+                                <HiMinus />
+                            </button>
+                            <p className="font-medium text-base">{quantity}</p>
+                            <button onClick={() => setQuantity(quantity + 1)} >
+                                <HiPlus />
+                            </button>
+                        </div>
+                        <button onClick={addToCart} className="b-base b-base-hover rounded-xl py-1.5 px-4 flex items-center justify-center gap-4 w-full" >
+                            <ShoppingCart stroke='white' size={18} />
+                            <span className="text-white font-medium py-1">{addToCartText}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
