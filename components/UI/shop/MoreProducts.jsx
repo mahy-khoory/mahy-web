@@ -17,7 +17,7 @@ function MoreProducts({ products, modelHeading, modelsHeading, currency, buy, lo
                             models={product.models}
                             price={product.standardPrice}
                             specs={product.specs}
-                            href={`/shop/${product.id}`}
+                            href={`/shop/${product.partNumber}`}
                             modelHeading={modelHeading}
                             modelsHeading={modelsHeading}
                             currency={currency}
