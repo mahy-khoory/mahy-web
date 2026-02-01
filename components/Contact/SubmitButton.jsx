@@ -24,7 +24,7 @@ export default function SubmitButton({ label = "Submit", loading = false }) {
         gap-3
         overflow-hidden
         rounded-full
-        bg-[#3F3C8F]
+        bg-[#5f98b5]
         px-12
         py-3.5
         text-sm
