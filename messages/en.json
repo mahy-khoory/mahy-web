@@ -400,7 +400,16 @@
         "Column4": "Total",
         "Currency": "AED",
         "Total": "Cart Total",
-        "Checkout": "Checkout"
+        "Checkout": "Checkout",
+        "ViewCart": "View cart",
+        "DrawerTitle": "Your cart",
+        "ItemsCount": "{count, plural, one {# item} other {# items}}",
+        "EmptyTitle": "Your cart is empty",
+        "EmptySubtitle": "Add products to see them here.",
+        "ContinueShopping": "Continue shopping",
+        "RemoveItem": "Remove",
+        "CartButtonLabel": "Cart",
+        "OpenCart": "Open cart"
     },
     "NewsPage": {
         "Page": "News",

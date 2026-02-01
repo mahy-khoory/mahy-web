@@ -426,7 +426,16 @@
         "Column4": "الإجمالي",
         "Currency": "درهم إماراتي",
         "Total": "إجمالي السلة",
-        "Checkout": "إتمام الشراء"
+        "Checkout": "إتمام الشراء",
+        "ViewCart": "عرض السلة",
+        "DrawerTitle": "سلة التسوق",
+        "ItemsCount": "{count, plural, zero {لا عناصر} one {عنصر واحد} two {عنصران} few {# عناصر} many {# عنصرًا} other {# عنصر}}",
+        "EmptyTitle": "سلتك فارغة",
+        "EmptySubtitle": "أضف منتجات لتظهر هنا.",
+        "ContinueShopping": "متابعة التسوق",
+        "RemoveItem": "إزالة",
+        "CartButtonLabel": "السلة",
+        "OpenCart": "فتح السلة"
     },
     "JobsPage": {
         "Page": "شغل",

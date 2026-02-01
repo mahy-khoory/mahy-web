@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import ProductCard from './ProductCard'
 import ScrollButtons from './ScrollButtons';
 
-function MoreProducts({ products, modelHeading, modelsHeading, currency, buy, locale }) {
+function MoreProducts({ products, modelHeading, modelsHeading, currency, buy, locale, addToCartText, toastText }) {
     const scrollRef = useRef(null);
     return (
         <section className='mt-15 pt-10 border-t border-gray-300'>
@@ -23,6 +23,8 @@ function MoreProducts({ products, modelHeading, modelsHeading, currency, buy, lo
                             modelsHeading={modelsHeading}
                             currency={currency}
                             buy={buy}
+                            addToCartText={addToCartText}
+                            toastText={toastText}
                         />
                     </div>
                 ))}

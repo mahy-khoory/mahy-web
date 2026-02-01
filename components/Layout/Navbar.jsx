@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import MegaMenuFlyOut from "../MegaMenuFlyOut";
 import { useRouter } from "next/navigation";
 import ScrollToTop from "../UI/ScrollToTop";
+import CartLauncher from "../UI/cart/CartLauncher";
 
 const languageOptions = [
   { code: "en", label: "English", icon: "/flags/en.svg" },
@@ -259,6 +260,7 @@ export default function Navbar({ navigation }) {
         </div> */}
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <CartLauncher />
           {/* <div className="relative hidden sm:block" ref={languageMenuRef}>
             <button
               type="button"

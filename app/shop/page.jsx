@@ -69,6 +69,8 @@ async function Shop({ searchParams }) {
                                             modelsHeading={t("Models")}
                                             currency={t("Currency")}
                                             buy={t("Buy")}
+                                            addToCartText={t("AddToCart")}
+                                            toastText={t("Toast")}
                                         />
                                     </div>
                                 ))}

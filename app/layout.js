@@ -11,6 +11,8 @@ import { NextIntlClientProvider } from "next-intl";
 import ChatBot from "@/components/EnquiryChatBot/FloatingWrapper/Chatbot";
 import { chatbotData } from "@/config/chatbot";
 import SmoothScrollProvider from "@/components/Providers/SmoothScrollProvider";
+import CartProvider from "@/components/Providers/CartProvider";
+import CartDrawer from "@/components/UI/cart/CartDrawer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -60,12 +62,15 @@ export default async function RootLayout({ children }) {
       >
         <SmoothScrollProvider>
           <NextIntlClientProvider locale={locale}>
-            <Navbar navigation={getNavigation(navTranslations)} />
-            {children}
-            <section id="useful-links">
-              <Footer data={getFooter(footerTranslations)} />
-            </section>
-            <ChatBot data={chatbotData(chatbotTranslations)} locale={locale} />
+            <CartProvider>
+              <Navbar navigation={getNavigation(navTranslations)} />
+              {children}
+              <section id="useful-links">
+                <Footer data={getFooter(footerTranslations)} />
+              </section>
+              <ChatBot data={chatbotData(chatbotTranslations)} locale={locale} />
+              <CartDrawer />
+            </CartProvider>
           </NextIntlClientProvider>
         </SmoothScrollProvider>
       </body>

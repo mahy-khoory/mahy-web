@@ -1,12 +1,13 @@
-import { addToCart } from '@/utils/products';
 import { Star, ShoppingCart, Van } from 'lucide-react';
 import React, { useState } from 'react'
 import { HiMinus, HiPlus } from 'react-icons/hi';
-import { set } from 'zod';
+import { toast } from 'react-toastify';
+import { useCart } from '@/components/Providers/CartProvider';
 
 function ProductDetailSection({ company, product, model, locale, currency, addToCartText, modelHeading, modelsHeading, productDetail, toastText }) {
     const [modelIndex, setModelIndex] = useState(Number(model || 0));
     const [quantity, setQuantity] = useState(1);
+    const { addItem } = useCart();
 
     const decrement = () => {
         if (quantity === 1) return;
@@ -134,8 +135,15 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                         </div>
                         <button className="b-base b-base-hover rounded-xl py-1.5 px-4 flex items-center justify-center gap-4 w-full"
                             onClick={() => {
-                                addToCart(product.partNumber, quantity, "Item added to cart!");
+                                addItem({
+                                    productId: product.partNumber,
+                                    name: product.overview,
+                                    price: Number(product.standardPrice) || 0,
+                                    image: product.images?.[0],
+                                    currency,
+                                }, quantity);
                                 setQuantity(1);
+                                toast.success(toastText || "Item added to cart!");
                             }}
                         >
                             <ShoppingCart stroke='white' size={18} />

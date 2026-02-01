@@ -399,7 +399,16 @@
         "Column4": "Gesamt",
         "Currency": "AED",
         "Total": "Warenkorb Gesamt",
-        "Checkout": "Zur Kasse"
+        "Checkout": "Zur Kasse",
+        "ViewCart": "Warenkorb ansehen",
+        "DrawerTitle": "Dein Warenkorb",
+        "ItemsCount": "{count, plural, one {# Artikel} other {# Artikel}}",
+        "EmptyTitle": "Dein Warenkorb ist leer",
+        "EmptySubtitle": "Füge Produkte hinzu, um sie hier zu sehen.",
+        "ContinueShopping": "Weiter einkaufen",
+        "RemoveItem": "Entfernen",
+        "CartButtonLabel": "Warenkorb",
+        "OpenCart": "Warenkorb öffnen"
     },
     "NewsPage": {
         "Page": "Nachrichten",

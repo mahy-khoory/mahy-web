@@ -12,6 +12,7 @@ import { COUNTRY_LIST } from "@/utils/countries";
 import LottieButton from "./LottieButton";
 import IdlePrompt from "./IdlePrompt";
 import MahyraAvatar from "./MahyraAvatar";
+import { useCart } from "@/components/Providers/CartProvider";
 
 export default function ChatWidget({ data, locale }) {
   const { flow, layout } = data;
@@ -23,6 +24,7 @@ export default function ChatWidget({ data, locale }) {
   const [answers, setAnswers] = useState({});
   const [isTyping, setIsTyping] = useState(false);
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
+  const { isOpen: isCartOpen } = useCart();
 
   const IDLE_DELAY = 12000;
 
@@ -305,7 +307,7 @@ export default function ChatWidget({ data, locale }) {
         </button>
       )} */}
 
-      {!isWidgetOpen && (
+      {!isWidgetOpen && !isCartOpen && (
         <div
           className={`fixed bottom-4 ${locale === "ar" ? "left-4 sm:left-6" : "right-4 sm:right-6"}  sm:bottom-6  z-9999 flex flex-col items-end gap-3 pointer-events-none`}>
           <div

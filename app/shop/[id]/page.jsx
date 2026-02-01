@@ -44,6 +44,8 @@ async function ProductPage({ params, searchParams }) {
                     currency={t("Currency")}
                     buy={t("Buy")}
                     locale={locale}
+                    addToCartText={t("AddToCart")}
+                    toastText={t("Toast")}
                 />
             </div>
         </main>

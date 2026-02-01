@@ -1,11 +1,40 @@
 "use client";
-import { addToCart } from "@/utils/products";
+import { useCart } from "@/components/Providers/CartProvider";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
-export default function ProductCard({ id, title, image, specs, models, price, href, modelHeading, modelsHeading, currency, buy }) {
-  // const [selectedModel, setSelectedModel] = useState(0);
+export default function ProductCard({
+  id,
+  title,
+  image,
+  specs,
+  models,
+  price,
+  href,
+  modelHeading,
+  modelsHeading,
+  currency,
+  buy,
+  addToCartText = "Add to Cart",
+  toastText = "Item added to cart!",
+}) {
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem(
+      {
+        productId: id,
+        name: title,
+        price: Number(price) || 0,
+        image,
+        currency,
+      },
+      1
+    );
+    toast.success(toastText);
+  };
 
   return (
     <div className="relative rounded-2xl border border-gray-200 duration-500 transition-all h-full bg-gray-50 overflow-hidden flex flex-col">
@@ -39,7 +68,7 @@ export default function ProductCard({ id, title, image, specs, models, price, hr
             </div>
 
             {/* Price */}
-            <div className="flex gap-0.5 mt-3">
+          <div className="flex gap-0.5 mt-3">
               <span className="text-gray-700 font-medium text-xs">{currency}</span>
               <p className="font-medium text-3xl">{price}</p>
             </div>
@@ -64,7 +93,12 @@ export default function ProductCard({ id, title, image, specs, models, price, hr
         <div className="px-3">
           {/* Stock */}
           <p className="text-red-500 mt-3 text-sm">8 left in stock</p>
-          <button onClick={() => addToCart(id, 1, "Item added to cart!")} className="py-2 w-full b-base text-white text-center rounded-2xl mt-4 text-sm">Add to Cart</button>
+          <button
+            onClick={handleAddToCart}
+            className="py-2 w-full b-base text-white text-center rounded-2xl mt-4 text-sm"
+          >
+            {addToCartText || buy || "Add to Cart"}
+          </button>
         </div>
       </div>
     </div >
