@@ -23,7 +23,7 @@ async function ContactUs() {
       <PageHeading
         title={t("Heading")}
         description={t("Description")}
-        image="https://res.cloudinary.com/db3fd1qah/image/upload/v1766132761/careers_tkbmhq.avif"
+        image="/gallery/gallery-3.jpg"
       />
       <Breadcrumb segments={[{ label: t("Page"), href: "/contact-us" }]} locale={locale} />
       <ContactUsSection contactUs={contactUs} />
