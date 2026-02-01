@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 import categories from "./categories";
 
-const productsPerPage = 15;
+const productsPerPage = 16;
 
 export const getNewProducts = async (brand, page, category, price_min, price_max) => {
     if (brand === "ariston")
@@ -35,9 +35,8 @@ const getPaginatedProducts = (products, page, category, price_min, price_max) =>
     const endIndex = startIndex + productsPerPage;
 
     if (category) {
-        const categoryObj = categories.find(c => c.value === category);
-        if (categoryObj) products = products.filter(
-            (item) => item.category === categoryObj.label
+        products = products.filter(
+            (item) => item.categoryFilter === category
         );
     }
 
@@ -131,6 +130,7 @@ export const getPaginatedRandomProducts = async (page, category, price_min, pric
 
 const aristonProducts = [
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3100631",
         stockAllocated: 0,
@@ -189,6 +189,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3100633",
         stockAllocated: 10,
@@ -238,6 +239,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3100635",
         stockAllocated: 7,
@@ -279,6 +281,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3100805",
         stockAllocated: 0,
@@ -333,6 +336,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3100807",
         stockAllocated: 0,
@@ -382,6 +386,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3100809",
         stockAllocated: 0,
@@ -428,6 +433,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3201977",
         stockAllocated: 0,
@@ -476,6 +482,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3201978",
         stockAllocated: 0,
@@ -527,6 +534,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3201980",
         stockAllocated: 9,
@@ -577,6 +585,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3201981",
         stockAllocated: 9,
@@ -625,6 +634,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3201982",
         stockAllocated: 0,
@@ -671,6 +681,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3626201",
         stockAllocated: 10,
@@ -711,6 +722,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3626202",
         stockAllocated: 10,
@@ -751,6 +763,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3626203",
         stockAllocated: 3,
@@ -793,6 +806,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3626204",
         stockAllocated: 9,
@@ -841,6 +855,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3626205",
         stockAllocated: 7,
@@ -885,6 +900,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "3626206",
         stockAllocated: 3,
@@ -934,6 +950,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "4015038",
         stockAllocated: 0,
@@ -984,6 +1001,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "4015039",
         stockAllocated: 0,
@@ -1032,6 +1050,7 @@ const aristonProducts = [
         ]
     },
     {
+        categoryFilter: "water-heater",
         category: "Ariston Electric Water Heater",
         partNumber: "4015040",
         stockAllocated: 0,
@@ -1081,6 +1100,7 @@ const aristonProducts = [
 ];
 const craneProducts = [
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Gate Valve",
         partNumber: "0EA04306P",
         stockAllocated: 0,
@@ -1124,6 +1144,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Gate Valve",
         partNumber: "0EA04307Q",
         stockAllocated: 0,
@@ -1165,6 +1186,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Gate Valve",
         partNumber: "0EA04308R",
         stockAllocated: 0,
@@ -1215,6 +1237,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Gate Valve",
         partNumber: "0EA04309S",
         stockAllocated: 0,
@@ -1254,6 +1277,7 @@ const craneProducts = [
     },
     // DM931 Variable Orifice Double Regulating Valves
     {
+        categoryFilter: "crane",
         category: "Crane Variable Orifice Double Regulating Valve",
         partNumber: "0JG90606A",
         overview: "CRANE F678L 2.1/2\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
@@ -1294,6 +1318,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Variable Orifice Double Regulating Valve",
         partNumber: "0JG90607B",
         overview: "CRANE DM931 6\" VARIABLE ORIFICE DOUBLE REGULATING VALVE(VODRV) RF FLANGED Y-PATTERN WITH TEST POINT P84 PN16",
@@ -1333,6 +1358,7 @@ const craneProducts = [
     },
     // D298 Bronze Strainers
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Strainer",
         partNumber: "0JG91288L",
         overview: "CRANE D298 1/2\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
@@ -1364,6 +1390,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Strainer",
         partNumber: "0JG91289M",
         overview: "CRANE D298 3/4\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
@@ -1395,6 +1422,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Strainer",
         partNumber: "0JG91290E",
         overview: "CRANE D298 1\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
@@ -1426,6 +1454,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Strainer",
         partNumber: "0JG91291F",
         overview: "CRANE D298 1.1/4\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
@@ -1457,6 +1486,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Strainer",
         partNumber: "0JG91292G",
         overview: "CRANE D298 1.1/2\" STRAINER BRONZE BODY SS304 MESH WRAS BSPT PN16",
@@ -1488,6 +1518,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Bronze Strainer",
         partNumber: "0JG91293H",
         overview: "CRANE D298 2\" STRAINER BRONZE BODY SS304 MESH WRAS PN16",
@@ -1519,6 +1550,7 @@ const craneProducts = [
     },
     // F678L Butterfly Valves
     {
+        categoryFilter: "crane",
         category: "Crane Butterfly Valve",
         partNumber: "0JG92984J",
         overview: "CRANE F678L 2.1/2\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
@@ -1556,6 +1588,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Butterfly Valve",
         partNumber: "0JG92985K",
         overview: "CRANE F678L 3\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
@@ -1593,6 +1626,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Butterfly Valve",
         partNumber: "0JG92986L",
         overview: "CRANE F678L 4\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
@@ -1630,6 +1664,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Butterfly Valve",
         partNumber: "0JG92987M",
         overview: "CRANE F678L 5\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
@@ -1667,6 +1702,7 @@ const craneProducts = [
         ]
     },
     {
+        categoryFilter: "crane",
         category: "Crane Butterfly Valve",
         partNumber: "0JG92988N",
         overview: "CRANE F678L 6\" BUTTERFLY VALVE PN16 DI BODY FULLY LUGGED LEVER OPERATED EPDM LINER ALUMINIUM BRONZE DISC",
@@ -1707,6 +1743,7 @@ const craneProducts = [
 const dewaltProducts = [
     // 1. D25133K-B5 - SDS Plus Hammer
     {
+        categoryFilter: "tools",
         category: "DeWalt SDS Plus Hammer",
         partNumber: "D25133K-B5",
         stockAllocated: "",
@@ -1749,6 +1786,7 @@ const dewaltProducts = [
     },
     // 2. DCD771D2T-GB - Drill Driver
     {
+        categoryFilter: "tools",
         category: "DeWalt Drill Driver",
         partNumber: "DCD771D2T-GB",
         stockAllocated: "",
@@ -1791,6 +1829,7 @@ const dewaltProducts = [
     },
     // 3. DCD776D2T-GB - Hammer Drill Driver
     {
+        categoryFilter: "tools",
         category: "DeWalt Hammer Drill Driver",
         partNumber: "DCD776D2T-GB",
         stockAllocated: "",
@@ -1833,6 +1872,7 @@ const dewaltProducts = [
     },
     // 4. DCH133M1EXP-GB - Cordless SDS Hammer
     {
+        categoryFilter: "tools",
         category: "DeWalt SDS Plus Cordless Hammer",
         partNumber: "DCH133M1EXP-GB",
         stockAllocated: "",
@@ -1875,6 +1915,7 @@ const dewaltProducts = [
     },
     // 5. DWD024-B5 - Percussion Drill
     {
+        categoryFilter: "tools",
         category: "DeWalt Percussion Drill",
         partNumber: "DWD024-B5",
         stockAllocated: "",
@@ -1917,6 +1958,7 @@ const dewaltProducts = [
     },
     // 6. DWE4010T-B5 - Angle Grinder 730W
     {
+        categoryFilter: "tools",
         category: "DeWalt Angle Grinder",
         partNumber: "DWE4010T-B5",
         stockAllocated: "",
@@ -1959,6 +2001,7 @@ const dewaltProducts = [
     },
     // 7. DWE4120-B5 - Angle Grinder 900W
     {
+        categoryFilter: "tools",
         category: "DeWalt Angle Grinder",
         partNumber: "DWE4120-B5",
         stockAllocated: "",
@@ -2009,6 +2052,7 @@ const dewaltProducts = [
     },
     // 8. DWE4212-B5 - Angle Grinder 1200W
     {
+        categoryFilter: "tools",
         category: "DeWalt Angle Grinder",
         partNumber: "DWE4212-B5",
         stockAllocated: "",
@@ -2055,6 +2099,7 @@ const dewaltProducts = [
 ];
 const franklinMotors = [
     {
+        categoryFilter: "motors",
         category: "Submersible Motor for Borewell Pumps",
         partNumber: "2247526700L",
         stockAllocated: "3 Nos (DXB18)",
@@ -2103,6 +2148,7 @@ const franklinMotors = [
 ];
 const globalWaterProducts = [
     {
+        categoryFilter: "pressure-vessle",
         category: "Under the Sink RO System",
         partNumber: "AW-PRM-75-38-J-C",
         stockAllocated: "10 Nos (DXB18)",
@@ -2128,6 +2174,7 @@ const globalWaterProducts = [
         technical: [{ title: "Purification Method", text: "Reverse Osmosis" }, { title: "Origin", text: "Turkey" }]
     },
     {
+        categoryFilter: "pressure-vessle",
         category: "Pressure Vessel",
         partNumber: "FLXCON-V-0060",
         stockAllocated: "10 Nos (DXB18)",
@@ -2150,6 +2197,7 @@ const globalWaterProducts = [
         technical: [{ title: "Dimensions", text: "80 x 40 x 40 cm" }, { title: "Item Weight", text: "10 kg" }, { title: "Origin", text: "USA" }]
     },
     {
+        categoryFilter: "pressure-vessle",
         category: "Anti Scaling System",
         partNumber: "OSP-20JB",
         stockAllocated: "2 Nos (DXB18)",
@@ -2171,6 +2219,7 @@ const globalWaterProducts = [
         technical: [{ title: "Manufacturer", text: "GLOBAL WATER SOLUTIONS" }]
     },
     {
+        categoryFilter: "pressure-vessle",
         category: "Pressure Vessel",
         partNumber: "PEB-24L",
         overview: "GWS Econowave Series 24 Litres Pressure Steel Tank, 10 Bar, Inline Type, Without base",
@@ -2192,6 +2241,7 @@ const globalWaterProducts = [
         technical: [{ title: "Dimensions", text: "30 x 30 x 45 cm" }, { title: "Item Weight", text: "3.9 kg" }, { title: "Model", text: "PEB-24LX" }]
     },
     {
+        categoryFilter: "pressure-vessle",
         category: "Pressure Vessel",
         partNumber: "PWB-60LV",
         overview: "GWS Pressure Wave Series 60 Litres Pressure Steel Tank, 10 Bar, With round base",
@@ -2213,6 +2263,7 @@ const globalWaterProducts = [
         technical: [{ title: "Weight", text: "15 kg" }, { title: "Dimensions", text: "64 x 40 x 16.5 cm" }, { title: "Special Feature", text: "UV protection" }]
     },
     {
+        categoryFilter: "pressure-vessle",
         category: "Pressure Vessel",
         partNumber: "PWB-100LV",
         overview: "GWS Challenger Pressure Vessel 100L Pressure Steel Tank, 10 Bar, With round base",
@@ -2234,6 +2285,7 @@ const globalWaterProducts = [
 ];
 const grundfosProducts = [
     {
+        categoryFilter: "pump",
         category: "Booster Pump",
         partNumber: "92867630",
         overview: "Grundfos Electronic Pressure Control Kit PM1-15, 1.5 BAR",
@@ -2251,6 +2303,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "1.06 kg" }, { title: "Dimensions", text: "28 x 17.8 x 17.2 cm" }]
     },
     {
+        categoryFilter: "pump",
         category: "Horizontal Multistage Centrifugal Pump",
         partNumber: "92914823",
         overview: "Grundfos CM5-5 (2.0HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
@@ -2269,6 +2322,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "49.2 x 25 x 20.8 cm" }, { title: "Style", text: "Circulator" }]
     },
     {
+        categoryFilter: "pump",
         category: "Horizontal Multistage Centrifugal Pump",
         partNumber: "92914824",
         overview: "Grundfos CM5-4 (1.5HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
@@ -2286,6 +2340,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "39.6 x 24.2 x 20.5 cm" }, { title: "Style", text: "Above Ground" }]
     },
     {
+        categoryFilter: "pump",
         category: "Horizontal Multistage Centrifugal Pump",
         partNumber: "92914826",
         overview: "Grundfos CM5-3 (1HP), 1ph, 230V, 1.0\" X 1.0\" Connections",
@@ -2304,6 +2359,7 @@ const grundfosProducts = [
         technical: [{ title: "Color", text: "Black" }, { title: "Power Source", text: "Corded Electric" }]
     },
     {
+        categoryFilter: "pump",
         category: "Booster Pump",
         partNumber: "93013322",
         overview: "Grundfos SCALA2 Intelligent Booster Pump for Domestic Application",
@@ -2325,6 +2381,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "3.94 kg" }, { title: "Dimensions", text: "46.4 x 37.4 x 25.4 cm" }, { title: "Power Source", text: "Smart Electric Pump" }]
     },
     {
+        categoryFilter: "pump",
         category: "Horizontal Multistage Centrifugal Pump",
         partNumber: "97900686",
         overview: "Grundfos CM5-5 (2.0HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
@@ -2343,6 +2400,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "49.2 x 25 x 20.8 cm" }, { title: "Style", text: "Circulator" }]
     },
     {
+        categoryFilter: "pump",
         category: "Horizontal Multistage Centrifugal Pump",
         partNumber: "97901003",
         overview: "Grundfos CM5-4 (1.5HP), 1ph, 230V, 1.25\" X 1.0\" Connections",
@@ -2362,6 +2420,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "39.6 x 24.2 x 20.5 cm" }]
     },
     {
+        categoryFilter: "pump",
         category: "Horizontal Multistage Centrifugal Pump",
         partNumber: "98279546",
         overview: "Grundfos CM5-3 (1HP), 1ph, 230V, 1.0\" X 1.0\" Connections",
@@ -2381,6 +2440,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "16 kg" }, { title: "Dimensions", text: "39.4 x 25.4 x 20.6 cm" }]
     },
     {
+        categoryFilter: "pump",
         category: "Booster Pump",
         partNumber: "98562870",
         overview: "Grundfos SCALA2 Intelligent Booster Pump for Domestic Application",
@@ -2401,6 +2461,7 @@ const grundfosProducts = [
         technical: [{ title: "Weight", text: "3.94 kg" }, { title: "Dimensions", text: "46.4 x 37.4 x 25.4 cm" }]
     },
     {
+        categoryFilter: "pump",
         category: "Inline Circulator Pump",
         partNumber: "99206629",
         overview: "Grundfos ALPHA SOLAR 25-75 N 180 Hot Water Circulation Pump, 1X230V",

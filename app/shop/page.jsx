@@ -26,7 +26,6 @@ async function Shop({ searchParams }) {
 
     const t = await getTranslations("ShopPage");
 
-    const partnerNames = await getPartnerNames();
     const topFilters = [
         { key: "ariston", label: "Ariston", text: t("Filter1Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769338670/Picture1_ld0xap.png" },
         { key: "crane", label: "Crane", text: t("Filter2Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769418510/valve_converted_xgfz0v.png" },
@@ -35,24 +34,7 @@ async function Shop({ searchParams }) {
         { key: "globalWater", label: "Global Water Solutions", text: t("Filter6Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769422636/Picture1_yiezev.png" },
         { key: "grundfos", label: "Grundfos Pumps", text: t("Filter7Text"), image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769423150/Picture1_eivc8u.png" },
     ];
-    const filters = [
-        {
-            title: t("Partners"),
-            key: "partners",
-            options: partnerNames,
-            count: partnerNames.length.toLocaleString(locale)
-        }
-    ];
 
-    const getItems = async () => {
-        const partnerIds = params.partners?.split(",").map(Number) || [];
-        const p = await getProducts();
-
-        return p.filter(
-            (item) => !partnerIds.length || partnerIds.includes(item.partnerId)
-        );
-    };
-    // const items = await getItems();
     const { items, cookieKey, stored, total, totalPages } = await getNewProducts(brand, Number(page), category, Number(price_min), Number(price_max));
 
     return (
@@ -61,7 +43,7 @@ async function Shop({ searchParams }) {
             <TopFilter items={topFilters} locale={locale} topFilter={brand} />
             <div id="list" className="flex flex-col md:flex-row min-h-screen relative mt-4">
                 {/* <Filters filters={filters} search={search} /> */}
-                <FiltersSection />
+                <FiltersSection brands={topFilters} />
                 <div className="flex-1 overflow-y-auto">
                     <div className="text-sm font-medium text-gray-700">Showing {items.length.toLocaleString(locale)} out of {total} {t("Results")} </div>
                     {/* No Products */}
@@ -71,7 +53,7 @@ async function Shop({ searchParams }) {
                         </div>
                     ) : (
                         <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
                                 {items.map((item, i) => (
                                     <div key={i}>
                                         <ProductCard

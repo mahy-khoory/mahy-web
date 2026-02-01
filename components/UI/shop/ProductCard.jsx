@@ -8,14 +8,14 @@ export default function ProductCard({ title, image, specs, models, price, href, 
   // const [selectedModel, setSelectedModel] = useState(0);
 
   return (
-    <div className="relative rounded-2xl border border-gray-100 duration-500 transition-all h-full bg-gray-50 overflow-hidden flex flex-col">
-      <div className="bg-white py-10">
-        <div className="relative h-50 w-full">
+    <div className="relative rounded-2xl border border-gray-200 duration-500 transition-all h-full bg-gray-50 overflow-hidden flex flex-col">
+      <div className="bg-white py-6 px-4">
+        <div className="relative h-50 w-full flex items-center justify-center">
           <Image
             src={image}
             alt={title}
             fill
-            className="object-contain"
+            style={{ objectFit: "contain" }}
             priority
           />
         </div>
@@ -61,7 +61,7 @@ export default function ProductCard({ title, image, specs, models, price, href, 
           {/* Stock */}
           <p className="text-red-500 mt-3 text-sm">8 left in stock</p>
           <Link href={`${href}`}>
-            <button className="py-2 w-full b-base text-white text-center rounded-2xl mt-4 text-sm">{buy}</button>
+            <button className="py-2 w-full b-base text-white text-center rounded-2xl mt-4 text-sm">Add to Cart</button>
           </Link>
         </div>
       </div>

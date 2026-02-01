@@ -5,7 +5,7 @@ import FilterOptions from "@/components/UI/shop/FilterOptions";
 import RangeSlider from "@/components/UI/shop/RangeSlider";
 import categories from "@/constants/categories";
 
-function FiltersSection() {
+function FiltersSection({ brands }) {
     const [showFilters, setShowFilters] = useState(false);
 
     const handleShowFilters = () => {
@@ -22,12 +22,18 @@ function FiltersSection() {
         <div>
             <aside className={`${showFilters ? "opacity-100 px-5 translate-x-0" : "opacity-0 pointer-events-none -translate-x-60"}
             w-5/6 md:w-64 shrink-0 min-h-screen md:h-screen overflow-y-auto bg-white pb-45 md:pb-0 p-6 md:p-0 md:pr-4 space-y-8
-            fixed z-40 transition-all duration-500 inset-0 md:sticky top-14 md:pointer-events-auto md:opacity-100 md:translate-x-0`}>
+            fixed z-40 transition-all duration-500 inset-0 md:sticky scrollbar-hide pt-20 md:pt-0 top-0 md:top-18 md:pointer-events-auto md:opacity-100 md:translate-x-0`}>
                 <FilterOptions
                     title="Category"
                     paramKey="category"
                     options={categories}
-                    initialVisibleCount={5}
+                    initialVisibleCount={6}
+                />
+                <FilterOptions
+                    title="Brand"
+                    paramKey="brand"
+                    options={brands.map(brand => ({ label: brand.label, value: brand.key }))}
+                    initialVisibleCount={6}
                 />
                 <FilterOptions
                     title="Customer Reviews"
@@ -47,7 +53,7 @@ function FiltersSection() {
                 onClick={handleShowFilters}
                 className={`
                     fixed bg-white bottom-3 left-3 ${showFilters ? "z-50" : "z-20"} 
-                    rounded-3xl border-base px-6 py-2 t-base lg:hidden`}>
+                    rounded-3xl border-base text-sm px-6 py-2 t-base lg:hidden`}>
                 {showFilters ? "Close" : "Filters"}
             </button>
         </div>
