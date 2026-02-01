@@ -30,6 +30,26 @@ export const getNewProduct = (id) => {
     return null;
 };
 
+export const getProductsWithQuantity = (items = []) => {
+    if (!Array.isArray(items) || items.length === 0) return [];
+
+    const allProducts = productsSources.flat();
+
+    return items
+        .map(({ productId, quantity }) => {
+            const product = allProducts.find(p => p.partNumber === productId);
+            if (!product) return null;
+
+            return {
+                name: product.overview,
+                price: parseFloat(product.standardPrice),
+                image: product.images[0],
+                quantity,
+            };
+        })
+        .filter(Boolean);
+};
+
 const getPaginatedProducts = (products, page, category, price_min, price_max) => {
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;

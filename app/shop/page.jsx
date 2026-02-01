@@ -11,6 +11,7 @@ import { getPartnerNames } from "@/constants/partners";
 import products, { getNewProducts, getProducts } from "@/constants/products";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
+import { Slide, ToastContainer } from "react-toastify";
 
 async function Shop({ searchParams }) {
     const params = await searchParams;
@@ -57,6 +58,7 @@ async function Shop({ searchParams }) {
                                 {items.map((item, i) => (
                                     <div key={i}>
                                         <ProductCard
+                                            id={item.partNumber}
                                             title={item.overview}
                                             models={item.models}
                                             price={item.standardPrice}
@@ -76,6 +78,8 @@ async function Shop({ searchParams }) {
                     )}
                 </div>
             </div>
+            <ToastContainer transition={Slide} autoClose={3000} position="top-right" hideProgressBar
+                toastStyle={{ transition: "all 0.5s ease-in-out", }} />
             <StoreProductsInCookies cookieKey={cookieKey} stored={stored} />
         </main>
     );

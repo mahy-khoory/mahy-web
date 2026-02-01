@@ -12,6 +12,7 @@ function MoreProducts({ products, modelHeading, modelsHeading, currency, buy, lo
                 {products.map((product, i) => (
                     <div className='flex-none w-11/12 lg:w-4/12' key={i}>
                         <ProductCard
+                            id={product.partNumber}
                             title={product.overview}
                             image={product.images[0]}
                             models={product.models}

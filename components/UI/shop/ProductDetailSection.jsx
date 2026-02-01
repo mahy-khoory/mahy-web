@@ -1,29 +1,16 @@
-import Cookies from 'js-cookie';
+import { addToCart } from '@/utils/products';
 import { Star, ShoppingCart, Van } from 'lucide-react';
 import React, { useState } from 'react'
 import { HiMinus, HiPlus } from 'react-icons/hi';
-import { toast } from 'react-toastify';
+import { set } from 'zod';
 
 function ProductDetailSection({ company, product, model, locale, currency, addToCartText, modelHeading, modelsHeading, productDetail, toastText }) {
     const [modelIndex, setModelIndex] = useState(Number(model || 0));
     const [quantity, setQuantity] = useState(1);
-    const productId = product.id;
 
     const decrement = () => {
         if (quantity === 1) return;
         setQuantity(quantity - 1);
-    };
-
-    const addToCart = () => {
-        const cart = Cookies.get("cart") ? JSON.parse(Cookies.get("cart")) : [];
-        const existingIndex = cart.findIndex((item) => item.productId === productId && item.model === modelIndex);
-
-        if (existingIndex !== -1) cart[existingIndex].quantity = quantity;
-        else cart.push({ productId, modelIndex, quantity });
-
-        Cookies.set("cart", JSON.stringify(cart), { expires: 7 });
-        setQuantity(1);
-        toast(toastText);
     };
 
     return (
@@ -47,13 +34,13 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                 <div className='space-y-2 mt-4 text-sm'>
                     {product.specs.map((spec, i) => (
                         <div key={i} className="flex gap-2">
-                            <span className="text-gray-900 font-medium w-40">{spec.title}</span>
-                            <p className="text-gray-800">{spec.text}</p>
+                            <span className="text-gray-900 font-medium w-[35%]">{spec.title}</span>
+                            <p className="text-gray-800 w-[65%]">{spec.text}</p>
                         </div>
                     ))}
                     <div className='flex gap-2'>
-                        <span className="text-gray-900 font-medium w-40">Weight</span>
-                        <p className="text-gray-800">{product.weight} lbs</p>
+                        <span className="text-gray-900 font-medium w-[35%]">Weight</span>
+                        <p className="text-gray-800 w-[65%]">{product.weight} kgs</p>
                     </div>
                 </div>
 
@@ -145,7 +132,12 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                                 <HiPlus />
                             </button>
                         </div>
-                        <button onClick={addToCart} className="b-base b-base-hover rounded-xl py-1.5 px-4 flex items-center justify-center gap-4 w-full" >
+                        <button className="b-base b-base-hover rounded-xl py-1.5 px-4 flex items-center justify-center gap-4 w-full"
+                            onClick={() => {
+                                addToCart(product.partNumber, quantity, "Item added to cart!");
+                                setQuantity(1);
+                            }}
+                        >
                             <ShoppingCart stroke='white' size={18} />
                             <span className="text-white font-medium py-1">{addToCartText}</span>
                         </button>
