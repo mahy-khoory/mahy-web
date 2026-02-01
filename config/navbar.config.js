@@ -498,7 +498,7 @@ export function getNavigation(t) {
             title: t("CustomerSupportAfterSales"),
             links: [
               { label: t("CustomerSupportOverview"), href: "/support" },
-              { label: t("ServiceRequest"), href: "/contact-us/services/request" },
+              { label: t("ServiceRequest"), href: "/contact-us/services" },
               { label: t("SiteVisitRequest"), href: "/services/site-visit" },
               { label: t("CustomerComplaint"), href: "/services/complaint" },
               { label: t("CustomerDocumentUpdate"), href: "/document-update" },
