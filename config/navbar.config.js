@@ -501,7 +501,7 @@ export function getNavigation(t) {
               { label: t("ServiceRequest"), href: "/contact-us/service-request" },
               { label: t("SiteVisitRequest"), href: "/contact-us/site-visit" },
               { label: t("CustomerComplaint"), href: "/contact-us/customer-complaint" },
-              { label: t("CustomerDocumentUpdate"), href: "/document-update" },
+              // { label: t("CustomerDocumentUpdate"), href: "/document-update" },
             ],
           },
           {
