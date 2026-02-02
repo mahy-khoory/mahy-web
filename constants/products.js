@@ -94,12 +94,9 @@ export const getPaginatedRandomProducts = async (page, category, price_min, pric
     const totalPages = Math.ceil(total / productsPerPage);
 
     if (category) {
-        const categoryObj = categories.find(c => c.value === category);
-        if (categoryObj) {
-            allProducts = allProducts.filter(
-                (item) => item.category === categoryObj.label
-            );
-        }
+        allProducts = allProducts.filter(
+            (item) => item.categoryFilter === category
+        );
         return {
             items: allProducts.slice((page - 1) * productsPerPage, page * productsPerPage),
             total: allProducts.length,
