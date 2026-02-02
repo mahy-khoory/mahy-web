@@ -10,12 +10,15 @@ import { InputField, TextareaField } from "@/components/form/InputField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
-import { AnimatedGroup, AnimatedGroupItem } from "@/components/form/AnimatedField";
+import {
+  AnimatedGroup,
+  AnimatedGroupItem,
+} from "@/components/form/AnimatedField";
 import Button from "../Button";
+import { TimePickerField } from "./TimePickerField";
 
 // If you already have your own Button component, replace this import with yours.
 // This import matches your existing shadcn-like setup used by DatePicker/FileUpload.
-
 
 /** ---------- Options (exactly as provided) ---------- */
 const SECTORS = [
@@ -31,7 +34,12 @@ const SECTORS = [
 
 const COUNTRIES = ["UAE", "KSA", "Oman", "Qatar", "Bahrain", "Kuwait", "Other"];
 
-const SITE_TYPES = ["Residential", "Commercial", "Industrial", "Infrastructure"];
+const SITE_TYPES = [
+  "Residential",
+  "Commercial",
+  "Industrial",
+  "Infrastructure",
+];
 
 const NATURE_OF_REQUIREMENT = [
   "Inspection",
@@ -71,19 +79,19 @@ const schema = z.object({
   // Contact Person
   contactPerson: z.string().min(1, "Contact Person is required"),
   jobTitle: z.string().optional(),
-  emailAddress: z.string().min(1, "Email Address is required").email("Enter a valid email"),
+  emailAddress: z
+    .string()
+    .min(1, "Email Address is required")
+    .email("Enter a valid email"),
   mobileNumber: z
     .string()
     .optional()
     .refine(
       (val) =>
-        !val ||
-        phoneRegexUAE.test(val) ||
-        phoneRegexInternational.test(val),
+        !val || phoneRegexUAE.test(val) || phoneRegexInternational.test(val),
       {
-        message:
-          "Enter a valid mobile number (UAE or international format)",
-      }
+        message: "Enter a valid mobile number (UAE or international format)",
+      },
     ),
 
   alternativeContactNumber: z
@@ -91,20 +99,25 @@ const schema = z.object({
     .optional()
     .refine(
       (val) =>
-        !val ||
-        phoneRegexUAE.test(val) ||
-        phoneRegexInternational.test(val),
+        !val || phoneRegexUAE.test(val) || phoneRegexInternational.test(val),
       {
         message:
           "Enter a valid alternative contact number (UAE or international format)",
-      }
+      },
     ),
   // Site Details
   siteLocation: z.string().min(1, "Site Location is required"),
   typeOfSite: z.string().optional(),
   natureOfRequirement: z.array(z.string()).optional(),
   preferredVisitDate: z.date().optional(),
-  preferredVisitTime: z.string().optional(), // "Time Picker"
+  preferredVisitTime: z
+    .object({
+      hours: z.number(),
+      minutes: z.number(),
+      seconds: z.number(),
+      formatted: z.string(),
+    })
+    .optional(),
   urgencyLevel: z.enum(["Normal", "High", "Critical"]).optional(),
 
   // Technical Information
@@ -182,7 +195,9 @@ export default function SiteVisitRequestForm() {
     const current = new Set(selectedNature);
     if (current.has(item)) current.delete(item);
     else current.add(item);
-    setValue("natureOfRequirement", Array.from(current), { shouldValidate: true });
+    setValue("natureOfRequirement", Array.from(current), {
+      shouldValidate: true,
+    });
   };
 
   const selectClass =
@@ -197,16 +212,20 @@ export default function SiteVisitRequestForm() {
         {/* Header */}
         <div className="text-center">
           <h1 className="text-[26px] sm:text-[32px] font-semibold text-gray-900">
-            Site Visit Request Form
+            Site Visit Request
           </h1>
-          <p className="mt-2 text-[12px] sm:text-[13px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Please provide the details below. Our team will review your request and contact you to confirm the visit.
-          </p>
+          {/* <p className="mt-2 text-[12px] sm:text-[13px] text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Please provide the details below. Our team will review your request
+            and contact you to confirm the visit.
+          </p> */}
         </div>
 
         {/* Form Card */}
         <div className="mt-10 rounded-2xl border border-gray-200 bg-white shadow-sm">
-          <form onSubmit={handleSubmit(onSubmit)} className="p-6 sm:p-8 space-y-10">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="p-6 sm:p-8 space-y-10"
+          >
             <AnimatedGroup className="space-y-10">
               {/* Company Information */}
               <AnimatedGroupItem>
@@ -316,7 +335,10 @@ export default function SiteVisitRequestForm() {
                     error={errors.siteLocation?.message}
                   />
 
-                  <FormField label="Type of Site" error={errors.typeOfSite?.message}>
+                  <FormField
+                    label="Type of Site"
+                    error={errors.typeOfSite?.message}
+                  >
                     <select className={selectClass} {...register("typeOfSite")}>
                       <option value="">Select site type</option>
                       {SITE_TYPES.map((opt) => (
@@ -365,7 +387,9 @@ export default function SiteVisitRequestForm() {
                                 onChange={() => natureToggle(item)}
                                 className="h-4 w-4"
                               />
-                              <span className="text-sm text-gray-700">{item}</span>
+                              <span className="text-sm text-gray-700">
+                                {item}
+                              </span>
                             </label>
                           );
                         })}
@@ -387,17 +411,35 @@ export default function SiteVisitRequestForm() {
                     )}
                   />
 
-                  {/* Preferred Visit Time */}
-                  <FormField label="Preferred Visit Time" error={errors.preferredVisitTime?.message}>
+                  {/* <FormField
+                    label="Preferred Visit Time"
+                    error={errors.preferredVisitTime?.message}
+                  >
                     <input
                       type="time"
                       className={selectClass}
                       {...register("preferredVisitTime")}
                     />
-                  </FormField>
+                  </FormField> */}
+
+                  <Controller
+                    control={control}
+                    name="preferredVisitTime"
+                    render={({ field }) => (
+                      <TimePickerField
+                        label="Preferred Visit Time"
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={errors.preferredVisitTime?.message}
+                      />
+                    )}
+                  />
 
                   {/* Urgency Level */}
-                  <FormField label="Urgency Level" error={errors.urgencyLevel?.message}>
+                  <FormField
+                    label="Urgency Level"
+                    error={errors.urgencyLevel?.message}
+                  >
                     <div className="mt-1 flex flex-wrap gap-3">
                       {URGENCY_LEVELS.map((lvl) => (
                         <label
@@ -473,7 +515,10 @@ export default function SiteVisitRequestForm() {
                     label="How did you hear about us?"
                     error={errors.howDidYouHear?.message}
                   >
-                    <select className={selectClass} {...register("howDidYouHear")}>
+                    <select
+                      className={selectClass}
+                      {...register("howDidYouHear")}
+                    >
                       <option value="">Select an option (optional)</option>
                       {HEAR_ABOUT.map((opt) => (
                         <option key={opt} value={opt}>
