@@ -41,6 +41,7 @@ const RangeSlider = ({ title, paramKey, min, max, step = 1 }) => {
         } else {
             params.set(`${paramKey}_max`, String(newValues[1]));
         }
+        params.delete("page"); // Reset to first page on filter change
 
         router.push(`?${params.toString()}`, { scroll: false });
     };

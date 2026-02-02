@@ -21,6 +21,7 @@ const FilterOptions = ({ title, paramKey, options, initialVisibleCount = 5 }) =>
         } else {
             params.set(paramKey, value);
         }
+        params.delete("page"); // Reset to first page on filter change
 
         router.push(`?${params.toString()}`, { scroll: false });
     };
