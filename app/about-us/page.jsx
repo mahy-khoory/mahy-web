@@ -11,9 +11,7 @@ import IndustriesGrid from "@/components/UI/about-us/IndustriesGrid";
 import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
 import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
-import HistoryTimeline from "@/components/Layout/HistoryTimeline";
 import VisionSection from "@/components/UI/about-us/BenchMarks";
-import MilestoneTimeline from "@/components/Layout/MilestoneTimeline";
 import TimelineContainer from "@/components/Layout/TimelineContainer";
 
 async function About() {

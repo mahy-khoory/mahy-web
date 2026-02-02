@@ -193,11 +193,6 @@ export default function CustomerRegistration() {
                   {/* A. Basic Customer Details */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="A. Basic Customer Details">
-                      <InputField
-                        label="Customer Account"
-                        {...register("customerAccount")}
-                      />
-
                       <AnimatedField show={showTrn}>
                         <InputField
                           label="TRN"

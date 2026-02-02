@@ -20,7 +20,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("GroupHistoryLegacy"),
-                href: "/about-us/history",
+                href: "/about-us/group-history-and-legacy",
               },
               {
                 label: t("VisionMissionValues"),
@@ -509,7 +509,7 @@ export function getNavigation(t) {
             links: [
               // { label: t("PartnerRegistration"), href: "/partners/register" },
               { label: t("VendorRegistration"), href: "/contact-us/vendor-registration" },
-              { label : "Customer Registration", href: "/contact-us/customer-registration"},
+              { label: "Customer Registration", href: "/contact-us/customer-registration" },
             ],
           },
         ],
