@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Loader2, Building2, CheckCircle2 } from "lucide-react";
+import { Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { FormSection } from "@/components/form/FormSection";
@@ -15,11 +15,7 @@ import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
-import {
-  AnimatedField,
-  AnimatedGroup,
-  AnimatedGroupItem,
-} from "@/components/form/AnimatedField";
+import { AnimatedField } from "@/components/form/AnimatedField";
 
 import { customerFormSchema } from "@/lib/customerFormSchema";
 import {
@@ -39,10 +35,7 @@ import {
   SEGMENTS,
   SUBSEGMENTS,
   ADDRESS_BOOKS,
-  STATES,
-  DISTRICTS,
-  COUNTIES,
-  getCitiesForCountry,
+  getStatesForCountry,
 } from "@/lib/formConstants";
 import Button from "../Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
@@ -117,14 +110,19 @@ export default function CustomerRegistration() {
   const isOrganization = customerType === "organization";
   const isPerson = customerType === "individual";
   const isUAE = country === "UAE";
-  const showTrn = isOneTime ? trnType === "with_trn" : (isCredit && vatRegistered);
+  const showTrn = isOneTime ? trnType === "with_trn" : (isCredit && vatRegistered && isOrganization);
 
-  // Reset customerType to organization when switching to OneTime
+  // Reset customerType to organization when switching to OneTime with TRN
   useEffect(() => {
-    if (isOneTime && isPerson) {
+    if (isOneTime && isPerson && trnType === "with_trn") {
       setValue("customerType", "organization");
     }
-  }, [isOneTime, isPerson, setValue]);
+  }, [isOneTime, isPerson, trnType, setValue]);
+
+  // Reset state when country changes
+  useEffect(() => {
+    setValue("state", "");
+  }, [country, setValue]);
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -149,10 +147,12 @@ export default function CustomerRegistration() {
     }
   };
 
-  // Customer type options based on classification
-  const customerTypeOptions = isOneTime
+  // Customer type options based on classification and TRN type
+  const customerTypeOptions = (isOneTime && trnType === "with_trn")
     ? [{ value: "organization", label: "Organization" }]
     : [...CUSTOMER_TYPES];
+
+  const stateOptions = getStatesForCountry(country);
 
   return (
     <>
@@ -301,6 +301,7 @@ export default function CustomerRegistration() {
                               label="Trade License Expiry Date"
                               value={field.value}
                               onChange={field.onChange}
+                              error={errors.tlExpiryDate?.message}
                             />
                           )}
                         />
@@ -636,18 +637,11 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
-                        name="segment"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Segment"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SEGMENTS]}
-                            placeholder="Select..."
-                          />
-                        )}
+                      <InputField
+                        label="Segment"
+                        disabled
+                        className="opacity-50"
+                        {...register("segment")}
                       />
 
                       <Controller
@@ -683,48 +677,20 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      {/* Credit has more address fields */}
-                      <AnimatedField show={isCredit}>
-                        <InputField
-                          label="Post Box"
-                          {...register("poBox")}
-                        />
-                      </AnimatedField>
-
-                      <Controller
-                        name="city"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="City"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...getCitiesForCountry(country)]}
-                            required
-                            error={errors.city?.message}
-                            placeholder="Select city"
-                          />
-                        )}
+                      <InputField
+                        label="City"
+                        required
+                        error={errors.city?.message}
+                        {...register("city")}
                       />
 
                       <InputField
                         label="ZIP/Postal Code"
+                        type="number"
                         {...register("zipPostalCode")}
                       />
 
-                      <InputField
-                        label="Makani Number"
-                        {...register("makaniNo")}
-                      />
-
-                      <InputField
-                        label="Street"
-                        {...register("street")}
-                        error={errors.street?.message}
-                      />
-
-                      {/* Credit only: Additional address fields */}
-                      <AnimatedField show={isCredit}>
+                      <AnimatedField show={stateOptions.length > 0}>
                         <Controller
                           name="state"
                           control={control}
@@ -733,58 +699,24 @@ export default function CustomerRegistration() {
                               label="State"
                               value={field.value || ""}
                               onChange={field.onChange}
-                              options={[...STATES]}
-                              placeholder="Select..."
+                              options={[...stateOptions]}
+                              placeholder="Select state..."
                             />
                           )}
                         />
                       </AnimatedField>
 
-                      <AnimatedField show={isCredit}>
-                        <InputField
-                          label="Street Number"
-                          {...register("streetNumber")}
-                        />
-                      </AnimatedField>
+                      <InputField
+                        label="Makani Number"
+                        {...register("makaniNo")}
+                      />
 
-                      <AnimatedField show={isCredit}>
-                        <Controller
-                          name="district"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="District"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...DISTRICTS]}
-                              placeholder="Select..."
-                            />
-                          )}
-                        />
-                      </AnimatedField>
-
-                      <AnimatedField show={isCredit}>
-                        <InputField
-                          label="Building Complement"
-                          {...register("buildingComplement")}
-                        />
-                      </AnimatedField>
-
-                      <AnimatedField show={isCredit}>
-                        <Controller
-                          name="county"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="County"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...COUNTIES]}
-                              placeholder="Select..."
-                            />
-                          )}
-                        />
-                      </AnimatedField>
+                      <InputField
+                        label="Street"
+                        required
+                        error={errors.street?.message}
+                        {...register("street")}
+                      />
 
                       <Controller
                         name="addressBooks"
@@ -813,6 +745,7 @@ export default function CustomerRegistration() {
                             control={control}
                             render={({ field }) => (
                               <SelectField
+                                key={field.value}
                                 label="Country Code"
                                 value={field.value}
                                 onChange={field.onChange}
@@ -896,33 +829,26 @@ export default function CustomerRegistration() {
                   {/* G. Consent & Submission */}
                   <motion.div
                     variants={sectionVariants}
-                    className="border-t pt-6"
+                    className="space-y-6 border-t pt-6"
                   >
-                    <Controller
-                      name="consent"
-                      control={control}
-                      render={({ field }) => (
-                        <FormField
-                          label=""
-                          error={errors.consent?.message}
-                        >
-                          <div className="flex items-start gap-3">
+                    <FormField label="Terms and Conditions" required error={errors.consent?.message}>
+                      <div className="flex items-start space-x-3">
+                        <Controller
+                          name="consent"
+                          control={control}
+                          render={({ field }) => (
                             <Checkbox
                               id="consent"
                               checked={field.value}
                               onCheckedChange={field.onChange}
-                              className="mt-1"
                             />
-                            <label
-                              htmlFor="consent"
-                              className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
-                            >
-                              I confirm that the information provided is accurate and I consent to its use for customer registration and system processing.
-                            </label>
-                          </div>
-                        </FormField>
-                      )}
-                    />
+                          )}
+                        />
+                        <Label htmlFor="consent" className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer">
+                          I confirm that all the information provided is accurate and complete. I agree to the terms and conditions of registration and understand that any false information may result in the rejection of this application.
+                        </Label>
+                      </div>
+                    </FormField>
 
                     <motion.div variants={sectionVariants} className="flex justify-end pt-4">
                       <Button
