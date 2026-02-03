@@ -23,7 +23,7 @@ export function DatePickerField({
                         variant="outline"
                         className={cn(
                             "w-full justify-start text-left font-normal h-10",
-                            !value && "text-muted-foreground"
+                            !value && "text-gray-700"
                         )}
                     >
                         <CalendarIcon className="mr-2 h-4 w-4" />
