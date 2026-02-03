@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Loader2, Wrench, CheckCircle2 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/UI/card";
 
 import { FormSection } from "@/components/form/FormSection";
 import { InputField } from "@/components/form/InputField";
