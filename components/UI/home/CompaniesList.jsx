@@ -12,12 +12,12 @@ import CompanyCard from './CompanyCard';
 const tabs = ["Companies", "Industeries"];
 
 const industeries = [
-    { label: "Trading", image: "/gallery/gallery-1.jpg" },
-    { label: "Manufacturing", image: "/gallery/gallery-2.jpg" },
-    { label: "Automobile", image: "/gallery/gallery-3.jpg" },
-    { label: "Waste Management", image: "/gallery/gallery-4.jpg" },
-    { label: "Logistics", image: "/gallery/gallery-5.jpg" },
-    { label: "Energy Transport", image: "/gallery/gallery-8.jpeg" },
+    { label: "Trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210688/premium-home-appliance-store-interior-2026-01-05-05-10-44-utc_r9kuyw.jpg" },
+    { label: "Manufacturing", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210649/factory-workers-operating-machinery-on-production-2026-01-09-10-18-36-utc_tsa0tc.jpg" },
+    { label: "Automobile", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210379/two-businessmen-are-working-together-in-the-car-sh-2026-01-08-23-56-20-utc_tjv68e.jpg" },
+    { label: "Waste Management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210761/joyful-indian-worker-in-protective-vest-and-gloves-2026-01-06-00-11-34-utc_m8310z.jpg" },
+    { label: "Logistics", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210613/interior-warehouse-storage-and-cardboard-boxes-aga-2026-01-09-01-03-54-utc_dzzlr6.jpg" },
+    { label: "Energy Management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210530/businesswoman-with-solar-panels-model-having-prese-2026-01-09-09-42-23-utc_l5vlii.jpg" },
 ];
 const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
 
