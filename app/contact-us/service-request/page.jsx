@@ -12,8 +12,6 @@ async function ContactUs() {
 
   return (
     <main className="bg-black">
-
-
       {/* <div className="bg-white">
         <Breadcrumb
           segments={[{ label: t("Page"), href: "/contact-us" }]}
@@ -22,7 +20,7 @@ async function ContactUs() {
       </div> */}
 
       {/* IMPORTANT: isolate hero visually */}
-      <section className="relative" >
+      <section className="relative">
         <ServiceRequestTop
           brand="Service"
           company="MAHY Khoory"
@@ -30,7 +28,7 @@ async function ContactUs() {
           imageSrc="/gallery/gallery-1.jpg"
         />
       </section>
-<WhyChooseService />
+      <WhyChooseService />
     </main>
   );
 }

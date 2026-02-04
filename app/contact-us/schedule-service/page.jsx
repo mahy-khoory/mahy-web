@@ -1,5 +1,6 @@
 import ContactTextPane from "@/components/Contact/ContactTextPane";
 import ServiceRequestForm from "@/components/Contact/ServiceRequestForm";
+import ServiceRequest from "@/components/UI/form/ServiceRequest";
 import { getTranslations } from "next-intl/server";
 
 export default async function ScheduleServicePage() {
@@ -32,11 +33,9 @@ export default async function ScheduleServicePage() {
   };
   return (
     <main className="max-w-7xl mx-auto px-5 py-25">
-      <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-20 items-start">
-        <ContactTextPane data={contactUs.headings} />
-        {/* <ContactUsForm contactUs={contactUs} /> */}
-        <ServiceRequestForm />
-      </div>
+      <main>
+        <ServiceRequest />
+      </main>
     </main>
   );
 }
