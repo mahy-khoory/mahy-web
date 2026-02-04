@@ -20,18 +20,18 @@ export default async function Home() {
     {
       title: t("Hero1Title"),
       subtitle: t("Hero1Subtitle"),
-      cta: { label: t("Hero1CtaLabel") },
+      cta: { label: t("Hero1CtaLabel"), href: "/companies/all" },
     },
     {
       title: t("Hero2Title"),
       subtitle: t("Hero2Subtitle"),
-      cta: { label: t("Hero2CtaLabel") },
-      otherCta: { label: t("Hero2OtherCtaLabel") },
+      cta: { label: t("Hero2CtaLabel"), href: "/companies/engineering-services" },
+      otherCta: { label: t("Hero2OtherCtaLabel"), href: "/shop" },
     },
     {
       title: t("Hero3Title"),
       subtitle: t("Hero3Subtitle"),
-      cta: { label: t("Hero3CtaLabel") },
+      cta: { label: t("Hero3CtaLabel"), href: "/shop" },
     },
   ];
   const floatingMenuItems = [

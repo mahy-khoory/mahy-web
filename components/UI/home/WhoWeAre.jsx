@@ -6,6 +6,9 @@ import React from "react";
 import PrimaryButton from "../PrimaryButton";
 import { motion } from "framer-motion";
 import AnimatedLines from "../AnimatedLines";
+import ScrollToTop from "../ScrollToTop";
+import { scrollToTop } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const container1 = {
   hidden: { opacity: 0, x: -20 },
@@ -25,10 +28,10 @@ const container2 = {
   },
 };
 
-function WhoWeAre({image}) {
+function WhoWeAre({ image }) {
+  const router = useRouter();
   return (
     <>
-      {" "}
       <section className="max-w-7xl mx-auto py-15 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-18 md:h-[80vh]">
           <motion.div
@@ -56,12 +59,11 @@ function WhoWeAre({image}) {
               balanced and resilient portfolio designed to support both
               traditional industries and future-focused sectors.
             </p>
-            <Link href={"/about-us"}>
-              <PrimaryButton
-                className={"w-fit mt-8 md:mt-10"}
-                label="Learn more about us"
-              />
-            </Link>
+            <PrimaryButton
+              onClick={() => { scrollToTop("/about-us", router) }}
+              className={"w-fit mt-8 md:mt-10"}
+              label="Learn more about us"
+            />
           </motion.div>
           <motion.div
             variants={container2}

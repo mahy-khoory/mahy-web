@@ -338,7 +338,7 @@ async function About() {
         imageAlt="Our people"
         imagePosition="left"
         ctaLabel="Learn More"
-        ctaHref="/people"
+        ctaHref="/about-us/certifications-and-accreditations"
       />
     </main>
   );

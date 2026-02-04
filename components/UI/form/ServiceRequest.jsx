@@ -5,8 +5,8 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Loader2, Wrench, CheckCircle2 } from "lucide-react";
-import { motion, Variants } from "framer-motion";
+import { Wrench } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/UI/card";
 
