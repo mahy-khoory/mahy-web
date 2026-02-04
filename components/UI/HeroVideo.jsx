@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "./Button";
 import SecondaryButton from "./SecondaryButton";
+import Link from "next/link";
 
 function HeroVideo({ slides }) {
     const [index, setIndex] = useState(0);
@@ -48,23 +49,25 @@ function HeroVideo({ slides }) {
                     )}
                     <div className="flex flex-wrap gap-3">
                         {currentSlide.cta && (
-                            <div className="mt-6">
+                            <Link href={currentSlide.cta.href} className="mt-6">
                                 <Button onClick={currentSlide.cta.onClick || (() => { })}>
                                     {currentSlide.cta.label}
                                 </Button>
-                            </div>
+                            </Link>
                         )}
                         {currentSlide.otherCta && (
                             <div className="mt-6">
-                                <SecondaryButton className="text-white bg-transparent" onClick={currentSlide.otherCta.onClick || (() => { })}>
-                                    {currentSlide.otherCta.label}
-                                </SecondaryButton>
+                                <Link href={currentSlide.otherCta.href}>
+                                    <SecondaryButton className="text-white bg-transparent" onClick={currentSlide.otherCta.onClick || (() => { })}>
+                                        {currentSlide.otherCta.label}
+                                    </SecondaryButton>
+                                </Link>
                             </div>
                         )}
                     </div>
                 </motion.div>
             </AnimatePresence>
-        </section>
+        </section >
     )
 }
 
