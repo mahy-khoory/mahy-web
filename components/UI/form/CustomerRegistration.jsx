@@ -190,9 +190,10 @@ export default function CustomerRegistration() {
 
               <CardContent className="p-6">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                  {/* A. Basic Customer Details */}
+                  {/* Basic Details - Combined Section */}
                   <motion.div variants={sectionVariants}>
-                    <FormSection title="A. Basic Customer Details">
+                    <FormSection title="Basic Details">
+                      {/* Basic Customer Details */}
                       <AnimatedField show={showTrn}>
                         <InputField
                           label="TRN"
@@ -246,13 +247,7 @@ export default function CustomerRegistration() {
                           />
                         )}
                       />
-                    </FormSection>
-                  </motion.div>
 
-                  {/* B. Tax & Compliance Information */}
-                  <motion.div variants={sectionVariants}>
-                    <FormSection title="B. Tax & Compliance Information">
-                      {/* OneTime: TRN Type field */}
                       <AnimatedField show={isOneTime}>
                         <Controller
                           name="trnType"
@@ -268,7 +263,6 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      {/* Organization fields */}
                       <AnimatedField show={isOrganization}>
                         <InputField
                           label="Trade License"
@@ -328,7 +322,6 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      {/* Person fields (Credit only) */}
                       <AnimatedField show={isPerson && isCredit}>
                         <InputField
                           label="Full Name"
@@ -451,12 +444,7 @@ export default function CustomerRegistration() {
                           )}
                         />
                       </AnimatedField>
-                    </FormSection>
-                  </motion.div>
 
-                  {/* C. Commercial Terms */}
-                  <motion.div variants={sectionVariants}>
-                    <FormSection title="C. Commercial Terms">
                       <Controller
                         name="paymentMethod"
                         control={control}
@@ -603,12 +591,7 @@ export default function CustomerRegistration() {
                           />
                         )}
                       />
-                    </FormSection>
-                  </motion.div>
 
-                  {/* D. Business Classification */}
-                  <motion.div variants={sectionVariants}>
-                    <FormSection title="D. Business Classification">
                       <Controller
                         name="sourceCode"
                         control={control}
@@ -662,7 +645,7 @@ export default function CustomerRegistration() {
 
                   {/* E. Address Information */}
                   <motion.div variants={sectionVariants}>
-                    <FormSection title="E. Address">
+                    <FormSection title="Address">
                       <Controller
                         name="country"
                         control={control}
@@ -734,9 +717,9 @@ export default function CustomerRegistration() {
                     </FormSection>
                   </motion.div>
 
-                  {/* F. Contact Information */}
+                  {/* Contact Information */}
                   <motion.div variants={sectionVariants}>
-                    <FormSection title="F. Contact Information">
+                    <FormSection title="Contact Information">
                       <div className="col-span-full">
                         <h3 className="text-sm font-semibold text-muted-foreground mb-3">TELEPHONE</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -826,13 +809,13 @@ export default function CustomerRegistration() {
                     </FormSection>
                   </motion.div>
 
-                  {/* G. Consent & Submission */}
+                  {/* Consent & Submission */}
                   <motion.div
                     variants={sectionVariants}
-                    className="space-y-6 border-t pt-6"
+                    className="space-y-6 border-t border-gray-300 pt-6"
                   >
                     <FormField label="Terms and Conditions" required error={errors.consent?.message}>
-                      <div className="flex items-start space-x-3">
+                      <div className="flex items-start gap-2 mt-2">
                         <Controller
                           name="consent"
                           control={control}
@@ -841,6 +824,7 @@ export default function CustomerRegistration() {
                               id="consent"
                               checked={field.value}
                               onCheckedChange={field.onChange}
+                              className="mt-1"
                             />
                           )}
                         />
