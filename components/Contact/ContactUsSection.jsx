@@ -33,8 +33,8 @@ export default function ContactUsSection({ contactUs }) {
 
   const tabs = [
     { id: "contact", label: contactUs.labels[0] },
-    { id: "complaint", label: contactUs.labels[1] },
-    { id: "sitevisit", label: "Site Visit Requisition" },
+    // { id: "complaint", label: contactUs.labels[1] },
+    // { id: "sitevisit", label: "Site Visit Requisition" },
   ];
 
   const handleTabChange = (tabId) => {
