@@ -1,12 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
 import { motion } from "framer-motion";
-import AnimatedLines from "../AnimatedLines";
-import ScrollToTop from "../ScrollToTop";
 import { scrollToTop } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
