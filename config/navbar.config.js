@@ -486,7 +486,7 @@ export function getNavigation(t) {
           {
             title: t("SalesBusinessEnquiries"),
             links: [
-              { label: t("SalesEnquiry"), href: "/contact-us/sales" },
+              // { label: t("SalesEnquiry"), href: "/contact-us/sales" },
               { label: t("RequestQuotation"), href: "/rfq" },
               {
                 label: t("KeyAccountContacts"),
@@ -498,7 +498,9 @@ export function getNavigation(t) {
             title: t("CustomerSupportAfterSales"),
             links: [
               { label: t("CustomerSupportOverview"), href: "/support" },
-              { label: t("ServiceRequest"), href: "/contact-us/service-request" },
+              // { label: t("ServiceRequest"), href: "/contact-us/service-request" },
+                            { label: t("ServiceRequest"), href: "/contact-us/schedule-service" },
+
               { label: t("SiteVisitRequest"), href: "/contact-us/site-visit" },
               { label: t("CustomerComplaint"), href: "/contact-us/customer-complaint" },
               // { label: t("CustomerDocumentUpdate"), href: "/document-update" },
