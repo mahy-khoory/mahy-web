@@ -11,6 +11,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa6";
+import ScrollToTop from "../UI/ScrollToTop";
 
 export default function Footer({ data }) {
   const socials = [
@@ -188,7 +189,7 @@ function FooterSection({ section }) {
       >
         {section.links.map((link) => (
           <li key={link.label}>
-            <Link
+            <ScrollToTop
               href={link.href}
               className="
                 text-sm text-slate-400
@@ -197,7 +198,7 @@ function FooterSection({ section }) {
               "
             >
               {link.label}
-            </Link>
+            </ScrollToTop>
           </li>
         ))}
       </ul>
