@@ -1,5 +1,6 @@
 "use client"
 
+import SolarPanelImageGrid from "@/components/Services/SolarPanel/SolarPanelImageGrid";
 import OperationsAndCapabilitiesOverview from "@/components/UI/companies/operations-and-capabilities/OperationsAndCapabilitiesOverview"
 import SubPageHeading from "@/components/UI/SubPageHeading";
 import { motion } from "framer-motion";
@@ -217,39 +218,21 @@ function CustomerSupportOverviewPage() {
                 description={"At MAHY Khoory Group, delivering reliable support and maintaining strong customer relationships is a core priority across all our sectors."}
                 image={"/gallery/gallery-1.jpg"}
             />
-            <motion.div
-                variants={container}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="max-w-5xl mx-auto px-5 py-15">
-                <p className="font-semibold text-4xl">To ensure smooth communication and efficient service</p>
-                <p className="font-medium mt-4">We provide the following dedicated forms on our website:</p>
-                <ul className="mt-4 list-disc list-inside space-y-1.5">
-                    {bulletItems.map((item, i) => (
-                        <li key={i}>{item}</li>
-                    ))}
-                </ul>
-            </motion.div>
+            <SolarPanelImageGrid
+                heading="To ensure smooth communication and efficient service"
+                subHeading="We provide the following dedicated forms on our website:"
+                bulletItems={bulletItems}
+                text="Whether you need pricing information, technical support, commissioning assistance, service coordination, partnership registration, or wish to raise a concern, you can simply complete the relevant form and submit it online. Our team will review your request and respond promptly."
+                items={[
+                    { title: "You may also reach us directly via:", textItems: ["📧 Email: info@mahykhoory.com", "📞 Telephone: +971 4 6067300"] },
+                    { title: "We are committed to providing support", text: "No matter how you contact us, our team is committed to providing professional, timely, and effective support." },
+                    { title: "Our goal is clear", text: "To keep our customers and partners fully supported, satisfied, and confident in working with us." }
+                ]}
+            />
             <OperationsAndCapabilitiesOverview
                 heading="All Companies Contact Details"
                 items={overviewItems}
             />
-            <motion.div
-                variants={container}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="max-w-5xl mx-auto px-5 py-12">
-                <p className="font-medium text-lg">Whether you need pricing information, technical support, commissioning assistance, service coordination, partnership registration, or wish to raise a concern, you can simply complete the relevant form and submit it online. Our team will review your request and respond promptly.</p>
-                <p className="mt-4">You may also reach us directly via:</p>
-                <ul className="mt-3 space-y-2">
-                    <li>📧 Email: info@mahykhoory.com</li>
-                    <li>📞 Telephone: +971 4 6067300</li>
-                </ul>
-                <p className="mt-5">No matter how you contact us, our team is committed to providing professional, timely, and effective support.</p>
-                <p className="mt-2">At MAHY Khoory Group, our goal is clear, to keep our customers and partners fully supported, satisfied, and confident in working with us.</p>
-            </motion.div>
         </main>
 
     )
