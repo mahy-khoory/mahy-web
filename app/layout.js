@@ -13,6 +13,7 @@ import { chatbotData } from "@/config/chatbot";
 import SmoothScrollProvider from "@/components/Providers/SmoothScrollProvider";
 import CartProvider from "@/components/Providers/CartProvider";
 import CartDrawer from "@/components/UI/cart/CartDrawer";
+import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -47,10 +48,11 @@ export const viewport = {
 
 export default async function RootLayout({ children }) {
   const cookieStore = await cookies();
+
   const locale = cookieStore.get("locale")?.value || "en";
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const navTranslations = await getTranslations('Nav');
-  const footerTranslations = await getTranslations('Footer');
+  const navTranslations = await getTranslations("Nav");
+  const footerTranslations = await getTranslations("Footer");
   const chatbotTranslations = await getTranslations("Chatbot");
 
   return (
@@ -60,19 +62,24 @@ export default async function RootLayout({ children }) {
         className={`${poppins.variable} antialiased`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <SmoothScrollProvider>
-          <NextIntlClientProvider locale={locale}>
-            <CartProvider>
-              <Navbar navigation={getNavigation(navTranslations)} />
-              {children}
-              <section id="useful-links">
-                <Footer data={getFooter(footerTranslations)} />
-              </section>
-              <ChatBot data={chatbotData(chatbotTranslations)} locale={locale} />
-              <CartDrawer />
-            </CartProvider>
-          </NextIntlClientProvider>
-        </SmoothScrollProvider>
+        <ReactQueryProvider>
+          <SmoothScrollProvider>
+            <NextIntlClientProvider locale={locale}>
+              <CartProvider>
+                <Navbar navigation={getNavigation(navTranslations)} />
+                {children}
+                <section id="useful-links">
+                  <Footer data={getFooter(footerTranslations)} />
+                </section>
+                <ChatBot
+                  data={chatbotData(chatbotTranslations)}
+                  locale={locale}
+                />
+                <CartDrawer />
+              </CartProvider>
+            </NextIntlClientProvider>
+          </SmoothScrollProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
