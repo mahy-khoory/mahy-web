@@ -14,10 +14,8 @@ export const complaintSchema = z
       .string()
       .min(1, "Mobile Number is required")
       .refine(
-        (val) =>
-          phoneRegexUAE.test(val) ||
-          phoneRegexInternational.test(val),
-        { message: "Enter a valid mobile number" }
+        (val) => phoneRegexUAE.test(val) || phoneRegexInternational.test(val),
+        { message: "Enter a valid mobile number" },
       ),
 
     email: z.string().email("Enter a valid email").optional(),
@@ -37,12 +35,14 @@ export const complaintSchema = z
     // Complaint Core
     problemDescription: z.string().min(1, "Problem Description is required"),
     incidentDate: z.date().optional(),
-    frequency: z.enum(["once", "intermittent", "frequent", "always"]).optional(),
+    frequency: z
+      .enum(["once", "intermittent", "frequent", "always"])
+      .optional(),
 
     // Category & Severity
     issueCategory: z.string().min(1, "Issue Category is required"),
     severityLevel: z.enum(["critical", "high", "medium", "low"]),
-    businessImpact: z.array(z.string()).optional(),
+    businessImpact: z.string().optional(),
 
     // Evidence
     photos: z.any().optional(),

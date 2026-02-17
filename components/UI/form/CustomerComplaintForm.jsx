@@ -9,13 +9,14 @@ import { InputField, TextareaField } from "@/components/form/InputField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
-import { AnimatedGroup, AnimatedGroupItem } from "@/components/form/AnimatedField";
+import {
+  AnimatedGroup,
+  AnimatedGroupItem,
+} from "@/components/form/AnimatedField";
 import Button from "../Button";
 import { complaintSchema } from "./ComplaintSchema";
-
-/* ---------------------------------- */
-/* Static Options (UI label + value)  */
-/* ---------------------------------- */
+import { submitCustomerComplaint } from "@/lib/api/customerComplaint";
+import { useMutation } from "@tanstack/react-query";
 
 const COMPLAINT_TYPES = [
   "Quotation Delay",
@@ -80,10 +81,6 @@ const BUSINESS_IMPACT = [
   { value: "inconvenience_only", label: "Inconvenience Only" },
 ];
 
-/* ---------------------------------- */
-/* Component                           */
-/* ---------------------------------- */
-
 export default function CustomerComplaintForm() {
   const {
     control,
@@ -100,11 +97,21 @@ export default function CustomerComplaintForm() {
     mode: "onTouched",
   });
 
+  const mutation = useMutation({
+    mutationFn: submitCustomerComplaint,
+    onSuccess: (data) => {
+      alert("Complaint submitted successfully");
+      console.log("CRM Response:", data);
+    },
+    onError: (error) => {
+      alert(error.message);
+    },
+  });
+
   const customerType = watch("customerType");
 
   const onSubmit = (data) => {
-    console.log("COMPLAINT FORM DATA:", data);
-    alert("Complaint submitted successfully");
+    mutation.mutate(data);
   };
 
   return (
@@ -119,16 +126,21 @@ export default function CustomerComplaintForm() {
 
         {/* Card */}
         <div className="mt-10 rounded-2xl border border-gray-200 bg-white shadow-sm">
-          <form onSubmit={handleSubmit(onSubmit)} className="p-6 sm:p-8 space-y-10">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="p-6 sm:p-8 space-y-10"
+          >
             <AnimatedGroup className="space-y-10">
-
               {/* ================= Customer Information ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Customer Information">
                   <FormField label="Organization / Person" required>
                     <div className="flex gap-6 mt-1">
                       {["Organization", "Person"].map((opt) => (
-                        <label key={opt} className="flex items-center gap-2 text-sm">
+                        <label
+                          key={opt}
+                          className="flex items-center gap-2 text-sm"
+                        >
                           <input
                             type="radio"
                             value={opt}
@@ -192,28 +204,40 @@ export default function CustomerComplaintForm() {
                 </FormSection>
               </AnimatedGroupItem>
 
-              {/* ================= Product / Service Details ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Product / Service Details">
                   <FormField label="Complaint Type" required>
-                    <select {...register("complaintType")} className="w-full h-11 rounded-md border px-3 text-sm">
+                    <select
+                      {...register("complaintType")}
+                      className="w-full h-11 rounded-md border px-3 text-sm"
+                    >
                       <option value="">Select complaint type</option>
                       {COMPLAINT_TYPES.map((c) => (
-                        <option key={c} value={c}>{c}</option>
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
                       ))}
                     </select>
                   </FormField>
 
                   <FormField label="Product Category" required>
-                    <select {...register("productCategory")} className="w-full h-11 rounded-md border px-3 text-sm">
+                    <select
+                      {...register("productCategory")}
+                      className="w-full h-11 rounded-md border px-3 text-sm"
+                    >
                       <option value="">Select product category</option>
                       {PRODUCT_CATEGORIES.map((p) => (
-                        <option key={p} value={p}>{p}</option>
+                        <option key={p} value={p}>
+                          {p}
+                        </option>
                       ))}
                     </select>
                   </FormField>
 
-                  <InputField label="Sales Person" {...register("salesPerson")} />
+                  <InputField
+                    label="Sales Person"
+                    {...register("salesPerson")}
+                  />
                   <InputField label="Brand" {...register("brand")} />
                   <InputField label="Model" {...register("model")} />
                   <InputField label="Serial No" {...register("serialNo")} />
@@ -221,7 +245,6 @@ export default function CustomerComplaintForm() {
                 </FormSection>
               </AnimatedGroupItem>
 
-              {/* ================= Complaint Core ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Complaint Core">
                   <TextareaField
@@ -241,7 +264,10 @@ export default function CustomerComplaintForm() {
                   />
 
                   <FormField label="Frequency">
-                    <select {...register("frequency")} className="w-full h-11 rounded-md border px-3 text-sm">
+                    <select
+                      {...register("frequency")}
+                      className="w-full h-11 rounded-md border px-3 text-sm"
+                    >
                       <option value="">Select frequency</option>
                       <option value="once">Once</option>
                       <option value="intermittent">Intermittent</option>
@@ -252,14 +278,18 @@ export default function CustomerComplaintForm() {
                 </FormSection>
               </AnimatedGroupItem>
 
-              {/* ================= Category & Severity ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Category & Severity">
                   <FormField label="Issue Category" required>
-                    <select {...register("issueCategory")} className="w-full h-11 rounded-md border px-3 text-sm">
+                    <select
+                      {...register("issueCategory")}
+                      className="w-full h-11 rounded-md border px-3 text-sm"
+                    >
                       <option value="">Select issue category</option>
                       {ISSUE_CATEGORIES.map((i) => (
-                        <option key={i.value} value={i.value}>{i.label}</option>
+                        <option key={i.value} value={i.value}>
+                          {i.label}
+                        </option>
                       ))}
                     </select>
                   </FormField>
@@ -267,7 +297,10 @@ export default function CustomerComplaintForm() {
                   <FormField label="Severity Level" required>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 mt-2">
                       {SEVERITY_LEVELS.map((lvl) => (
-                        <label key={lvl.value} className="flex items-center gap-2 text-sm">
+                        <label
+                          key={lvl.value}
+                          className="flex items-center gap-2 text-sm"
+                        >
                           <input
                             type="radio"
                             value={lvl.value}
@@ -283,12 +316,15 @@ export default function CustomerComplaintForm() {
                   <FormField label="Business Impact">
                     <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
                       {BUSINESS_IMPACT.map((b) => (
-                        <label key={b.value} className="flex items-start gap-2 text-sm leading-snug">
+                        <label
+                          key={b.value}
+                          className="flex items-center gap-2 text-sm"
+                        >
                           <input
-                            type="checkbox"
+                            type="radio"
                             value={b.value}
                             {...register("businessImpact")}
-                            className="mt-0.5 h-4 w-4 accent-black"
+                            className="h-4 w-4 accent-black"
                           />
                           {b.label}
                         </label>
@@ -298,49 +334,64 @@ export default function CustomerComplaintForm() {
                 </FormSection>
               </AnimatedGroupItem>
 
-              {/* ================= Evidence ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Evidence">
                   <Controller
                     control={control}
                     name="photos"
                     render={({ field }) => (
-                      <FileUploadField label="Photos" accept=".jpg,.png" multiple {...field} />
+                      <FileUploadField
+                        label="Photos"
+                        accept=".jpg,.png"
+                        multiple
+                        {...field}
+                      />
                     )}
                   />
                   <Controller
                     control={control}
                     name="videos"
                     render={({ field }) => (
-                      <FileUploadField label="Videos" accept=".mp4" {...field} />
+                      <FileUploadField
+                        label="Videos"
+                        accept=".mp4"
+                        {...field}
+                      />
                     )}
                   />
                   <Controller
                     control={control}
                     name="documents"
                     render={({ field }) => (
-                      <FileUploadField label="Documents" accept=".pdf,.doc,.docx" multiple {...field} />
+                      <FileUploadField
+                        label="Documents"
+                        accept=".pdf,.doc,.docx"
+                        multiple
+                        {...field}
+                      />
                     )}
                   />
                   <Controller
                     control={control}
                     name="voiceNote"
                     render={({ field }) => (
-                      <FileUploadField label="Voice Note" accept=".mp3" {...field} />
+                      <FileUploadField
+                        label="Voice Note"
+                        accept=".mp3"
+                        {...field}
+                      />
                     )}
                   />
                 </FormSection>
               </AnimatedGroupItem>
 
-              {/* ================= Submit ================= */}
               <AnimatedGroupItem>
                 <div className="flex justify-center pt-4">
-                  <Button type="submit" disabled={isSubmitting}>
-                    Submit Complaint
+                  <Button type="submit" disabled={mutation.isPending}>
+                    {mutation.isPending ? "Submitting..." : "Submit Complaint"}
                   </Button>
                 </div>
               </AnimatedGroupItem>
-
             </AnimatedGroup>
           </form>
         </div>

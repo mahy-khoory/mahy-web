@@ -60,16 +60,12 @@ const HEAR_ABOUT = [
   "Other",
 ];
 
-/** ---------- Validation (exactly per your sheet) ---------- */
-// - Required: Company Name, Contact Person, Email Address (validated), Site Location,
-//   Brief Description of Requirement, Consent (required), Submit button is just UI.
-// - Alternative Contact Number: optional, but "with validation" (basic phone format).
+
 const phoneRegex = /^[+]?[\d\s()-]{7,20}$/;
 const phoneRegexUAE = /^(?:\+971|971|0)?5\d{8}$/;
 const phoneRegexInternational = /^\+?[1-9]\d{6,14}$/;
 
 const schema = z.object({
-  // Company Information
   companyName: z.string().min(1, "Company Name is required"),
   sector: z.string().optional(),
   companyAddress: z.string().optional(),
