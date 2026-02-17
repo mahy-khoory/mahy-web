@@ -108,7 +108,9 @@ const schema = z.object({
   // Site Details
   siteLocation: z.string().min(1, "Site Location is required"),
   typeOfSite: z.string().optional(),
-  natureOfRequirement: z.array(z.string()).optional(),
+  // natureOfRequirement: z.array(z.string()).optional(),
+  natureOfRequirement: z.string().optional(),
+
   preferredVisitDate: z.date().optional(),
   preferredVisitTime: z
     .object({
@@ -148,7 +150,9 @@ const defaultValues = {
 
   siteLocation: "",
   typeOfSite: "",
-  natureOfRequirement: [],
+  // natureOfRequirement: [],
+  natureOfRequirement: "",
+
   preferredVisitDate: undefined,
   preferredVisitTime: "",
   urgencyLevel: "Normal",
@@ -176,7 +180,7 @@ export default function SiteVisitRequestForm() {
     mode: "onTouched",
   });
 
-  const selectedNature = watch("natureOfRequirement") || [];
+  // const selectedNature = watch("natureOfRequirement") || [];
 
   const onSubmit = async (values) => {
     // Replace with your API call
@@ -191,14 +195,14 @@ export default function SiteVisitRequestForm() {
     alert("Site visit request submitted successfully!");
   };
 
-  const natureToggle = (item) => {
-    const current = new Set(selectedNature);
-    if (current.has(item)) current.delete(item);
-    else current.add(item);
-    setValue("natureOfRequirement", Array.from(current), {
-      shouldValidate: true,
-    });
-  };
+  // const natureToggle = (item) => {
+  //   const current = new Set(selectedNature);
+  //   if (current.has(item)) current.delete(item);
+  //   else current.add(item);
+  //   setValue("natureOfRequirement", Array.from(current), {
+  //     shouldValidate: true,
+  //   });
+  // };
 
   const selectClass =
     "w-full h-10 mt-1 bg-gray-50 border border-gray-200 rounded-md px-3 text-sm outline-none focus:ring-2 focus:ring-black/10 focus:border-gray-300";
@@ -350,7 +354,7 @@ export default function SiteVisitRequestForm() {
                   </FormField>
 
                   {/* Nature of Requirement (Multi-select Dropdown) */}
-                  <FormField
+                  {/* <FormField
                     label="Nature of Requirement"
                     error={errors.natureOfRequirement?.message}
                     className="md:col-span-2 lg:col-span-2"
@@ -395,8 +399,34 @@ export default function SiteVisitRequestForm() {
                         })}
                       </div>
                     </div>
-                  </FormField>
+                  </FormField> */}
 
+                  <FormField
+                    label="Nature of Requirement"
+                    error={errors.natureOfRequirement?.message}
+                    className="md:col-span-2 lg:col-span-2"
+                  >
+                    <div className={boxClass}>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {NATURE_OF_REQUIREMENT.map((item) => (
+                          <label
+                            key={item}
+                            className="flex items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 cursor-pointer hover:bg-gray-50"
+                          >
+                            <input
+                              type="radio"
+                              value={item}
+                              {...register("natureOfRequirement")}
+                              className="h-4 w-4"
+                            />
+                            <span className="text-sm text-gray-700">
+                              {item}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </FormField>
                   {/* Preferred Visit Date */}
                   <Controller
                     control={control}
