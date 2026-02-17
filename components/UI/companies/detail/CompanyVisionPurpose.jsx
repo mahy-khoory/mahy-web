@@ -8,13 +8,13 @@ import clsx from "clsx";
 const data = {
     purpose: {
         image: "/gallery/gallery-1.jpg",
-        title: "Benefiting Qatar, one field at a time",
-        body: "Rooted in the values of a family business spanning five generations, our purpose is to create lasting value across the sectors that shape Qatar’s future. We exist to support national progress, empower communities, and build a legacy of trust, resilience, and excellence.",
+        title: "Benefiting UAE, one field at a time",
+        body: "Rooted in the values of a family business spanning five generations, our purpose is to create lasting value across the sectors that shape UAE’s future. We exist to support national progress, empower communities, and build a legacy of trust, resilience, and excellence.",
     },
     mission: {
         image: "/gallery/gallery-2.jpg",
         title: "Quality, Reliability and expertise",
-        body: "Guided by the principles of our founding family, our mission is to unite the strengths of our diverse companies to deliver enduring impact. We grow through building impact, lead with integrity, and serve Qatar with a commitment that’s deeply personal — generation after generation.",
+        body: "Guided by the principles of our founding family, our mission is to unite the strengths of our diverse companies to deliver enduring impact. We grow through building impact, lead with integrity, and serve UAE with a commitment that’s deeply personal — generation after generation.",
     },
     vision: {
         image: "/gallery/gallery-3.jpg",
@@ -61,8 +61,8 @@ export default function CompanyVisionPurpose() {
             "
                         >
                             We are driven by our purpose to contributing to the
-                            infrastructural development in Qatar. We introduce sustainable
-                            brands and seek international opportunities aligned with Qatar
+                            infrastructural development in UAE. We introduce sustainable
+                            brands and seek international opportunities aligned with UAE
                             National Vision 2030
                         </p>
                         <div className="relative mt-10 lg:mt-14 lg:pl-10">
