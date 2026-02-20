@@ -16,6 +16,8 @@ import {
 } from "@/components/form/AnimatedField";
 import Button from "../Button";
 import { TimePickerField } from "./TimePickerField";
+import { useCreateSiteVisit } from "@/lib/hooks/useCreateSiteVisit";
+import { fileToBase64 } from "@/lib/fileToBase64";
 
 // If you already have your own Button component, replace this import with yours.
 // This import matches your existing shadcn-like setup used by DatePicker/FileUpload.
@@ -59,7 +61,6 @@ const HEAR_ABOUT = [
   "Existing Client",
   "Other",
 ];
-
 
 const phoneRegex = /^[+]?[\d\s()-]{7,20}$/;
 const phoneRegexUAE = /^(?:\+971|971|0)?5\d{8}$/;
@@ -177,18 +178,35 @@ export default function SiteVisitRequestForm() {
   });
 
   // const selectedNature = watch("natureOfRequirement") || [];
+  const createMutation = useCreateSiteVisit();
 
   const onSubmit = async (values) => {
-    // Replace with your API call
-    // Example:
-    // const formData = new FormData();
-    // Object.entries(values).forEach(([k,v]) => { ... });
-    // await fetch("/api/site-visit", { method:"POST", body: formData });
+    try {
+      const formData = new FormData();
 
-    console.log("SITE VISIT REQUEST VALUES:", values);
+      Object.entries(values).forEach(([key, value]) => {
+        if (value === undefined || value === null || key === "attachFile")
+          return;
 
-    // Optional UX: you can replace with your toast if you use react-toastify
-    alert("Site visit request submitted successfully!");
+        if (key === "preferredVisitDate" && value instanceof Date) {
+          formData.append(key, value.toISOString());
+        } else if (typeof value === "object") {
+          formData.append(key, JSON.stringify(value));
+        } else {
+          formData.append(key, value);
+        }
+      });
+
+      if (values.attachFile instanceof File) {
+        formData.append("attachFile", values.attachFile);
+      }
+
+      await createMutation.mutateAsync(formData);
+
+      alert("site visit form submitted");
+    } catch (error) {
+      console.error("error", error);
+    }
   };
 
   // const natureToggle = (item) => {
