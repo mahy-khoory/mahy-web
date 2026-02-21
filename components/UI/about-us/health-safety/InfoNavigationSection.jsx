@@ -6,36 +6,40 @@ import {
   CalendarDays,
   Award,
   BookOpen,
+  ShieldCheck,
+  Leaf,
+  ClipboardCheck,
+  TrendingUp,
 } from "lucide-react";
 
 const items = [
   {
-    title: "Announcements",
+    title: "Health & Safety Management",
     description:
-      "Our library of media releases, regulatory announcements and public consultations provides the latest and most relevant updates on ADGM's developments, business initiatives and corporate achievements.",
-    href: "/news",
-    icon: Megaphone,
+      "We maintain structured Health & Safety Management Systems to identify risks, prevent incidents, and ensure safe working environments across factories, warehouses, project sites, transport operations, and service locations.",
+    href: "/hse/health-safety-management",
+    icon: ShieldCheck,
   },
   {
-    title: "Upcoming Events",
+    title: "Environmental Management",
     description:
-      "Flagship and industry events, global roadshows, community affairs and much more. Mark your calendars, we would love to have you join us.",
-    href: "/news",
-    icon: CalendarDays,
+      "Environmental responsibility is embedded across our operations, with practices focused on recycling, resource efficiency, regulatory compliance, and reducing environmental impact throughout our manufacturing and service activities.",
+    href: "/hse/environmental-management",
+    icon: Leaf,
   },
   {
-    title: "Spotlight",
+    title: "Monitoring, Audits & Compliance",
     description:
-      "Access practical knowledge and gain insight based on real experiences. Spotlight is the voice of ADGM, our community of business professionals.",
-    href: "/news",
-    icon: Award,
+      "Our HSE performance is continuously monitored through inspections, internal audits, and external assessments to ensure compliance, accountability, and effective risk management across all businesses.",
+    href: "/hse/monitoring-compliance",
+    icon: ClipboardCheck,
   },
   {
-    title: "Publications",
+    title: "Continuous Improvement & Commitment",
     description:
-      "Explore the full collection of our corporate publications, including relevant information of ADGM's framework and its innovative suite of services.",
-    href: "/news",
-    icon: BookOpen,
+      "We are committed to continuous HSE improvement through leadership oversight, training, incident review, and strengthened controls to ensure safe, sustainable, and responsible operations.",
+    href: "/hse/continuous-improvement",
+    icon: TrendingUp,
   },
 ];
 
