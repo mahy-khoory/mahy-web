@@ -9,8 +9,6 @@ import IndustryCard from './IndustryCard';
 import { companies } from '@/constants/companies';
 import CompanyCard from './CompanyCard';
 
-const tabs = ["Companies", "Industeries"];
-
 const industeries = [
     { label: "Trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210688/premium-home-appliance-store-interior-2026-01-05-05-10-44-utc_r9kuyw.jpg" },
     { label: "Manufacturing", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210649/factory-workers-operating-machinery-on-production-2026-01-09-10-18-36-utc_tsa0tc.jpg" },
@@ -21,7 +19,10 @@ const industeries = [
 ];
 const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
 
-function CompaniesList({ darkBg = false }) {
+function CompaniesList({ darkBg = false, industeriesFirst = true }) {
+
+    const tabs = [industeriesFirst ? "Industeries" : "Companies", industeriesFirst ? "Companies" : "Industeries"];
+
     // const [hoveredCards, setHoveredCards] = useState(0);
 
     // const handleCardHoverStart = useCallback(() => {
@@ -61,52 +62,17 @@ function CompaniesList({ darkBg = false }) {
                         >
                             <Companies companies={companies} />
                         </TabPanel> */}
-                            <TabPanel
-                                key="companies"
-                                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
-                                as={motion.div}
-                                initial={{ y: 10, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ once: false, margin: "-100px" }}
-                                transition={{ duration: 0.8, ease: "easeOut" }}
-                            >
-                                {companies.map((company, i) => (
-                                    <CompanyCard
-                                        key={i}
-                                        item={company}
-                                    // shouldPlay={shouldPlayVideos}
-                                    // onHoverStart={handleCardHoverStart}
-                                    // onHoverEnd={handleCardHoverEnd}
-                                    />
-                                ))}
-                            </TabPanel>
-                            <TabPanel
-                                key="industries"
-                                className="grid grid-cols-1 lg:grid-cols-2 gap-3"
-                                as={motion.div}
-                                initial={{ y: 10, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ once: false, margin: "-100px" }}
-                                transition={{ duration: 0.8, ease: "easeOut" }}
-                            >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    {industeries.map((industry, i) => (
-                                        <IndustryCard key={i} item={industry} />
-                                    ))}
-                                </div>
-                                <div className="relative h-120 md:h-full w-158">
-                                    <Image src="/gallery/gallery-9.jpeg" alt="Companies" fill />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
-                                    <div className='absolute bottom-7 left-7 text-gray-200'>
-                                        <div className='flex flex-wrap gap-3 mb-4'>
-                                            {moreIndusteries.map((item, i) => (
-                                                <Link href={"/"} key={i} className='bg-black/40 py-2 px-4 rounded-xl text-sm'>{item}</Link>
-                                            ))}
-                                        </div>
-                                        <Link href={"/"} className='border-b border-gray-200 pb-1'>Explore More</Link>
-                                    </div>
-                                </div>
-                            </TabPanel>
+                            {industeriesFirst ? (
+                                <>
+                                    <IndustriesTab key="industries" industeries={industeries} moreIndusteries={moreIndusteries} />
+                                    <CompaniesTab key="companies" companies={companies} />
+                                </>
+                            ) : (
+                                <>
+                                    <CompaniesTab key="companies" companies={companies} />
+                                    <IndustriesTab key="industries" industeries={industeries} moreIndusteries={moreIndusteries} />
+                                </>
+                            )}
                         </AnimatePresence>
                     </TabPanels>
                 </TabGroup>
@@ -114,6 +80,59 @@ function CompaniesList({ darkBg = false }) {
         </section>
     )
 };
+
+const CompaniesTab = ({ companies }) => (
+    <TabPanel
+        key="companies"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+        as={motion.div}
+        initial={{ y: 10, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: false, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+        {companies.map((company, i) => (
+            <CompanyCard
+                key={i}
+                item={company}
+            // shouldPlay={shouldPlayVideos}
+            // onHoverStart={handleCardHoverStart}
+            // onHoverEnd={handleCardHoverEnd}
+            />
+        ))}
+    </TabPanel>
+);
+
+const IndustriesTab = ({ industeries, moreIndusteries }) => (
+    <TabPanel
+        key="industries"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-3"
+        as={motion.div}
+        initial={{ y: 10, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: false, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {industeries.map((industry, i) => (
+                <IndustryCard key={i} item={industry} />
+            ))}
+        </div>
+        <div className="relative h-120 md:h-full w-158">
+            <Image src="/gallery/gallery-9.jpeg" alt="Companies" fill />
+            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
+            <div className='absolute bottom-7 left-7 text-gray-200'>
+                <div className='flex flex-wrap gap-3 mb-4'>
+                    {moreIndusteries.map((item, i) => (
+                        <Link href={"/"} key={i} className='bg-black/40 py-2 px-4 rounded-xl text-sm'>{item}</Link>
+                    ))}
+                </div>
+                <Link href={"/"} className='border-b border-gray-200 pb-1'>Explore More</Link>
+            </div>
+        </div>
+    </TabPanel>
+);
+
 
 const Companies = ({ companies }) => {
     const [currentIndex, setCurrentIndex] = useState(false);

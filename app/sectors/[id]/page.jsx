@@ -1,3 +1,4 @@
+import CompaniesSectors from "@/components/CompaniesSectors";
 import AnimatedLines from "@/components/UI/AnimatedLines";
 import CompaniesCard from "@/components/UI/companies/CompaniesCard";
 import PrimaryButton from "@/components/UI/PrimaryButton";
@@ -21,26 +22,7 @@ async function CompanySectorsPage({ params }) {
                 image={sector.image}
             />
             <section className="max-w-7xl mx-auto px-5 py-10 md:py-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-                    <div>
-                        <h2 className="text-4xl font-semibold">Leading the Way in <span className="md:block mt-2 t-base">Financial Innovation</span></h2>
-                        {/* <p className="text-gray-600 mt-10">We are dedicated to pushing the boundaries of financial technology. Our platform is continuously updated with the latest features and innovations to ensure that you always have access to cutting-edge tools.</p> */}
-                        <div className="space-y-6 mt-10">
-                            {sector.items.map((item, i) => (
-                                <div key={i} className="flex gap-3">
-                                    <div className="b-base rounded-full p-1 h-fit">
-                                        <Check size={13} color="white" />
-                                    </div>
-                                    <p className="text-sm text-gray-700">{item}</p>
-                                </div>
-                            ))}
-                        </div>
-                        <PrimaryButton label="Get Started" className={"mt-10"} />
-                    </div>
-                    <div className="relative h-full rounded-2xl overflow-hidden">
-                        <Image src={sector.image} alt={sector.title} fill style={{ objectFit: "cover" }} />
-                    </div>
-                </div>
+                <CompaniesSectors image={sector.image} title={sector.title} text1={sector.text1} text2={sector.text2} text3={sector.text3} items={sector.items} />
             </section>
             <section className="max-w-7xl mx-auto px-5 pb-10 md:pb-20">
                 <AnimatedLines />

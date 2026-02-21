@@ -12,11 +12,14 @@ export default function FloatingMenu({ floatingMenuItems }) {
   const sections = [
     { id: "home", label: floatingMenuItems[0], lightBg: false },
     { id: "who-we-are", label: floatingMenuItems[1], lightBg: true },
-    { id: "projects", label: floatingMenuItems[2], lightBg: false },
-    { id: "stats", label: floatingMenuItems[3], lightBg: true },
-    { id: "partners", label: floatingMenuItems[4], lightBg: false },
-    { id: "after-sales", label: floatingMenuItems[5], lightBg: true },
-    { id: "why-us", label: floatingMenuItems[6], lightBg: false },
+    { id: "companies", label: "Companies", lightBg: false },
+    { id: "projects", label: "Projects", lightBg: true },
+    { id: "stats", label: "Stats", lightBg: false },
+    { id: "awards", label: "Awards", lightBg: true },
+    { id: "newsroom", label: "Newsroom", lightBg: false },
+    { id: "partners", label: "Partners", lightBg: true },
+    { id: "after-sales", label: "After Sales", lightBg: false },
+    { id: "why-us", label: "Why Us", lightBg: true },
   ];
   const isActiveLightBg = sections.find((s) => s.id === active)?.lightBg;
 

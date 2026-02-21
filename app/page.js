@@ -134,7 +134,9 @@ export default async function Home() {
         <WhoWeAre image={"/gallery/gallery-1.jpg"} />
       </section>
 
-      <CompaniesList darkBg={true} />
+      <div id="companies">
+        <CompaniesList industeriesFirst={false} darkBg={true} />
+      </div>
 
       <section id="projects">
         <ProjectsSection />
@@ -144,8 +146,13 @@ export default async function Home() {
         <KeyStatsSection />
       </section>
 
-      <AwardsSection />
-      <NewsroomSection articles={articles} locale={locale} />
+      <div id="awards">
+        <AwardsSection />
+      </div>
+
+      <div id="newsroom">
+        <NewsroomSection articles={articles} locale={locale} />
+      </div>
 
       <section id="partners">
         <PartnersSection />

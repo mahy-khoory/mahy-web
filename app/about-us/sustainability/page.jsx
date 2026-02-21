@@ -22,12 +22,12 @@ function SustainabilityPage() {
                         fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="flex flex-col justify-center">
-                    <p className="font-semibold text-xl">Mahy Khoory</p>
-                    <p className="font-medium mt-2">A Global Leader in Integrated Information and Communication Technology Solutions</p>
-                    <p className="text-sm mt-2">Leveraging innovative technologies and product solutions, ZTE serves global telecom operators, government and enterprise customers, and consumers.
-                        Covering more than 160 countries and regions, ZTE enables connectivity for one-third of the world's population, and is committed to realizing a bright future with communication and trust everywhere.</p>
-                    <h2 className="mt-5 font-semibold">Our Mission</h2>
-                    <p className="text-sm mt-2">To create an intelligent future with digital innovation, excellent growth platform for employees, and greater value for customers, shareholders, and stakeholders across the globe.</p>
+                    {/* <p className="font-semibold text-xl">Mahy Khoory</p> */}
+                    <p className="font-semibold text-xl">Sustainability & Corporate Social Responsibility</p>
+                    <p className="text-sm mt-2">At MAHY Khoory Group, sustainability and corporate social responsibility are integral to how we conduct our business and plan for the future. As a diversified group operating across manufacturing, packaging, recycling, waste management, logistics, energy, automotive, hospitality, and service sectors, we recognize our responsibility to operate in a manner that protects the environment, supports communities, and creates long-term value for stakeholders.</p>
+                    <p className="text-sm mt-2">Our approach to sustainability is practical, embedded in operations, and aligned with responsible growth, regulatory compliance, and ethical business practices.</p>
+                    {/* <h2 className="mt-5 font-semibold">Our Mission</h2>
+                    <p className="text-sm mt-2">To create an intelligent future with digital innovation, excellent growth platform for employees, and greater value for customers, shareholders, and stakeholders across the globe.</p> */}
                 </div>
             </div>
             <RandD />
