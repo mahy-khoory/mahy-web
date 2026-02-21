@@ -4,7 +4,7 @@ import DesignProcessCard from "./DesignProcessCard"
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 
-function DesignProcess({ processes }) {
+function DesignProcess({ processes, space = "lg:space-y-10" }) {
     const locale = useLocale();
 
     const containerVariants = {
@@ -37,7 +37,7 @@ function DesignProcess({ processes }) {
                     className="object-cover"
                 />
             </motion.div>
-            <div className={`col-span-3 space-y-20 lg:space-y-10 relative w-screen lg:w-auto
+            <div className={`col-span-3 space-y-10 ${space} relative w-screen lg:w-auto
             ${locale === "ar" ? "lg:-right-50" : "lg:-left-50"}`}>
                 {processes.map((process, i) => (
                     <motion.div
