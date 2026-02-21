@@ -117,42 +117,90 @@ export function getNavigation(t) {
             title: t("BusinessSectors"),
             links: [
               {
-                label: t("Trading&Distribution"),
-                href: "/companies/trading",
+                label: "Containerboard Manufacturing",
+                href: "/companies/containerboard-manufacturing",
               },
               {
-                label: t("Engineering&TechnicalServices"),
-                href: "/companies/engineering-services",
+                label: "Trading & Distribution",
+                href: "/companies/trading-distribution",
               },
               {
-                label: t("Paper&CorrugatedManufacturing"),
-                href: "/companies/manufacturing",
+                label: "Waste Management",
+                href: "/companies/waste-management",
               },
               {
-                label: t("WasteCollection&EnvironmentalServices"),
-                href: "/companies/environmental-services",
+                label: "Industrial Packaging Solutions",
+                href: "/companies/industrial-packaging-solutions",
               },
               {
-                label: t("Transportation&Logistics"),
-                href: "/companies/logistics",
+                label: "Engineering & Technical Services",
+                href: "/companies/engineering-technical-services",
               },
               {
-                label: t("Automotive"),
+                label: "Automotive",
                 href: "/companies/automotive",
               },
               {
-                label: t("Energy&RenewableSolutions"),
-                href: "/companies/energy-solutions",
+                label: "Compressed Wood Blocks",
+                href: "/companies/compressed-wood-blocks",
               },
               {
-                label: t("Hospitality"),
+                label: "Energy & Sustainability Consulting",
+                href: "/companies/energy-sustainability-consulting",
+              },
+              {
+                label: "Solar & Renewable Energy",
+                href: "/companies/solar-renewable-energy",
+              },
+              {
+                label: "Transportation & Logistics",
+                href: "/companies/transportation-logistics",
+              },
+              {
+                label: "Hospitality",
                 href: "/companies/hospitality",
               },
               {
-                label: t("Food&Beverage"),
-                href: "/companies/food-beverage",
-              },
+                label: "Food & Beverage",
+                href: "/companies/food-and-beverage",
+              }
             ],
+            // {
+            //   label: t("Trading&Distribution"),
+            //   href: "/companies/trading",
+            // },
+            // {
+            //   label: t("Engineering&TechnicalServices"),
+            //   href: "/companies/engineering-services",
+            // },
+            // {
+            //   label: t("Paper&CorrugatedManufacturing"),
+            //   href: "/companies/manufacturing",
+            // },
+            // {
+            //   label: t("WasteCollection&EnvironmentalServices"),
+            //   href: "/companies/environmental-services",
+            // },
+            // {
+            //   label: t("Transportation&Logistics"),
+            //   href: "/companies/logistics",
+            // },
+            // {
+            //   label: t("Automotive"),
+            //   href: "/companies/automotive",
+            // },
+            // {
+            //   label: t("Energy&RenewableSolutions"),
+            //   href: "/companies/energy-solutions",
+            // },
+            // {
+            //   label: t("Hospitality"),
+            //   href: "/companies/hospitality",
+            // },
+            // {
+            //   label: t("Food&Beverage"),
+            //   href: "/companies/food-beverage",
+            // },
           },
           {
             title: t("Operations&Capabilities"),
@@ -499,7 +547,7 @@ export function getNavigation(t) {
             links: [
               { label: t("CustomerSupportOverview"), href: "/support" },
               // { label: t("ServiceRequest"), href: "/contact-us/service-request" },
-                            { label: t("ServiceRequest"), href: "/contact-us/schedule-service" },
+              { label: t("ServiceRequest"), href: "/contact-us/schedule-service" },
 
               { label: t("SiteVisitRequest"), href: "/contact-us/site-visit" },
               { label: t("CustomerComplaint"), href: "/contact-us/customer-complaint" },
