@@ -17,6 +17,9 @@ import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
 import { AnimatedField } from "@/components/form/AnimatedField";
 
+import { usePaymentTerms } from "@/lib/hooks/usePaymentTerms";
+import { useCurrencies } from "@/lib/hooks/useCurrencies";
+
 import { customerFormSchema } from "@/lib/customerFormSchema";
 import {
   CUSTOMER_TYPES,
@@ -42,6 +45,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "../card";
 import { Checkbox } from "../checkbox";
 import { Label } from "@/components/form/Label";
 import { Switch } from "@/components/form/Switch";
+import FormD365Lookup from "@/components/Lookup/FormD365Lookup";
+import { data } from "autoprefixer";
+import { useDeliveryTerms } from "@/lib/hooks/useDeliveryTerms";
+import { useTaxGroups } from "@/lib/hooks/useTaxGroups";
+import { useLineOfBusiness } from "@/lib/hooks/useLineOfBusiness";
+import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
+import { useZipCodes } from "@/lib/hooks/useZipCodes";
 
 // Page animation variants
 const pageVariants = {
@@ -71,6 +81,38 @@ const sectionVariants = {
 
 export default function CustomerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [openLookup, setOpenLookup] = useState(null);
+  const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
+    openLookup === "paymentTerms",
+  );
+
+  const { data: currencies = [], isLoading: currenciesLoading } = useCurrencies(
+    openLookup === "currencies",
+  );
+
+  const { data: deliveryTerms = [], isLoading : dlvTermsLoading} = useDeliveryTerms(
+    openLookup === "deliveryTerms",
+  )
+
+  const {data : taxGroups =[], isLoading : taxGroupsLoading} = useTaxGroups(
+    openLookup === "taxGroups",
+  )
+
+  const {data : lineOfBusiness = [], isLoading: lineOfBusinessLoading} = useLineOfBusiness(
+    openLookup === "lineOfBusiness"
+  )
+
+
+  const {data : dlvModes = [], isLoading: dlvModesLoading} = useDeliveryModes(
+    openLookup === "dlvModes"
+  )
+
+  const {data : zipCodes = [], isLoading: zipCodesLoading} = useZipCodes(
+    openLookup === "zipCodes"
+  )
+  
+
 
   const {
     register,
@@ -110,16 +152,17 @@ export default function CustomerRegistration() {
   const isOrganization = customerType === "organization";
   const isPerson = customerType === "individual";
   const isUAE = country === "UAE";
-  const showTrn = isOneTime ? trnType === "with_trn" : (isCredit && vatRegistered && isOrganization);
+  const showTrn = isOneTime
+    ? trnType === "with_trn"
+    : isCredit && vatRegistered && isOrganization;
 
-  // Reset customerType to organization when switching to OneTime with TRN
   useEffect(() => {
     if (isOneTime && isPerson && trnType === "with_trn") {
       setValue("customerType", "organization");
     }
   }, [isOneTime, isPerson, trnType, setValue]);
 
-  // Reset state when country changes
+  // state when country changes
   useEffect(() => {
     setValue("state", "");
   }, [country, setValue]);
@@ -147,10 +190,10 @@ export default function CustomerRegistration() {
     }
   };
 
-  // Customer type options based on classification and TRN type
-  const customerTypeOptions = (isOneTime && trnType === "with_trn")
-    ? [{ value: "organization", label: "Organization" }]
-    : [...CUSTOMER_TYPES];
+  const customerTypeOptions =
+    isOneTime && trnType === "with_trn"
+      ? [{ value: "organization", label: "Organization" }]
+      : [...CUSTOMER_TYPES];
 
   const stateOptions = getStatesForCountry(country);
 
@@ -203,6 +246,20 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
+                      {/* <FormD365Lookup
+                        name="paymentTerms"
+                        control={control}
+                        label="Terms of payment"
+                        required
+                        data={PAYMENT_TERMS}
+                        columns={[
+                          { key: "label", label: "Terms of payment" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        placeholder=""
+                        error={errors.paymentTerms?.message}
+                      /> */}
+
                       <Controller
                         name="customerType"
                         control={control}
@@ -235,7 +292,7 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
+                      {/* <Controller
                         name="currency"
                         control={control}
                         render={({ field }) => (
@@ -246,6 +303,21 @@ export default function CustomerRegistration() {
                             options={[...CURRENCIES]}
                           />
                         )}
+                      /> */}
+
+                      <FormD365Lookup
+                        name="currency"
+                        control={control}
+                        label="Curreny"
+                        required
+                        data={currencies}
+                        loading={currenciesLoading}
+                        onOpen={() => setOpenLookup("currencies")}
+                        columns={[
+                          { key: "label", label: "Currency" },
+                          { key: "description", label: "Symbol" },
+                        ]}
+                        error={errors.currencies?.message}
                       />
 
                       <AnimatedField show={isOneTime}>
@@ -461,7 +533,7 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
+                      {/* <Controller
                         name="paymentTerms"
                         control={control}
                         render={({ field }) => (
@@ -475,6 +547,21 @@ export default function CustomerRegistration() {
                             placeholder="Select..."
                           />
                         )}
+                      /> */}
+
+                      <FormD365Lookup
+                        name="paymentTerms"
+                        control={control}
+                        label="Terms of payment"
+                        required
+                        data={paymentTerms}
+                        loading={ptLoading}
+                        onOpen={() => setOpenLookup("paymentTerms")}
+                        columns={[
+                          { key: "label", label: "Terms of payment" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.paymentTerms?.message}
                       />
 
                       {/* Credit only: Holding Company toggle */}
@@ -491,12 +578,14 @@ export default function CustomerRegistration() {
                                 />
                               )}
                             />
-                            <Label className="font-normal">{holdingCompany ? "Yes" : "No"}</Label>
+                            <Label className="font-normal">
+                              {holdingCompany ? "Yes" : "No"}
+                            </Label>
                           </div>
                         </FormField>
                       </AnimatedField>
 
-                      <Controller
+                      {/* <Controller
                         name="deliveryTerms"
                         control={control}
                         render={({ field }) => (
@@ -510,6 +599,21 @@ export default function CustomerRegistration() {
                             placeholder="Select..."
                           />
                         )}
+                      /> */}
+
+                       <FormD365Lookup
+                        name="deliveryTerms"
+                        control={control}
+                        label="Delivery Terms"
+                        required
+                        data={deliveryTerms}
+                        loading={dlvTermsLoading}
+                        onOpen={() => setOpenLookup("deliveryTerms")}
+                        columns={[
+                          { key: "label", label: "Delivery Term" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.deliveryTerms?.message}
                       />
 
                       {/* Credit only: Company Chain */}
@@ -529,7 +633,7 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <Controller
+                      {/* <Controller
                         name="deliveryMode"
                         control={control}
                         render={({ field }) => (
@@ -543,6 +647,21 @@ export default function CustomerRegistration() {
                             placeholder="Select..."
                           />
                         )}
+                      /> */}
+
+                       <FormD365Lookup
+                        name="deliveryMode"
+                        control={control}
+                        label="Mode Of Delivery"
+                        required
+                        data={dlvModes}
+                        loading={dlvModesLoading}
+                        onOpen={() => setOpenLookup("dlvModes")}
+                        columns={[
+                          { key: "label", label: "Modes" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.dlvModes?.message}
                       />
 
                       {/* Credit only: VAT Registered toggle */}
@@ -559,12 +678,14 @@ export default function CustomerRegistration() {
                                 />
                               )}
                             />
-                            <Label className="font-normal">{vatRegistered ? "Yes" : "No"}</Label>
+                            <Label className="font-normal">
+                              {vatRegistered ? "Yes" : "No"}
+                            </Label>
                           </div>
                         </FormField>
                       </AnimatedField>
 
-                      <Controller
+                      {/* <Controller
                         name="salesTaxGroup"
                         control={control}
                         render={({ field }) => (
@@ -576,6 +697,21 @@ export default function CustomerRegistration() {
                             placeholder="Select..."
                           />
                         )}
+                      /> */}
+
+                         <FormD365Lookup
+                        name="taxGroups"
+                        control={control}
+                        label="Sales Tax Group"
+                        required
+                        data={taxGroups}
+                        loading={taxGroupsLoading}
+                        onOpen={() => setOpenLookup("taxGroups")}
+                        columns={[
+                          { key: "label", label: "Value" },
+                          { key: "description", label: "Name" },
+                        ]}
+                        error={errors.taxGroups?.message}
                       />
 
                       <Controller
@@ -592,7 +728,7 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
+                      {/* <Controller
                         name="sourceCode"
                         control={control}
                         render={({ field }) => (
@@ -604,9 +740,9 @@ export default function CustomerRegistration() {
                             placeholder="Select..."
                           />
                         )}
-                      />
+                      /> */}
 
-                      <Controller
+                      {/* <Controller
                         name="lineOfBusiness"
                         control={control}
                         render={({ field }) => (
@@ -618,6 +754,21 @@ export default function CustomerRegistration() {
                             placeholder="Select..."
                           />
                         )}
+                      /> */}
+
+                        <FormD365Lookup
+                        name="lineOfBusiness"
+                        control={control}
+                        label="Line Of Business"
+                        required
+                        data={lineOfBusiness}
+                        loading={lineOfBusinessLoading}
+                        onOpen={() => setOpenLookup("lineOfBusiness")}
+                        columns={[
+                          { key: "label", label: "Business" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.lineOfBusiness?.message}
                       />
 
                       <InputField
@@ -667,10 +818,25 @@ export default function CustomerRegistration() {
                         {...register("city")}
                       />
 
-                      <InputField
+                      {/* <InputField
                         label="ZIP/Postal Code"
                         type="number"
                         {...register("zipPostalCode")}
+                      /> */}
+
+                        <FormD365Lookup
+                        name="zipCodes"
+                        control={control}
+                        label="ZIP Codes"
+                        required
+                        data={zipCodes}
+                        loading={zipCodesLoading}
+                        onOpen={() => setOpenLookup("zipCodes")}
+                        columns={[
+                          { key: "label", label: "CODE" },
+                          { key: "description", label: "CITY" },
+                        ]}
+                        error={errors.zipCodes?.message}
                       />
 
                       <AnimatedField show={stateOptions.length > 0}>
@@ -721,7 +887,9 @@ export default function CustomerRegistration() {
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Contact Information">
                       <div className="col-span-full">
-                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">TELEPHONE</h3>
+                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">
+                          TELEPHONE
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <Controller
                             name="telCountryCode"
@@ -753,7 +921,9 @@ export default function CustomerRegistration() {
                       </div>
 
                       <div className="col-span-full">
-                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">MOBILE</h3>
+                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">
+                          MOBILE
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <Controller
                             name="mobileCountryCode"
@@ -778,10 +948,7 @@ export default function CustomerRegistration() {
                         </div>
                       </div>
 
-                      <InputField
-                        label="Fax"
-                        {...register("fax")}
-                      />
+                      <InputField label="Fax" {...register("fax")} />
 
                       <InputField
                         label="Email Address"
@@ -814,7 +981,11 @@ export default function CustomerRegistration() {
                     variants={sectionVariants}
                     className="space-y-6 border-t border-gray-300 pt-6"
                   >
-                    <FormField label="Terms and Conditions" required error={errors.consent?.message}>
+                    <FormField
+                      label="Terms and Conditions"
+                      required
+                      error={errors.consent?.message}
+                    >
                       <div className="flex items-start gap-2 mt-2">
                         <Controller
                           name="consent"
@@ -828,26 +999,28 @@ export default function CustomerRegistration() {
                             />
                           )}
                         />
-                        <Label htmlFor="consent" className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer">
-                          I confirm that all the information provided is accurate and complete. I agree to the terms and conditions of registration and understand that any false information may result in the rejection of this application.
+                        <Label
+                          htmlFor="consent"
+                          className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer"
+                        >
+                          I confirm that all the information provided is
+                          accurate and complete. I agree to the terms and
+                          conditions of registration and understand that any
+                          false information may result in the rejection of this
+                          application.
                         </Label>
                       </div>
                     </FormField>
 
-                    <motion.div variants={sectionVariants} className="flex justify-end pt-4">
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        bg={true}
-                      >
+                    <motion.div
+                      variants={sectionVariants}
+                      className="flex justify-end pt-4"
+                    >
+                      <Button type="submit" disabled={isSubmitting} bg={true}>
                         {isSubmitting ? (
-                          <>
-                            Submitting...
-                          </>
+                          <>Submitting...</>
                         ) : (
-                          <>
-                            Submit Registration
-                          </>
+                          <>Submit Registration</>
                         )}
                       </Button>
                     </motion.div>
