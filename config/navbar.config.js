@@ -266,6 +266,10 @@ export function getNavigation(t) {
                 href: "/products/chilled-water-pumps",
               },
               {
+                label: "Corrugated Paper Reels",
+                href: "/products/corrugated-paper-reels",
+              },
+              {
                 label: t("ARISTONWaterHeaters"),
                 href: "/products/ariston-water-heaters",
               },
