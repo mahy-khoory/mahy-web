@@ -13,7 +13,7 @@ const bgVariants = {
   exit: { opacity: 0, scale: 1, transition: { duration: 0.6 } },
 };
 
-const items = [
+const defaultItems = [
   {
     no: "01",
     title: "Plan development",
@@ -47,7 +47,10 @@ const items = [
   },
 ];
 
-export default function HoverableColumns() {
+export default function HoverableColumns({
+  title = " Grow client base for improved business standing",
+  items = defaultItems,
+}) {
   const [active, setActive] = useState(0);
 
   return (
@@ -88,15 +91,13 @@ export default function HoverableColumns() {
         {/* HEADER */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
           <h2 className="text-white text-[42px] md:text-[48px] leading-tight font-semibold max-w-xl">
-            Grow client base for
-            <br />
-            improved business standing
+            {title}
           </h2>
 
-          <p className="text-white/80 max-w-md leading-7 pt-2">
+          {/* <p className="text-white/80 max-w-md leading-7 pt-2">
             Lorem ipsum dolor sit amet consectetur. Vel odio netus vel sed.
             In integer magna ultricies ullamcorper et.
-          </p>
+          </p> */}
         </div>
 
         {/* COLUMNS */}

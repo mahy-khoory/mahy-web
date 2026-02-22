@@ -5,7 +5,7 @@ import { FaQuestion } from "react-icons/fa6";
 
 function WasteCollectionGrid({
     heading = "Faq Edge",
-    text1 = "Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better.",
+    text1,
     text2, text3, items = [], icon
 }) {
     if (items.length === 0) {
