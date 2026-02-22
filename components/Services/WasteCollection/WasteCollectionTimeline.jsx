@@ -1,29 +1,36 @@
 import Image from "next/image";
 
+const defaultItems = [
+    { title: "Research", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-1.jpg" },
+    { title: "Proposals", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-2.jpg" },
+    { title: "Develop", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-3.jpg" },
+    { title: "Support", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-4.jpg" }
+];
+
 function WasteCollectionTimeline({
     topSection = true,
+    heading = "This is our message to you",
+    text = "I say always follow your passion, no matter what, because even if it’s not the same financial success, it’ll lead you to the money that’ll make you the happiest.",
+    text2,
+    text3 = "Tom harderson",
+    text4 = "General Manager",
+    endHeading = "Don't wish it were easier",
+    endText = "Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better.",
     bottomSection = true,
-    items = []
+    items = defaultItems
 }) {
-    if (items.length === 0) {
-        items = [
-            { title: "Research", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-1.jpg" },
-            { title: "Proposals", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-2.jpg" },
-            { title: "Develop", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-3.jpg" },
-            { title: "Support", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum. Duis cursus, mi quis viverrau spendisse varius enim", image: "/gallery/gallery-4.jpg" }
-        ];
-    }
     return (
         <section className="max-w-5xl mx-auto px-5 py-10 md:py-20 relative">
             {topSection && (
                 <div className="relative z-10 border border-gray-300 rounded-2xl bg-white max-w-2xl mx-auto text-center px-8 py-10 mb-10 md:mb-20">
-                    <p className="text-lg md:text-2xl">I say always follow your passion, no matter what, because even if it’s not the same financial success, it’ll lead you to the money that’ll make you the happiest.</p>
+                    <p className="text-lg">{text}</p>
+                    {text2 && <p className="text-lg mt-4">{text2}</p>}
                     <div className="flex justify-center text-xs uppercase text-white mt-5">
-                        <p className="bg-[#2da5dc] px-3 py-1 rounded-l-2xl">Tom harderson</p>
-                        <p className="bg-[#79c4e7] px-3 py-1 rounded-r-2xl">General Manager</p>
+                        <p className="bg-[#2da5dc] px-3 py-1 rounded-l-2xl">{text3}</p>
+                        <p className="bg-[#79c4e7] px-3 py-1 rounded-r-2xl">{text4}</p>
                     </div>
                     <div className="absolute -top-3 left-0 right-0 flex justify-center">
-                        <p className="border border-gray-300 bg-white uppercase t-base text-sm px-3 py-1 rounded-2xl">This is our message to you</p>
+                        <p className="border border-gray-300 bg-white uppercase t-base text-sm px-3 py-1 rounded-2xl">{heading}</p>
                     </div>
                 </div>
             )}
@@ -50,9 +57,8 @@ function WasteCollectionTimeline({
                 <div className="relative z-10 b-base max-w-2xl mx-auto mt-10 md:mt-20 rounded-2xl overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-2">
                         <div className="px-10 py-14 md:py-18 text-white">
-                            <h2 className="uppercase font-semibold text-sm">View Our Features</h2>
-                            <p className="uppercase mt-3 text-2xl font-semibold">Hera Webflow Template is here!</p>
-                            <p className="text-sm mt-4">Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better.</p>
+                            <h2 className="uppercase font-semibold text-sm">{endHeading}</h2>
+                            <p className="text-sm mt-4">{endText}</p>
                         </div>
                         <div className="relative h-80 md:h-full">
                             <Image src={"/gallery/gallery-1.jpg"} alt="Waste Collection Timeline" fill style={{ objectFit: "cover" }} />
