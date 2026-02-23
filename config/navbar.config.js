@@ -163,6 +163,10 @@ export function getNavigation(t) {
               {
                 label: "Food & Beverage",
                 href: "/companies/food-and-beverage",
+              },
+              {
+                label: "Packaging Manufacturing & Sustainable Packaging Solutions",
+                href: "/companies/packaging-manufacturing-sustainable-packaging-solutions",
               }
             ],
             // {

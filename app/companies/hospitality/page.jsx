@@ -1,4 +1,5 @@
 import CompaniesSectors from "@/components/CompaniesSectors"
+import SolarPanelInstallationsGrid from "@/components/Services/SolarPanel/SolarPanelInstallationsGrid"
 
 function HospitalityPage() {
     return (
@@ -17,6 +18,7 @@ function HospitalityPage() {
                     ]}
                 />
             </section>
+            <SolarPanelInstallationsGrid />
         </main>
     )
 }

@@ -1,4 +1,5 @@
 import CompaniesSectors from "@/components/CompaniesSectors"
+import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuoteGrid"
 
 function EngineeringTechnicalServices() {
     return (
@@ -19,6 +20,7 @@ function EngineeringTechnicalServices() {
                     ]}
                 />
             </section>
+            <SolarPanelQuoteGrid />
         </main>
     )
 }
