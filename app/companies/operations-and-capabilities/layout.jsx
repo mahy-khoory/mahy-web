@@ -3,8 +3,8 @@ import OperationsAndCapabilitiesOverview from "@/components/UI/companies/operati
 export default async function OperationsAndCapabilitiesLayout({ children }) {
     return (
         <main>
-            <OperationsAndCapabilitiesOverview />
             {children}
+            <OperationsAndCapabilitiesOverview />
         </main>
     );
 }

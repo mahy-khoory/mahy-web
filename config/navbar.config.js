@@ -249,14 +249,20 @@ export function getNavigation(t) {
         linkType: "mega",
         columns: [
           {
-            title: t("Products"),
+            title: "Pumps & Water Systems",
             links: [
               {
                 label: t("PumpingSolutions"),
                 href: "/products/pumping-solutions",
               },
-              { label: t("BoosterPumps"), href: "/products/booster-pumps" },
-              { label: t("TransferPumps"), href: "/products/transfer-pumps" },
+              {
+                label: t("BoosterPumps"),
+                href: "/products/booster-pumps"
+              },
+              {
+                label: t("TransferPumps"),
+                href: "/products/transfer-pumps"
+              },
               {
                 label: t("SubmersiblePumps"),
                 href: "/products/submersible-pumps",
@@ -269,36 +275,112 @@ export function getNavigation(t) {
                 label: t("ChilledWaterPumps"),
                 href: "/products/chilled-water-pumps",
               },
-              {
-                label: "Corrugated Paper Reels",
-                href: "/products/corrugated-paper-reels",
-              },
+              // {
+              //   label: "Corrugated Paper Reels",
+              //   href: "/products/corrugated-paper-reels",
+              // },
               {
                 label: t("ARISTONWaterHeaters"),
                 href: "/products/ariston-water-heaters",
               },
               {
-                label: t("GlobalWaterSolutionsPressureTanks"),
+                label: "Pressure Tanks",
                 href: "/products/global-water-pressure-tanks",
               },
+              // {
+              //   label: t("DX&VRFAirConditioningSystems"),
+              //   href: "/products/dx-vrf-air-conditioning",
+              // },
+              // {
+              //   label: t("AKAS&RYNEVentilationFans"),
+              //   href: "/products/akas-ryne-ventilation-fans",
+              // },
+              // {
+              //   label: t("ECOLINKLEDBulbs&LightingProducts"),
+              //   href: "/products/ecolink-led-bulbs-lighting",
+              // },
+              // {
+              //   label: t("DEWALTPowerTools&SafetyShoes"),
+              //   href: "/products/dewalt",
+              // },
+              // {
+              //   label: t("VINZORAluminumLadders"),
+              //   href: "/products/vinzor-aluminum-ladders",
+              // },
+              // {
+              //   label: t("CorrugatedBoxes"),
+              //   href: "/products/corrugated-boxes",
+              // },
+              // {
+              //   label: t("PlasticJerryCans"),
+              //   href: "/products/plastic-jerry-cans",
+              // },
+              // { label: t("PalletBlocks"), href: "/products/pallet-blocks" },
+              // {
+              //   label: t("PremiumWoodenPallets"),
+              //   href: "/products/premium-wooden-pallets",
+              // },
+            ],
+          },
+          {
+            title: "HVAC & Air Solutions",
+            links: [
               {
                 label: t("DX&VRFAirConditioningSystems"),
                 href: "/products/dx-vrf-air-conditioning",
               },
               {
-                label: t("AKAS&RYNEVentilationFans"),
+                label: "Ventilation Fans",
                 href: "/products/akas-ryne-ventilation-fans",
               },
               {
-                label: t("ECOLINKLEDBulbs&LightingProducts"),
-                href: "/products/ecolink-led-bulbs-lighting",
+                label: t("AirConditioningServices"),
+                href: "/services/air-conditioning-services",
               },
               {
-                label: t("DEWALTPowerTools&SafetyShoes"),
+                label: t("ComprehensivePumpingSystem&HVACServices"),
+                href: "/services/comprehensive-pumping-system-hvac-services",
+              },
+              // {
+              //   label: t("Engineering&TechnicalServices"),
+              //   href: "/services/engineering-technical-services",
+              // },
+              // {
+              //   label: t("PumpingSystemServices"),
+              //   href: "/services/pumping-system-services",
+              // },
+              // {
+              //   label: t("AnnualMaintenanceContracts"),
+              //   href: "/services/annual-maintenance-contracts",
+              // },
+              // {
+              //   label: t("SolarPanelInstallation&O&MServices"),
+              //   href: "/services/solar-panel-installation",
+              // },
+              // {
+              //   label: t("WasteCollection&RecyclingServices"),
+              //   href: "/services/waste-collection-recycling",
+              // },
+              // {
+              //   label: t("ServicedHotelApartments"),
+              //   href: "/services/serviced-hotel-apartments",
+              // },
+
+            ],
+          },
+          {
+            title: "Industrial & Building Products",
+            links: [
+              {
+                label: "LED Lighting Products",
+                href: "/products/led-lighting-products",
+              },
+              {
+                label: "Power Tools & Safety Shoes",
                 href: "/products/dewalt",
               },
               {
-                label: t("VINZORAluminumLadders"),
+                label: "Aluminum Ladders",
                 href: "/products/vinzor-aluminum-ladders",
               },
               {
@@ -309,23 +391,38 @@ export function getNavigation(t) {
                 label: t("PlasticJerryCans"),
                 href: "/products/plastic-jerry-cans",
               },
-              { label: t("PalletBlocks"), href: "/products/pallet-blocks" },
+              {
+                label: t("PalletBlocks"),
+                href: "/products/pallet-blocks"
+              },
               {
                 label: t("PremiumWoodenPallets"),
                 href: "/products/premium-wooden-pallets",
               },
-            ],
+              // {
+              //   label: t("DX&VRFAirConditioningSystems"),
+              //   href: "/products/dx-vrf-air-conditioning",
+              // },
+              // {
+              //   label: "Ventilation Fans",
+              //   href: "/products/akas-ryne-ventilation-fans",
+              // },
+              // {
+              //   label: t("AirConditioningServices"),
+              //   href: "/services/air-conditioning-services",
+              // },
+              // {
+              //   label: t("ComprehensivePumpingSystem&HVACServices"),
+              //   href: "/services/comprehensive-pumping-system-hvac-services",
+              // },
+            ]
           },
           {
-            title: t("Services"),
+            title: "Services & Solutions",
             links: [
               {
                 label: t("Engineering&TechnicalServices"),
-                href: "/services/engineering-technical-services",
-              },
-              {
-                label: t("ComprehensivePumpingSystem&HVACServices"),
-                href: "/services/comprehensive-pumping-system-hvac-services",
+                href: "/companies/engineering-services",
               },
               {
                 label: t("PumpingSystemServices"),
@@ -334,10 +431,6 @@ export function getNavigation(t) {
               {
                 label: t("AnnualMaintenanceContracts"),
                 href: "/services/annual-maintenance-contracts",
-              },
-              {
-                label: t("AirConditioningServices"),
-                href: "/services/air-conditioning-services",
               },
               {
                 label: t("SolarPanelInstallation&O&MServices"),
@@ -359,8 +452,8 @@ export function getNavigation(t) {
                 label: t("KitchenDesigningSolutions"),
                 href: "/services/kitchen-designing-solutions",
               },
-            ],
-          },
+            ]
+          }
         ],
       },
       {
