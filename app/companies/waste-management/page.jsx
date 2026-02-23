@@ -6,7 +6,7 @@ function WasteManagementPage() {
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
                     image={"/gallery/gallery-1.jpg"}
-                    title={"Transportation & Logistics"}
+                    title={"Waste Management"}
                     texts={[
                         "This sector delivers comprehensive waste management and environmental services across multiple waste streams.",
                         "The Waste Management, Recycling & Environmental Services sector provides municipal, commercial, industrial, recyclable, and hazardous waste management services across the UAE and Oman.",
