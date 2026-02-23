@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Building2 } from "lucide-react";
 import { motion } from "framer-motion";
-
 import { FormSection } from "@/components/form/FormSection";
 import { InputField } from "@/components/form/InputField";
 import { SelectField } from "@/components/form/SelectField";
@@ -16,26 +15,17 @@ import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
 import { AnimatedField } from "@/components/form/AnimatedField";
-
 import { usePaymentTerms } from "@/lib/hooks/usePaymentTerms";
 import { useCurrencies } from "@/lib/hooks/useCurrencies";
-
 import { customerFormSchema } from "@/lib/customerFormSchema";
+
 import {
   CUSTOMER_TYPES,
   CUSTOMER_CLASSIFICATION_GROUPS,
-  CURRENCIES,
-  VAT_TYPES,
-  PAYMENT_TERMS,
   PAYMENT_METHODS,
-  DELIVERY_TERMS,
-  DELIVERY_MODES,
   COUNTRIES,
   COUNTRY_CODES,
-  SALES_TAX_GROUPS,
-  SOURCE_CODES,
-  LINE_OF_BUSINESS,
-  SEGMENTS,
+  VAT_TYPES,
   SUBSEGMENTS,
   ADDRESS_BOOKS,
   getStatesForCountry,
@@ -46,12 +36,12 @@ import { Checkbox } from "../checkbox";
 import { Label } from "@/components/form/Label";
 import { Switch } from "@/components/form/Switch";
 import FormD365Lookup from "@/components/Lookup/FormD365Lookup";
-import { data } from "autoprefixer";
 import { useDeliveryTerms } from "@/lib/hooks/useDeliveryTerms";
 import { useTaxGroups } from "@/lib/hooks/useTaxGroups";
 import { useLineOfBusiness } from "@/lib/hooks/useLineOfBusiness";
 import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
 import { useZipCodes } from "@/lib/hooks/useZipCodes";
+import { useCreateCustomer } from "@/lib/hooks/useCreateCustomer";
 
 // Page animation variants
 const pageVariants = {
@@ -81,6 +71,7 @@ const sectionVariants = {
 
 export default function CustomerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const createCustomerMutation = useCreateCustomer();
 
   const [openLookup, setOpenLookup] = useState(null);
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
@@ -91,28 +82,23 @@ export default function CustomerRegistration() {
     openLookup === "currencies",
   );
 
-  const { data: deliveryTerms = [], isLoading : dlvTermsLoading} = useDeliveryTerms(
-    openLookup === "deliveryTerms",
-  )
+  const { data: deliveryTerms = [], isLoading: dlvTermsLoading } =
+    useDeliveryTerms(openLookup === "deliveryTerms");
 
-  const {data : taxGroups =[], isLoading : taxGroupsLoading} = useTaxGroups(
+  const { data: taxGroups = [], isLoading: taxGroupsLoading } = useTaxGroups(
     openLookup === "taxGroups",
-  )
+  );
 
-  const {data : lineOfBusiness = [], isLoading: lineOfBusinessLoading} = useLineOfBusiness(
-    openLookup === "lineOfBusiness"
-  )
+  const { data: lineOfBusiness = [], isLoading: lineOfBusinessLoading } =
+    useLineOfBusiness(openLookup === "lineOfBusiness");
 
+  const { data: dlvModes = [], isLoading: dlvModesLoading } = useDeliveryModes(
+    openLookup === "dlvModes",
+  );
 
-  const {data : dlvModes = [], isLoading: dlvModesLoading} = useDeliveryModes(
-    openLookup === "dlvModes"
-  )
-
-  const {data : zipCodes = [], isLoading: zipCodesLoading} = useZipCodes(
-    openLookup === "zipCodes"
-  )
-  
-
+  const { data: zipCodes = [], isLoading: zipCodesLoading } = useZipCodes(
+    openLookup === "zipCodes",
+  );
 
   const {
     register,
@@ -167,28 +153,111 @@ export default function CustomerRegistration() {
     setValue("state", "");
   }, [country, setValue]);
 
-  const onSubmit = async (data) => {
+  const normalizeFiles = (val) => {
+    if (!val) return [];
+    if (val instanceof FileList) return Array.from(val);
+    if (val instanceof File) return [val];
+
+    if (Array.isArray(val)) {
+      return val
+        .map((x) => {
+          if (x instanceof File) return x;
+          if (x?.file instanceof File) return x.file;
+          if (x?.raw instanceof File) return x.raw;
+          if (x?.originFileObj instanceof File) return x.originFileObj;
+          return null;
+        })
+        .filter(Boolean);
+    }
+
+    if (val?.file instanceof File) return [val.file];
+    if (val?.raw instanceof File) return [val.raw];
+    if (val?.originFileObj instanceof File) return [val.originFileObj];
+
+    return [];
+  };
+
+  const onSubmit = async (values) => {
     setIsSubmitting(true);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Form submitted:", data);
-      toast.success("Registration submitted successfully!", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+      const formData = new FormData();
+
+
+      Object.entries(values).forEach(([key, value]) => {
+        if (
+          value === undefined ||
+          value === null ||
+          value === "" ||
+          key.endsWith("File") 
+        ) {
+          return;
+        }
+
+        if (value instanceof Date) {
+          formData.append(key, value.toISOString());
+        } else if (typeof value === "boolean") {
+          formData.append(key, value ? "true" : "false");
+        } else {
+          formData.append(key, String(value));
+        }
       });
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.", {
-        position: "top-right",
-        autoClose: 4000,
-      });
+
+   
+      normalizeFiles(values.tradeLicenseFile).forEach((file) =>
+        formData.append("files", file),
+      );
+
+  
+      normalizeFiles(values.emiratesIdFile).forEach((file) =>
+        formData.append("files", file),
+      );
+
+
+      normalizeFiles(values.passportFile).forEach((file) =>
+        formData.append("files", file),
+      );
+
+
+
+      console.log("Customer form payload:");
+      for (const pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+
+      await createCustomerMutation.mutateAsync(formData);
+
+      toast.success("Customer registered successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to register customer");
     } finally {
       setIsSubmitting(false);
     }
   };
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true);
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 1500));
+  //     console.log("Form submitted:", data);
+  //     toast.success("Registration submitted successfully!", {
+  //       position: "top-right",
+  //       autoClose: 4000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //   } catch (error) {
+  //     toast.error("Something went wrong. Please try again.", {
+  //       position: "top-right",
+  //       autoClose: 4000,
+  //     });
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   const customerTypeOptions =
     isOneTime && trnType === "with_trn"
@@ -246,20 +315,6 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      {/* <FormD365Lookup
-                        name="paymentTerms"
-                        control={control}
-                        label="Terms of payment"
-                        required
-                        data={PAYMENT_TERMS}
-                        columns={[
-                          { key: "label", label: "Terms of payment" },
-                          { key: "description", label: "Description" },
-                        ]}
-                        placeholder=""
-                        error={errors.paymentTerms?.message}
-                      /> */}
-
                       <Controller
                         name="customerType"
                         control={control}
@@ -279,6 +334,15 @@ export default function CustomerRegistration() {
                         {...register("customerGroup")}
                       />
 
+                      <AnimatedField>
+                        <InputField
+                          label="Customer Account"
+                          // required={isCredit && isOrganization}
+                          // error={errors.customerAccount?.message}
+                          {...register("customerAccount")}
+                        />
+                      </AnimatedField>
+
                       <Controller
                         name="classificationGroup"
                         control={control}
@@ -291,19 +355,6 @@ export default function CustomerRegistration() {
                           />
                         )}
                       />
-
-                      {/* <Controller
-                        name="currency"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Currency"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={[...CURRENCIES]}
-                          />
-                        )}
-                      /> */}
 
                       <FormD365Lookup
                         name="currency"
@@ -533,22 +584,6 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      {/* <Controller
-                        name="paymentTerms"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Terms of Payment"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={[...PAYMENT_TERMS]}
-                            required
-                            error={errors.paymentTerms?.message}
-                            placeholder="Select..."
-                          />
-                        )}
-                      /> */}
-
                       <FormD365Lookup
                         name="paymentTerms"
                         control={control}
@@ -585,23 +620,7 @@ export default function CustomerRegistration() {
                         </FormField>
                       </AnimatedField>
 
-                      {/* <Controller
-                        name="deliveryTerms"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Delivery Terms"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...DELIVERY_TERMS]}
-                            required
-                            error={errors.deliveryTerms?.message}
-                            placeholder="Select..."
-                          />
-                        )}
-                      /> */}
-
-                       <FormD365Lookup
+                      <FormD365Lookup
                         name="deliveryTerms"
                         control={control}
                         label="Delivery Terms"
@@ -633,23 +652,7 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      {/* <Controller
-                        name="deliveryMode"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Mode of Delivery"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...DELIVERY_MODES]}
-                            required
-                            error={errors.deliveryMode?.message}
-                            placeholder="Select..."
-                          />
-                        )}
-                      /> */}
-
-                       <FormD365Lookup
+                      <FormD365Lookup
                         name="deliveryMode"
                         control={control}
                         label="Mode Of Delivery"
@@ -685,22 +688,8 @@ export default function CustomerRegistration() {
                         </FormField>
                       </AnimatedField>
 
-                      {/* <Controller
+                      <FormD365Lookup
                         name="salesTaxGroup"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Sales Tax Group"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SALES_TAX_GROUPS]}
-                            placeholder="Select..."
-                          />
-                        )}
-                      /> */}
-
-                         <FormD365Lookup
-                        name="taxGroups"
                         control={control}
                         label="Sales Tax Group"
                         required
@@ -711,7 +700,7 @@ export default function CustomerRegistration() {
                           { key: "label", label: "Value" },
                           { key: "description", label: "Name" },
                         ]}
-                        error={errors.taxGroups?.message}
+                        error={errors.salesTaxGroup?.message}
                       />
 
                       <Controller
@@ -728,35 +717,7 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      {/* <Controller
-                        name="sourceCode"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Source Code"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SOURCE_CODES]}
-                            placeholder="Select..."
-                          />
-                        )}
-                      /> */}
-
-                      {/* <Controller
-                        name="lineOfBusiness"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Line of Business"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...LINE_OF_BUSINESS]}
-                            placeholder="Select..."
-                          />
-                        )}
-                      /> */}
-
-                        <FormD365Lookup
+                      <FormD365Lookup
                         name="lineOfBusiness"
                         control={control}
                         label="Line Of Business"
@@ -818,14 +779,8 @@ export default function CustomerRegistration() {
                         {...register("city")}
                       />
 
-                      {/* <InputField
-                        label="ZIP/Postal Code"
-                        type="number"
-                        {...register("zipPostalCode")}
-                      /> */}
-
-                        <FormD365Lookup
-                        name="zipCodes"
+                      <FormD365Lookup
+                        name="zipPostalCode"
                         control={control}
                         label="ZIP Codes"
                         required
@@ -836,7 +791,7 @@ export default function CustomerRegistration() {
                           { key: "label", label: "CODE" },
                           { key: "description", label: "CITY" },
                         ]}
-                        error={errors.zipCodes?.message}
+                        error={errors.zipPostalCode?.message}
                       />
 
                       <AnimatedField show={stateOptions.length > 0}>
