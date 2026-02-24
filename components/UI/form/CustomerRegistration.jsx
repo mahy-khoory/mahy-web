@@ -23,6 +23,7 @@ import {
   CUSTOMER_TYPES,
   CUSTOMER_CLASSIFICATION_GROUPS,
   PAYMENT_METHODS,
+  NAME_PREFIXES,
   COUNTRIES,
   COUNTRY_CODES,
   VAT_TYPES,
@@ -182,13 +183,12 @@ export default function CustomerRegistration() {
     try {
       const formData = new FormData();
 
-
       Object.entries(values).forEach(([key, value]) => {
         if (
           value === undefined ||
           value === null ||
           value === "" ||
-          key.endsWith("File") 
+          key.endsWith("File")
         ) {
           return;
         }
@@ -202,28 +202,22 @@ export default function CustomerRegistration() {
         }
       });
 
-   
       normalizeFiles(values.tradeLicenseFile).forEach((file) =>
         formData.append("files", file),
       );
 
-  
       normalizeFiles(values.emiratesIdFile).forEach((file) =>
         formData.append("files", file),
       );
-
 
       normalizeFiles(values.passportFile).forEach((file) =>
         formData.append("files", file),
       );
 
-
-
       console.log("Customer form payload:");
       for (const pair of formData.entries()) {
         console.log(pair[0], pair[1]);
       }
-
 
       await createCustomerMutation.mutateAsync(formData);
 
@@ -444,15 +438,6 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <AnimatedField show={isPerson && isCredit}>
-                        <InputField
-                          label="Full Name"
-                          required
-                          error={errors.fullName?.message}
-                          {...register("fullName")}
-                        />
-                      </AnimatedField>
-
                       {/* Person UAE - Emirates ID */}
                       <AnimatedField show={isPerson && isCredit && isUAE}>
                         <InputField
@@ -517,6 +502,53 @@ export default function CustomerRegistration() {
                           required
                           error={errors.passportNumber?.message}
                           {...register("passportNumber")}
+                        />
+                      </AnimatedField>
+
+                      <AnimatedField show={isPerson && isCredit}>
+                        {/* <InputField
+                          label="Full Name"
+                          required
+                          error={errors.fullName?.message}
+                          {...register("fullName")}
+                        /> */}
+
+                        <InputField
+                          label="First name"
+                          required
+                          error={errors.firstName?.message}
+                          {...register("firstName")}
+                        />
+
+                        <InputField
+                          label="Middle name"
+                          error={errors.middleName?.message}
+                          {...register("middleName")}
+                        />
+                      </AnimatedField>
+
+                      <AnimatedField show={isPerson && isCredit}>
+                        <Controller
+                          name="lastNamePrefix"
+                          control={control}
+                          render={({ field }) => (
+                            <SelectField
+                              label="Title"
+                              value={field.value || ""}
+                              onChange={field.onChange}
+                              options={[...NAME_PREFIXES]} // Mr / Ms / Mrs / Dr etc.
+                              required
+                              error={errors.lastNamePrefix?.message}
+                              placeholder="Select..."
+                            />
+                          )}
+                        />
+
+                        <InputField
+                          label="Last name"
+                          required
+                          error={errors.lastName?.message}
+                          {...register("lastName")}
                         />
                       </AnimatedField>
 
