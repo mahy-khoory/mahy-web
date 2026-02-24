@@ -134,7 +134,7 @@ function ServiceCard({ item }) {
 
 export default function ServicesSection({
   title = "What Services do we provide",
-  subtitle = "This title emphasizes the trust and reliability your company brings to the table. It positions your team as trusted advisors who provide valuable guidance.",
+  subtitle,
   items = defaultItems,
 }) {
   return (
@@ -152,19 +152,21 @@ export default function ServicesSection({
             {title}
           </motion.h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.05,
-            }}
-            className="mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-500"
-          >
-            {subtitle}
-          </motion.p>
+          {subtitle && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.05,
+              }}
+              className="mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-500"
+            >
+              {subtitle}
+            </motion.p>
+          )}
         </div>
 
         {/* Cards */}

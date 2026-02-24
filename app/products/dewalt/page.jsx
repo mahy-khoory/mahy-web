@@ -29,7 +29,7 @@ function Dewalt() {
     return (
         <main>
             <SubPageHeading
-                title={"Dewalt"}
+                title={"DEWALT Power Tools & Safety Shoes"}
                 description={""}
                 description2={""}
                 image={"/gallery/gallery-4.jpg"}
