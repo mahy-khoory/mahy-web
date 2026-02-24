@@ -4,9 +4,9 @@ import Image from "next/image";
 
 function SolarPanelImageGrid({
     heading = "Insights for Growth",
-    subHeading = "Comprehensive Strategies For Realizing Your Vision",
+    subHeading,
     bulletItems,
-    text = "Consectetur scelerisque nec luctus placerat ipsum ornare risus dignissim Elit ultricies risus aliquet quis lacus gravida text dapibus eget",
+    text,
     items = [
         { title: "Achieving Business Goals Together", text: "At et et ipsum sit posuere facilisis. Commodo mattis nunc venenatis malesuada posuere at vel. Feugiat nunc eget purus molestie nisi." },
         { title: "Data-Driven Strategies For Success", text: "At et et ipsum sit posuere facilisis. Commodo mattis nunc venenatis malesuada posuere at vel. Feugiat nunc eget purus molestie nisi." }
@@ -18,7 +18,9 @@ function SolarPanelImageGrid({
                 <div className="md:col-span-3 py-8 md:py-10 max-w-xl">
                     <div className="text-center md:text-start">
                         <h2 className="uppercase font-semibold tracking-wide">{heading}</h2>
-                        <p className="text-2xl md:text-4xl font-semibold mt-3 md:mt-4">{subHeading}</p>
+                        {subHeading && (
+                            <p className="text-2xl md:text-4xl font-semibold mt-3 md:mt-4">{subHeading}</p>
+                        )}
                         {bulletItems && (
                             <ul className="mt-6 list-disc list-inside space-y-1.5 text-sm">
                                 {bulletItems.map((item, i) => (
@@ -26,7 +28,9 @@ function SolarPanelImageGrid({
                                 ))}
                             </ul>
                         )}
-                        <p className="text-gray-700 mt-4 md:mt-5 mb-4 md:mb-2 text-sm md:text-md">{text}</p>
+                        {text && (
+                            <p className="text-gray-700 mt-4 md:mt-5 mb-4 md:mb-2 text-sm md:text-md">{text}</p>
+                        )}
                     </div>
                     {items.map((item, i) => (
                         <div key={i} className={`${i > 0 && "border-t border-gray-400"} py-5 md:py-8`}>

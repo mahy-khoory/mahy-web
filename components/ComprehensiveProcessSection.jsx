@@ -9,30 +9,33 @@ import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-  {
-    title: "Market research",
-    desc:
-      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
-  },
-  {
-    title: "Business consulting",
-    desc:
-      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
-  },
-  {
-    title: "Finance strategy",
-    desc:
-      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
-  },
-  {
-    title: "Business planning",
-    desc:
-      "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
-  },
-];
-
-export default function ComprehensiveProcessSection() {
+export default function ComprehensiveProcessSection({
+  subHeading = "Our process",
+  heading = "A simple yet powerful and efficient process",
+  steps = [
+    {
+      title: "Market research",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    },
+    {
+      title: "Business consulting",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    },
+    {
+      title: "Finance strategy",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    },
+    {
+      title: "Business planning",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur. Id purus enim diam felis. Pharetra ut posuere sem vitae dui nec velit.",
+    },
+  ],
+  endText
+}) {
   const sectionRef = useRef(null);
   const lineRef = useRef(null);
 
@@ -73,10 +76,10 @@ export default function ComprehensiveProcessSection() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <p className="text-xs tracking-widest uppercase text-indigo-600 font-semibold mb-3">
-            Our process
+            {subHeading}
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold text-[#0F1F3E] leading-tight">
-            A simple yet powerful and <br /> efficient process
+            {heading}
           </h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-20">
@@ -95,42 +98,52 @@ export default function ComprehensiveProcessSection() {
               className="object-cover w-full h-full"
             />
           </motion.div>
-          <div className="relative">
-            <div className="absolute left-[18px] top-0 bottom-0 w-px bg-indigo-200">
-              <div
-                ref={lineRef}
-                className="absolute top-0 left-0 w-px h-full bg-indigo-600"
-              />
-            </div>
+          <div>
+            <div className="relative">
+              <div className="absolute left-[18px] top-0 bottom-0 w-px bg-indigo-200">
+                <div
+                  ref={lineRef}
+                  className="absolute top-0 left-0 w-px h-full bg-indigo-600"
+                />
+              </div>
 
-            <div className="space-y-16">
-              {steps.map((step, i) => (
-                <div key={i} className="relative flex gap-10">
-                  <div className="relative z-10">
-                    <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center">
-                      <div className="w-3 h-3 bg-white rounded-full" />
+              <div className="space-y-16">
+                {steps.map((step, i) => (
+                  <div key={i} className="relative flex gap-10">
+                    <div className="relative z-10">
+                      <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center">
+                        <div className="w-3 h-3 bg-white rounded-full" />
+                      </div>
                     </div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      viewport={{ once: true }}
+                      className="pt-1"
+                    >
+                      <h3 className="text-xl font-semibold text-[#0F1F3E]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 text-gray-600 leading-relaxed max-w-lg">
+                        {step.desc}
+                      </p>
+                    </motion.div>
                   </div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    viewport={{ once: true }}
-                    className="pt-1"
-                  >
-                    <h3 className="text-xl font-semibold text-[#0F1F3E]">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 text-gray-600 leading-relaxed max-w-lg">
-                      {step.desc}
-                    </p>
-                    <button className="mt-4 text-sm font-semibold text-red-500 hover:underline">
-                      Read more →
-                    </button>
-                  </motion.div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            {endText && (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="mt-8 text-gray-700"
+              >
+                {endText}
+              </motion.p>
+            )}
           </div>
         </div>
       </div>
