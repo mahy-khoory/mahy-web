@@ -513,7 +513,7 @@ export default function CustomerRegistration() {
                           {...register("fullName")}
                         /> */}
 
-                        <InputField
+                         <InputField
                           label="First name"
                           required
                           error={errors.firstName?.message}
@@ -524,7 +524,7 @@ export default function CustomerRegistration() {
                           label="Middle name"
                           error={errors.middleName?.message}
                           {...register("middleName")}
-                        />
+                        /> 
                       </AnimatedField>
 
                       <AnimatedField show={isPerson && isCredit}>
