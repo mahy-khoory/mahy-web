@@ -43,7 +43,6 @@ import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
 import { useZipCodes } from "@/lib/hooks/useZipCodes";
 import { useCreateCustomer } from "@/lib/hooks/useCreateCustomer";
 
-// Page animation variants
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
