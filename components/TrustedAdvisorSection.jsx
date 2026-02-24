@@ -9,23 +9,37 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 
-export default function TrustedAdvisorSection() {
+export default function TrustedAdvisorSection({
+  heading = "A business advisor you can trust",
+  texts,
+  bulletsTitle,
+  bullets,
+  lastText = "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et magna."
+}) {
   return (
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* LEFT CONTENT */}
           <div>
-            <h2 className="text-[42px] md:text-[56px] leading-tight font-bold text-[#0B1320]">
-              A business <br /> advisor you <br /> can trust
-            </h2>
+            <h2 className="text-[42px] md:text-[50px] leading-tight font-bold text-[#0B1320]">{heading}</h2>
+            {texts && texts.map((text, i) => (
+              <p key={i} className="text-gray-600 mt-6">{text}</p>
+            ))}
+            {bulletsTitle && (
+              <h3 className="leading-tight font-bold text-[#0B1320] mt-6">{bulletsTitle}</h3>
+            )}
+            {bullets && (
+              <ul className="mt-4 list-disc pl-5 mb-4 space-y-2">
+                {bullets.map((textItem, j) => (
+                  <li key={j} className="text-gray-600">{textItem}</li>
+                ))}
+              </ul>
+            )}
 
-            <p className="mt-6 max-w-md text-gray-600 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-              eiusmod tempor incididunt ut labore et magna.
-            </p>
+            <p className="mt-6 max-w-md text-gray-600">{lastText}</p>
 
-            <div className="mt-10 flex items-center gap-6">
+            {/* <div className="mt-10 flex items-center gap-6">
               <span className="uppercase text-sm tracking-widest font-semibold text-[#0B1320]">
                 Follow me
               </span>
@@ -35,7 +49,7 @@ export default function TrustedAdvisorSection() {
                 <FaInstagram className="cursor-pointer hover:opacity-70 transition" />
                 <FaLinkedinIn className="cursor-pointer hover:opacity-70 transition" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT GRID */}

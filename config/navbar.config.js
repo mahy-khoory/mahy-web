@@ -275,10 +275,6 @@ export function getNavigation(t) {
                 label: t("ChilledWaterPumps"),
                 href: "/products/chilled-water-pumps",
               },
-              // {
-              //   label: "Corrugated Paper Reels",
-              //   href: "/products/corrugated-paper-reels",
-              // },
               {
                 label: t("ARISTONWaterHeaters"),
                 href: "/products/ariston-water-heaters",
@@ -399,6 +395,10 @@ export function getNavigation(t) {
                 label: t("PremiumWoodenPallets"),
                 href: "/products/premium-wooden-pallets",
               },
+              {
+                label: "Corrugated Paper Reels",
+                href: "/products/corrugated-paper-reels",
+              }
               // {
               //   label: t("DX&VRFAirConditioningSystems"),
               //   href: "/products/dx-vrf-air-conditioning",

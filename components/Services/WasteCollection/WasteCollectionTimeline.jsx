@@ -12,8 +12,8 @@ function WasteCollectionTimeline({
     heading = "This is our message to you",
     text = "I say always follow your passion, no matter what, because even if it’s not the same financial success, it’ll lead you to the money that’ll make you the happiest.",
     text2,
-    text3 = "Tom harderson",
-    text4 = "General Manager",
+    text3,
+    text4,
     endHeading = "Don't wish it were easier",
     endText = "Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better.",
     bottomSection = true,
@@ -25,10 +25,12 @@ function WasteCollectionTimeline({
                 <div className="relative z-10 border border-gray-300 rounded-2xl bg-white max-w-2xl mx-auto text-center px-8 py-10 mb-10 md:mb-20">
                     <p className="text-lg">{text}</p>
                     {text2 && <p className="text-lg mt-4">{text2}</p>}
-                    <div className="flex justify-center text-xs uppercase text-white mt-5">
-                        <p className="bg-[#2da5dc] px-3 py-1 rounded-l-2xl">{text3}</p>
-                        <p className="bg-[#79c4e7] px-3 py-1 rounded-r-2xl">{text4}</p>
-                    </div>
+                    {text3 && text4 && (
+                        <div className="flex justify-center text-xs uppercase text-white mt-5">
+                            <p className="bg-[#2da5dc] px-3 py-1 rounded-l-2xl">{text3}</p>
+                            <p className="bg-[#79c4e7] px-3 py-1 rounded-r-2xl">{text4}</p>
+                        </div>
+                    )}
                     <div className="absolute -top-3 left-0 right-0 flex justify-center">
                         <p className="border border-gray-300 bg-white uppercase t-base text-sm px-3 py-1 rounded-2xl">{heading}</p>
                     </div>
@@ -78,6 +80,13 @@ const DataElement = ({ item, alignmentClass = "text-left" }) => (
         <h2 className="uppercase text-xl font-semibold border-b border-gray-200 pb-4 mb-5">{item.title}</h2>
         <p className="text-sm text-gray-700">{item.text}</p>
         {item.text2 && <p className="text-sm text-gray-700 mt-4">{item.text2}</p>}
+        {item.options && (
+            <ul className="mt-4 list-disc pl-5 mb-4 space-y-2">
+                {item.options.map((textItem, j) => (
+                    <li key={j} className="text-sm text-gray-600">{textItem}</li>
+                ))}
+            </ul>
+        )}
     </div>
 );
 
