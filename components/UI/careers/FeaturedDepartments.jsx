@@ -12,7 +12,7 @@ const imageVariants = {
     exit: { opacity: 0, scale: 1, transition: { duration: 1.5 } },
 };
 
-function FeaturedDepartments({ title, departments, cta }) {
+function FeaturedDepartments({ title, departments }) {
     const [index, setIndex] = useState(0);
 
     const containerRef = useRef(null);
@@ -74,7 +74,7 @@ function FeaturedDepartments({ title, departments, cta }) {
                         itemRefs={itemRefs}
                         index={index} department={department}
                         handleIndexChange={handleIndexChange}
-                        cta={cta} />
+                    />
                 ))}
             </div>
         </section>

@@ -69,7 +69,23 @@ const itemFade = {
   }),
 };
 
-export default function EngProcessSection() {
+export default function EngProcessSection({
+  heading = "Process",
+  items = [
+    {
+      heading: "Understand your needs",
+      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed."
+    },
+    {
+      heading: "Develop custom solutions",
+      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed."
+    },
+    {
+      heading: "Achieve targeted results",
+      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed."
+    }
+  ]
+}) {
   return (
     <section className="relative bg-white py-24 md:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -78,7 +94,7 @@ export default function EngProcessSection() {
           <div className="pointer-events-none select-none hidden lg:block absolute left-[-96px] top-1/2 -translate-y-1/2">
             <div className="rotate-[-90deg] origin-left">
               <span className="text-[160px] xl:text-[190px] font-semibold tracking-tight text-[#F0F5F6]">
-                Process
+                {heading}
               </span>
             </div>
           </div>
@@ -126,80 +142,33 @@ export default function EngProcessSection() {
             <div className="absolute left-[20px] top-[18px] bottom-[18px] w-px border-l border-dashed border-black/35" />
 
             <div className="space-y-16 md:space-y-20">
-              {/* Step 01 */}
-              <motion.div
-                className="relative flex gap-8"
-                variants={itemFade}
-                initial="hidden"
-                whileInView="visible"
-                custom={0.1}
-                viewport={{ once: true, amount: 0.38 }}
-              >
-                <div className="relative">
-                  <div className="h-10 w-10 rounded-full bg-[#16F1A3] flex items-center justify-center text-[12px] font-semibold text-[#0B1320]">
-                    01
+              {items.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="relative flex gap-8"
+                  variants={itemFade}
+                  initial="hidden"
+                  whileInView="visible"
+                  custom={0.1 * i}
+                  viewport={{ once: true, amount: 0.38 }}
+                >
+                  <div className="relative">
+                    <div className="h-10 w-10 rounded-full bg-[#16F1A3] flex items-center justify-center text-[12px] font-semibold text-[#0B1320]">
+                      {i + 1} {/* Step number */}
+                    </div>
+                    {/* Dot outline */}
+                    <div className="absolute inset-0 rounded-full border-2 border-[#16F1A3]/50" />
                   </div>
-                </div>
-                <div className="pt-[1px]">
-                  <h3 className="text-[20px] font-semibold text-[#0B1320]">
-                    Understand your needs
-                  </h3>
-                  <p className="mt-2 text-[#526064] leading-relaxed max-w-[520px]">
-                    Lorem ipsum dolor sit amet consectetur. Ultricies blandit
-                    libero leo ut turpis cras amet sed.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Step 02 */}
-              <motion.div
-                className="relative flex gap-8"
-                variants={itemFade}
-                initial="hidden"
-                whileInView="visible"
-                custom={0.18}
-                viewport={{ once: true, amount: 0.38 }}
-              >
-                <div className="relative">
-                  <div className="h-10 w-10 rounded-full bg-[#16F1A3] flex items-center justify-center text-[12px] font-semibold text-[#0B1320]">
-                    02
+                  <div className="pt-[1px]">
+                    <h3 className="text-[20px] font-semibold text-[#0B1320]">
+                      {item.heading}
+                    </h3>
+                    <p className="mt-2 text-[#526064] leading-relaxed max-w-[520px]">
+                      {item.text}
+                    </p>
                   </div>
-                </div>
-                <div className="pt-[1px]">
-                  <h3 className="text-[20px] font-semibold text-[#0B1320]">
-                    Develop custom solutions
-                  </h3>
-                  <p className="mt-2 text-[#526064] leading-relaxed max-w-[520px]">
-                    Lorem ipsum dolor sit amet consectetur. Ultricies blandit
-                    libero leo ut turpis cras amet sed.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Step 03 */}
-              <motion.div
-                className="relative flex gap-8"
-                variants={itemFade}
-                initial="hidden"
-                whileInView="visible"
-                custom={0.26}
-                viewport={{ once: true, amount: 0.38 }}
-              >
-                <div className="relative">
-                  <div className="h-10 w-10 rounded-full bg-[#16F1A3] flex items-center justify-center text-[12px] font-semibold text-[#0B1320]">
-                    03
-                  </div>
-                </div>
-                <div className="pt-[1px]">
-                  <h3 className="text-[20px] font-semibold text-[#0B1320]">
-                    Achieve targeted results
-                  </h3>
-                  <p className="mt-2 text-[#526064] leading-relaxed max-w-[520px]">
-                    Lorem ipsum dolor sit amet consectetur. Ultricies blandit
-                    libero leo ut turpis cras amet sed.
-                  </p>
-                </div>
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
 
             {/* Mobile label */}
@@ -211,6 +180,6 @@ export default function EngProcessSection() {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }
