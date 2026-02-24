@@ -3,7 +3,6 @@ import WhyUs from "./WhyUs"
 
 async function WhyUsContainer() {
     const translations = await getTranslations('HomePage.WhyUs');
-
     const items = {
         heading: translations("Heading"),
         description: translations("Description"),
@@ -13,9 +12,6 @@ async function WhyUsContainer() {
             { title: translations("Item3Title"), content: translations("Item3Content") },
         ]
     };
-    console.log(items);
-
-
     return (
         <WhyUs items={items} />
     )

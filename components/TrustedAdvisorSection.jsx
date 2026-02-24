@@ -14,7 +14,7 @@ export default function TrustedAdvisorSection({
   texts,
   bulletsTitle,
   bullets,
-  lastText = "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et magna."
+  lastText
 }) {
   return (
     <section className="bg-white py-24">
@@ -37,7 +37,9 @@ export default function TrustedAdvisorSection({
               </ul>
             )}
 
-            <p className="mt-6 max-w-md text-gray-600">{lastText}</p>
+            {lastText && (
+              <p className="mt-6 max-w-md text-gray-600">{lastText}</p>
+            )}
 
             {/* <div className="mt-10 flex items-center gap-6">
               <span className="uppercase text-sm tracking-widest font-semibold text-[#0B1320]">

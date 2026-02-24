@@ -10,9 +10,9 @@ const containerVariants = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-export default function WhyUs({ items }) {
+export default function WhyUs({ items, reverse = false }) {
     return (
-        <div className="grid lg:grid-cols-2 lg:h-[70vh]">
+        <div className={`grid lg:grid-cols-2 lg:h-[70vh] ${reverse && "[&>*:first-child]:order-2"}`}>
             <motion.div
                 className="p-8 lg:p-15"
                 variants={containerVariants}
@@ -20,8 +20,12 @@ export default function WhyUs({ items }) {
                 whileInView="visible"
                 viewport={{ once: true }}
             >
-                <p className="font-bold text-3xl uppercase">{items.heading}</p>
-                <p className="text-gray-600 my-5">{items.description}</p>
+                {items.heading && (
+                    <p className="font-bold text-3xl uppercase">{items.heading}</p>
+                )}
+                {items.description && (
+                    <p className="text-gray-600 my-5">{items.description}</p>
+                )}
                 <Accordion
                     type="single"
                     collapsible
@@ -42,7 +46,7 @@ export default function WhyUs({ items }) {
                                     transition={{ duration: 0.3, ease: "easeInOut" }}
                                     className="overflow-hidden"
                                 >
-                                    <p className="mb-1 text-gray-500">{item.content}</p>
+                                    {item.content}
                                 </motion.div>
                             </AccordionContent>
                         </AccordionItem>
@@ -51,7 +55,7 @@ export default function WhyUs({ items }) {
             </motion.div>
             <div className="relative w-full h-80 lg:h-full">
                 <Image
-                    src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp"
+                    src="https://res.cloudinary.com/db3fd1qah/image/upload/v1766140489/office_m5htoa.png"
                     alt="Why Us"
                     fill
                     className="object-cover"

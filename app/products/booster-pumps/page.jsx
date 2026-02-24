@@ -21,7 +21,7 @@ function BoosterPumpsPage() {
         { title: "Irrigation & Landscaping", text: "Provides stable pressure for drip systems, sprinklers, and turf irrigation networks." },
         { title: "Water Treatment & Filtration Systems", text: "Suitable for RO plants, ultrafiltration units, and industrial filtration processes requiring precise pressure control." },
         { title: "Industrial Utilities", text: "Supports boiler feed, cooling water circulation, washing stations, and other pressure-dependent processes." }
-    ]
+    ];
 
     return (
         <main>
