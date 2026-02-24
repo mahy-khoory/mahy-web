@@ -53,7 +53,7 @@ async function Jobs({ searchParams }) {
 
   return (
     <main>
-      <PageHeading title={"Projects"} image={"/gallery/gallery-6.jpg"} />
+      {/* <PageHeading title={"Projects"} image={"/gallery/gallery-6.jpg"} />
       <Breadcrumb
         segments={[{ label: "Projects", href: "/projects" }]}
         locale={locale}
@@ -75,9 +75,9 @@ async function Jobs({ searchParams }) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       <ProjectsOverview />
-      <ProjectHighlightsGrid />
+      {/* <ProjectHighlightsGrid /> */}
     </main>
   );
 }
