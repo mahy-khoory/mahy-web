@@ -3,7 +3,13 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-function CompanyOverview() {
+function CompanyOverview({
+    heading = "M.A.H.Y. Khoory Trading",
+    texts = [
+        "M.A.H.Y. Khoory Trading is the commercial and distribution arm of the MAHY Khoory Group, serving as a key supplier of industrial, electromechanical, and building services equipment across the GCC and selected international markets. The division plays a central role in supporting infrastructure, construction, industrial, and utility sectors through the supply of reliable, high-quality products sourced from leading global manufacturers.",
+        "With decades of experience in import, distribution, and project supply, M.A.H.Y. Khoory Trading has established itself as a trusted partner for contractors, developers, and institutional clients, delivering both products and technical support at scale."
+    ]
+}) {
     return (
         <section className="relative h-screen w-full overflow-hidden">
             <motion.div
@@ -28,7 +34,7 @@ function CompanyOverview() {
                     whileInView={{ opacity: 100, y: 0 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     viewport={{ once: false }}>
-                    <h1 className="text-3xl md:text-6xl font-bold text-center md:text-start">M.A.H.Y. Khoory Trading</h1>
+                    <h1 className="text-3xl md:text-6xl font-bold text-center md:text-start">{heading}</h1>
                 </motion.div>
                 <motion.div
                     className="p-8 md:pl-30 md:pr-15 md:py-15 bg-black/20 md:bg-black/40 w-fit"
@@ -37,8 +43,9 @@ function CompanyOverview() {
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     viewport={{ once: false }}>
                     <div className="max-w-2xl space-y-5">
-                        <p>M.A.H.Y. Khoory Trading is the commercial and distribution arm of the MAHY Khoory Group, serving as a key supplier of industrial, electromechanical, and building services equipment across the GCC and selected international markets. The division plays a central role in supporting infrastructure, construction, industrial, and utility sectors through the supply of reliable, high-quality products sourced from leading global manufacturers.</p>
-                        <p>With decades of experience in import, distribution, and project supply, M.A.H.Y. Khoory Trading has established itself as a trusted partner for contractors, developers, and institutional clients, delivering both products and technical support at scale.</p>
+                        {texts.map((text, i) => (
+                            <p key={i}>{text}</p>
+                        ))}
                     </div>
                 </motion.div>
             </div>

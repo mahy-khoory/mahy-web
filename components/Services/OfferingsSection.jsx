@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import PrimaryButton from "../UI/PrimaryButton";
 import Link from "next/link";
+import { text } from "d3";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -13,7 +14,29 @@ const fadeUp = {
   },
 };
 
-export default function OfferingsSection() {
+export default function OfferingsSection({
+  heading = "Our offerings fuel creative",
+  texts = [
+    "Lorem ipsum dolor sit amet consectetur. Elit sed pulvinar libero id ac lacus mauris purus semper. Nascetur lobortis viverra aliquet cursus.",
+  ],
+  items = [
+    {
+      heading: "IT consulting",
+      text: "Lorem ipsum dolor sit amet consectetur. Egestas in ipsum vel sit et massa cursus nec. Fermentum pretium risus ipsum.",
+      icon: "⚙️"
+    },
+    {
+      heading: "Market analysis",
+      text: "Lorem ipsum dolor sit amet consectetur. Egestas in ipsum vel sit et massa cursus nec. Fermentum pretium risus ipsum.",
+      icon: "📦"
+    },
+    {
+      heading: "Financial analysis",
+      text: "Lorem ipsum dolor sit amet consectetur. Egestas in ipsum vel sit et massa cursus nec. Fermentum pretium risus ipsum.",
+      icon: "📊"
+    }
+  ]
+}) {
   return (
     <section className="bg-white py-28">
       <div className="max-w-7xl mx-auto px-6">
@@ -26,91 +49,45 @@ export default function OfferingsSection() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-semibold leading-tight text-[#1E2629]">
-              Our offerings fuel creative <br />
-              solutions for tomorrow
+              {heading}
             </h2>
 
-            <p className="mt-6 max-w-xl text-[#526064] leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur. Elit sed pulvinar libero
-              id ac lacus mauris purus semper. Nascetur lobortis viverra aliquet
-              cursus.
-            </p>
+            {texts.map((text, i) => (
+              <p key={i} className="mt-6 max-w-xl text-[#526064] leading-relaxed">
+                {text}
+              </p>
+            ))}
 
-            <Link href={"/about-us"}>
+            {/* <Link href={"/about-us"}>
               <PrimaryButton
                 className={"w-fit mt-8 md:mt-10"}
                 label="Learn more about us"
               />
-            </Link>
+            </Link> */}
           </motion.div>
 
           {/* RIGHT LIST */}
-          <div className="space-y-10">
-            {/* ITEM 1 */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="flex gap-6 pb-10 border-b border-gray-200"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
-                ⚙️
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[#1E2629]">
-                  IT consulting
+          <div className="space-y-4">
+            {items.map((item, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="p-6 border border-gray-300 rounded-lg hover:shadow-lg transition-shadow duration-300 h-full"
+              >
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <h3 className="font-semibold text-[#1E2629]">
+                  {item.heading}
                 </h3>
-                <p className="mt-2 text-[#526064] leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur. Egestas in ipsum vel
-                  sit et massa cursus nec. Fermentum pretium risus ipsum.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* ITEM 2 */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="flex gap-6 pb-10 border-b border-gray-200"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
-                📦
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[#1E2629]">
-                  Market analysis
-                </h3>
-                <p className="mt-2 text-[#526064] leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur. Egestas in ipsum vel
-                  sit et massa cursus nec. Fermentum pretium risus ipsum.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* ITEM 3 */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="flex gap-6"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
-                📊
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[#1E2629]">
-                  Financial analysis
-                </h3>
-                <p className="mt-2 text-[#526064] leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur. Egestas in ipsum vel
-                  sit et massa cursus nec. Fermentum pretium risus ipsum.
-                </p>
-              </div>
-            </motion.div>
+                {item.text && (
+                  <p className="mt-3 text-[#526064] leading-relaxed">
+                    {item.text}
+                  </p>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { HiLightBulb } from "react-icons/hi";
 
 function SolarPanelInstallationsGrid({
     heading = "Investment Strategies",
-    text = "We are more than just financial consultants; we are a dedicated team of experts driven by a shared vision of transforming challenges into opportunities. Our commitment to excellence, innovation, and client success sets us apart as a trusted partner in navigating the complex world of finance.",
+    text,
     itemsTitle = "Product Features & Options",
     items = [
         { title: "Driving Innovation Through Strategy", text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking", image: "/solar/solar-1.svg" },
@@ -16,7 +16,9 @@ function SolarPanelInstallationsGrid({
                 <div className="pb-4 md:py-10">
                     <h2 className="uppercase font-bold text-xl">{heading}</h2>
                     {/* <p className="font-semibold mt-4 md:mt-6 text-3xl md:text-5xl md:leading-14">See life From A Different Perspective</p> */}
-                    <p className="text-gray-700 mt-4">{text}</p>
+                    {text && (
+                        <p className="text-gray-700 mt-4">{text}</p>
+                    )}
                     <div className="border-t border-gray-400 mt-8 md:mt-10 pt-10 space-y-10">
                         {itemsTitle && <h3 className="font-bold text-xl">{itemsTitle}</h3>}
                         {items.map((item, i) => (

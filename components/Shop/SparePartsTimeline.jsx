@@ -20,7 +20,7 @@ function SparePartsTimeline() {
 const Mobile = ({ items }) => (
     <div className="md:hidden space-y-16 mt-16">
         {items.map((item, i) => (
-            <div className="flex flex-col items-center gap-6">
+            <div key={i} className="flex flex-col items-center gap-6">
                 <Year item={item} />
                 <Circle />
                 <TitleAndText item={item} />
@@ -35,13 +35,13 @@ const Desktop = ({ items }) => (
         <div className="absolute inset-0 grid grid-cols-4 gap-10">
             {items.map((item, i) =>
             (i % 2 === 0 ? (
-                <div className="flex flex-col items-center gap-8 -translate-y-19">
+                <div key={i} className="flex flex-col items-center gap-8 -translate-y-19">
                     <Year item={item} />
                     <Circle />
                     <TitleAndText item={item} />
                 </div>
             ) : (
-                <div className="flex flex-col items-center gap-8 -translate-y-39">
+                <div key={i} className="flex flex-col items-center gap-8 -translate-y-39">
                     <TitleAndText item={item} />
                     <Circle />
                     <Year item={item} />
