@@ -10,7 +10,7 @@ function CompanyDetailPage() {
     return (
         <main>
             <CompanyOverview />
-            <CompanyVisionPurpose />
+            {/* <CompanyVisionPurpose /> */}
             <ServicesGlobally />
             {/* <CompanyDetailMenu /> */}
             <CompanyDetailCards />

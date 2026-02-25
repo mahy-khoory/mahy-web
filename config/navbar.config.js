@@ -452,6 +452,10 @@ export function getNavigation(t) {
                 label: t("KitchenDesigningSolutions"),
                 href: "/services/kitchen-designing-solutions",
               },
+              {
+                label: t("SpareParts"),
+                href: "/products/spare-parts"
+              },
             ]
           }
         ],
