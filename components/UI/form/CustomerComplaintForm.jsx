@@ -334,7 +334,7 @@ export default function CustomerComplaintForm() {
                 </FormSection>
               </AnimatedGroupItem>
 
-              <AnimatedGroupItem>
+              {/* <AnimatedGroupItem>
                 <FormSection title="Evidence">
                   <Controller
                     control={control}
@@ -383,7 +383,7 @@ export default function CustomerComplaintForm() {
                     )}
                   />
                 </FormSection>
-              </AnimatedGroupItem>
+              </AnimatedGroupItem> */}
 
               <AnimatedGroupItem>
                 <div className="flex justify-center pt-4">

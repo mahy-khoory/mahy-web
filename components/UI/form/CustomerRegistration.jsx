@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Building2 } from "lucide-react";
 import { motion } from "framer-motion";
-
 import { FormSection } from "@/components/form/FormSection";
 import { InputField } from "@/components/form/InputField";
 import { SelectField } from "@/components/form/SelectField";
@@ -16,23 +15,19 @@ import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
 import { FormField } from "@/components/form/FormField";
 import { AnimatedField } from "@/components/form/AnimatedField";
-
+import { usePaymentTerms } from "@/lib/hooks/usePaymentTerms";
+import { useCurrencies } from "@/lib/hooks/useCurrencies";
 import { customerFormSchema } from "@/lib/customerFormSchema";
+import { useSearchParams } from "next/navigation";
+
 import {
   CUSTOMER_TYPES,
   CUSTOMER_CLASSIFICATION_GROUPS,
-  CURRENCIES,
-  VAT_TYPES,
-  PAYMENT_TERMS,
   PAYMENT_METHODS,
-  DELIVERY_TERMS,
-  DELIVERY_MODES,
+  NAME_PREFIXES,
   COUNTRIES,
   COUNTRY_CODES,
-  SALES_TAX_GROUPS,
-  SOURCE_CODES,
-  LINE_OF_BUSINESS,
-  SEGMENTS,
+  VAT_TYPES,
   SUBSEGMENTS,
   ADDRESS_BOOKS,
   getStatesForCountry,
@@ -42,8 +37,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "../card";
 import { Checkbox } from "../checkbox";
 import { Label } from "@/components/form/Label";
 import { Switch } from "@/components/form/Switch";
+import FormD365Lookup from "@/components/Lookup/FormD365Lookup";
+import { useDeliveryTerms } from "@/lib/hooks/useDeliveryTerms";
+import { useTaxGroups } from "@/lib/hooks/useTaxGroups";
+import { useLineOfBusiness } from "@/lib/hooks/useLineOfBusiness";
+import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
+import { useZipCodes } from "@/lib/hooks/useZipCodes";
+import { useCreateCustomer } from "@/lib/hooks/useCreateCustomer";
 
-// Page animation variants
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -71,6 +72,37 @@ const sectionVariants = {
 
 export default function CustomerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const createCustomerMutation = useCreateCustomer();
+  const searchParams = useSearchParams();
+
+  const company = searchParams.get("company");
+
+  const [openLookup, setOpenLookup] = useState(null);
+  const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
+    openLookup === "paymentTerms",
+  );
+
+  const { data: currencies = [], isLoading: currenciesLoading } = useCurrencies(
+    openLookup === "currencies",
+  );
+
+  const { data: deliveryTerms = [], isLoading: dlvTermsLoading } =
+    useDeliveryTerms(openLookup === "deliveryTerms");
+
+  const { data: taxGroups = [], isLoading: taxGroupsLoading } = useTaxGroups(
+    openLookup === "taxGroups",
+  );
+
+  const { data: lineOfBusiness = [], isLoading: lineOfBusinessLoading } =
+    useLineOfBusiness(openLookup === "lineOfBusiness");
+
+  const { data: dlvModes = [], isLoading: dlvModesLoading } = useDeliveryModes(
+    openLookup === "dlvModes",
+  );
+
+  const { data: zipCodes = [], isLoading: zipCodesLoading } = useZipCodes(
+    openLookup === "zipCodes",
+  );
 
   const {
     register,
@@ -110,47 +142,128 @@ export default function CustomerRegistration() {
   const isOrganization = customerType === "organization";
   const isPerson = customerType === "individual";
   const isUAE = country === "UAE";
-  const showTrn = isOneTime ? trnType === "with_trn" : (isCredit && vatRegistered && isOrganization);
+  const showTrn = isOneTime
+    ? trnType === "with_trn"
+    : isCredit && vatRegistered && isOrganization;
 
-  // Reset customerType to organization when switching to OneTime with TRN
   useEffect(() => {
     if (isOneTime && isPerson && trnType === "with_trn") {
       setValue("customerType", "organization");
     }
   }, [isOneTime, isPerson, trnType, setValue]);
 
-  // Reset state when country changes
+  // state when country changes
   useEffect(() => {
     setValue("state", "");
   }, [country, setValue]);
 
-  const onSubmit = async (data) => {
+  const normalizeFiles = (val) => {
+    if (!val) return [];
+    if (val instanceof FileList) return Array.from(val);
+    if (val instanceof File) return [val];
+
+    if (Array.isArray(val)) {
+      return val
+        .map((x) => {
+          if (x instanceof File) return x;
+          if (x?.file instanceof File) return x.file;
+          if (x?.raw instanceof File) return x.raw;
+          if (x?.originFileObj instanceof File) return x.originFileObj;
+          return null;
+        })
+        .filter(Boolean);
+    }
+
+    if (val?.file instanceof File) return [val.file];
+    if (val?.raw instanceof File) return [val.raw];
+    if (val?.originFileObj instanceof File) return [val.originFileObj];
+
+    return [];
+  };
+
+  const onSubmit = async (values) => {
     setIsSubmitting(true);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Form submitted:", data);
-      toast.success("Registration submitted successfully!", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+      const formData = new FormData();
+
+      Object.entries(values).forEach(([key, value]) => {
+        if (
+          value === undefined ||
+          value === null ||
+          value === "" ||
+          key.endsWith("File")
+        ) {
+          return;
+        }
+
+        if (value instanceof Date) {
+          formData.append(key, value.toISOString());
+        } else if (typeof value === "boolean") {
+          formData.append(key, value ? "true" : "false");
+        } else {
+          formData.append(key, String(value));
+        }
       });
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.", {
-        position: "top-right",
-        autoClose: 4000,
-      });
+
+      if (company) {
+        formData.append("company", company);
+      }
+
+      normalizeFiles(values.tradeLicenseFile).forEach((file) =>
+        formData.append("files", file),
+      );
+
+      normalizeFiles(values.emiratesIdFile).forEach((file) =>
+        formData.append("files", file),
+      );
+
+      normalizeFiles(values.passportFile).forEach((file) =>
+        formData.append("files", file),
+      );
+
+      console.log("Customer form payload:");
+      for (const pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+      await createCustomerMutation.mutateAsync(formData);
+
+      toast.success("Customer registered successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to register customer");
     } finally {
       setIsSubmitting(false);
     }
   };
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true);
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 1500));
+  //     console.log("Form submitted:", data);
+  //     toast.success("Registration submitted successfully!", {
+  //       position: "top-right",
+  //       autoClose: 4000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //   } catch (error) {
+  //     toast.error("Something went wrong. Please try again.", {
+  //       position: "top-right",
+  //       autoClose: 4000,
+  //     });
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
-  // Customer type options based on classification and TRN type
-  const customerTypeOptions = (isOneTime && trnType === "with_trn")
-    ? [{ value: "organization", label: "Organization" }]
-    : [...CUSTOMER_TYPES];
+  const customerTypeOptions =
+    isOneTime && trnType === "with_trn"
+      ? [{ value: "organization", label: "Organization" }]
+      : [...CUSTOMER_TYPES];
 
   const stateOptions = getStatesForCountry(country);
 
@@ -222,6 +335,15 @@ export default function CustomerRegistration() {
                         {...register("customerGroup")}
                       />
 
+                      <AnimatedField>
+                        <InputField
+                          label="Customer Account"
+                          // required={isCredit && isOrganization}
+                          // error={errors.customerAccount?.message}
+                          {...register("customerAccount")}
+                        />
+                      </AnimatedField>
+
                       <Controller
                         name="classificationGroup"
                         control={control}
@@ -235,17 +357,19 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
+                      <FormD365Lookup
                         name="currency"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Currency"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={[...CURRENCIES]}
-                          />
-                        )}
+                        label="Curreny"
+                        required
+                        data={currencies}
+                        loading={currenciesLoading}
+                        onOpen={() => setOpenLookup("currencies")}
+                        columns={[
+                          { key: "label", label: "Currency" },
+                          { key: "description", label: "Symbol" },
+                        ]}
+                        error={errors.currencies?.message}
                       />
 
                       <AnimatedField show={isOneTime}>
@@ -322,15 +446,6 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <AnimatedField show={isPerson && isCredit}>
-                        <InputField
-                          label="Full Name"
-                          required
-                          error={errors.fullName?.message}
-                          {...register("fullName")}
-                        />
-                      </AnimatedField>
-
                       {/* Person UAE - Emirates ID */}
                       <AnimatedField show={isPerson && isCredit && isUAE}>
                         <InputField
@@ -398,6 +513,53 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
+                      <AnimatedField show={isPerson && isCredit}>
+                        {/* <InputField
+                          label="Full Name"
+                          required
+                          error={errors.fullName?.message}
+                          {...register("fullName")}
+                        /> */}
+
+                        <InputField
+                          label="First name"
+                          required
+                          error={errors.firstName?.message}
+                          {...register("firstName")}
+                        />
+
+                        <InputField
+                          label="Middle name"
+                          error={errors.middleName?.message}
+                          {...register("middleName")}
+                        />
+                      </AnimatedField>
+
+                      <AnimatedField show={isPerson && isCredit}>
+                        <Controller
+                          name="lastNamePrefix"
+                          control={control}
+                          render={({ field }) => (
+                            <SelectField
+                              label="Title"
+                              value={field.value || ""}
+                              onChange={field.onChange}
+                              options={[...NAME_PREFIXES]} // Mr / Ms / Mrs / Dr etc.
+                              required
+                              error={errors.lastNamePrefix?.message}
+                              placeholder="Select..."
+                            />
+                          )}
+                        />
+
+                        <InputField
+                          label="Last name"
+                          required
+                          error={errors.lastName?.message}
+                          {...register("lastName")}
+                        />
+                      </AnimatedField>
+
                       <AnimatedField show={isPerson && isCredit && !isUAE}>
                         <Controller
                           name="passportIssueDate"
@@ -461,20 +623,19 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
+                      <FormD365Lookup
                         name="paymentTerms"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Terms of Payment"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={[...PAYMENT_TERMS]}
-                            required
-                            error={errors.paymentTerms?.message}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Terms of payment"
+                        required
+                        data={paymentTerms}
+                        loading={ptLoading}
+                        onOpen={() => setOpenLookup("paymentTerms")}
+                        columns={[
+                          { key: "label", label: "Terms of payment" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.paymentTerms?.message}
                       />
 
                       {/* Credit only: Holding Company toggle */}
@@ -491,25 +652,26 @@ export default function CustomerRegistration() {
                                 />
                               )}
                             />
-                            <Label className="font-normal">{holdingCompany ? "Yes" : "No"}</Label>
+                            <Label className="font-normal">
+                              {holdingCompany ? "Yes" : "No"}
+                            </Label>
                           </div>
                         </FormField>
                       </AnimatedField>
 
-                      <Controller
+                      <FormD365Lookup
                         name="deliveryTerms"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Delivery Terms"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...DELIVERY_TERMS]}
-                            required
-                            error={errors.deliveryTerms?.message}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Delivery Terms"
+                        required
+                        data={deliveryTerms}
+                        loading={dlvTermsLoading}
+                        onOpen={() => setOpenLookup("deliveryTerms")}
+                        columns={[
+                          { key: "label", label: "Delivery Term" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.deliveryTerms?.message}
                       />
 
                       {/* Credit only: Company Chain */}
@@ -529,20 +691,19 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <Controller
+                      <FormD365Lookup
                         name="deliveryMode"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Mode of Delivery"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...DELIVERY_MODES]}
-                            required
-                            error={errors.deliveryMode?.message}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Mode Of Delivery"
+                        required
+                        data={dlvModes}
+                        loading={dlvModesLoading}
+                        onOpen={() => setOpenLookup("dlvModes")}
+                        columns={[
+                          { key: "label", label: "Modes" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.dlvModes?.message}
                       />
 
                       {/* Credit only: VAT Registered toggle */}
@@ -559,23 +720,26 @@ export default function CustomerRegistration() {
                                 />
                               )}
                             />
-                            <Label className="font-normal">{vatRegistered ? "Yes" : "No"}</Label>
+                            <Label className="font-normal">
+                              {vatRegistered ? "Yes" : "No"}
+                            </Label>
                           </div>
                         </FormField>
                       </AnimatedField>
 
-                      <Controller
+                      <FormD365Lookup
                         name="salesTaxGroup"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Sales Tax Group"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SALES_TAX_GROUPS]}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Sales Tax Group"
+                        required
+                        data={taxGroups}
+                        loading={taxGroupsLoading}
+                        onOpen={() => setOpenLookup("taxGroups")}
+                        columns={[
+                          { key: "label", label: "Value" },
+                          { key: "description", label: "Name" },
+                        ]}
+                        error={errors.salesTaxGroup?.message}
                       />
 
                       <Controller
@@ -592,32 +756,19 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-                      <Controller
-                        name="sourceCode"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Source Code"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SOURCE_CODES]}
-                            placeholder="Select..."
-                          />
-                        )}
-                      />
-
-                      <Controller
+                      <FormD365Lookup
                         name="lineOfBusiness"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Line of Business"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...LINE_OF_BUSINESS]}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Line Of Business"
+                        required
+                        data={lineOfBusiness}
+                        loading={lineOfBusinessLoading}
+                        onOpen={() => setOpenLookup("lineOfBusiness")}
+                        columns={[
+                          { key: "label", label: "Business" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.lineOfBusiness?.message}
                       />
 
                       <InputField
@@ -667,10 +818,19 @@ export default function CustomerRegistration() {
                         {...register("city")}
                       />
 
-                      <InputField
-                        label="ZIP/Postal Code"
-                        type="number"
-                        {...register("zipPostalCode")}
+                      <FormD365Lookup
+                        name="zipPostalCode"
+                        control={control}
+                        label="ZIP Codes"
+                        required
+                        data={zipCodes}
+                        loading={zipCodesLoading}
+                        onOpen={() => setOpenLookup("zipCodes")}
+                        columns={[
+                          { key: "label", label: "CODE" },
+                          { key: "description", label: "CITY" },
+                        ]}
+                        error={errors.zipPostalCode?.message}
                       />
 
                       <AnimatedField show={stateOptions.length > 0}>
@@ -721,7 +881,9 @@ export default function CustomerRegistration() {
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Contact Information">
                       <div className="col-span-full">
-                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">TELEPHONE</h3>
+                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">
+                          TELEPHONE
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <Controller
                             name="telCountryCode"
@@ -753,7 +915,9 @@ export default function CustomerRegistration() {
                       </div>
 
                       <div className="col-span-full">
-                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">MOBILE</h3>
+                        <h3 className="text-sm font-semibold text-muted-foreground mb-3">
+                          MOBILE
+                        </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <Controller
                             name="mobileCountryCode"
@@ -778,10 +942,7 @@ export default function CustomerRegistration() {
                         </div>
                       </div>
 
-                      <InputField
-                        label="Fax"
-                        {...register("fax")}
-                      />
+                      <InputField label="Fax" {...register("fax")} />
 
                       <InputField
                         label="Email Address"
@@ -814,7 +975,11 @@ export default function CustomerRegistration() {
                     variants={sectionVariants}
                     className="space-y-6 border-t border-gray-300 pt-6"
                   >
-                    <FormField label="Terms and Conditions" required error={errors.consent?.message}>
+                    <FormField
+                      label="Terms and Conditions"
+                      required
+                      error={errors.consent?.message}
+                    >
                       <div className="flex items-start gap-2 mt-2">
                         <Controller
                           name="consent"
@@ -828,26 +993,28 @@ export default function CustomerRegistration() {
                             />
                           )}
                         />
-                        <Label htmlFor="consent" className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer">
-                          I confirm that all the information provided is accurate and complete. I agree to the terms and conditions of registration and understand that any false information may result in the rejection of this application.
+                        <Label
+                          htmlFor="consent"
+                          className="text-sm text-muted-foreground font-normal leading-relaxed cursor-pointer"
+                        >
+                          I confirm that all the information provided is
+                          accurate and complete. I agree to the terms and
+                          conditions of registration and understand that any
+                          false information may result in the rejection of this
+                          application.
                         </Label>
                       </div>
                     </FormField>
 
-                    <motion.div variants={sectionVariants} className="flex justify-end pt-4">
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        bg={true}
-                      >
+                    <motion.div
+                      variants={sectionVariants}
+                      className="flex justify-end pt-4"
+                    >
+                      <Button type="submit" disabled={isSubmitting} bg={true}>
                         {isSubmitting ? (
-                          <>
-                            Submitting...
-                          </>
+                          <>Submitting...</>
                         ) : (
-                          <>
-                            Submit Registration
-                          </>
+                          <>Submit Registration</>
                         )}
                       </Button>
                     </motion.div>
