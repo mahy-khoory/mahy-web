@@ -18,6 +18,7 @@ import { AnimatedField } from "@/components/form/AnimatedField";
 import { usePaymentTerms } from "@/lib/hooks/usePaymentTerms";
 import { useCurrencies } from "@/lib/hooks/useCurrencies";
 import { customerFormSchema } from "@/lib/customerFormSchema";
+import { useSearchParams } from "next/navigation";
 
 import {
   CUSTOMER_TYPES,
@@ -72,6 +73,9 @@ const sectionVariants = {
 export default function CustomerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createCustomerMutation = useCreateCustomer();
+  const searchParams = useSearchParams();
+
+  const company = searchParams.get("company");
 
   const [openLookup, setOpenLookup] = useState(null);
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
@@ -201,6 +205,10 @@ export default function CustomerRegistration() {
           formData.append(key, String(value));
         }
       });
+
+      if (company) {
+        formData.append("company", company);
+      }
 
       normalizeFiles(values.tradeLicenseFile).forEach((file) =>
         formData.append("files", file),
@@ -513,7 +521,7 @@ export default function CustomerRegistration() {
                           {...register("fullName")}
                         /> */}
 
-                         <InputField
+                        <InputField
                           label="First name"
                           required
                           error={errors.firstName?.message}
@@ -524,7 +532,7 @@ export default function CustomerRegistration() {
                           label="Middle name"
                           error={errors.middleName?.message}
                           {...register("middleName")}
-                        /> 
+                        />
                       </AnimatedField>
 
                       <AnimatedField show={isPerson && isCredit}>

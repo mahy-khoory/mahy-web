@@ -17,6 +17,7 @@ import { SelectField } from "@/components/form/SelectField";
 import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
+import { useSearchParams } from "next/navigation";
 import {
   AnimatedField,
   AnimatedGroup,
@@ -89,6 +90,10 @@ const sectionVariants = {
 export default function VendorRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createVendorMutation = useCreateVendor();
+
+  const searchParams = useSearchParams();
+
+  const company = searchParams.get("company");
 
   const [openLookup, setOpenLookup] = useState(null);
 
@@ -198,6 +203,10 @@ export default function VendorRegistration() {
           formData.append(key, String(value));
         }
       });
+
+      if (company) {
+        formData.append("company", company);
+      }
 
       normalizeFiles(values.tradeLicenseFile).forEach((file) =>
         formData.append("files", file),
