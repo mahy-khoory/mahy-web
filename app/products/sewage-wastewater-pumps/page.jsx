@@ -14,16 +14,16 @@ function SewagePumpsPage() {
     ];
     const applications = [
         { title: "Sewage Lifting Stations & Pumping Chambers", text: "Ideal for underground pits, STP inlets, and municipal pumping stations." },
-        {title: "Municipal Wastewater Networks", text: "Designed for raw sewage transfer, stormwater pumping, and mainline sewer systems."},
-        {title: "Industrial Wastewater Treatment", text: "Suitable for effluent transfer, sludge handling, and wastewater process streams in factories and plants."},
-        {title: "Commercial Building Sewage Discharge", text: "Used in malls, hotels, hospitals, residential towers, labour camps, and complexes with basement sewage pits."},
-        {title: "Treatment Plant Inlet/Outlet & Return Stations", text: "Supports STP operations including inlet channels, secondary sludge movement, equalization tank transfer, and clarifier return systems."}
+        { title: "Municipal Wastewater Networks", text: "Designed for raw sewage transfer, stormwater pumping, and mainline sewer systems." },
+        { title: "Industrial Wastewater Treatment", text: "Suitable for effluent transfer, sludge handling, and wastewater process streams in factories and plants." },
+        { title: "Commercial Building Sewage Discharge", text: "Used in malls, hotels, hospitals, residential towers, labour camps, and complexes with basement sewage pits." },
+        { title: "Treatment Plant Inlet/Outlet & Return Stations", text: "Supports STP operations including inlet channels, secondary sludge movement, equalization tank transfer, and clarifier return systems." }
     ];
 
     return (
         <main>
             <SubPageHeading
-                title={"Sewage & Wastewater Pumps "}
+                title={"Sewage & Wastewater Pumps"}
                 image={"/gallery/gallery-1.jpg"}
             />
             <KitchenMenu

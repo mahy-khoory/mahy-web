@@ -12,7 +12,7 @@ function CompanyDetailPage() {
             <CompanyOverview />
             <CompanyVisionPurpose />
             <ServicesGlobally />
-            <CompanyDetailMenu />
+            {/* <CompanyDetailMenu /> */}
             <CompanyDetailCards />
             <CompanyTextGrid />
             <CompanyTextOnBackground />
