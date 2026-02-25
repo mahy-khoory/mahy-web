@@ -463,52 +463,52 @@ export function getNavigation(t) {
       {
         id: "shop",
         label: t("Shop"),
-        href: "/shop",
-        linkType: "mega",
-        columns: [
-          {
-            title: t("ProductsSolutions"),
-            links: [
-              { label: t("Pumps"), href: "/shop/pumps" },
-              { label: t("SpareParts"), href: "/shop/spare-parts" },
-              { label: t("Furniture"), href: "/shop/furniture" },
-              { label: t("Accessories"), href: "/shop/accessories" },
-            ],
-          },
-          {
-            title: t("BrandsManufacturers"),
-            links: [
-              { label: t("OurBrandsOverview"), href: "/shop/brands" },
-              { label: t("IndividualBrandPages"), href: "/shop/brands/all" },
-            ],
-          },
-          {
-            title: t("ServicesSupport"),
-            links: [
-              { label: t("ServicesOverview"), href: "/services" },
-              { label: t("ServiceRequest"), href: "/services/request" },
-              { label: t("SiteVisitRequest"), href: "/services/site-visit" },
-              { label: t("WarrantyAfterSales"), href: "/services/warranty" },
-            ],
-          },
-          {
-            title: t("RequestsDocumentation"),
-            links: [
-              { label: t("RequestQuotation"), href: "/rfq" },
-              { label: t("CustomerComplaint"), href: "/complaint" },
-              { label: t("CustomerDocumentUpdate"), href: "/document-update" },
-              {
-                label: t("PartnerVendorRegistration"),
-                href: "/partner-registration",
-              },
-              { label: t("DownloadCatalogues"), href: "/downloads/catalogues" },
-              {
-                label: t("TechnicalDocumentation"),
-                href: "/downloads/technical",
-              },
-            ],
-          },
-        ],
+        href: "https://mahy-ecommerce.vercel.app/",
+        // linkType: "mega",
+        // columns: [
+        //   {
+        //     title: t("ProductsSolutions"),
+        //     links: [
+        //       { label: t("Pumps"), href: "/shop/pumps" },
+        //       { label: t("SpareParts"), href: "/shop/spare-parts" },
+        //       { label: t("Furniture"), href: "/shop/furniture" },
+        //       { label: t("Accessories"), href: "/shop/accessories" },
+        //     ],
+        //   },
+        //   {
+        //     title: t("BrandsManufacturers"),
+        //     links: [
+        //       { label: t("OurBrandsOverview"), href: "/shop/brands" },
+        //       { label: t("IndividualBrandPages"), href: "/shop/brands/all" },
+        //     ],
+        //   },
+        //   {
+        //     title: t("ServicesSupport"),
+        //     links: [
+        //       { label: t("ServicesOverview"), href: "/services" },
+        //       { label: t("ServiceRequest"), href: "/services/request" },
+        //       { label: t("SiteVisitRequest"), href: "/services/site-visit" },
+        //       { label: t("WarrantyAfterSales"), href: "/services/warranty" },
+        //     ],
+        //   },
+        //   {
+        //     title: t("RequestsDocumentation"),
+        //     links: [
+        //       { label: t("RequestQuotation"), href: "/rfq" },
+        //       { label: t("CustomerComplaint"), href: "/complaint" },
+        //       { label: t("CustomerDocumentUpdate"), href: "/document-update" },
+        //       {
+        //         label: t("PartnerVendorRegistration"),
+        //         href: "/partner-registration",
+        //       },
+        //       { label: t("DownloadCatalogues"), href: "/downloads/catalogues" },
+        //       {
+        //         label: t("TechnicalDocumentation"),
+        //         href: "/downloads/technical",
+        //       },
+        //     ],
+        //   },
+        // ],
       },
       {
         id: "news",
