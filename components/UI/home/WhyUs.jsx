@@ -26,13 +26,20 @@ export default function WhyUs({ items, reverse = false }) {
                 {items.description && (
                     <p className="text-gray-600 my-5">{items.description}</p>
                 )}
+                {items.bullets && (
+                    <ul className="mt-4 list-disc pl-5 mb-4 space-y-2">
+                        {items.bullets.map((textItem, j) => (
+                            <li key={j} className="text-gray-600">{textItem}</li>
+                        ))}
+                    </ul>
+                )}
                 <Accordion
                     type="single"
                     collapsible
                     className="w-full"
                     defaultValue="item-1"
                 >
-                    {items.data.map((item, i) => (
+                    {items.data?.map((item, i) => (
                         <AccordionItem key={i} value={`item-${i + 1}`}>
                             <AccordionTrigger className="cursor-pointer t-base-hover transition-colors duration-500 font-bold text-lg">
                                 {item.title}

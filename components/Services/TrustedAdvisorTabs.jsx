@@ -4,27 +4,29 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const ease = [0.22, 1, 0.36, 1];
-
-const items = [
-  {
-    title: "Our Expertise",
-    desc: "This title highlights your company's deep knowledge and experience in the business consulting industry.",
-    image: "/gallery/gallery-1.jpg",
-  },
-  {
-    title: "Partnering for Success",
-    desc: "This title highlights your company's deep knowledge and experience in the business consulting industry.",
-    image: "/gallery/gallery-3.jpg",
-  },
-  {
-    title: "Transforming Business",
-    desc: "This title highlights your company's deep knowledge and experience in the business consulting industry.",
-    image: "/gallery/gallery-3.jpg",
-  },
-];
-
-export default function TrustedBusinessAdvisor() {
+export default function TrustedBusinessAdvisor({
+  heading = "Your Trusted Business Advisor",
+  text,
+  bullets,
+  endText,
+  items = [
+    {
+      label: "Our Expertise",
+      text: "This label highlights your company's deep knowledge and experience in the business consulting industry.",
+      image: "/gallery/gallery-1.jpg",
+    },
+    {
+      label: "Partnering for Success",
+      text: "This label highlights your company's deep knowledge and experience in the business consulting industry.",
+      image: "/gallery/gallery-3.jpg",
+    },
+    {
+      label: "Transforming Business",
+      text: "This label highlights your company's deep knowledge and experience in the business consulting industry.",
+      image: "/gallery/gallery-3.jpg",
+    },
+  ]
+}) {
   const [active, setActive] = useState(0);
   const itemRefs = useRef([]);
   const [indicator, setIndicator] = useState({ top: 0, height: 0 });
@@ -44,14 +46,24 @@ export default function TrustedBusinessAdvisor() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
           <div className="lg:col-span-5">
             <h2 className="text-[42px] font-semibold leading-tight text-slate-900">
-              Your Trusted <br /> Business Advisor
+              {heading}
             </h2>
-
-            <p className="mt-4 max-w-xl text-[16px] leading-7 text-slate-500">
-              This title underscores the trust and dependability TNC Infinity offers.
-              It positions our team as trusted advisors providing invaluable guidance.
-            </p>
-            <div className="relative mt-14 pl-10">
+            {text && (
+              <p className="mt-4 max-w-xl text-[16px] leading-7 text-slate-500">
+                {text}
+              </p>
+            )}
+            {bullets && (
+              <ul className="mt-3 list-disc pl-5 mb-4 space-y-2">
+                {bullets.map((textItem, j) => (
+                  <li key={j} className="text-slate-500">{textItem}</li>
+                ))}
+              </ul>
+            )}
+            {endText && (
+              <p className="mt-2 max-w-md text-slate-500">{endText}</p>
+            )}
+            <div className="relative mt-10 pl-10">
               <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-200 rounded-full" />
               <motion.div
                 className="absolute left-0 w-[2px] bg-blue-600 rounded-full"
@@ -68,11 +80,18 @@ export default function TrustedBusinessAdvisor() {
                     className="block text-left"
                   >
                     <h3 className="text-[20px] font-semibold text-slate-900">
-                      {item.title}
+                      {item.label}
                     </h3>
                     <p className="mt-2 max-w-md text-[15px] leading-7 text-slate-500">
-                      {item.desc}
+                      {item.text}
                     </p>
+                    {item.bullets && (
+                      <ul className="mt-3 list-disc pl-5 space-y-2 text-[15px]">
+                        {item.bullets.map((textItem, j) => (
+                          <li key={j} className="text-slate-500">{textItem}</li>
+                        ))}
+                      </ul>
+                    )}
                   </button>
                 ))}
               </div>
@@ -91,7 +110,7 @@ export default function TrustedBusinessAdvisor() {
                 >
                   <Image
                     src={items[active].image}
-                    alt={items[active].title}
+                    alt={items[active].label}
                     fill
                     priority
                     className="object-cover"
