@@ -92,6 +92,11 @@ export default function TrustedBusinessAdvisor({
                         ))}
                       </ul>
                     )}
+                    {item.endText && (
+                      <p className="mt-2 max-w-md text-[15px] leading-7 text-slate-500">
+                        {item.endText}
+                      </p>
+                    )}
                   </button>
                 ))}
               </div>

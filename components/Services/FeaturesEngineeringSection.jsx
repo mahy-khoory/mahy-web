@@ -26,6 +26,7 @@ const cardVariants = {
 
 export default function FeaturesEngineeringSection({
   heading = "Features & Engineering",
+  text,
   items = [
     {
       heading: "Strategic advisory",
@@ -70,13 +71,17 @@ export default function FeaturesEngineeringSection({
           </h2>
         </div>
 
+        {text && (
+          <p>{text}</p>
+        )}
+
         {/* Cards */}
         <motion.div
           className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-10"
           variants={containerVariants}
         >
           {items.map((item, i) =>
-          (i !== items.length - 1 ? (
+          (i !== items.length - 1 || (items.length % 3 === 0) ? (
             <motion.div
               key={i}
               variants={cardVariants}
@@ -92,25 +97,39 @@ export default function FeaturesEngineeringSection({
                 <p className="mt-4 text-[#526064] group-hover:text-gray-300 leading-relaxed transition-colors duration-700">
                   {item.text}
                 </p>
+
+                {item.bullets && (
+                  <ul className="mt-3 list-disc pl-5 space-y-2 text-[15px]">
+                    {item.bullets.map((textItem, j) => (
+                      <li key={j} className="text-[#526064] group-hover:text-gray-300">{textItem}</li>
+                    ))}
+                  </ul>
+                )}
+                {item.lastText && (
+                  <p className="mt-2 text-[#526064] group-hover:text-gray-300">
+                    {item.lastText}
+                  </p>
+                )}
               </div>
             </motion.div>
           ) : (
             <motion.div
               key={i}
               variants={cardVariants}
-              className="relative overflow-hidden min-h-[340px] 
+              className="relative overflow-hidden min-h-85
                        col-span-1 md:col-span-2 lg:col-span-2 group"
             >
-              <Image
-                src="/gallery/gallery-1.jpg"
-                alt="Operational excellence"
-                fill
-                className="object-cover scale-100 group-hover:scale-105 transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-              />
-
+              <div className="absolute inset-0">
+                <Image
+                  src="/gallery/gallery-1.jpg"
+                  alt="Operational excellence"
+                  fill
+                  className="object-cover scale-100 group-hover:scale-105 transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                />
+              </div>
               <div className="absolute inset-0 bg-black/55 group-hover:bg-black/65 transition-colors duration-700" />
 
-              <div className="absolute inset-0 flex items-center p-12">
+              <div className="relative z-10 p-12">
                 <div className="max-w-md">
                   <h3 className="text-[22px] font-semibold text-white">
                     {item.heading}
@@ -118,6 +137,18 @@ export default function FeaturesEngineeringSection({
                   <p className="mt-3 text-gray-200 leading-relaxed">
                     {item.text}
                   </p>
+                  {item.bullets && (
+                    <ul className="mt-3 list-disc pl-5 space-y-2 text-[15px]">
+                      {item.bullets.map((textItem, j) => (
+                        <li key={j} className="text-[#c5c5c5] group-hover:text-gray-300">{textItem}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {item.lastText && (
+                    <p className="mt-2 text-[#b9b9b9] group-hover:text-gray-300">
+                      {item.lastText}
+                    </p>
+                  )}
                 </div>
               </div>
             </motion.div>
