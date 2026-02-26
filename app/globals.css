@@ -396,3 +396,11 @@ button {
 .animate-slideFade {
   animation: slideFade 300ms ease-out forwards;
 }
+
+.stroke-text {
+  -webkit-text-stroke: 3px var(--accent-color);
+}
+
+.stroke-text-white {
+  -webkit-text-stroke: 3px white;
+}
