@@ -14,6 +14,12 @@ export default function FormD365Lookup({
   placeholder,
   loading,
   onOpen,
+  disabled,
+  displayValue,
+  enableSearch = false,
+  searchPlaceholder,
+  searchKeys,
+  allowCustomValue = false,
 }) {
   return (
     <Controller
@@ -31,6 +37,12 @@ export default function FormD365Lookup({
           error={error}
           loading={loading}
           onOpen={onOpen}
+          displayValue={displayValue}
+          disabled={disabled}
+          enableSearch={enableSearch}
+          searchPlaceholder={searchPlaceholder}
+          searchKeys={searchKeys}
+          allowCustomValue={allowCustomValue}
         />
       )}
     />
