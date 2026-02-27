@@ -113,6 +113,9 @@ export default function CustomerRegistration() {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(customerFormSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
+    criteriaMode: "firstError",
     defaultValues: {
       customerType: "organization",
       classificationGroup: "credit",
@@ -156,6 +159,13 @@ export default function CustomerRegistration() {
   useEffect(() => {
     setValue("state", "");
   }, [country, setValue]);
+
+  useEffect(() => {
+  // person => always NET000D
+  if (isPerson) {
+    setValue("paymentTerms", "NET000D", { shouldValidate: true, shouldDirty: true });
+  }
+}, [isPerson, setValue]);
 
   const normalizeFiles = (val) => {
     if (!val) return [];
@@ -237,35 +247,22 @@ export default function CustomerRegistration() {
       setIsSubmitting(false);
     }
   };
-  // const onSubmit = async (data) => {
-  //   setIsSubmitting(true);
-  //   try {
-  //     await new Promise((resolve) => setTimeout(resolve, 1500));
-  //     console.log("Form submitted:", data);
-  //     toast.success("Registration submitted successfully!", {
-  //       position: "top-right",
-  //       autoClose: 4000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //     });
-  //   } catch (error) {
-  //     toast.error("Something went wrong. Please try again.", {
-  //       position: "top-right",
-  //       autoClose: 4000,
-  //     });
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
+  
   const customerTypeOptions =
     isOneTime && trnType === "with_trn"
       ? [{ value: "organization", label: "Organization" }]
       : [...CUSTOMER_TYPES];
 
   const stateOptions = getStatesForCountry(country);
+
+  const onInvalid = (formErrors) => {
+  const firstKey = Object.keys(formErrors)[0];
+  const firstMessage =
+    formErrors?.[firstKey]?.message ||
+    "Please correct the highlighted fields.";
+
+  toast.error(firstMessage, { position: "top-right" });
+};
 
   return (
     <>
@@ -302,7 +299,7 @@ export default function CustomerRegistration() {
               </CardHeader>
 
               <CardContent className="p-6">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="space-y-8">
                   {/* Basic Details - Combined Section */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Basic Details">
@@ -360,7 +357,9 @@ export default function CustomerRegistration() {
                       <FormD365Lookup
                         name="currency"
                         control={control}
-                        label="Curreny"
+                        enableSearch
+                        searchPlaceholder={"Search Currency"}
+                        label="Currency"
                         required
                         data={currencies}
                         loading={currenciesLoading}
@@ -369,7 +368,7 @@ export default function CustomerRegistration() {
                           { key: "label", label: "Currency" },
                           { key: "description", label: "Symbol" },
                         ]}
-                        error={errors.currencies?.message}
+                        error={errors.currency?.message}
                       />
 
                       <AnimatedField show={isOneTime}>
@@ -536,7 +535,7 @@ export default function CustomerRegistration() {
                       </AnimatedField>
 
                       <AnimatedField show={isPerson && isCredit}>
-                        <Controller
+                        {/* <Controller
                           name="lastNamePrefix"
                           control={control}
                           render={({ field }) => (
@@ -550,7 +549,7 @@ export default function CustomerRegistration() {
                               placeholder="Select..."
                             />
                           )}
-                        />
+                        /> */}
 
                         <InputField
                           label="Last name"
@@ -627,14 +626,17 @@ export default function CustomerRegistration() {
                         name="paymentTerms"
                         control={control}
                         label="Terms of payment"
-                        required
                         data={paymentTerms}
                         loading={ptLoading}
+                        enableSearch
+                        searchPlaceholder={"Search Payment Terms"}
                         onOpen={() => setOpenLookup("paymentTerms")}
                         columns={[
                           { key: "label", label: "Terms of payment" },
                           { key: "description", label: "Description" },
                         ]}
+                        displayValue={isPerson ? "NET000D" : undefined}
+                        disabled={isPerson}
                         error={errors.paymentTerms?.message}
                       />
 
@@ -663,7 +665,8 @@ export default function CustomerRegistration() {
                         name="deliveryTerms"
                         control={control}
                         label="Delivery Terms"
-                        required
+                        enableSearch
+                        searchPlaceholder={"Search Dlv Terms"}
                         data={deliveryTerms}
                         loading={dlvTermsLoading}
                         onOpen={() => setOpenLookup("deliveryTerms")}
@@ -695,7 +698,8 @@ export default function CustomerRegistration() {
                         name="deliveryMode"
                         control={control}
                         label="Mode Of Delivery"
-                        required
+                        enableSearch
+                        searchPlaceholder={"Search Dlv Modes"}
                         data={dlvModes}
                         loading={dlvModesLoading}
                         onOpen={() => setOpenLookup("dlvModes")}
@@ -703,7 +707,7 @@ export default function CustomerRegistration() {
                           { key: "label", label: "Modes" },
                           { key: "description", label: "Description" },
                         ]}
-                        error={errors.dlvModes?.message}
+                        error={errors.deliveryMode?.message}
                       />
 
                       {/* Credit only: VAT Registered toggle */}
@@ -731,7 +735,8 @@ export default function CustomerRegistration() {
                         name="salesTaxGroup"
                         control={control}
                         label="Sales Tax Group"
-                        required
+                        enableSearch
+                        searchPlaceholder={"Search Sales Tax Groups"}
                         data={taxGroups}
                         loading={taxGroupsLoading}
                         onOpen={() => setOpenLookup("taxGroups")}
@@ -760,7 +765,8 @@ export default function CustomerRegistration() {
                         name="lineOfBusiness"
                         control={control}
                         label="Line Of Business"
-                        required
+                        enableSearch
+                        searchPlaceholder={"Search Line of Business"}
                         data={lineOfBusiness}
                         loading={lineOfBusinessLoading}
                         onOpen={() => setOpenLookup("lineOfBusiness")}
@@ -823,8 +829,11 @@ export default function CustomerRegistration() {
                         control={control}
                         label="ZIP Codes"
                         required
+                        allowCustomValue
                         data={zipCodes}
                         loading={zipCodesLoading}
+                        enableSearch
+                        searchPlaceholder={"Search Zip codes"}
                         onOpen={() => setOpenLookup("zipCodes")}
                         columns={[
                           { key: "label", label: "CODE" },
