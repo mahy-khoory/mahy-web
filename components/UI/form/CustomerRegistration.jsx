@@ -409,6 +409,7 @@ export default function CustomerRegistration() {
                               label="Trade License Issue Date"
                               value={field.value}
                               onChange={field.onChange}
+                              disabled={(date) => date > new Date()}
                             />
                           )}
                         />
@@ -424,6 +425,7 @@ export default function CustomerRegistration() {
                               value={field.value}
                               onChange={field.onChange}
                               error={errors.tlExpiryDate?.message}
+                              disabled={(date) => date < new Date()}
                             />
                           )}
                         />
