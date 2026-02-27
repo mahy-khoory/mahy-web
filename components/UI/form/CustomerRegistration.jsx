@@ -77,9 +77,12 @@ export default function CustomerRegistration() {
   const searchParams = useSearchParams();
 
   const company = searchParams.get("company");
+  console.log(company);
 
   const [openLookup, setOpenLookup] = useState(null);
+
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
+    company,
     openLookup === "paymentTerms",
   );
 
@@ -88,16 +91,18 @@ export default function CustomerRegistration() {
   );
 
   const { data: deliveryTerms = [], isLoading: dlvTermsLoading } =
-    useDeliveryTerms(openLookup === "deliveryTerms");
+    useDeliveryTerms(company, openLookup === "deliveryTerms");
 
   const { data: taxGroups = [], isLoading: taxGroupsLoading } = useTaxGroups(
+    company,
     openLookup === "taxGroups",
   );
 
   const { data: lineOfBusiness = [], isLoading: lineOfBusinessLoading } =
-    useLineOfBusiness(openLookup === "lineOfBusiness");
+    useLineOfBusiness(company, openLookup === "lineOfBusiness");
 
   const { data: dlvModes = [], isLoading: dlvModesLoading } = useDeliveryModes(
+    company,
     openLookup === "dlvModes",
   );
 
@@ -164,7 +169,10 @@ export default function CustomerRegistration() {
   useEffect(() => {
     // person => always NET000D
     if (isPerson) {
-      setValue("paymentTerms", "NET000D", { shouldValidate: true, shouldDirty: true });
+      setValue("paymentTerms", "NET000D", {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
     }
   }, [isPerson, setValue]);
 
@@ -275,9 +283,7 @@ export default function CustomerRegistration() {
         className="min-h-screen py-8 px-4"
       >
         <div className="max-w-5xl mx-auto pt-20">
-          <SelectedCompany
-            currentPage="customer-registration"
-          />
+          <SelectedCompany currentPage="customer-registration" />
 
           <motion.div variants={sectionVariants}>
             <Card className="shadow-lg overflow-hidden">
@@ -304,7 +310,10 @@ export default function CustomerRegistration() {
               </CardHeader>
 
               <CardContent className="p-6">
-                <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="space-y-8">
+                <form
+                  onSubmit={handleSubmit(onSubmit, onInvalid)}
+                  className="space-y-8"
+                >
                   {/* Basic Details - Combined Section */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Basic Details">
@@ -314,7 +323,16 @@ export default function CustomerRegistration() {
                           label="TRN"
                           required
                           error={errors.trn?.message}
-                          {...register("trn")}
+                          inputMode="numeric"
+                          autoComplete="off"
+                          placeholder="Enter 15-digit TRN"
+                          {...register("trn", {
+                            onChange: (e) => {
+                              e.target.value = e.target.value
+                                .replace(/\D/g, "")
+                                .slice(0, 15);
+                            },
+                          })}
                         />
                       </AnimatedField>
 
@@ -343,6 +361,39 @@ export default function CustomerRegistration() {
                           // required={isCredit && isOrganization}
                           // error={errors.customerAccount?.message}
                           {...register("customerAccount")}
+                        />
+                      </AnimatedField>
+
+                      {/* <AnimatedField show={isOneTime}>
+                        <Controller
+                          name="trnType"
+                          control={control}
+                          render={({ field }) => (
+                            <SelectField
+                              label="TRN Type"
+                              value={field.value || "with_trn"}
+                              onChange={field.onChange}
+                              options={[...VAT_TYPES]}
+                            />
+                          )}
+                        />
+                      </AnimatedField> */}
+
+                      <AnimatedField show={isOneTime}>
+                        <Controller
+                          name="trnType"
+                          control={control}
+                          render={({ field }) => (
+                            <RadioGroupField
+                              label="TRN Type"
+                              value={field.value}
+                              onChange={field.onChange}
+                              options={[
+                                { value: "with_trn", label: "With TRN" },
+                                { value: "without_trn", label: "Without TRN" },
+                              ]}
+                            />
+                          )}
                         />
                       </AnimatedField>
 
@@ -375,21 +426,6 @@ export default function CustomerRegistration() {
                         ]}
                         error={errors.currency?.message}
                       />
-
-                      <AnimatedField show={isOneTime}>
-                        <Controller
-                          name="trnType"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="TRN Type"
-                              value={field.value || "with_trn"}
-                              onChange={field.onChange}
-                              options={[...VAT_TYPES]}
-                            />
-                          )}
-                        />
-                      </AnimatedField>
 
                       <AnimatedField show={isOrganization}>
                         <InputField
@@ -867,7 +903,16 @@ export default function CustomerRegistration() {
 
                       <InputField
                         label="Makani Number"
-                        {...register("makaniNo")}
+                        inputMode="numeric"
+                        autoComplete="off"
+                        placeholder="10-digit Makani number"
+                        {...register("makaniNo", {
+                          onChange: (e) => {
+                            e.target.value = e.target.value
+                              .replace(/\D/g, "")
+                              .slice(0, 10);
+                          },
+                        })}
                       />
 
                       <InputField

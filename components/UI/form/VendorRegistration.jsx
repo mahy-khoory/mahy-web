@@ -99,15 +99,15 @@ export default function VendorRegistration() {
   const [openLookup, setOpenLookup] = useState(null);
 
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
-    openLookup === "paymentTerms",
+   company, openLookup === "paymentTerms",
   );
 
   const { data: taxGroups = [], isLoading: taxGroupsLoading } = useTaxGroups(
-    openLookup === "taxGroups",
+   company, openLookup === "taxGroups",
   );
 
   const { data: lineOfBusiness = [], isLoading: lineOfBusinessLoading } =
-    useLineOfBusiness(openLookup === "lineOfBusiness");
+    useLineOfBusiness(company, openLookup === "lineOfBusiness");
 
   const { data: zipCodes = [], isLoading: zipCodesLoading } = useZipCodes(
     openLookup === "zipCodes",
@@ -118,10 +118,10 @@ export default function VendorRegistration() {
   );
 
   const { data: deliveryTerms = [], isLoading: dlvTermsLoading } =
-    useDeliveryTerms(openLookup === "deliveryTerms");
+    useDeliveryTerms(company, openLookup === "deliveryTerms");
 
   const { data: dlvModes = [], isLoading: dlvModesLoading } = useDeliveryModes(
-    openLookup === "dlvModes",
+   company, openLookup === "dlvModes",
   );
 
   const {
@@ -236,6 +236,15 @@ export default function VendorRegistration() {
     }
   };
 
+  const onInvalid = (formErrors) => {
+    const firstKey = Object.keys(formErrors)[0];
+    const firstMessage =
+      formErrors?.[firstKey]?.message ||
+      "Please correct the highlighted fields.";
+
+    toast.error(firstMessage, { position: "top-right" });
+  };
+
   return (
     <>
       <ToastContainer />
@@ -246,9 +255,7 @@ export default function VendorRegistration() {
         className="min-h-screen bg-background py-8 px-4"
       >
         <div className="max-w-5xl mx-auto pt-20">
-          <SelectedCompany
-            currentPage="vendor-registration"
-          />
+          <SelectedCompany currentPage="vendor-registration" />
 
           <motion.div variants={sectionVariants}>
             <Card className="shadow-lg overflow-hidden">
@@ -273,7 +280,11 @@ export default function VendorRegistration() {
                 </motion.div>
               </CardHeader>
               <CardContent className="p-6">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                <form
+                  onSubmit={handleSubmit(onSubmit, onInvalid)}
+                  className="space-y-8"
+                >
+                  {" "}
                   {/* Basic Vendor Details */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Basic Details">
@@ -295,7 +306,9 @@ export default function VendorRegistration() {
                       <FormD365Lookup
                         name="currency"
                         control={control}
-                        label="Curreny"
+                        enableSearch
+                        searchPlaceholder={"Search Currency"}
+                        label="Currency"
                         required
                         data={currencies}
                         loading={currenciesLoading}
@@ -324,7 +337,8 @@ export default function VendorRegistration() {
                         name="termsOfPayment"
                         control={control}
                         label="Terms of payment"
-                        required
+                        enableSearch
+                        searchPlaceholder={"Search Payment Terms"}
                         data={paymentTerms}
                         loading={ptLoading}
                         onOpen={() => setOpenLookup("paymentTerms")}
@@ -332,12 +346,16 @@ export default function VendorRegistration() {
                           { key: "label", label: "Terms of payment" },
                           { key: "description", label: "Description" },
                         ]}
+                        displayValue={isPerson ? "NET000D" : undefined}
+                        disabled={isPerson}
                         error={errors.paymentTerms?.message}
                       />
 
                       <FormD365Lookup
                         name="deliveryTerms"
                         control={control}
+                        enableSearch
+                        searchPlaceholder={"Search Dlv Terms"}
                         label="Delivery Terms"
                         required
                         data={deliveryTerms}
@@ -354,7 +372,8 @@ export default function VendorRegistration() {
                         name="deliveryMode"
                         control={control}
                         label="Mode Of Delivery"
-                        required
+                        enableSearch
+                        searchPlaceholder={"Search Dlv Modes"}
                         data={dlvModes}
                         loading={dlvModesLoading}
                         onOpen={() => setOpenLookup("dlvModes")}
@@ -368,6 +387,8 @@ export default function VendorRegistration() {
                       <FormD365Lookup
                         name="salesTaxGroup"
                         control={control}
+                        enableSearch
+                        searchPlaceholder={"Search Sales Tax Groups"}
                         label="Sales Tax Group"
                         required
                         data={taxGroups}
@@ -389,8 +410,9 @@ export default function VendorRegistration() {
                         name="lineOfBusiness"
                         control={control}
                         label="Line Of Business"
-                        required
                         data={lineOfBusiness}
+                        enableSearch
+                        searchPlaceholder={"Search Line of Business"}
                         loading={lineOfBusinessLoading}
                         onOpen={() => setOpenLookup("lineOfBusiness")}
                         columns={[
@@ -417,7 +439,6 @@ export default function VendorRegistration() {
                       />
                     </FormSection>
                   </motion.div>
-
                   {/* Organization-specific fields */}
                   <AnimatedField show={isOrganization}>
                     <motion.div variants={sectionVariants}>
@@ -435,6 +456,21 @@ export default function VendorRegistration() {
                           )}
                         />
 
+                        <Controller
+                          name="methodOfPayment"
+                          control={control}
+                          render={({ field }) => (
+                            <SelectField
+                              label="Method of payment"
+                              value={field.value || ""}
+                              onChange={field.onChange}
+                              options={[...PAYMENT_METHODS]}
+                              required
+                              error={errors.methodOfPayment?.message}
+                            />
+                          )}
+                        />
+
                         <InputField
                           label="Trade license"
                           required
@@ -445,11 +481,15 @@ export default function VendorRegistration() {
                         <Controller
                           name="tradeLicenseIssueDate"
                           control={control}
-                          render={({ field }) => (
+                          render={({ field, fieldState }) => (
                             <DatePickerField
                               label="Trade license issue date"
                               value={field.value}
                               onChange={field.onChange}
+                              error={fieldState.error?.message}
+                              required
+                              minDate={new Date(1950, 0, 1)}
+                              maxDate={new Date()} // example: disallow future dates
                             />
                           )}
                         />
@@ -529,33 +569,26 @@ export default function VendorRegistration() {
                           />
                         </AnimatedField>
 
-                        <Controller
-                          name="methodOfPayment"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Method of payment"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...PAYMENT_METHODS]}
-                              required
-                              error={errors.methodOfPayment?.message}
-                            />
-                          )}
-                        />
-
                         <AnimatedField show={trnType === "with_trn"}>
                           <InputField
                             label="TRN"
                             required
                             error={errors.trn?.message}
-                            {...register("trn")}
+                            inputMode="numeric"
+                            autoComplete="off"
+                            placeholder="Enter 15-digit TRN"
+                            {...register("trn", {
+                              onChange: (e) => {
+                                e.target.value = e.target.value
+                                  .replace(/\D/g, "")
+                                  .slice(0, 15);
+                              },
+                            })}
                           />
                         </AnimatedField>
                       </FormSection>
                     </motion.div>
                   </AnimatedField>
-
                   {/* Person-specific fields */}
                   <AnimatedField show={isPerson}>
                     <motion.div variants={sectionVariants}>
@@ -671,85 +704,6 @@ export default function VendorRegistration() {
                             )}
                           />
                         </AnimatedField>
-
-                        {/* Name fields - always shown for Person */}
-                        {/* <Controller
-                          name="firstName"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="First name"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[
-                                { value: "john", label: "John" },
-                                { value: "jane", label: "Jane" },
-                                { value: "ahmed", label: "Ahmed" },
-                                { value: "fatima", label: "Fatima" },
-                                { value: "mohammed", label: "Mohammed" },
-                              ]}
-                              required
-                              error={errors.firstName?.message}
-                            />
-                          )}
-                        />
-
-                        <Controller
-                          name="middleName"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Middle name"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[
-                                { value: "ali", label: "Ali" },
-                                { value: "omar", label: "Omar" },
-                                { value: "hassan", label: "Hassan" },
-                                { value: "khalid", label: "Khalid" },
-                              ]}
-                              required
-                              error={errors.middleName?.message}
-                            />
-                          )}
-                        />
-
-                        <Controller
-                          name="lastNamePrefix"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Last name prefix"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...NAME_PREFIXES]}
-                              required
-                              error={errors.lastNamePrefix?.message}
-                            />
-                          )}
-                        />
-
-                        <Controller
-                          name="lastName"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Last name"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[
-                                { value: "smith", label: "Smith" },
-                                { value: "johnson", label: "Johnson" },
-                                { value: "khan", label: "Khan" },
-                                { value: "ahmed", label: "Ahmed" },
-                                { value: "ali", label: "Ali" },
-                              ]}
-                              required
-                              error={errors.lastName?.message}
-                            />
-                          )}
-                        /> */}
-
                         <InputField
                           label="First name"
                           required
@@ -763,7 +717,7 @@ export default function VendorRegistration() {
                           {...register("middleName")}
                         />
 
-                        <Controller
+                        {/* <Controller
                           name="lastNamePrefix"
                           control={control}
                           render={({ field }) => (
@@ -771,13 +725,13 @@ export default function VendorRegistration() {
                               label="Title"
                               value={field.value || ""}
                               onChange={field.onChange}
-                              options={[...NAME_PREFIXES]} // Mr / Ms / Mrs / Dr etc.
+                              options={[...NAME_PREFIXES]}
                               required
                               error={errors.lastNamePrefix?.message}
                               placeholder="Select..."
                             />
                           )}
-                        />
+                        /> */}
 
                         <InputField
                           label="Last name"
@@ -788,7 +742,6 @@ export default function VendorRegistration() {
                       </FormSection>
                     </motion.div>
                   </AnimatedField>
-
                   {/* Address Information */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Address">
@@ -833,6 +786,9 @@ export default function VendorRegistration() {
                         control={control}
                         label="ZIP Codes"
                         required
+                        allowCustomValue
+                        enableSearch
+                        searchPlaceholder={"Search Zip codes"}
                         data={zipCodes}
                         loading={zipCodesLoading}
                         onOpen={() => setOpenLookup("zipCodes")}
@@ -842,23 +798,6 @@ export default function VendorRegistration() {
                         ]}
                         error={errors.zipPostalCode?.message}
                       />
-
-                      {/* <Controller
-                        name="city"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="City"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[
-                              ...getCitiesForCountry(countryRegion || "UAE"),
-                            ]}
-                            required
-                            error={errors.city?.message}
-                          />
-                        )}
-                      /> */}
 
                       <InputField
                         label="City"
@@ -959,7 +898,6 @@ export default function VendorRegistration() {
                       </AnimatedField>
                     </FormSection>
                   </motion.div>
-
                   {/* Contact Information */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Contact information">
@@ -1064,7 +1002,6 @@ export default function VendorRegistration() {
                       <InputField label="Website" {...register("website")} />
                     </FormSection>
                   </motion.div>
-
                   <Controller
                     name="consent"
                     control={control}
@@ -1089,7 +1026,6 @@ export default function VendorRegistration() {
                       </FormField>
                     )}
                   />
-
                   {/* Submit Button */}
                   <motion.div
                     variants={sectionVariants}
