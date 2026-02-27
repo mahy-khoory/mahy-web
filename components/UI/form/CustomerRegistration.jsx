@@ -44,6 +44,7 @@ import { useLineOfBusiness } from "@/lib/hooks/useLineOfBusiness";
 import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
 import { useZipCodes } from "@/lib/hooks/useZipCodes";
 import { useCreateCustomer } from "@/lib/hooks/useCreateCustomer";
+import SelectedCompany from "@/components/SelectedCompany";
 
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -161,11 +162,11 @@ export default function CustomerRegistration() {
   }, [country, setValue]);
 
   useEffect(() => {
-  // person => always NET000D
-  if (isPerson) {
-    setValue("paymentTerms", "NET000D", { shouldValidate: true, shouldDirty: true });
-  }
-}, [isPerson, setValue]);
+    // person => always NET000D
+    if (isPerson) {
+      setValue("paymentTerms", "NET000D", { shouldValidate: true, shouldDirty: true });
+    }
+  }, [isPerson, setValue]);
 
   const normalizeFiles = (val) => {
     if (!val) return [];
@@ -247,7 +248,7 @@ export default function CustomerRegistration() {
       setIsSubmitting(false);
     }
   };
-  
+
   const customerTypeOptions =
     isOneTime && trnType === "with_trn"
       ? [{ value: "organization", label: "Organization" }]
@@ -256,13 +257,13 @@ export default function CustomerRegistration() {
   const stateOptions = getStatesForCountry(country);
 
   const onInvalid = (formErrors) => {
-  const firstKey = Object.keys(formErrors)[0];
-  const firstMessage =
-    formErrors?.[firstKey]?.message ||
-    "Please correct the highlighted fields.";
+    const firstKey = Object.keys(formErrors)[0];
+    const firstMessage =
+      formErrors?.[firstKey]?.message ||
+      "Please correct the highlighted fields.";
 
-  toast.error(firstMessage, { position: "top-right" });
-};
+    toast.error(firstMessage, { position: "top-right" });
+  };
 
   return (
     <>
@@ -274,6 +275,10 @@ export default function CustomerRegistration() {
         className="min-h-screen py-8 px-4"
       >
         <div className="max-w-5xl mx-auto pt-20">
+          <SelectedCompany
+            currentPage="customer-registration"
+          />
+
           <motion.div variants={sectionVariants}>
             <Card className="shadow-lg overflow-hidden">
               <CardHeader className="border-b border-gray-300">

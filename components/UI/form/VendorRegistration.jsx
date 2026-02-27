@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Loader2, Users, CheckCircle2 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
-
 import Button from "../Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
 
@@ -59,6 +58,8 @@ import { useLineOfBusiness } from "@/lib/hooks/useLineOfBusiness";
 import { useTaxGroups } from "@/lib/hooks/useTaxGroups";
 import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
 import { useCreateVendor } from "@/lib/hooks/useCreateVendor";
+import Link from "next/link";
+import SelectedCompany from "@/components/SelectedCompany";
 
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -245,6 +246,10 @@ export default function VendorRegistration() {
         className="min-h-screen bg-background py-8 px-4"
       >
         <div className="max-w-5xl mx-auto pt-20">
+          <SelectedCompany
+            currentPage="vendor-registration"
+          />
+
           <motion.div variants={sectionVariants}>
             <Card className="shadow-lg overflow-hidden">
               <CardHeader className="border-b border-gray-300">

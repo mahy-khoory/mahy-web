@@ -166,6 +166,7 @@ export default function Navbar({ navigation }) {
                 <ScrollToTop
                   href={item.href}
                   className="px-4 py-2 rounded-full hover:bg-white/10 transition"
+                  
                 >
                   {item.label}
                 </ScrollToTop>
@@ -350,6 +351,7 @@ export default function Navbar({ navigation }) {
                           <ScrollToTop
                             href={item.href}
                             onClick={closeMobileMenu}
+                            
                             className="text-base font-semibold text-white"
                           >
                             {item.label}
@@ -392,6 +394,7 @@ export default function Navbar({ navigation }) {
                                       key={`${column.title}-${linkIndex}`}
                                       href={link.href}
                                       onClick={closeMobileMenu}
+                                      
                                       className="text-sm text-white/80 hover:text-white text-start"
                                     >
                                       {link.label}
@@ -417,6 +420,7 @@ export default function Navbar({ navigation }) {
                             href={item.href}
                             onClick={closeMobileMenu}
                             className="text-white"
+                            
                           >
                             {item.label}
                           </ScrollToTop>
@@ -451,6 +455,7 @@ export default function Navbar({ navigation }) {
                                   key={`${i}-${j}`}
                                   href={child.href}
                                   onClick={closeMobileMenu}
+                                  
                                   className="block py-2 text-sm text-white/80 hover:text-white"
                                 >
                                   {child.label}
@@ -468,6 +473,7 @@ export default function Navbar({ navigation }) {
                       <ScrollToTop
                         href={item.href}
                         onClick={closeMobileMenu}
+                        
                         className="block rounded-2xl bg-white/5 px-4 py-3 w-full text-start"
                       >
                         {item.label}
