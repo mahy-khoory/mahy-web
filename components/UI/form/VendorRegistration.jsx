@@ -99,11 +99,11 @@ export default function VendorRegistration() {
   const [openLookup, setOpenLookup] = useState(null);
 
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
-   company, openLookup === "paymentTerms",
+    company, openLookup === "paymentTerms",
   );
 
   const { data: taxGroups = [], isLoading: taxGroupsLoading } = useTaxGroups(
-   company, openLookup === "taxGroups",
+    company, openLookup === "taxGroups",
   );
 
   const { data: lineOfBusiness = [], isLoading: lineOfBusinessLoading } =
@@ -121,7 +121,7 @@ export default function VendorRegistration() {
     useDeliveryTerms(company, openLookup === "deliveryTerms");
 
   const { data: dlvModes = [], isLoading: dlvModesLoading } = useDeliveryModes(
-   company, openLookup === "dlvModes",
+    company, openLookup === "dlvModes",
   );
 
   const {
@@ -502,6 +502,7 @@ export default function VendorRegistration() {
                               label="Trade license expiry date"
                               value={field.value}
                               onChange={field.onChange}
+                              disabled={(date) => date < new Date()}
                             />
                           )}
                         />
