@@ -76,17 +76,18 @@ function WasteCollectionTimeline({
 };
 
 const DataElement = ({ item, alignmentClass = "text-left" }) => (
-    <div className={`py-10 w-90 border rounded-2xl border-gray-300 bg-white relative z-10 ${alignmentClass} flex flex-col justify-center px-8`}>
+    <div className={`py-10 w-90 border rounded-2xl border-gray-300 bg-white relative z-10 flex flex-col justify-center px-8`}>
         <h2 className="uppercase text-xl font-semibold border-b border-gray-200 pb-4 mb-5">{item.title}</h2>
-        <p className="text-sm text-gray-700">{item.text}</p>
-        {item.text2 && <p className="text-sm text-gray-700 mt-4">{item.text2}</p>}
+        {item.text && <p className="text-sm text-gray-700 mb-4">{item.text}</p>}
+        {item.text2 && <p className="text-sm text-gray-700 mb-4">{item.text2}</p>}
         {item.options && (
-            <ul className="mt-4 list-disc pl-5 mb-4 space-y-2">
+            <ul className="list-disc pl-5 space-y-2">
                 {item.options.map((textItem, j) => (
                     <li key={j} className="text-sm text-gray-600">{textItem}</li>
                 ))}
             </ul>
         )}
+        {item.endText && <p className="text-sm text-gray-700 mt-4">{item.endText}</p>}
     </div>
 );
 

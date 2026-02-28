@@ -60,9 +60,6 @@ export default function TrustedBusinessAdvisor({
                 ))}
               </ul>
             )}
-            {endText && (
-              <p className="mt-2 max-w-md text-slate-500">{endText}</p>
-            )}
             <div className="relative mt-10 pl-10">
               <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-200 rounded-full" />
               <motion.div
@@ -101,6 +98,9 @@ export default function TrustedBusinessAdvisor({
                 ))}
               </div>
             </div>
+            {endText && (
+              <p className="mt-8 max-w-md text-slate-500">{endText}</p>
+            )}
           </div>
           <div className="lg:col-span-7">
             <div className="relative h-full min-h-[520px] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.12)]">

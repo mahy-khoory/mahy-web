@@ -12,7 +12,7 @@ function WasteCollectionGrid({
         items = [
             { query: "What is your return policy?", reply: "Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better." },
             { query: "Need Help?", reply: "Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better." }
-        ]
+        ];
     };
     return (
         <section className="bg-gray-100">

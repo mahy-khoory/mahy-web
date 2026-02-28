@@ -25,7 +25,7 @@ function SolarPanelQuoteGrid({
                     {/* <p className="mt-5 text-3xl font-medium">Tailored Business Consulting For Optimal Success</p> */}
                     <p className="mt-3 text-gray-700">{text}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 gap-3 md:gap-0">
-                        <div>
+                        <div className="pr-3">
                             {items.map((item, i) => (
                                 <div key={i} className={`flex gap-3 items-center pb-4 ${i < (items.length - 1) && "border-b border-gray-400"} ${i > 0 && "pt-4"}`}>
                                     <Check size={18} />
