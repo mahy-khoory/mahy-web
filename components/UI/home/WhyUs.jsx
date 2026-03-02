@@ -62,7 +62,7 @@ export default function WhyUs({ items, reverse = false }) {
             </motion.div>
             <div className="relative w-full h-80 lg:h-full">
                 <Image
-                    src="https://res.cloudinary.com/db3fd1qah/image/upload/v1766140489/office_m5htoa.png"
+                    src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp"
                     alt="Why Us"
                     fill
                     className="object-cover"
