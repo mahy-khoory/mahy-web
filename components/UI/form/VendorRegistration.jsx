@@ -933,16 +933,14 @@ export default function VendorRegistration() {
                         placeholder="Enter telephone number"
                         {...register("telephone", {
                           onChange: (e) => {
-                            const countryCode = watch("telCountryCode"); // get selected tel country code
-                            let value = e.target.value.replace(/\D/g, ""); // remove non-digits
+                            const countryCode = watch("telCountryCode"); 
+                            let value = e.target.value.replace(/\D/g, ""); 
 
-                            // Example: limit by country
                             if (countryCode === "+971") {
-                              value = value.slice(0, 7); // UAE 7 digits
+                              value = value.slice(0, 7); 
                             } else {
-                              value = value.slice(0, 15);
+                              value = value.slice(0, 10);
                             }
-                            // Add other countries as needed
 
                             e.target.value = value;
                           },
