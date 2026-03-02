@@ -510,115 +510,115 @@ export function getNavigation(t) {
         //   },
         // ],
       },
-      {
-        id: "news",
-        label: t("News"),
-        href: "/news",
-        linkType: "mega",
-        columns: [
-          {
-            title: t("CorporateUpdates"),
-            links: [
-              { label: t("CompanyNews"), href: "/news/company" },
-              { label: t("IndustryInsights"), href: "/news/industry" },
-              { label: t("Announcements"), href: "/news/announcements" },
-            ],
-          },
-          {
-            title: t("ProjectsDelivery"),
-            links: [
-              { label: t("ProjectsCompleted"), href: "/projects/completed" },
-              { label: t("ProjectHighlights"), href: "/projects/highlights" },
-              { label: t("CaseStudies"), href: "/projects/case-studies" },
-            ],
-          },
-          {
-            title: t("EventsMedia"),
-            links: [
-              { label: t("EventsExhibitions"), href: "/events" },
-              { label: t("MediaCoverage"), href: "/media" },
-              { label: t("PressReleases"), href: "/press" },
-            ],
-          },
-          {
-            title: t("Recognition"),
-            links: [
-              { label: t("AwardsCertifications"), href: "/awards" },
-              { label: t("Milestones"), href: "/milestones" },
-              { label: t("SuccessStories"), href: "/success-stories" },
-            ],
-          },
-        ],
-      },
-
       // {
-      //   id: "careers",
-      //   label: t("Careers"),
-      //   href: "/careers",
+      //   id: "news",
+      //   label: t("News"),
+      //   href: "/news",
       //   linkType: "mega",
       //   columns: [
       //     {
-      //       title: t("CareerOpportunities"),
+      //       title: t("CorporateUpdates"),
       //       links: [
-      //         { label: t("CareersAtMahy"), href: "/careers" },
-      //         { label: t("CurrentVacancies"), href: "/careers/jobs" },
-      //         {
-      //           label: t("InternshipOpportunities"),
-      //           href: "/careers/internships",
-      //         },
-      //         // { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
+      //         { label: t("CompanyNews"), href: "/news/company" },
+      //         { label: t("IndustryInsights"), href: "/news/industry" },
+      //         { label: t("Announcements"), href: "/news/announcements" },
       //       ],
       //     },
       //     {
-      //       title: t("LifeAtMahy"),
+      //       title: t("ProjectsDelivery"),
       //       links: [
-      //         { label: t("WorkingAtMahy"), href: "/careers/life" },
-      //         {
-      //           label: t("CultureValuesEnvironment"),
-      //           href: "/careers/culture",
-      //         },
-      //         {
-      //           label: t("EmployeeBenefitsRewards"),
-      //           href: "/careers/benefits",
-      //         },
-      //         {
-      //           label: t("DiversityEquityInclusion"),
-      //           href: "/careers/diversity",
-      //         },
+      //         { label: t("ProjectsCompleted"), href: "/projects/completed" },
+      //         { label: t("ProjectHighlights"), href: "/projects/highlights" },
+      //         { label: t("CaseStudies"), href: "/projects/case-studies" },
       //       ],
       //     },
       //     {
-      //       title: t("LearningProfessionalDevelopment"),
+      //       title: t("EventsMedia"),
       //       links: [
-      //         {
-      //           label: t("LearningDevelopmentFramework"),
-      //           href: "/careers/learning",
-      //         },
-      //         { label: t("CareerProgressionGrowth"), href: "/careers/growth" },
-      //         {
-      //           label: t("PerformanceManagementRecognition"),
-      //           href: "/careers/performance",
-      //         },
-      //         {
-      //           label: t("LeadershipTalentDevelopment"),
-      //           href: "/careers/leadership",
-      //         },
+      //         { label: t("EventsExhibitions"), href: "/events" },
+      //         { label: t("MediaCoverage"), href: "/media" },
+      //         { label: t("PressReleases"), href: "/press" },
       //       ],
       //     },
       //     {
-      //       title: t("RecruitmentProcessApplications"),
+      //       title: t("Recognition"),
       //       links: [
-      //         { label: t("ApplyPosition"), href: "/careers/apply" },
-      //         // { label: t("SubmitCV"), href: "/careers/submit-cv" },
-      //         {
-      //           label: t("RecruitmentSelectionProcess"),
-      //           href: "/careers/process",
-      //         },
-      //         { label: t("CandidateFAQs"), href: "/careers/faqs" },
+      //         { label: t("AwardsCertifications"), href: "/awards" },
+      //         { label: t("Milestones"), href: "/milestones" },
+      //         { label: t("SuccessStories"), href: "/success-stories" },
       //       ],
       //     },
       //   ],
       // },
+
+      {
+        id: "careers",
+        label: t("Careers"),
+        href: "/careers",
+        linkType: "mega",
+        columns: [
+          {
+            title: t("CareerOpportunities"),
+            links: [
+              { label: t("CareersAtMahy"), href: "/careers" },
+              { label: t("CurrentVacancies"), href: "/careers/jobs" },
+              {
+                label: t("InternshipOpportunities"),
+                href: "/careers/internships",
+              },
+              // { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
+            ],
+          },
+          {
+            title: t("LifeAtMahy"),
+            links: [
+              { label: t("WorkingAtMahy"), href: "/careers/life" },
+              {
+                label: t("CultureValuesEnvironment"),
+                href: "/careers/culture",
+              },
+              {
+                label: t("EmployeeBenefitsRewards"),
+                href: "/careers/benefits",
+              },
+              {
+                label: t("DiversityEquityInclusion"),
+                href: "/careers/diversity",
+              },
+            ],
+          },
+          {
+            title: t("LearningProfessionalDevelopment"),
+            links: [
+              {
+                label: t("LearningDevelopmentFramework"),
+                href: "/careers/learning",
+              },
+              { label: t("CareerProgressionGrowth"), href: "/careers/growth" },
+              {
+                label: t("PerformanceManagementRecognition"),
+                href: "/careers/performance",
+              },
+              {
+                label: t("LeadershipTalentDevelopment"),
+                href: "/careers/leadership",
+              },
+            ],
+          },
+          {
+            title: t("RecruitmentProcessApplications"),
+            links: [
+              { label: t("ApplyPosition"), href: "/careers/apply" },
+              // { label: t("SubmitCV"), href: "/careers/submit-cv" },
+              {
+                label: t("RecruitmentSelectionProcess"),
+                href: "/careers/process",
+              },
+              { label: t("CandidateFAQs"), href: "/careers/faqs" },
+            ],
+          },
+        ],
+      },
       {
         id: "contact",
         label: t("Contact"),
