@@ -422,7 +422,7 @@ export function getNavigation(t) {
             links: [
               {
                 label: t("Engineering&TechnicalServices"),
-                href: "/companies/engineering-services",
+                href: "/services/engineering-services",
               },
               {
                 label: t("PumpingSystemServices"),

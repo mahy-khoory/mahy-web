@@ -35,7 +35,9 @@ function CompanyDetailMenu({
                             >
                                 {items[currentIndex].items.map((item, i) => (
                                     <div key={i}>
-                                        <h2 className="font-semibold">{item.label}</h2>
+                                        {item.label && (
+                                            <h2 className="font-semibold">{item.label}</h2>
+                                        )}
                                         {item.text && item.text.map((text, i) => (
                                             <p key={i} className="text-gray-200 mt-2 text-sm">{text}</p>
                                         ))}
@@ -45,6 +47,9 @@ function CompanyDetailMenu({
                                                     <li key={index} className="mb-2">{bullet}</li>
                                                 ))}
                                             </ul>
+                                        )}
+                                        {item.endText && (
+                                            <p className="text-gray-200 mt-2 text-sm">{item.endText}</p>
                                         )}
                                     </div>
                                 ))}
