@@ -558,63 +558,35 @@ export function getNavigation(t) {
         linkType: "mega",
         columns: [
           {
-            title: t("CareerOpportunities"),
+            title: "About Working With Us",
             links: [
-              { label: t("CareersAtMahy"), href: "/careers" },
-              { label: t("CurrentVacancies"), href: "/careers/jobs" },
-              {
-                label: t("InternshipOpportunities"),
-                href: "/careers/internships",
-              },
-              // { label: t("GraduateEarlyCareer"), href: "/careers/graduates" },
+              { label: "Why Join Us", href: "/careers/why-join-us" },
+              { label: "Our Culture & Values", href: "/careers/culture-and-values" },
+              { label: "Leadership & Vision", href: "/careers/leadership-and-vision" },
+              { label: "Diversity & Inclusion", href: "/careers/diversity-and-inclusion" }
             ],
           },
           {
-            title: t("LifeAtMahy"),
+            title: "Opportunities",
             links: [
-              { label: t("WorkingAtMahy"), href: "/careers/life" },
-              {
-                label: t("CultureValuesEnvironment"),
-                href: "/careers/culture",
-              },
-              {
-                label: t("EmployeeBenefitsRewards"),
-                href: "/careers/benefits",
-              },
-              {
-                label: t("DiversityEquityInclusion"),
-                href: "/careers/diversity",
-              },
+              { label: "Career Opportunities", href: "/careers/opportunities" },
+              { label: "Internship & Graduate Programs", href: "/careers/internship-and-graduate-programs" }
             ],
           },
           {
-            title: t("LearningProfessionalDevelopment"),
+            title: "Apply & Talent Network",
             links: [
-              {
-                label: t("LearningDevelopmentFramework"),
-                href: "/careers/learning",
-              },
-              { label: t("CareerProgressionGrowth"), href: "/careers/growth" },
-              {
-                label: t("PerformanceManagementRecognition"),
-                href: "/careers/performance",
-              },
-              {
-                label: t("LeadershipTalentDevelopment"),
-                href: "/careers/leadership",
-              },
+              { label: "Submit Your CV", href: "/careers/submit-cv" },
+              { label: "Recruitment Process", href: "/careers/recruitment-process" }
             ],
           },
           {
-            title: t("RecruitmentProcessApplications"),
+            title: "Growth & Life at MAHY",
             links: [
-              { label: t("ApplyPosition"), href: "/careers/apply" },
-              // { label: t("SubmitCV"), href: "/careers/submit-cv" },
-              {
-                label: t("RecruitmentSelectionProcess"),
-                href: "/careers/process",
-              },
-              { label: t("CandidateFAQs"), href: "/careers/faqs" },
+              { label: "Learning & Development", href: "/careers/learning-and-development" },
+              { label: "Career Progression", href: "/careers/career-progression" },
+              { label: "Employee Benefits", href: "/careers/employee-benefits" },
+              { label: "Life at MAHY", href: "/careers/life-at-mahy" },
             ],
           },
         ],
