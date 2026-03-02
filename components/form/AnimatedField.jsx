@@ -3,13 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 const fieldVariants = {
     hidden: {
         opacity: 0,
-        scale: 0.96,
-        filter: "blur(6px)",
+        y: 10,
     },
     visible: {
         opacity: 1,
-        scale: 1,
-        filter: "blur(0px)",
+        y: 0,
         transition: {
             duration: 0.4,
             ease: [0.25, 0.46, 0.45, 0.94],
@@ -17,8 +15,7 @@ const fieldVariants = {
     },
     exit: {
         opacity: 0,
-        scale: 0.96,
-        filter: "blur(6px)",
+        y: 10,
         transition: {
             duration: 0.3,
             ease: [0.25, 0.46, 0.45, 0.94],
@@ -67,11 +64,11 @@ const groupVariants = {
 const groupItemVariants = {
     hidden: {
         opacity: 0,
-        scale: 0.96,
+        y: 8,
     },
     visible: {
         opacity: 1,
-        scale: 1,
+        y: 0,
         transition: {
             duration: 0.35,
             ease: [0.25, 0.46, 0.45, 0.94],
@@ -79,7 +76,7 @@ const groupItemVariants = {
     },
     exit: {
         opacity: 0,
-        scale: 0.96,
+        y: 8,
         transition: {
             duration: 0.2,
         },
