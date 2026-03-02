@@ -971,8 +971,8 @@ export default function CustomerRegistration() {
                                 // Example: limit by country
                                 if (countryCode === "+971") {
                                   value = value.slice(0, 7); // UAE 7 digits
-                                } else if (countryCode === "+1") {
-                                  value = value.slice(0, 10); // US 10 digits
+                                } else {
+                                  value = value.slice(0, 15);
                                 }
                                 // Add other countries as needed
 
@@ -1020,6 +1020,9 @@ export default function CustomerRegistration() {
                                 // Limit length based on country
                                 if (countryCode === "+971") {
                                   value = value.slice(0, 7); // UAE 7 digits
+                                }
+                                else {
+                                  value = value.slice(0, 15);
                                 }
                                 e.target.value = value;
                               },
