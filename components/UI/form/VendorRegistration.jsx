@@ -309,7 +309,6 @@ export default function VendorRegistration() {
                         enableSearch
                         searchPlaceholder={"Search Currency"}
                         label="Currency"
-                        required
                         data={currencies}
                         loading={currenciesLoading}
                         onOpen={() => setOpenLookup("currencies")}
@@ -338,6 +337,7 @@ export default function VendorRegistration() {
                         control={control}
                         label="Terms of payment"
                         enableSearch
+                        required
                         searchPlaceholder={"Search Payment Terms"}
                         data={paymentTerms}
                         loading={ptLoading}
@@ -373,6 +373,7 @@ export default function VendorRegistration() {
                         control={control}
                         label="Mode Of Delivery"
                         enableSearch
+                        required
                         searchPlaceholder={"Search Dlv Modes"}
                         data={dlvModes}
                         loading={dlvModesLoading}
