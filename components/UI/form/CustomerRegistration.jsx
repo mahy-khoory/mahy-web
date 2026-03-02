@@ -71,6 +71,15 @@ const sectionVariants = {
   },
 };
 
+const isFutureDate = (date) => {
+  if (!date) return false;
+  const normalizedDate = new Date(date);
+  normalizedDate.setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return normalizedDate > today;
+};
+
 export default function CustomerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createCustomerMutation = useCreateCustomer();
@@ -114,6 +123,8 @@ export default function CustomerRegistration() {
     control,
     watch,
     setValue,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(customerFormSchema),
@@ -442,8 +453,18 @@ export default function CustomerRegistration() {
                             <DatePickerField
                               label="Trade License Issue Date"
                               value={field.value}
-                              onChange={field.onChange}
-                              disabled={(date) => date > new Date()}
+                              onChange={(date) => {
+                                if (date && isFutureDate(date)) {
+                                  setError("tlIssueDate", {
+                                    type: "manual",
+                                    message:
+                                      "Trade License issue date cannot be in the future",
+                                  });
+                                  return;
+                                }
+                                clearErrors("tlIssueDate");
+                                field.onChange(date);
+                              }}
                             />
                           )}
                         />
@@ -491,8 +512,16 @@ export default function CustomerRegistration() {
                         <InputField
                           label="Emirates ID"
                           required
+                          inputMode="numeric"
+                          autoComplete="off"
                           error={errors.emiratesId?.message}
-                          {...register("emiratesId")}
+                          {...register("emiratesId", {
+                            onChange: (e) => {
+                              e.target.value = e.target.value
+                                .replace(/\D/g, "")
+                                .slice(0, 15);
+                            },
+                          })}
                         />
                       </AnimatedField>
 
@@ -504,7 +533,18 @@ export default function CustomerRegistration() {
                             <DatePickerField
                               label="Emirates ID Issue Date"
                               value={field.value}
-                              onChange={field.onChange}
+                              onChange={(date) => {
+                                if (date && isFutureDate(date)) {
+                                  setError("emiratesIdIssueDate", {
+                                    type: "manual",
+                                    message:
+                                      "Emirates ID issue date cannot be in the future",
+                                  });
+                                  return;
+                                }
+                                clearErrors("emiratesIdIssueDate");
+                                field.onChange(date);
+                              }}
                               required
                               error={errors.emiratesIdIssueDate?.message}
                             />
@@ -548,8 +588,16 @@ export default function CustomerRegistration() {
                         <InputField
                           label="Passport Number"
                           required
+                          inputMode="numeric"
+                          autoComplete="off"
                           error={errors.passportNumber?.message}
-                          {...register("passportNumber")}
+                          {...register("passportNumber", {
+                            onChange: (e) => {
+                              e.target.value = e.target.value
+                                .replace(/\D/g, "")
+                                .slice(0, 15);
+                            },
+                          })}
                         />
                       </AnimatedField>
 
@@ -608,7 +656,18 @@ export default function CustomerRegistration() {
                             <DatePickerField
                               label="Passport Issue Date"
                               value={field.value}
-                              onChange={field.onChange}
+                              onChange={(date) => {
+                                if (date && isFutureDate(date)) {
+                                  setError("passportIssueDate", {
+                                    type: "manual",
+                                    message:
+                                      "Passport issue date cannot be in the future",
+                                  });
+                                  return;
+                                }
+                                clearErrors("passportIssueDate");
+                                field.onChange(date);
+                              }}
                               required
                               error={errors.passportIssueDate?.message}
                             />
