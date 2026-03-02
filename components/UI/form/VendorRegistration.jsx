@@ -925,27 +925,29 @@ export default function VendorRegistration() {
                       />
                       {/* </AnimatedField> */}
 
-                      {/* <AnimatedField show={isPerson}> */}
-                      <Controller
-                        name="telCountryCode"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Country code"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...COUNTRY_CODES]}
-                            placeholder="Select code"
-                          />
-                        )}
-                      />
-                      {/* </AnimatedFieldź */}
-
                       <InputField
-                        label="Tel number"
+                        label="Tel Number"
                         required
-                        error={errors.telNumber?.message}
-                        {...register("telNumber")}
+                        type="tel"
+                        placeholder="Enter telephone number"
+                        {...register("telephone", {
+                          onChange: (e) => {
+                            const countryCode = watch("telCountryCode"); // get selected tel country code
+                            let value = e.target.value.replace(/\D/g, ""); // remove non-digits
+
+                            // Example: limit by country
+                            if (countryCode === "+971") {
+                              value = value.slice(0, 7); // UAE 7 digits
+                            } else if (countryCode === "+1") {
+                              value = value.slice(0, 10); // US 10 digits
+                            }
+                            // Add other countries as needed
+
+                            e.target.value = value;
+                          },
+                          required: "Telephone number is required",
+                        })}
+                        error={errors.telephone?.message}
                       />
 
                       <InputField
@@ -976,10 +978,23 @@ export default function VendorRegistration() {
                       />
 
                       <InputField
-                        label="Mobile number"
-                        required
+                        label="Mobile Number"
+                        type="tel"
+                        placeholder="Enter mobile number"
+                        {...register("mobileNumber", {
+                          onChange: (e) => {
+                            const countryCode = watch("mobileCountryCode"); // get current country code
+                            let value = e.target.value.replace(/\D/g, ""); // remove non-numbers
+
+                            // Limit length based on country
+                            if (countryCode === "+971") {
+                              value = value.slice(0, 7); // UAE 7 digits
+                            }
+                            e.target.value = value;
+                          },
+                          required: "Mobile number is required",
+                        })}
                         error={errors.mobileNumber?.message}
-                        {...register("mobileNumber")}
                       />
 
                       <InputField label="Fax" {...register("fax")} />

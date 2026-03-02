@@ -115,7 +115,7 @@ export default function D365Lookup({
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
-            onChange(e.target.value); 
+            onChange(e.target.value);
           }}
           onFocus={() => {
             if (disabled) return;
@@ -181,7 +181,25 @@ export default function D365Lookup({
                 />
               </div>
             )}
-            <div className="max-h-52 overflow-auto">
+            <div
+              className="max-h-52 overflow-auto"
+              onWheel={(e) => {
+                const el = e.currentTarget;
+                const scrollTop = el.scrollTop;
+                const scrollHeight = el.scrollHeight;
+                const clientHeight = el.clientHeight;
+                const deltaY = e.deltaY;
+
+                const isAtTop = scrollTop === 0 && deltaY < 0;
+                const isAtBottom = scrollTop + clientHeight >= scrollHeight && deltaY > 0;
+
+                if (isAtTop || isAtBottom) {
+                  e.preventDefault(); // stop page from scrolling
+                }
+
+                e.stopPropagation(); // stop event bubbling
+              }}
+            >
               <table className="w-full text-sm border-collapse">
                 <thead className="bg-[#F3F2F1] border-b border-[#C8C6C4] sticky top-0">
                   <tr>

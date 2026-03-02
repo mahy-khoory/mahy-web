@@ -77,8 +77,6 @@ export default function CustomerRegistration() {
   const searchParams = useSearchParams();
 
   const company = searchParams.get("company");
-  console.log(company);
-
   const [openLookup, setOpenLookup] = useState(null);
 
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
@@ -964,8 +962,25 @@ export default function CustomerRegistration() {
                             label="Tel Number"
                             required
                             type="tel"
+                            placeholder="Enter telephone number"
+                            {...register("telephone", {
+                              onChange: (e) => {
+                                const countryCode = watch("telCountryCode"); // get selected tel country code
+                                let value = e.target.value.replace(/\D/g, ""); // remove non-digits
+
+                                // Example: limit by country
+                                if (countryCode === "+971") {
+                                  value = value.slice(0, 7); // UAE 7 digits
+                                } else if (countryCode === "+1") {
+                                  value = value.slice(0, 10); // US 10 digits
+                                }
+                                // Add other countries as needed
+
+                                e.target.value = value;
+                              },
+                              required: "Telephone number is required",
+                            })}
                             error={errors.telephone?.message}
-                            {...register("telephone")}
                           />
 
                           <InputField
@@ -995,10 +1010,22 @@ export default function CustomerRegistration() {
 
                           <InputField
                             label="Mobile Number"
-                            required
                             type="tel"
+                            placeholder="Enter mobile number"
+                            {...register("mobileNumber", {
+                              onChange: (e) => {
+                                const countryCode = watch("mobileCountryCode"); // get current country code
+                                let value = e.target.value.replace(/\D/g, ""); // remove non-numbers
+
+                                // Limit length based on country
+                                if (countryCode === "+971") {
+                                  value = value.slice(0, 7); // UAE 7 digits
+                                }
+                                e.target.value = value;
+                              },
+                              required: "Mobile number is required",
+                            })}
                             error={errors.mobileNumber?.message}
-                            {...register("mobileNumber")}
                           />
                         </div>
                       </div>
