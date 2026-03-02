@@ -88,6 +88,15 @@ const sectionVariants = {
   },
 };
 
+const isFutureDate = (date) => {
+  if (!date) return false;
+  const normalizedDate = new Date(date);
+  normalizedDate.setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return normalizedDate > today;
+};
+
 export default function VendorRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createVendorMutation = useCreateVendor();
@@ -129,9 +138,14 @@ export default function VendorRegistration() {
     handleSubmit,
     control,
     watch,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(vendorFormSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
+    criteriaMode: "firstError",
     defaultValues: {
       vendorType: "organization",
       currency: "AED",
@@ -487,10 +501,20 @@ export default function VendorRegistration() {
                             <DatePickerField
                               label="Trade license issue date"
                               value={field.value}
-                              onChange={field.onChange}
+                              onChange={(date) => {
+                                if (date && isFutureDate(date)) {
+                                  setError("tradeLicenseIssueDate", {
+                                    type: "manual",
+                                    message:
+                                      "Trade license issue date cannot be in the future",
+                                  });
+                                  return;
+                                }
+                                clearErrors("tradeLicenseIssueDate");
+                                field.onChange(date);
+                              }}
                               error={fieldState.error?.message}
                               required
-                              disabled={(date) => date > new Date()}
                             />
                           )}
                         />
@@ -600,8 +624,16 @@ export default function VendorRegistration() {
                           <InputField
                             label="Passport number"
                             required
+                            inputMode="numeric"
+                            autoComplete="off"
                             error={errors.passportNumber?.message}
-                            {...register("passportNumber")}
+                            {...register("passportNumber", {
+                              onChange: (e) => {
+                                e.target.value = e.target.value
+                                  .replace(/\D/g, "")
+                                  .slice(0, 15);
+                              },
+                            })}
                           />
                         </AnimatedField>
 
@@ -613,7 +645,18 @@ export default function VendorRegistration() {
                               <DatePickerField
                                 label="Date of issue"
                                 value={field.value}
-                                onChange={field.onChange}
+                                onChange={(date) => {
+                                  if (date && isFutureDate(date)) {
+                                    setError("passportDateOfIssue", {
+                                      type: "manual",
+                                      message:
+                                        "Passport issue date cannot be in the future",
+                                    });
+                                    return;
+                                  }
+                                  clearErrors("passportDateOfIssue");
+                                  field.onChange(date);
+                                }}
                                 required
                                 error={errors.passportDateOfIssue?.message}
                               />
@@ -656,8 +699,16 @@ export default function VendorRegistration() {
                           <InputField
                             label="Emirates ID"
                             required
+                            inputMode="numeric"
+                            autoComplete="off"
                             error={errors.emiratesId?.message}
-                            {...register("emiratesId")}
+                            {...register("emiratesId", {
+                              onChange: (e) => {
+                                e.target.value = e.target.value
+                                  .replace(/\D/g, "")
+                                  .slice(0, 15);
+                              },
+                            })}
                           />
                         </AnimatedField>
 
@@ -669,7 +720,18 @@ export default function VendorRegistration() {
                               <DatePickerField
                                 label="Emirates ID issue date"
                                 value={field.value}
-                                onChange={field.onChange}
+                                onChange={(date) => {
+                                  if (date && isFutureDate(date)) {
+                                    setError("emiratesIdIssueDate", {
+                                      type: "manual",
+                                      message:
+                                        "Emirates ID issue date cannot be in the future",
+                                    });
+                                    return;
+                                  }
+                                  clearErrors("emiratesIdIssueDate");
+                                  field.onChange(date);
+                                }}
                                 required
                                 error={errors.emiratesIdIssueDate?.message}
                               />
@@ -817,7 +879,15 @@ export default function VendorRegistration() {
                       <AnimatedField show={showExtendedAddress}>
                         <InputField
                           label="Makani number"
-                          {...register("makaniNumber")}
+                          inputMode="numeric"
+                          autoComplete="off"
+                          {...register("makaniNumber", {
+                            onChange: (e) => {
+                              e.target.value = e.target.value
+                                .replace(/\D/g, "")
+                                .slice(0, 10);
+                            },
+                          })}
                         />
                       </AnimatedField>
 
