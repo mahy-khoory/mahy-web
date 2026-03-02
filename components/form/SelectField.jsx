@@ -51,7 +51,8 @@ export function SelectField({ label, value, onChange, options, placeholder = "Se
                     />
 
                     <Combobox.Options
-                        className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg"
+                        className={`absolute mt-1 max-h-58 w-full overflow-auto rounded-md bg-white shadow-lg ${isOpen ? "z-50" : "z-10"
+                            }`}
                         static={isOpen}
                         onWheel={(e) => {
                             const el = e.currentTarget;

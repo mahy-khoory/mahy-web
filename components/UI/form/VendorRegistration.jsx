@@ -139,6 +139,7 @@ export default function VendorRegistration() {
       trnType: "with_trn",
       salesTaxGroup: "vat",
       countryRegion: "UAE",
+      telCountryCode: "+971",
       mobileCountryCode: "+971",
     },
   });
@@ -488,8 +489,7 @@ export default function VendorRegistration() {
                               onChange={field.onChange}
                               error={fieldState.error?.message}
                               required
-                              minDate={new Date(1950, 0, 1)}
-                              maxDate={new Date()} // example: disallow future dates
+                              disabled={(date) => date > new Date()}
                             />
                           )}
                         />
@@ -909,37 +909,37 @@ export default function VendorRegistration() {
                         </p>
                       </div>
 
-                      <AnimatedField show={isOrganization}>
-                        <Controller
-                          name="telCountryCode"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Country code"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...COUNTRY_CODES]}
-                              required
-                            />
-                          )}
-                        />
-                      </AnimatedField>
+                      {/* <AnimatedField show={isOrganization}> */}
+                      <Controller
+                        name="telCountryCode"
+                        control={control}
+                        render={({ field }) => (
+                          <SelectField
+                            label="Country code"
+                            value={field.value || ""}
+                            onChange={field.onChange}
+                            options={[...COUNTRY_CODES]}
+                            required
+                          />
+                        )}
+                      />
+                      {/* </AnimatedField> */}
 
-                      <AnimatedField show={isPerson}>
-                        <Controller
-                          name="telCountryCode"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Country code"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...COUNTRY_CODES]}
-                              placeholder="Select code"
-                            />
-                          )}
-                        />
-                      </AnimatedField>
+                      {/* <AnimatedField show={isPerson}> */}
+                      <Controller
+                        name="telCountryCode"
+                        control={control}
+                        render={({ field }) => (
+                          <SelectField
+                            label="Country code"
+                            value={field.value || ""}
+                            onChange={field.onChange}
+                            options={[...COUNTRY_CODES]}
+                            placeholder="Select code"
+                          />
+                        )}
+                      />
+                      {/* </AnimatedFieldź */}
 
                       <InputField
                         label="Tel number"
