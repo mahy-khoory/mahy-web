@@ -1,7 +1,7 @@
 import { Check } from "lucide-react"
 import Image from "next/image"
 
-function CompaniesSectors({ image, title, texts, companiesHeading = false, items, text2, items2 }) {
+function CompaniesSectors({ image, title, texts, companiesHeading = false, items, text2, items2, noCheck = [] }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
             <div>
@@ -16,7 +16,10 @@ function CompaniesSectors({ image, title, texts, companiesHeading = false, items
                     <div className="space-y-4">
                         {items.map((item, i) => (
                             <div key={i} className="flex gap-3">
-                                <div className="b-base rounded-full p-1 h-fit">
+                                <div
+                                    className={`${!noCheck.includes(i) ? "b-base" : ""
+                                        } rounded-full p-1 h-fit`}
+                                >
                                     <Check size={13} color="white" />
                                 </div>
                                 <p className="text-sm text-gray-700">{item}</p>

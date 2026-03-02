@@ -8,7 +8,8 @@ export default function NarrativeCard({
   bullets,
   image,
   cursor,
-  cta
+  endText,
+  cta,
 }) {
   return (
     <div className="relative isolate max-w-xl w-full">
@@ -72,12 +73,20 @@ export default function NarrativeCard({
           ))}
         </ul>
 
-        <PrimaryButton
-          label={cta}
-          size="md"
-          radius="rounded-full"
-          className="mt-12"
-        />
+        {endText && (
+          <p className="mt-6 text-slate-300/90 leading-relaxed max-w-lg">
+            {endText}
+          </p>
+        )}
+
+        {cta && (
+          <PrimaryButton
+            label={cta}
+            size="md"
+            radius="rounded-full"
+            className="mt-12"
+          />
+        )}
 
         {image && (
           <motion.div

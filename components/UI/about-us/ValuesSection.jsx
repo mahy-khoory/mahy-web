@@ -86,16 +86,18 @@ export default function ValuesSection({
                             {description}
                         </p>
 
-                        <div className="mt-10">
-                            <Link href={ctaHref}>
-                                <ArrowActionButton
-                                    width="w-30"
-                                    height="h-14"
-                                    iconSize={29}
-                                    ariaLabel="Our People"
-                                />
-                            </Link>
-                        </div>
+                        {ctaHref && (
+                            <div className="mt-10">
+                                <Link href={ctaHref}>
+                                    <ArrowActionButton
+                                        width="w-30"
+                                        height="h-14"
+                                        iconSize={29}
+                                        ariaLabel="Our People"
+                                    />
+                                </Link>
+                            </div>
+                        )}
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.96 }}
