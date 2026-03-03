@@ -46,7 +46,7 @@ async function Careers() {
       </div>
       <CareersShowcaseSection
         title={t("ShowcaseTitle")}
-        imageUrl={"https://res.cloudinary.com/db3fd1qah/image/upload/v1766132766/OMODA_JAECOO_expands_UAE_presence_with_MAHY_Khoory_Automotive_as_the_____imgupscaler.ai_Sharpener_4K_ofh9sq.png"}
+        imageUrl={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772551937/OMODA_JAECOO_expands_UAE_presence_with_MAHY_Khoory_Automotive_as_the_____imgupscaler.ai_Sharpener_4K_1_dszyiv.png"}
         imageAlt="MAHY Life"
       />
       <FeaturedDepartments title={t("FeaturedTitle")} departments={departments} cta={t("Cta")} />
