@@ -8,7 +8,8 @@ import clsx from "clsx";
 export default function CompanyVisionPurpose({
     heading = "Driven by purpose",
     tabs,
-    items
+    items,
+    endText
 }) {
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -54,6 +55,9 @@ export default function CompanyVisionPurpose({
                                 ))}
                             </div>
                         </div>
+                        {endText && (
+                            <p className="mt-8 text-gray-500">{endText}</p>
+                        )}
                     </div>
                     <div className="lg:col-span-7 lg:pl-14">
                         <motion.div

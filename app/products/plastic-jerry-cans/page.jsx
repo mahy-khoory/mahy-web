@@ -116,7 +116,6 @@ function PlasticJerryCansPage() {
                 heading="Features"
                 items={features}
                 tabs={features.map((feature) => feature.label)}
-                defaultTab="productOriented"
             />
             {/* <ScrollRevealImage /> */}
         </main>
