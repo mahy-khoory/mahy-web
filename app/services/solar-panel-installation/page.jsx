@@ -158,7 +158,7 @@ function SolarPanelInstallationsPage() {
     return (
         <main>
             <SubPageHeading
-                title={"Solar Panel Installation & O&M Services "}
+                title={"Solar Panel Installation & O&M Services"}
                 description={"We deliver end-to-end solar energy solutions for residential, commercial, and industrial projects across the UAE covering system design, engineering, installation, commissioning, and long-term maintenance. Our solutions feature high-efficiency solar panels from globally trusted brands such as Astro Energy, GINKO, and LONGI, ensuring maximum energy generation, long-term stability, and superior performance under challenging UAE climate conditions."}
                 image={"/gallery/gallery-2.jpg"}
             />

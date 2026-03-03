@@ -6,6 +6,7 @@ import { FaQuoteLeft } from "react-icons/fa6"
 function SolarPanelQuoteGrid({
     heading = "Tailored Solutions",
     text = "Lorem ipsum Suspendisse a massa vel sem ornare tincidunt eu sed ipsum Suspendisse commodo finibus nibh ac pretium turpis molestie",
+    text2,
     items = [
         "Strategize For Success",
         "Optimize Your Resources",
@@ -24,6 +25,9 @@ function SolarPanelQuoteGrid({
                     <h2 className="uppercase font-semibold">{heading}</h2>
                     {/* <p className="mt-5 text-3xl font-medium">Tailored Business Consulting For Optimal Success</p> */}
                     <p className="mt-3 text-gray-700">{text}</p>
+                    {text2 && (
+                        <p className="mt-3 text-gray-700">{text2}</p>
+                    )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 gap-3 md:gap-0">
                         <div className="pr-3">
                             {items.map((item, i) => (

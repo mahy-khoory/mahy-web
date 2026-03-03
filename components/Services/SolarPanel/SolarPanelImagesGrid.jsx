@@ -22,7 +22,7 @@ function SolarPanelImagesGrid({
                         <div className="md:absolute top-0 left-0 right-0 z-10">
                             <div className="md:w-6/10 bg-slate-900">
                                 {items.map((item, i) => (
-                                    <div key={i} className={`${i === 0 && "border-b border-gray-700"} p-10`}>
+                                    <div key={i} className={`${i < items.length - 1 && "border-b border-gray-700"} p-10`}>
                                         <h3 className="text-white font-medium text-xl">{item.title}</h3>
                                         <p className="text-gray-200 mt-3 text-sm">{item.text}</p>
                                     </div>

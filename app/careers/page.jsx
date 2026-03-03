@@ -1,3 +1,4 @@
+import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuoteGrid";
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import CareersShowcaseSection from "@/components/UI/careers/CareersShowcaseSection";
 import FeaturedDepartments from "@/components/UI/careers/FeaturedDepartments";
@@ -30,6 +31,19 @@ async function Careers() {
         image={heading.image}
       />
       <Breadcrumb segments={[{ label: t("Page"), href: "/careers" }]} locale={locale} />
+      <div className="mt-3">
+        <SolarPanelQuoteGrid
+          heading="Careers"
+          text="At MAHY Khoory Group, we build more than businesses. We build long-term careers across manufacturing, trading, logistics, engineering, waste management, automotive, hospitality, and advanced technology sectors."
+          items={[
+            "25 companies operating under one group",
+            "Presence across multiple industries",
+            "Diversified and innovation-driven environment",
+            "Strong career growth opportunities for professionals"
+          ]}
+          quoteText="Whether you are an experienced professional, a specialist, or a fresh graduate, you will find an environment focused on performance, accountability, and continuous improvement."
+        />
+      </div>
       <CareersShowcaseSection
         title={t("ShowcaseTitle")}
         imageUrl={"https://res.cloudinary.com/db3fd1qah/image/upload/v1766132766/OMODA_JAECOO_expands_UAE_presence_with_MAHY_Khoory_Automotive_as_the_____imgupscaler.ai_Sharpener_4K_ofh9sq.png"}

@@ -9,12 +9,18 @@ const barVariants = {
     height: h,
     transition: {
       duration: 1.2,
-      ease: [0.22, 1, 0.36, 1], 
+      ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
 
-export default function VisionBenchmarkSection() {
+export default function VisionBenchmarkSection({
+  heading = "Our vision empowers leaders to thrive in a dynamic world",
+  items = [
+    { title: "Empowering growth", text: "Lorem ipsum dolor sit amet consectetur. Morbi nunc bndum at ipsum mauris sed cursus." },
+    { title: "Inspiring innovation", text: "Lorem ipsum dolor sit amet consectetur. Morbi nunc bndum at ipsum mauris sed cursus." }
+  ]
+}) {
   return (
     <section className="bg-white py-32">
       <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
@@ -100,35 +106,24 @@ export default function VisionBenchmarkSection() {
         </div>
         <div className="flex flex-col justify-center">
           <h2 className="text-[44px] leading-tight font-semibold text-gray-900 max-w-xl">
-            Our vision empowers leaders to thrive in a dynamic world
+            {heading}
           </h2>
 
-          <div className="h-px bg-gray-300 w-full my-10" />
-          <div className="flex gap-6 mb-10">
-            <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
-              <span className="w-5 h-px bg-gray-500" />
+          <div className="h-px bg-gray-300 w-full my-5" />
+          {items.map(((item, i) => (
+            <div key={i} className="flex gap-6 mb-10">
+              <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
+                <span className={`${i % 2 === 0 ? "w-5 h-px" : "w-px h-5"} bg-gray-500`} />
+              </div>
+              <div>
+                <h4 className="font-semibold">{item.title}</h4>
+                <p className="text-gray-600 mt-1.5 max-w-md text-sm">
+                  {item.text}
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-semibold text-lg">Empowering growth</h4>
-              <p className="text-gray-600 mt-2 max-w-md">
-                Lorem ipsum dolor sit amet consectetur. Morbi nunc bndum at
-                ipsum mauris sed cursus.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex gap-6">
-            <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
-              <span className="w-px h-5 bg-gray-500" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-lg">Inspiring innovation</h4>
-              <p className="text-gray-600 mt-2 max-w-md">
-                Lorem ipsum dolor amet consectetur. Facilisi mauris viverra eu
-                eget elit mattis dignissim.
-              </p>
-            </div>
-          </div>
+          )))}
         </div>
       </div>
     </section>

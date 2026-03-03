@@ -13,19 +13,21 @@ function CompaniesSectors({ image, title, texts, companiesHeading = false, items
                     {companiesHeading &&
                         <p className="text-gray-600 font-semibold mb-5">Companies</p>
                     }
-                    <div className="space-y-4">
-                        {items.map((item, i) => (
-                            <div key={i} className="flex gap-3">
-                                <div
-                                    className={`${!noCheck.includes(i) ? "b-base" : ""
-                                        } rounded-full p-1 h-fit`}
-                                >
-                                    <Check size={13} color="white" />
+                    {items && (
+                        <div className="space-y-4">
+                            {items.map((item, i) => (
+                                <div key={i} className="flex gap-3">
+                                    <div
+                                        className={`${!noCheck.includes(i) ? "b-base" : ""
+                                            } rounded-full p-1 h-fit`}
+                                    >
+                                        <Check size={13} color="white" />
+                                    </div>
+                                    <p className="text-sm text-gray-700">{item}</p>
                                 </div>
-                                <p className="text-sm text-gray-700">{item}</p>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 {text2 && (
                     <p className="text-gray-600 mt-6">{text2}</p>
