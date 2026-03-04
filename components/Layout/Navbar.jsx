@@ -62,6 +62,18 @@ export default function Navbar({ navigation }) {
     setCurrentLocale(locale);
   }, [locale]);
 
+  useEffect(() => {
+  if (mobileOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [mobileOpen]);
+
   const setLocale = (locale) => {
     Cookies.set("locale", locale, { expires: 30 });
     window.location.reload();
@@ -162,10 +174,10 @@ export default function Navbar({ navigation }) {
               }
               className="relative"
             >
-              <div className="flex items-center gap-1">
+              <div className="flex items-center xl:gap-1">
                 <ScrollToTop
                   href={item.href}
-                  className="px-4 py-2 rounded-full hover:bg-white/10 transition"
+                  className="xl:px-4 py-2 rounded-full hover:bg-white/10 transition"
                   
                 >
                   {item.label}
@@ -329,17 +341,11 @@ export default function Navbar({ navigation }) {
         </div>
       </nav>
 
-      {mobileOpen && (
-        <div className="lg:hidden px-4 sm:px-6 pt-3">
-          <div
-            className="rounded-3xl border border-white/10 bg-black/85 px-5 py-5 text-white backdrop-blur-xl overflow-hidden"
-            style={{ maxHeight: "calc(100vh - 4.5rem)" }}
-          >
-            <div
-              className="h-full overflow-y-auto pr-1"
-              style={{ WebkitOverflowScrolling: "touch" }}
-            >
-              <ul className="flex flex-col gap-4">
+{mobileOpen && (
+<div className="lg:hidden fixed inset-x-0 bottom-0 top-15.5 z-40">
+    <div className="absolute inset-x-0 top-0 bottom-0 px-4 sm:px-6 pt-3 ">
+      <div className="h-full rounded-3xl border border-white/10 bg-black/85 px-5 py-5 text-white backdrop-blur-xl overflow-y-auto hide-scrollbar">
+        <ul className="flex flex-col gap-4 pb-10">
                 {navigation.links.map((item) => {
                   if (item.linkType === "mega") {
                     const expanded = mobileDropdown === item.id;
