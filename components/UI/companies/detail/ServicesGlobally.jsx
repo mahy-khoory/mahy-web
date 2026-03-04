@@ -47,7 +47,7 @@ function ServicesGlobally({
                         <ul className="mt-2 space-y-2">
                             {items.map((item, i) => (
                                 <li key={i} className="flex gap-3">
-                                    <span className="mt-[0.55em] h-1.25 w-1.25 rounded-full bg-black/80" />
+                                    <span className="mt-[0.55em] h-1.25 w-1.25 rounded-full text-gray-700" />
                                     <span>{item}</span>
                                 </li>
                             ))}
@@ -56,7 +56,7 @@ function ServicesGlobally({
                     {texts2 && (
                         <div className='mt-3 space-y-2'>
                             {texts2.map((item, i) => (
-                                <p key={i}>{item}</p>
+                                <p className='text-gray-700' key={i}>{item}</p>
                             ))}
                         </div>
                     )}

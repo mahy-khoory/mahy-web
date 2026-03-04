@@ -19,7 +19,7 @@ function SolarPanelImageGrid({
                     <div className="text-center md:text-start">
                         <h2 className="uppercase font-semibold tracking-wide">{heading}</h2>
                         {subHeading && (
-                            <p className="text-2xl md:text-4xl font-semibold mt-3 md:mt-4">{subHeading}</p>
+                            <p className="text-2xl md:text-4xl font-semibold mt-3 md:mt-4 mb-5">{subHeading}</p>
                         )}
                         {bulletItems && (
                             <ul className="mt-6 list-disc list-inside space-y-1.5 text-sm">
@@ -29,7 +29,7 @@ function SolarPanelImageGrid({
                             </ul>
                         )}
                         {text && (
-                            <p className="text-gray-700 mt-4 md:mt-5 mb-4 md:mb-2 text-sm md:text-md">{text}</p>
+                            <p className="text-gray-700 mt-3 mb-4 md:mb-2 text-sm md:text-md">{text}</p>
                         )}
                     </div>
                     {items.map((item, i) => (

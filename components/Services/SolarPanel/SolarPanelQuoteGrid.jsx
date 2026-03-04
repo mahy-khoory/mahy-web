@@ -13,7 +13,8 @@ function SolarPanelQuoteGrid({
         "Innovate With Purpose",
         "Align For Growth"
     ],
-    quoteText = "Gravida et sit arcu est id massa aliquam. Ac orci aliquam lacus eros convallis molestie. Eget nisl in ut et neque quisque nunc."
+    quoteText = "Gravida et sit arcu est id massa aliquam. Ac orci aliquam lacus eros convallis molestie. Eget nisl in ut et neque quisque nunc.",
+    quoteItems
 }) {
     return (
         <section className="max-w-7xl mx-auto md:px-5">
@@ -40,6 +41,13 @@ function SolarPanelQuoteGrid({
                         <div className="bg-slate-900 text-white p-5">
                             <FaQuoteLeft size={30} />
                             <p className="mt-5">{quoteText}</p>
+                            {quoteItems && (
+                                <div className="mt-3 space-y-2 text-sm">
+                                    {quoteItems.map((item, i) => (
+                                        <p key={i}>{item}</p>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
