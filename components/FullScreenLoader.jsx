@@ -43,7 +43,7 @@ export default function FullScreenLoader({ onFinish }) {
     }, [onFinish]);
 
     return (
-        <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-40 px-6">
+        <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-60 px-6">
 
             {/* Progress Bar Container */}
             <div className="w-full max-w-md h-2 bg-white/20 rounded-full overflow-hidden mb-6">
