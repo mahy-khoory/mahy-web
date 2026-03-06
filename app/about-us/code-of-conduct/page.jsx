@@ -2,31 +2,24 @@ import WasteCollectionGrid from "@/components/Services/WasteCollection/WasteColl
 import WasteCollectionTimeline from "@/components/Services/WasteCollection/WasteCollectionTimeline";
 import CodeOfConductSection from "@/components/UI/about-us/code-of-conduct/CodeOfConductSection";
 import LargeArticleSection from "@/components/UI/about-us/code-of-conduct/LargeArticleSection";
-import DiscoverSection from "@/components/UI/about-us/health-safety/DiscoverSection";
-import InfoNavigationSection from "@/components/UI/about-us/health-safety/InfoNavigationSection";
-import GovernanceContent from "@/components/UI/about-us/leadership-and-management/GovernanceContent";
-import GovernanceTabs from "@/components/UI/about-us/leadership-and-management/GovernanceTabs";
-import DesignProcess from "@/components/UI/home/DesignProcess";
 import DesignProcessContainer from "@/components/UI/home/DesignProcessContainer";
 import SubPageHeading from "@/components/UI/SubPageHeading";
-import { m } from "framer-motion";
-import { Star } from "lucide-react";
 import { HiLightBulb } from "react-icons/hi";
 
 export default function GovernancePage() {
   const codeOfConductItems = [
     {
       id: 1,
-      title: "Integrity & Transparency",
-      description: "Acting honestly, fairly, and transparently in all business dealings",
+      title: "Integrity",
+      description: "We conduct our business with honesty, fairness, and transparency, ensuring that all decisions and actions reflect strong ethical values.",
       icon: "/processes/planning.png",
       leftShift: "-left-10",
       rightShift: "-right-10"
     },
     {
       id: 2,
-      title: "Legal & Regulatory Compliance",
-      description: "Complying with applicable laws, regulations, and internal policies in all jurisdictions where we operate",
+      title: "Compliance",
+      description: "We comply with all applicable laws, regulations, and internal policies in every jurisdiction where we operate.",
       icon: "/processes/design.png",
       leftShift: "left-8",
       rightShift: "right-8"
@@ -34,32 +27,24 @@ export default function GovernancePage() {
     {
       id: 3,
       title: "Conflict of Interest",
-      description: "Avoiding conflicts of interest and acting in the best interests of the Group",
+      description: "We avoid situations where personal interests may conflict with the interests of the Group and always act in the best interest of the organization.",
       icon: "/processes/development.png",
-      leftShift: "left-17",
-      rightShift: "right-17"
+      leftShift: "left-20",
+      rightShift: "right-20"
     },
     {
       id: 4,
-      title: "Confidentiality & Respect",
-      description: "Respecting confidentiality and protecting company, customer, and partner information",
+      title: "Confidentiality",
+      description: "We respect and protect confidential information related to the Group, our customers, partners, and employees.",
       icon: "/processes/deployment.png",
       leftShift: "left-15",
       rightShift: "right-15"
     },
     {
       id: 5,
-      title: "Respect & Professionalism",
-      description: "Treating colleagues, customers, suppliers, and stakeholders with respect, fairness, and professionalism",
-      icon: "/processes/deployment.png",
-      leftShift: "left-8",
-      rightShift: "right-8"
-    },
-    {
-      id: 6,
-      title: "Health, Safety & Environment",
-      description: "Maintaining a safe, inclusive, and respectful working environment free from discrimination or harassment",
-      icon: "/processes/deployment.png",
+      title: "Respect & Responsibility",
+      description: "We promote a culture of professionalism, respect, and accountability while maintaining safe, responsible, and sustainable business practices",
+      icon: "/processes/design.png",
       leftShift: "-left-4",
       rightShift: "-right-4"
     }
@@ -113,17 +98,16 @@ export default function GovernancePage() {
     <main className="bg-white">
       <SubPageHeading
         title="Code Of Conduct"
-        // description="The company has a well-developed internal governance structure, under which all governance bodies have clear and focused authority and responsibility."
         image="/gallery/gallery-6.jpg"
         align="center"
       />
       <DesignProcessContainer
         heading={"Code of Conduct"}
-        text1={"The Group’s Code of Conduct establishes the ethical and professional standards that govern our daily activities and interactions. All employees and representatives of MAHY Khoory Group are expected to understand and adhere to these standards at all times."}
+        text1={"The MAHY Khoory Group's Code of Conduct defines the ethical standards that guide how we operate and interact across all our businesses. All employees and representatives are expected to uphold these principles, ensuring that our operations reflect integrity, responsibility, and professionalism at all times."}
         text2={"Our Code of Conduct is based on the following principles:"}
         text3={"Any breach of the Code of Conduct is taken seriously and addressed in accordance with established disciplinary and corrective procedures."}
         processes={codeOfConductItems}
-        space={"lg:space-y-5"}
+        space={"lg:space-y-10"}
       />
       <WasteCollectionGrid
         heading={"Group Policies"}

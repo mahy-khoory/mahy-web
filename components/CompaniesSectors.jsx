@@ -1,9 +1,9 @@
 import { Check } from "lucide-react"
 import Image from "next/image"
 
-function CompaniesSectors({ image, title, texts, companiesHeading = false, items, text2, items2, noCheck = [], boldLabels = false }) {
+function CompaniesSectors({ image, image2, title, texts, companiesHeading = false, items, text2, items2, noCheck = [], boldLabels = false }) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20">
             <div>
                 <h2 className="text-4xl font-semibold t-base">{title}</h2>
                 {texts && texts.map((text, i) => (
@@ -47,9 +47,22 @@ function CompaniesSectors({ image, title, texts, companiesHeading = false, items
                     </div>
                 )}
             </div>
-            <div className="relative h-full rounded-2xl overflow-hidden">
-                <Image src={image} alt={title} fill style={{ objectFit: "cover" }} />
-            </div>
+            {image2 ? (
+                <div className="h-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4 md:gap-0">
+                    <div className="hidden md:block" />
+                    <div className="relative h-80 md:h-full w-full rounded-2xl overflow-hidden">
+                        <Image src={image} alt={title} fill style={{ objectFit: "cover" }} />
+                    </div>
+                    <div className="relative h-80 md:h-full w-full rounded-2xl overflow-hidden">
+                        <Image src={image2} alt={title} fill style={{ objectFit: "cover" }} />
+                    </div>
+                    <div className="hidden md:block" />
+                </div>
+            ) : (
+                <div className="relative h-full rounded-2xl overflow-hidden">
+                    <Image src={image} alt={title} fill style={{ objectFit: "cover" }} />
+                </div>
+            )}
         </div>
     )
 }

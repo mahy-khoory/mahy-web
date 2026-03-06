@@ -32,7 +32,7 @@ export default function ScrollTimeline({ items }) {
     const stepHeight = 100 / (items.length - 1);
 
     return (
-        <section ref={containerRef} className="relative flex md:py-20">
+        <section ref={containerRef} className="relative flex md:pt-20">
             {/* TIMELINE */}
             <div className="w-56 hidden md:flex justify-center">
                 <div className="sticky top-1/2 -translate-y-1/2 h-[70vh]">
@@ -79,7 +79,7 @@ export default function ScrollTimeline({ items }) {
                     <div
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:px-8"
+                        className="md:pl-8"
                     >
                         {i === 0 ? (
                             <FirstSection

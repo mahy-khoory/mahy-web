@@ -14,6 +14,7 @@ import SmoothScrollProvider from "@/components/Providers/SmoothScrollProvider";
 import CartProvider from "@/components/Providers/CartProvider";
 import CartDrawer from "@/components/UI/cart/CartDrawer";
 import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
+import LoaderWrapper from "@/components/LoaderWrapper";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -65,18 +66,20 @@ export default async function RootLayout({ children }) {
         <ReactQueryProvider>
           <SmoothScrollProvider>
             <NextIntlClientProvider locale={locale}>
-              <CartProvider>
-                <Navbar navigation={getNavigation(navTranslations)} />
-                {children}
-                <section id="useful-links">
-                  <Footer data={getFooter(footerTranslations)} />
-                </section>
-                <ChatBot
-                  data={chatbotData(chatbotTranslations)}
-                  locale={locale}
-                />
-                <CartDrawer />
-              </CartProvider>
+              <LoaderWrapper>
+                <CartProvider>
+                  <Navbar navigation={getNavigation(navTranslations)} />
+                  {children}
+                  <section id="useful-links">
+                    <Footer data={getFooter(footerTranslations)} />
+                  </section>
+                  <ChatBot
+                    data={chatbotData(chatbotTranslations)}
+                    locale={locale}
+                  />
+                  <CartDrawer />
+                </CartProvider>
+              </LoaderWrapper>
             </NextIntlClientProvider>
           </SmoothScrollProvider>
         </ReactQueryProvider>

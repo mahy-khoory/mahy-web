@@ -5,7 +5,8 @@ function IndustrialPackagingSolutionsPage() {
         <main>
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772795494/industrial-packaging-solutions_mx9ipx.jpg"}
+                    image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772795494/industrial-packaging-solutions_mx9ipx.jpg"
+                    image2="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772812168/industrial-packaging-solutions-2_tunkt7.jpg"
                     title={"Industrial Packaging Solutions"}
                     texts={[
                         "This sector manufactures corrugated, paper - based, and rigid plastic packaging solutions for diverse industries.",
