@@ -7,16 +7,12 @@ export default function FullScreenLoader({ onFinish }) {
     const [seconds, setSeconds] = useState(0);
 
     const messages = [
-        "Preparing experience...",
-        "Loading content...",
-        "Optimizing performance...",
-        "Almost ready...",
-        "Finalizing setup...",
-        "Securing data...",
-        "Rendering interface...",
-        "Syncing resources...",
-        "Applying enhancements...",
-        "Launching..."
+        "Where industries converge.",
+        "Many sectors. One vision.",
+        "Engineering a multi-sector future.",
+        "Innovation across industries.",
+        "Powering diverse industries.",
+        "One ecosystem. Many sectors."
     ];
 
     useEffect(() => {

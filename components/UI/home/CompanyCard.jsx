@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-function CompanyCard({ item, shouldPlay = false, onHoverStart, onHoverEnd }) {
+function CompanyCard({ item, index, shouldPlay = false, onHoverStart, onHoverEnd }) {
     // const videoRef = useRef(null);
     // useEffect(() => {
     //     const videoElement = videoRef.current;
@@ -33,7 +33,8 @@ function CompanyCard({ item, shouldPlay = false, onHoverStart, onHoverEnd }) {
     const [play, setPlay] = useState(false);
 
     return (
-        <div className="relative h-80 md:h-40 group overflow-hidden" onMouseEnter={() => setPlay(true)} onMouseLeave={() => setPlay(false)} onTouchEnd={() => (setPlay(!play))}>
+        <div className={`relative ${index === 0 ? "lg:row-span-2 lg:col-span-2 h-auto" : "h-80 md:h-40"} group overflow-hidden`}
+            onMouseEnter={() => setPlay(true)} onMouseLeave={() => setPlay(false)} onTouchEnd={() => (setPlay(!play))}>
             <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3]">
                 <Image src={item.image} alt={item.label} fill objectFit="cover" />
                 {play && (

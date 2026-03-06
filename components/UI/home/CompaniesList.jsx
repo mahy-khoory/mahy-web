@@ -89,11 +89,11 @@ const CompaniesTab = ({ companies }) => (
         initial={{ y: 10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: false, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+        transition={{ duration: 0.8, ease: "easeOut" }}>
         {companies.map((company, i) => (
             <CompanyCard
                 key={i}
+                index={i}
                 item={company}
             // shouldPlay={shouldPlayVideos}
             // onHoverStart={handleCardHoverStart}
