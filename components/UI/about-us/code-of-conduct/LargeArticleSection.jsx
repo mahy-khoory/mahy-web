@@ -7,7 +7,7 @@ const articles = [
     title: "Our Approach to Ethical Business",
     description:
       "We organize our approach to ethical business around three strategic pillars: governance, practices and privacy.",
-    image: "/gallery/gallery-5.jpg",
+    image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869107/code-of-coduct-images-section_u1v6cf.jpg",
     cta: "Learn more",
     href: "/ethical-business",
   },

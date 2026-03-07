@@ -119,7 +119,7 @@ const IndustriesTab = ({ industeries, moreIndusteries }) => (
             ))}
         </div>
         <div className="relative h-120 md:h-full w-158">
-            <Image src="/gallery/gallery-9.jpeg" alt="Companies" fill />
+            <Image src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" alt="Companies" fill />
             <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             <div className='absolute bottom-7 left-7 text-gray-200'>
                 <div className='flex flex-wrap gap-3 mb-4'>

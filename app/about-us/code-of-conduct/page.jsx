@@ -79,18 +79,18 @@ export default function GovernancePage() {
       title: "Compliance & Accountability",
       text: "Compliance with the Group’s policies and Code of Conduct is mandatory for all employees and business units. Management teams are responsible for implementing policies within their operations and ensuring that employees are aware of and trained on relevant requirements.",
       text2: "The Group monitors compliance through internal controls, audits, reviews, and reporting mechanisms. Where violations are identified, appropriate corrective actions are taken to address issues and prevent recurrence.",
-      image: "/gallery/gallery-1.jpg"
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772868971/code-of-coduct-images_aat7tx.jpg"
     },
     {
       title: "Speaking Up & Ethical Concerns",
       text: "MAHY Khoory Group encourages open communication and responsible reporting of concerns related to unethical behavior, policy violations, or misconduct. Employees are expected to raise concerns through appropriate internal channels without fear of retaliation.",
       text2: "All reported concerns are treated confidentially and investigated fairly, in line with established procedures.",
-      image: "/gallery/gallery-2.jpg"
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869033/code-of-coduct-images1_xfgcdy.jpg"
     },
     {
       title: "Commitment to Responsible Business",
       text: "Our policies and Code of Conduct reflect MAHY Khoory Group’s commitment to responsible business practices, long-term sustainability, and strong corporate governance. By adhering to these principles, we aim to build trust, protect our reputation, and create lasting value for our customers, partners, employees, and the communities we serve.",
-      image: "/gallery/gallery-3.jpg"
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869107/code-of-coduct-images-section_u1v6cf.jpg"
     }
   ];
 
@@ -98,7 +98,7 @@ export default function GovernancePage() {
     <main className="bg-white">
       <SubPageHeading
         title="Code Of Conduct"
-        image="/gallery/gallery-6.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772868318/Code_of_Conduct.jpg_qjqqzs.jpg"
         align="center"
       />
       <DesignProcessContainer
