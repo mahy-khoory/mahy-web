@@ -72,15 +72,15 @@ export const awardsData = [
     image:
       "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769107655/8_binn9i.jpg",
   },
-  {
-    id: "iso-45007-das",
-    title: "ISO 45001:2018 Certification Awarded to PURE ENERGY CONSTRUCTION LLC",
-    description: [
-      "PURE ENERGY CONSTRUCTION LLC has been awarded ISO 45001:2018 Certification for its Occupational Health and Safety Management System from AMERICO Quality Standards Registech Pvt. Ltd.The certification covers the following scope of activities:•	Execution of Contracts in Project Management, Engineering, and Procurement.•	Construction of Buildings and Electrical Fittings.•	Solar Energy Systems Installation.•	Design & Build Steel Construction.This highly regarded International Certification is proof of our commitment to the highest standards of occupational health and safety and an affirmation of its leadership’s dedication to providing a safe working environment and continual quality improvement.",
-    ],
-    image:
-      "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769107654/9_bcl5w4.jpg",
-  },
+  // {
+  //   id: "iso-45007-das",
+  //   title: "ISO 45001:2018 Certification Awarded to PURE ENERGY CONSTRUCTION LLC",
+  //   description: [
+  //     "PURE ENERGY CONSTRUCTION LLC has been awarded ISO 45001:2018 Certification for its Occupational Health and Safety Management System from AMERICO Quality Standards Registech Pvt. Ltd.The certification covers the following scope of activities:•	Execution of Contracts in Project Management, Engineering, and Procurement.•	Construction of Buildings and Electrical Fittings.•	Solar Energy Systems Installation.•	Design & Build Steel Construction.This highly regarded International Certification is proof of our commitment to the highest standards of occupational health and safety and an affirmation of its leadership’s dedication to providing a safe working environment and continual quality improvement.",
+  //   ],
+  //   image:
+  //     "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769107654/9_bcl5w4.jpg",
+  // },
   // {
   //   id: "iso-45008-das",
   //   title: "DAS Holding has been awarded ISO 45001:2018 certificate",
