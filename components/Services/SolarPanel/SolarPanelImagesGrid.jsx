@@ -1,54 +1,102 @@
+'use client'
+
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 const defaultItems = [
-    { title: "Smart Strategies", text: "Risus tristique proin cras diam sed. Risus diam leo feugiat non eget. Bibendum feugiat mauris enim rhoncus. Dolor." },
-    { title: "Business Growth", text: "Ac ut nam vulputate volutpat felis in lorem. Volutpat sagittis in amet scelerisque porttitor ac augue sed pulvinar." }
-];
+  { title: "Smart Strategies", text: "Risus tristique proin cras diam sed." },
+  { title: "Business Growth", text: "Ac ut nam vulputate volutpat felis in lorem." }
+]
 
 function SolarPanelImagesGrid({
-    heading = "Helping Businesses Scale Smarter Faster And Stronger",
-    items = defaultItems,
-    text1 = "250+",
-    text2 = "Active Customers"
+  heading = "Helping Businesses Scale Smarter Faster And Stronger",
+  items = defaultItems,
+  text1 = "250+",
+  text2 = "Active Customers"
 }) {
 
-    return (
-        <section className="max-w-7xl mx-auto md:px-5">
-            <div className="grid grid-cols-1 lg:grid-cols-8 md:gap-8">
-                <div className="md:col-span-6">
-                    <h2 className="text-4xl font-medium px-5 md:px-0 text-center md:text-start">{heading}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 relative mt-8">
-                        <div className="hidden md:block" />
-                        <div className="md:absolute top-0 left-0 right-0 z-10">
-                            <div className="md:w-6/10 bg-slate-900">
-                                {items.map((item, i) => (
-                                    <div key={i} className={`${i < items.length - 1 && "border-b border-gray-700"} p-10`}>
-                                        <h3 className="text-white font-medium text-xl">{item.title}</h3>
-                                        <p className="text-gray-200 mt-3 text-sm">{item.text}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="relative h-90 md:h-130">
-                            <Image src={"/gallery/gallery-1.jpg"} alt="Solar Panel Images Grid" fill style={{ objectFit: "cover" }} />
-                        </div>
-                    </div>
-                </div>
-                <div className="md:col-span-2">
-                    <div className="relative h-70">
-                        <Image src={"/gallery/gallery-2.jpg"} alt="Solar Panel Images Grid" fill style={{ objectFit: "cover" }} />
-                    </div>
-                    <div className="relative h-70 md:h-50 md:mt-8">
-                        <Image src={"/gallery/gallery-3.jpg"} alt="Solar Panel Images Grid" fill style={{ objectFit: "cover" }} />
-                    </div>
-                    <div className="w-fit flex flex-col gap-1 md:gap-2 bg-slate-900 text-white px-4 py-3 md:pl-7 md:pr-9 md:py-5 relative bottom-20 md:bottom-7">
-                        <span className="text-2xl font-medium uppercase">{text1}</span>
-                        <span className="uppercase font-medium text-sm">{text2}</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
+  return (
+    <section className="max-w-7xl mx-auto px-5">
+
+      <div className="grid grid-cols-1 lg:grid-cols-8 gap-8">
+
+        {/* LEFT SIDE */}
+        <div className="lg:col-span-6">
+
+          <h2 className="text-4xl font-medium text-center lg:text-left">
+            {heading}
+          </h2>
+
+          {/* CARD GRID */}
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+
+            {items.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-slate-900 text-white p-10 rounded-md shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <h3 className="font-semibold text-xl">
+                  {item.title}
+                </h3>
+
+                <p className="text-gray-300 mt-3 text-sm leading-6">
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* RIGHT SIDE IMAGES */}
+        <div className="lg:col-span-2 flex flex-col gap-6">
+
+          <div className="relative h-70 rounded overflow-hidden">
+            <Image
+              src="/gallery/gallery-2.jpg"
+              alt="Solar Panel Images Grid"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          <div className="relative h-70 rounded overflow-hidden">
+            <Image
+              src="/gallery/gallery-3.jpg"
+              alt="Solar Panel Images Grid"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* STATS BOX */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-slate-900 text-white px-6 py-5"
+          >
+            <span className="text-2xl font-medium block">
+              {text1}
+            </span>
+
+            <span className="uppercase text-sm tracking-wide">
+              {text2}
+            </span>
+          </motion.div>
+
+        </div>
+
+      </div>
+
+    </section>
+  )
 }
 
 export default SolarPanelImagesGrid

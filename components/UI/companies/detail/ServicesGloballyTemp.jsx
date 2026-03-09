@@ -5,7 +5,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import PrimaryButton from "../../PrimaryButton"
 
-function ServicesGlobally({
+function ServicesGloballyTemp({
   heading = "",
   text,
   texts1,
@@ -15,15 +15,9 @@ function ServicesGlobally({
   invert = false,
 }) {
   return (
-    <section className="max-w-7xl mx-auto py-4 md:py-10 px-5">
-      <AnimatedLines />
-
-      <h2 className="pt-2 text-4xl md:text-5xl font-semibold text-center leading-12">
-        {heading}
-      </h2>
-
+    <section className="max-w-7xl mx-auto px-5">
       <motion.div
-        className="mt-10 md:mt-14 p-8 md:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 bg-blue-100"
+        className="mt-3 md:mt-6 p-8 md:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 bg-blue-100"
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
@@ -90,4 +84,4 @@ function ServicesGlobally({
   )
 }
 
-export default ServicesGlobally
+export default ServicesGloballyTemp

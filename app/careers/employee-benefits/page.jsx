@@ -6,11 +6,11 @@ function EmployeeBenefitsPage() {
         <main>
             <SubPageHeading
                 title={"Employee Benefits"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"/gallery/gallery-6.jpg"}
             />
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"/gallery/gallery-1.jpg"}
+                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042426/Dubai_skyline_at_sunrise_with_warm_golden_light_illuminating_office_tower.jpg_igrsap.jpg"}
                     title={"Overview"}
                     texts={[
                         "At MAHY Khoory Group, we provide a structured and fair benefits framework designed to support employee well-being, stability, and professional growth. Compensation and benefits are aligned with market standards and fully compliant with UAE Labour Law and applicable regulations.",

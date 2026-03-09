@@ -6,7 +6,7 @@ function RecruitmentProcessPage() {
     const items = [
         {
             label: "Structured & Professional Evaluation",
-            image: "/gallery/gallery-1.jpg",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042594/Dubai_business_district_at_night_with_illuminated_skyscrapers.jpg_inqewf.jpg",
             items: [
                 {
                     title: "Structured & Professional Evaluation",
@@ -16,7 +16,7 @@ function RecruitmentProcessPage() {
         },
         {
             label: "Department & HR Assessment",
-            image: "/gallery/gallery-1.jpg",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042651/corporate_workspace_with_a_sleek_desk_displaying_organized_documents.jpg_h6ggoy.jpg",
             items: [
                 {
                     title: "Department & HR Assessment",
@@ -26,7 +26,7 @@ function RecruitmentProcessPage() {
         },
         {
             label: "Offer & Onboarding",
-            image: "/gallery/gallery-1.jpg",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042687/corporate_office_desk_with_a_formal_employment_offer_letter_placed.jpg_xuuxei.jpg",
             items: [
                 {
                     title: "Offer & Onboarding",

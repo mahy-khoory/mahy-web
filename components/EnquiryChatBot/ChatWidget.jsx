@@ -119,8 +119,32 @@ export default function ChatWidget({ data, locale }) {
   }
 
   async function submitToCRM(payload) {
-    // await fetch("/api/lead", { method: "POST", body: JSON.stringify(payload) });
-    console.log("CRM Payload:", payload);
+    console.log(payload);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}api/crm/lead/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+
+      const data = await res.json();
+
+      console.log("CRM Response:", data);
+
+      if (!res.ok) {
+        throw new Error(data.message || "Lead submission failed");
+      }
+
+      return data;
+    } catch (err) {
+      console.error("CRM submission error:", err);
+    }
   }
 
   function handleOptionSelect(optionLabel) {
@@ -133,21 +157,49 @@ export default function ChatWidget({ data, locale }) {
     saveAnswer(question.field, cleanValue);
 
     const nextKey = question.options?.find(
-      (o) => o.label === optionLabel
+      (o) => o.label === optionLabel,
     )?.next;
 
     progress(nextKey);
   }
+
+  // function handleTextSubmit(text) {
+  //   const question = flow[current];
+  //   if (!question) return;
+
+  //   addUser(text);
+  //   saveAnswer(question.field, text);
+
+  //   if (question.submit) {
+  //     finalizeSubmission();
+  //     return;
+  //   }
+
+  //   progress(question.next);
+  // }
 
   function handleTextSubmit(text) {
     const question = flow[current];
     if (!question) return;
 
     addUser(text);
-    saveAnswer(question.field, text);
+
+    const updatedAnswers = {
+      ...answers,
+      [question.field]: text,
+      _qmap: [
+        ...(answers._qmap || []),
+        {
+          question: question.text,
+          answer: text,
+        },
+      ],
+    };
+
+    setAnswers(updatedAnswers);
 
     if (question.submit) {
-      finalizeSubmission();
+      finalizeSubmission(updatedAnswers);
       return;
     }
 
@@ -163,7 +215,7 @@ export default function ChatWidget({ data, locale }) {
     progress(question.next);
   }
 
-  async function finalizeSubmission() {
+  async function finalizeSubmission(finalAnswers = answers) {
     setIsTyping(true);
     addBot(layout.submit1);
 
@@ -180,7 +232,7 @@ export default function ChatWidget({ data, locale }) {
     if (!nextKey || !flow[nextKey]) {
       setCurrent("done");
       setHistory((prev) =>
-        prev[prev.length - 1] === "done" ? prev : [...prev, "done"]
+        prev[prev.length - 1] === "done" ? prev : [...prev, "done"],
       );
       return;
     }
@@ -192,7 +244,7 @@ export default function ChatWidget({ data, locale }) {
       addBot(nextQuestion.text);
 
       if (nextQuestion.submit && nextQuestion.type === "info") {
-        await submitToCRM({ answers, conversation: messages });
+        await submitToCRM({ answers: finalAnswers, conversation: messages });
         setIsTyping(false);
         setCurrent("done");
         setHistory((prev) => [...prev, "done"]);
@@ -309,7 +361,8 @@ export default function ChatWidget({ data, locale }) {
 
       {!isWidgetOpen && !isCartOpen && (
         <div
-          className={`fixed bottom-4 ${locale === "ar" ? "left-4 sm:left-6" : "right-4 sm:right-6"}  sm:bottom-6  z-9999 flex flex-col items-end gap-3 pointer-events-none`}>
+          className={`fixed bottom-4 ${locale === "ar" ? "left-4 sm:left-6" : "right-4 sm:right-6"}  sm:bottom-6  z-9999 flex flex-col items-end gap-3 pointer-events-none`}
+        >
           <div
             className="relative w-full max-w-65 sm:max-w-70 pointer-events-auto"
             style={{ width: "min(80vw, 280px)" }}
@@ -346,7 +399,8 @@ export default function ChatWidget({ data, locale }) {
           />
 
           <div
-            className={`fixed bottom-6 ${locale === "ar" ? "left-6" : "right-6"}  z-50 w-[calc(100vw-3rem)] max-w-105 sm:w-full`}>
+            className={`fixed bottom-6 ${locale === "ar" ? "left-6" : "right-6"}  z-50 w-[calc(100vw-3rem)] max-w-105 sm:w-full`}
+          >
             <ChatLayout
               onClose={() => setIsWidgetOpen(false)}
               className="h-[80vh] max-h-[640px]"
@@ -367,8 +421,11 @@ export default function ChatWidget({ data, locale }) {
                       {prompt}
                     </p>
                     {canChangeSelection && (
-                      <button type="button" onClick={handleChangeSelection}
-                        className="text-xs font-semibold uppercase tracking-widest text-slate-500 transition hover:text-slate-900">
+                      <button
+                        type="button"
+                        onClick={handleChangeSelection}
+                        className="text-xs font-semibold uppercase tracking-widest text-slate-500 transition hover:text-slate-900"
+                      >
                         {layout.change}
                       </button>
                     )}
@@ -415,16 +472,18 @@ export default function ChatWidget({ data, locale }) {
 
                 {!canInteract && current === "done" && (
                   <div className="text-center text-xs text-slate-500">
-                    <button onClick={() => {
-                      setMessages([
-                        { from: "bot", text: flow.q1_business.text },
-                      ]);
-                      setAnswers({});
-                      setCurrent("q1_business");
-                      setHistory(["q1_business"]);
-                      setIsTyping(false);
-                    }}
-                      className="mt-2 rounded-full border border-slate-200 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-blue-600">
+                    <button
+                      onClick={() => {
+                        setMessages([
+                          { from: "bot", text: flow.q1_business.text },
+                        ]);
+                        setAnswers({});
+                        setCurrent("q1_business");
+                        setHistory(["q1_business"]);
+                        setIsTyping(false);
+                      }}
+                      className="mt-2 rounded-full border border-slate-200 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-blue-600"
+                    >
                       {layout.start}
                     </button>
                   </div>

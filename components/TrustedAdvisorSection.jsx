@@ -2,37 +2,50 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
 
 export default function TrustedAdvisorSection({
   heading = "A business advisor you can trust",
   texts,
   bulletsTitle,
   bullets,
-  lastText
+  lastText,
+  images = [],
 }) {
+  const defaultFallBack = [
+    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042303/Dubai_skyline_at_twilight_with_glowing_connection.jpg_vctmco.jpg",
+    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042303/corporate_tower_with_multiple_illuminated_floors_visible.jpg_wgx927.jpg",
+  ];
+
+  const Images = {
+    first: images[0] || defaultFallBack[0],
+    second: images[1] || defaultFallBack[1], 
+  };
   return (
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* LEFT CONTENT */}
           <div>
-            <h2 className="text-[42px] md:text-[50px] leading-tight font-bold text-[#0B1320]">{heading}</h2>
-            {texts && texts.map((text, i) => (
-              <p key={i} className="text-gray-600 mt-6">{text}</p>
-            ))}
+            <h2 className="text-[42px] md:text-[50px] leading-tight font-bold text-[#0B1320]">
+              {heading}
+            </h2>
+            {texts &&
+              texts.map((text, i) => (
+                <p key={i} className="text-gray-600 mt-6">
+                  {text}
+                </p>
+              ))}
             {bulletsTitle && (
-              <h3 className="leading-tight font-bold text-[#0B1320] mt-6">{bulletsTitle}</h3>
+              <h3 className="leading-tight font-bold text-[#0B1320] mt-6">
+                {bulletsTitle}
+              </h3>
             )}
             {bullets && (
               <ul className="mt-4 list-disc pl-5 mb-4 space-y-2">
                 {bullets.map((textItem, j) => (
-                  <li key={j} className="text-gray-600">{textItem}</li>
+                  <li key={j} className="text-gray-600">
+                    {textItem}
+                  </li>
                 ))}
               </ul>
             )}
@@ -54,21 +67,18 @@ export default function TrustedAdvisorSection({
             </div> */}
           </div>
 
-          {/* RIGHT GRID */}
           <div className="grid grid-cols-2 gap-8">
-            {/* LEFT COLUMN (slightly UP) */}
             <div className="flex flex-col gap-8 -translate-y-6">
-              {/* IMAGE */}
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/gallery/gallery-2.jpg"
+                  // src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042303/Dubai_skyline_at_twilight_with_glowing_connection.jpg_vctmco.jpg"
+                  src={Images.first}
                   alt=""
                   fill
                   className="object-cover"
                 />
               </div>
 
-              {/* BLACK BOX */}
               <motion.div
                 whileHover={{
                   scale: 1.05,
@@ -86,9 +96,7 @@ export default function TrustedAdvisorSection({
               </motion.div>
             </div>
 
-            {/* RIGHT COLUMN (slightly DOWN) */}
             <div className="flex flex-col gap-8 translate-y-6">
-              {/* BLUE BOX */}
               <motion.div
                 whileHover={{
                   scale: 1.05,
@@ -105,10 +113,10 @@ export default function TrustedAdvisorSection({
                 </div>
               </motion.div>
 
-              {/* IMAGE */}
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/gallery/gallery-3.jpg"
+                  // src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042303/corporate_tower_with_multiple_illuminated_floors_visible.jpg_wgx927.jpg"
+                  src={Images.second}
                   alt=""
                   fill
                   className="object-cover"
