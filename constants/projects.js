@@ -65,32 +65,29 @@ export const projectFilters = [
 ];
 
 const projectsPerPage = 12;
+
 export const getProjects = (page, location, sector, developer, scale) => {
     let filtered = [...projects];
 
-    if (location) {
+    if (location)
         filtered = filtered.filter(
             (p) => p.location.toLowerCase().replace(/\s+/g, "-") === location
         );
-    }
 
-    if (sector) {
+    if (sector)
         filtered = filtered.filter(
             (p) => p.sector.toLowerCase().replace(/\s+/g, "-") === sector
         );
-    }
 
-    if (developer) {
+    if (developer)
         filtered = filtered.filter(
             (p) => p.developer.toLowerCase().replace(/\s+/g, "-") === developer
         );
-    }
 
-    if (scale) {
+    if (scale)
         filtered = filtered.filter(
             (p) => p.scale.toLowerCase().replace(/\s+/g, "-") === scale
         );
-    }
 
     const startIndex = (page - 1) * projectsPerPage;
     const endIndex = startIndex + projectsPerPage;
@@ -111,7 +108,16 @@ export const getProject = (id) => {
         ...project,
         ...description
     }
-}
+};
+export const getFeaturedProjects = (ids = []) => {
+    return projects
+        .filter((project) => ids.includes(project.id))
+        .map((project) => ({
+            id: project.id,
+            name: project.name,
+            image: project.image,
+        }));
+};
 
 const projects = [
     { id: 1, name: "Cape Hayat Four Apartment Buildings", location: "Ras Al Khaimah", sector: "Luxury Residential", developer: "RAK Properties", scale: "Mega Project", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133409/cape-hayat_t0fyrj.jpg" },

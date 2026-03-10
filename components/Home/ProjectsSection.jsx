@@ -1,36 +1,11 @@
 "use client";
 
+import { getFeaturedProjects } from "@/constants/projects";
 import AnimatedLines from "../UI/AnimatedLines";
 import PrimaryButton from "../UI/PrimaryButton";
 import ProjectCard from "./ProjectCard";
 
-const PROJECTS = [
-  {
-    title: "PUBLIC",
-    image: "/gallery/gallery-1.jpg",
-    href: "/projects",
-  },
-  {
-    title: "INFRASTRUCTURE",
-    image: "/gallery/gallery-2.jpg",
-    href: "/projects",
-  },
-  {
-    title: "AIRPORTS",
-    image: "/gallery/gallery-3.jpg",
-    href: "/projects",
-  },
-  {
-    title: "HIGH",
-    image: "/gallery/gallery-4.jpg",
-    href: "/projects",
-  },
-  {
-    title: "ELECTROMECHANICAL",
-    image: "/gallery/gallery-6.jpg",
-    href: "/projects",
-  },
-];
+const projects = getFeaturedProjects([1, 5, 8, 10, 16]);
 
 export default function ProjectsSection() {
   return (
@@ -100,8 +75,8 @@ export default function ProjectsSection() {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
-            {PROJECTS.map((item, index) => (
-              <ProjectCard key={`${item.title}`} {...item} />
+            {projects.map((item, index) => (
+              <ProjectCard key={index} {...item} />
             ))}
           </div>
         </div>
