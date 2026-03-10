@@ -19,7 +19,6 @@ async function ProductPage({ params, searchParams }) {
 
     // const moreProducts = await getProducts();
     const { items } = await getPaginatedRandomProducts(1);
-    console.log(items);
 
     const locale = await getLocale();
 

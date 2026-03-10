@@ -7,7 +7,7 @@ export default async function Breadcrumb({ segments, locale, maxWidth = true }) 
   return (
     <nav aria-label="Breadcrumb" className="w-full border-b border-black/1">
       <div className={`${maxWidth && "max-w-7xl mx-auto px-5"} pt-5`}>
-        <ol className="flex flex-wrap gap-y-3 items-center text-sm text-black/70">
+        <ol className="flex flex-wrap gap-y-2 items-center text-sm text-black/70">
           <li className="flex items-center"><Link href="/" className="hover:text-black transition hover:underline">{t("Page")}</Link></li>
           {segments.map((segment, index) => (
             <li key={index} className="flex items-center">

@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { FiArrowRight } from "react-icons/fi";
 
-export default function ProjectCard({ title, image, href }) {
+export default function ProjectCard({ id, name, image }) {
   const router = useRouter();
+  const href = `/projects/${id}`
 
   return (
     <motion.article
@@ -23,7 +24,7 @@ export default function ProjectCard({ title, image, href }) {
         bg-black
       "
       role="link"
-      aria-label={`Open ${title}`}
+      aria-label={`Open ${name}`}
     >
       <motion.div
         variants={{
@@ -35,7 +36,7 @@ export default function ProjectCard({ title, image, href }) {
       >
         <Image
           src={image}
-          alt={title}
+          alt={name}
           fill
           className="object-cover"
         />
@@ -51,7 +52,7 @@ export default function ProjectCard({ title, image, href }) {
 
       <div className="absolute bottom-6 left-6 z-10">
         <h3 className="text-white font-semibold tracking-wide">
-          {title}
+          {name}
         </h3>
       </div>
 
