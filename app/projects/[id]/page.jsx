@@ -1,12 +1,16 @@
 import ValuesSection from "@/components/UI/about-us/ValuesSection"
+import Breadcrumb from "@/components/UI/Breadcrumb";
 import { getProject } from "@/constants/projects";
+import { getLocale } from "next-intl/server";
 
 async function ProjectDetailPage({ params }) {
     const { id } = await params;
+    const locale = await getLocale();
     const project = getProject(id);
 
     return (
-        <main>
+        <main className="pb-14 pt-16 max-w-350 mx-auto px-4">
+            <Breadcrumb segments={[{ label: "Projects", href: "/projects" }, { label: project.name }]} locale={locale} maxWidth={false} />
             <ValuesSection
                 title={project.name}
                 imageSrc={project.image}
@@ -19,11 +23,13 @@ async function ProjectDetailPage({ params }) {
                 contribution2={project.contribution2}
                 impact={project.impact}
                 impact2={project.impact2}
-                width="max-w-350"
+                width=""
                 gap={"gap-8 lg:grid-cols-5"}
                 h1={true}
                 col1={"lg:col-span-3"}
                 col2={"lg:col-span-2"}
+                padding=""
+                className="mt-4"
             />
         </main>
     )

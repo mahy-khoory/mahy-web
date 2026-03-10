@@ -16,8 +16,9 @@ export default function ValuesSection({
     ctaHref,
     priority = false,
     className = "",
-    width = "max-w-6xl",
+    width = "max-w-6xl mx-auto",
     gap = "gap-16 lg:gap-28 lg:grid-cols-2",
+    padding = "px-6 sm:px-10 lg:px-12 pt-20 pb-10 sm:py-24 lg:pt-28 lg:pb-16",
     col1,
     col2,
     h1 = false,
@@ -33,14 +34,14 @@ export default function ValuesSection({
 
     return (
         <section className={`w-full bg-white ${className}`}>
-            <div className={`${width} mx-auto px-6 sm:px-10 lg:px-12 pt-20 pb-10 sm:py-24 lg:pt-28 lg:pb-16`}>
+            <div className={`${width} ${padding}`}>
                 <div className={`grid items-center ${gap} ${isImageLeft ? "lg:[&>*:first-child]:order-2" : ""}`}>
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.55, ease: "easeOut" }}
                         viewport={{ once: true }}
-                        className={`lg:-translate-y-6 ${col1} ${isImageLeft ? "lg:translate-x-6" : "lg:-translate-x-6"}`}>
+                        className={`${col1}`}>
                         {eyebrow && (
                             <div className="text-xs font-semibold tracking-[0.28em] uppercase text-slate-500">
                                 {eyebrow}

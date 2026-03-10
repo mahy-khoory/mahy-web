@@ -17,7 +17,7 @@ async function ProjectsPage({ searchParams }) {
     page = 1,
   } = params;
 
-  const { items, total, totalPages } = getProjects(page);
+  const { items, total, totalPages } = getProjects(page, location, sector, developer, projectScale);
 
   return (
     <main className="pb-14 pt-16 max-w-350 mx-auto px-4">

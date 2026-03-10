@@ -65,14 +65,42 @@ export const projectFilters = [
 ];
 
 const projectsPerPage = 15;
-export const getProjects = (page) => {
+export const getProjects = (page, location, sector, developer, scale) => {
+    let filtered = [...projects];
+
+    if (location) {
+        filtered = filtered.filter(
+            (p) => p.location.toLowerCase().replace(/\s+/g, "-") === location
+        );
+    }
+
+    if (sector) {
+        filtered = filtered.filter(
+            (p) => p.sector.toLowerCase().replace(/\s+/g, "-") === sector
+        );
+    }
+
+    if (developer) {
+        filtered = filtered.filter(
+            (p) => p.developer.toLowerCase().replace(/\s+/g, "-") === developer
+        );
+    }
+
+    if (scale) {
+        filtered = filtered.filter(
+            (p) => p.scale.toLowerCase().replace(/\s+/g, "-") === scale
+        );
+    }
+
     const startIndex = (page - 1) * projectsPerPage;
     const endIndex = startIndex + projectsPerPage;
 
+    const paginated = filtered.slice(startIndex, endIndex);
+
     return {
-        items: projects.slice(startIndex, endIndex),
-        total: projects.length,
-        totalPages: Math.ceil(projects.length / projectsPerPage),
+        items: paginated,
+        total: filtered.length,
+        totalPages: Math.ceil(filtered.length / projectsPerPage),
     };
 };
 export const getProject = (id) => {
