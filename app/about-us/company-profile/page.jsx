@@ -1,14 +1,37 @@
 import EnterprisePinnedContainer from "@/components/Layout/EnterprisePinnedContainer";
 import SustainabilityPanels from "@/components/SustainabilityPanels";
 import CompanyStructure from "@/components/UI/about-us/CompanyStructure";
+import ManufacturingNetworkSection from "@/components/UI/about-us/ManufacturingNetworkSection";
 import AnimatedLines from "@/components/UI/AnimatedLines";
 import GroupCompaniesGrid from "@/components/UI/companies/GroupCompaniesGrid";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
 import SubPageHeading from "@/components/UI/SubPageHeading";
 import SubPageHeadingNoOverlayImage from "@/components/UI/SubPageHeadingNoOverlayImage";
+import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
-const companyProfile = () => {
+async function companyProfile() {
+  const locale = await getLocale();
+  const t = await getTranslations("AboutUsPage");
+
+  const network = {
+    text: [t("Network.Text1"), t("Network.Text2")],
+    stats: [t("Network.Stat1"), t("Network.Stat2"), t("Network.Stat3")],
+    statsNo: [
+      (300000).toLocaleString(locale),
+      (60).toLocaleString(locale),
+      (1200).toLocaleString(locale),
+    ],
+    map: [t("Network.Map1"), t("Network.Map2"), t("Network.Map3")],
+    locations: [
+      t("Network.Location1"),
+      t("Network.Location2"),
+      t("Network.Location3"),
+      t("Network.Location4"),
+      t("Network.Location5"),
+    ],
+  };
+
   const sustainability = [
     {
       title: "Diversification with depth",
@@ -272,6 +295,8 @@ const companyProfile = () => {
       </div>
 
       <CompanyStructure data={structure} />
+
+      <ManufacturingNetworkSection network={network} locale={locale} />
 
       <div className="text-center px-4 bg-black p-20">
         <AnimatedLines bg="bg-gray-200" />
