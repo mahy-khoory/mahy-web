@@ -29,7 +29,6 @@ const FilterOptions = ({ title, paramKey, options, initialVisibleCount = 5 }) =>
     return (
         <div className="w-full max-w-xs">
             <h3 className="text-sm font-bold mb-3">{title}</h3>
-
             <div className="flex flex-col gap-1">
                 {allOptions.slice(0, expanded ? allOptions.length : initialVisibleCount + 1)
                     .map(option => (

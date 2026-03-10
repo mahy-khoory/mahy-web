@@ -64,7 +64,7 @@ export const projectFilters = [
     }
 ];
 
-const projectsPerPage = 15;
+const projectsPerPage = 12;
 export const getProjects = (page, location, sector, developer, scale) => {
     let filtered = [...projects];
 
