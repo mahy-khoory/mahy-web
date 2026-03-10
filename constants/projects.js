@@ -64,6 +64,27 @@ export const projectFilters = [
     }
 ];
 
+const projectsPerPage = 15;
+export const getProjects = (page) => {
+    const startIndex = (page - 1) * projectsPerPage;
+    const endIndex = startIndex + projectsPerPage;
+
+    return {
+        items: projects.slice(startIndex, endIndex),
+        total: projects.length,
+        totalPages: Math.ceil(projects.length / projectsPerPage),
+    };
+};
+export const getProject = (id) => {
+    const projectId = Number(id);
+    const project = projects.find(project => project.id === projectId);
+    const description = projectsDescriptions.find(project => project.id === projectId);
+    return {
+        ...project,
+        ...description
+    }
+}
+
 const projects = [
     { id: 1, name: "Cape Hayat Four Apartment Buildings", location: "Ras Al Khaimah", sector: "Luxury Residential", developer: "RAK Properties", scale: "Mega Project", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133409/cape-hayat_t0fyrj.jpg" },
     { id: 2, name: "Falcon Island Villas Development", location: "Ras Al Khaimah", sector: "Luxury Residential", developer: "Al Hamra Real Estate", scale: "Mega Project", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133437/falcon-island_cd8c8j.jpg" },
@@ -338,4 +359,4 @@ const projectsDescriptions = [
         ],
         impact: "By supplying high-quality Grundfos Hydro booster sets, MAHY Khoory & Co. LLC strengthened Canal Crown's water infrastructure backbone ensuring seamless, reliable, and sustainable water delivery for residents. This contribution supports the development's overall operational excellence and aligns with the developer's objectives for comfort, reliability, and long-term performance reinforcing DAMAC Canal Crown's position as a premier luxury residential address along the Dubai Canal."
     },
-]
+];
