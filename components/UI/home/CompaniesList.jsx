@@ -10,7 +10,7 @@ import { companies } from '@/constants/companies';
 import CompanyCard from './CompanyCard';
 
 const industeries = [
-    { label: "Trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210688/premium-home-appliance-store-interior-2026-01-05-05-10-44-utc_r9kuyw.jpg" },
+    { label: "Trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" },
     { label: "Manufacturing", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210649/factory-workers-operating-machinery-on-production-2026-01-09-10-18-36-utc_tsa0tc.jpg" },
     { label: "Automobile", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210379/two-businessmen-are-working-together-in-the-car-sh-2026-01-08-23-56-20-utc_tjv68e.jpg" },
     { label: "Waste Management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210761/joyful-indian-worker-in-protective-vest-and-gloves-2026-01-06-00-11-34-utc_m8310z.jpg" },
