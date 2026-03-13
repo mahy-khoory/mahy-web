@@ -165,9 +165,10 @@ export function getNavigation(t) {
                 href: "/companies/food-and-beverage",
               },
               {
-                label: "Packaging Manufacturing & Sustainable Packaging Solutions",
+                label:
+                  "Packaging Manufacturing & Sustainable Packaging Solutions",
                 href: "/companies/packaging-manufacturing-sustainable-packaging-solutions",
-              }
+              },
             ],
             // {
             //   label: t("Trading&Distribution"),
@@ -257,11 +258,11 @@ export function getNavigation(t) {
               },
               {
                 label: t("BoosterPumps"),
-                href: "/products/booster-pumps"
+                href: "/products/booster-pumps",
               },
               {
                 label: t("TransferPumps"),
-                href: "/products/transfer-pumps"
+                href: "/products/transfer-pumps",
               },
               {
                 label: t("SubmersiblePumps"),
@@ -361,7 +362,6 @@ export function getNavigation(t) {
               //   label: t("ServicedHotelApartments"),
               //   href: "/services/serviced-hotel-apartments",
               // },
-
             ],
           },
           {
@@ -389,7 +389,7 @@ export function getNavigation(t) {
               },
               {
                 label: t("PalletBlocks"),
-                href: "/products/pallet-blocks"
+                href: "/products/pallet-blocks",
               },
               {
                 label: t("PremiumWoodenPallets"),
@@ -398,7 +398,7 @@ export function getNavigation(t) {
               {
                 label: "Corrugated Paper Reels",
                 href: "/products/corrugated-paper-reels",
-              }
+              },
               // {
               //   label: t("DX&VRFAirConditioningSystems"),
               //   href: "/products/dx-vrf-air-conditioning",
@@ -415,7 +415,7 @@ export function getNavigation(t) {
               //   label: t("ComprehensivePumpingSystem&HVACServices"),
               //   href: "/services/comprehensive-pumping-system-hvac-services",
               // },
-            ]
+            ],
           },
           {
             title: "Services & Solutions",
@@ -454,10 +454,10 @@ export function getNavigation(t) {
               },
               {
                 label: t("SpareParts"),
-                href: "/products/spare-parts"
+                href: "/products/spare-parts",
               },
-            ]
-          }
+            ],
+          },
         ],
       },
       {
@@ -561,32 +561,66 @@ export function getNavigation(t) {
             title: "About Working With Us",
             links: [
               { label: "Why Join Us", href: "/careers/why-join-us" },
-              { label: "Our Culture & Values", href: "/careers/culture-and-values" },
-              { label: "Leadership & Vision", href: "/careers/leadership-and-vision" },
-              { label: "Diversity & Inclusion", href: "/careers/diversity-and-inclusion" }
+              {
+                label: "Our Culture & Values",
+                href: "/careers/culture-and-values",
+              },
+              {
+                label: "Leadership & Vision",
+                href: "/careers/leadership-and-vision",
+              },
+              {
+                label: "Diversity & Inclusion",
+                href: "/careers/diversity-and-inclusion",
+              },
             ],
           },
           {
             title: "Opportunities",
             links: [
               { label: "Career Opportunities", href: "/careers/opportunities" },
-              { label: "Internship & Graduate Programs", href: "/careers/internship-and-graduate-programs" }
+              {
+                label: "Internship & Graduate Programs",
+                href: "/careers/internship-and-graduate-programs",
+              },
             ],
           },
           {
             title: "Apply & Talent Network",
             links: [
               { label: "Submit Your CV", href: "/careers/submit-cv" },
-              { label: "Recruitment Process", href: "/careers/recruitment-process" }
+              {
+                label: "Recruitment Process",
+                href: "/careers/recruitment-process",
+              },
             ],
           },
           {
             title: "Growth & Life at MAHY",
             links: [
-              { label: "Learning & Development", href: "/careers/learning-and-development" },
-              { label: "Career Progression", href: "/careers/career-progression" },
-              { label: "Employee Benefits", href: "/careers/employee-benefits" },
+              {
+                label: "Learning & Development",
+                href: "/careers/learning-and-development",
+              },
+              {
+                label: "Career Progression",
+                href: "/careers/career-progression",
+              },
+              {
+                label: "Employee Benefits",
+                href: "/careers/employee-benefits",
+              },
               { label: "Life at MAHY", href: "/careers/life-at-mahy" },
+              {
+                label: "Employee Portal",
+                href: "/mahy-portal/employee-portal",
+                newTab: true,
+              },
+              {
+                label: "GCEO Portal",
+                href: "/mahy-portal/gceo-portal",
+                newTab: true,
+              },
             ],
           },
         ],
@@ -624,10 +658,16 @@ export function getNavigation(t) {
             links: [
               { label: t("CustomerSupportOverview"), href: "/support" },
               // { label: t("ServiceRequest"), href: "/contact-us/service-request" },
-              { label: t("ServiceRequest"), href: "/contact-us/schedule-service" },
+              {
+                label: t("ServiceRequest"),
+                href: "/contact-us/schedule-service",
+              },
 
               { label: t("SiteVisitRequest"), href: "/contact-us/site-visit" },
-              { label: t("CustomerComplaint"), href: "/contact-us/customer-complaint" },
+              {
+                label: t("CustomerComplaint"),
+                href: "/contact-us/customer-complaint",
+              },
               // { label: t("CustomerDocumentUpdate"), href: "/document-update" },
             ],
           },
@@ -635,8 +675,14 @@ export function getNavigation(t) {
             title: t("Partnerships"),
             links: [
               // { label: t("PartnerRegistration"), href: "/partners/register" },
-              { label: t("VendorRegistration"), href: "/contact-us/vendor-registration" },
-              { label: "Customer Registration", href: "/contact-us/customer-registration" },
+              {
+                label: t("VendorRegistration"),
+                href: "/contact-us/vendor-registration",
+              },
+              {
+                label: "Customer Registration",
+                href: "/contact-us/customer-registration",
+              },
             ],
           },
         ],

@@ -15,6 +15,8 @@ import CartProvider from "@/components/Providers/CartProvider";
 import CartDrawer from "@/components/UI/cart/CartDrawer";
 import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
 import LoaderWrapper from "@/components/LoaderWrapper";
+import LayoutWrapper from "@/components/Layout/LayoutWrapper";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -63,26 +65,35 @@ export default async function RootLayout({ children }) {
         className={`${poppins.variable} antialiased`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <ReactQueryProvider>
-          <SmoothScrollProvider>
-            <NextIntlClientProvider locale={locale}>
-              <LoaderWrapper>
-                <CartProvider>
-                  <Navbar navigation={getNavigation(navTranslations)} />
+        
+          <ReactQueryProvider>
+            <SmoothScrollProvider>
+              <NextIntlClientProvider locale={locale}>
+                <LoaderWrapper>
+                  <CartProvider>
+                    {/* <Navbar navigation={getNavigation(navTranslations)} />
                   {children}
                   <section id="useful-links">
                     <Footer data={getFooter(footerTranslations)} />
-                  </section>
-                  <ChatBot
-                    data={chatbotData(chatbotTranslations)}
-                    locale={locale}
-                  />
-                  <CartDrawer />
-                </CartProvider>
-              </LoaderWrapper>
-            </NextIntlClientProvider>
-          </SmoothScrollProvider>
-        </ReactQueryProvider>
+                  </section> */}
+
+                    <LayoutWrapper
+                      navigation={getNavigation(navTranslations)}
+                      footerData={getFooter(footerTranslations)}
+                      chatbotData={chatbotData(chatbotTranslations)}
+                      locale={locale}
+                    >
+                      <AuthContextProvider>
+
+                      {children}
+                      </AuthContextProvider>
+                    </LayoutWrapper>
+                    <CartDrawer />
+                  </CartProvider>
+                </LoaderWrapper>
+              </NextIntlClientProvider>
+            </SmoothScrollProvider>
+          </ReactQueryProvider>
       </body>
     </html>
   );
