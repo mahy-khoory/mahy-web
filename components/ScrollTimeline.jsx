@@ -135,7 +135,7 @@ const FirstSection = ({ title, start, end, image }) => (
 const Sections = ({ title, heading, text, image, dark }) => (
     <div className={`grid grid-cols-1 md:grid-cols-2 py-8 px-5 md:px-0 md:py-20 ${dark ? "text-white" : "t-base"} relative`}>
         {dark && (
-            <div className="absolute w-[99.5vw] h-full b-base md:-translate-x-64 -z-10" />
+            <div className="absolute w-screen h-full b-base md:-translate-x-64 -z-10" />
         )}
         <div className="relative z-10">
             <div className="w-sm">

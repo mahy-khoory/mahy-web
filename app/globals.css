@@ -63,11 +63,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(121, 196, 231, 0.55) transparent;
+  /* scrollbar-width: thin;
+  scrollbar-color: rgba(121, 196, 231, 0.55) transparent; */
 }
 
-html::-webkit-scrollbar,
+/* html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 7px;
 }
@@ -89,7 +89,7 @@ body::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-thumb:hover,
 body::-webkit-scrollbar-thumb:hover {
   background-color: rgba(4, 24, 34, 0.85);
-}
+} */
 
 .step-card {
   box-shadow: 0 0 5px rgba(220, 220, 220, 0.25);
@@ -302,7 +302,7 @@ button {
     animation: fadeIn 0.35s ease forwards;
   }
 
-  .custom-scrollbar {
+  /* .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #cbd5f5 transparent;
   }
@@ -318,7 +318,7 @@ button {
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #cbd5f5;
     border-radius: 999px;
-  }
+  } */
 
   @keyframes accordion-down {
     from {
