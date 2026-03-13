@@ -11,8 +11,9 @@ export default function PortalLayout({ children, title, tabs }) {
 
   return (
     <PortalAccessGuard>
-      <div className="flex min-h-screen bg-[#0b1120] text-white">
+      <div className="flex min-h-screen w-full overflow-x-hidden bg-[#0b1120] text-white">
 
+        {/* SIDEBAR */}
         <PortalSidebar
           collapsed={collapsed}
           setCollapsed={setCollapsed}
@@ -20,18 +21,20 @@ export default function PortalLayout({ children, title, tabs }) {
           tabs={tabs}
         />
 
+        {/* CONTENT */}
         <motion.div
           animate={{
             marginLeft: collapsed ? 90 : 260,
           }}
           transition={{ duration: 0.25 }}
-          className="flex-1 flex flex-col min-h-screen"
+          className="flex flex-col flex-1 min-h-screen min-w-0"
         >
           <PortalHeader />
 
-          <main className="flex-1 p-6 md:p-10 bg-gradient-to-br from-[#0f172a] to-[#020617]">
+          <main className="flex-1 min-w-0 p-6 md:p-10 bg-gradient-to-br from-[#0f172a] to-[#020617]">
             {children}
           </main>
+
         </motion.div>
 
       </div>

@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function EmployeePortalPage() {
   const { user } = useAuth();
-  // console.log(user);
-  
 
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
+  const [toast, setToast] = useState(null);
 
   const [documentType, setDocumentType] = useState("");
   const [referenceNo, setReferenceNo] = useState("");
@@ -18,18 +18,13 @@ export default function EmployeePortalPage() {
   const [urgency, setUrgency] = useState("");
   const [remarks, setRemarks] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [amount, setAmount] = useState("");
 
-  const formatNumber = (value) => {
-    if (!value) return "";
-
-    const number = value.replace(/,/g, "");
-
-    if (isNaN(number)) return "";
-
-    return Number(number).toLocaleString("en-US");
+  const showToast = (message, type = "success") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3500);
   };
+
   const handleAmountChange = (e) => {
     const raw = e.target.value.replace(/,/g, "");
 
@@ -44,6 +39,7 @@ export default function EmployeePortalPage() {
 
     setAmount(formatted);
   };
+
   const handleFileChange = (e) => {
     const uploaded = e.target.files[0];
 
@@ -78,7 +74,6 @@ export default function EmployeePortalPage() {
       formData.append("urgency", urgency);
       formData.append("remarks", remarks);
 
-      // user metadata
       formData.append("uploadedByEmail", user?.email);
       formData.append("department", user?.department);
       formData.append("company", user?.company);
@@ -88,7 +83,7 @@ export default function EmployeePortalPage() {
         {
           method: "POST",
           body: formData,
-        },
+        }
       );
 
       const data = await response.json();
@@ -97,20 +92,41 @@ export default function EmployeePortalPage() {
         throw new Error(data.message || "Upload failed");
       }
 
-      alert("Document uploaded successfully");
+      showToast("Document uploaded successfully");
 
       setFile(null);
+      setReferenceNo("");
+      setDescription("");
+      setAmount("");
+      setRemarks("");
     } catch (err) {
       console.error(err);
       setError(err.message);
+      showToast(err.message, "error");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-4xl">
-      {/* Header */}
+    <div className="w-full max-w-[1100px]">
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ y: -40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`fixed right-6 top-6 z-50 px-6 py-3 rounded-xl text-sm font-medium shadow-lg ${
+              toast.type === "error"
+                ? "bg-red-600 text-white"
+                : "bg-green-600 text-white"
+            }`}
+          >
+            {toast.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <h1 className="text-2xl font-semibold mb-2">Document Upload</h1>
 
       <p className="text-white/70 mb-8">
@@ -119,19 +135,20 @@ export default function EmployeePortalPage() {
       </p>
 
       <div className="border border-white/10 rounded-xl p-8 bg-white/5 backdrop-blur-xl space-y-8">
+
+        {/* Document Info */}
+
         <div>
           <h2 className="text-lg font-semibold mb-4">Document Information</h2>
 
           <div className="grid md:grid-cols-2 gap-4">
-            {/* Document Type Select - Fixed Controlled State */}
+
             <select
               value={documentType}
               onChange={(e) => setDocumentType(e.target.value)}
-              className="bg-black/40 border border-white/10 rounded-lg p-3 text-white"
+              className="bg-black/40 border border-white/10 rounded-lg p-3"
             >
-              <option value="" disabled className="text-gray-400">
-                Select Document Type
-              </option>
+              <option value="">Select Document Type</option>
               <option value="PR">PR</option>
               <option value="PO">PO</option>
               <option value="Invoice">Invoice</option>
@@ -143,7 +160,6 @@ export default function EmployeePortalPage() {
             <input
               value={referenceNo}
               onChange={(e) => setReferenceNo(e.target.value)}
-              type="text"
               placeholder="Reference Number"
               className="bg-black/40 border border-white/10 rounded-lg p-3"
             />
@@ -152,10 +168,10 @@ export default function EmployeePortalPage() {
               type="text"
               value={amount}
               onChange={handleAmountChange}
-              placeholder="Amount (if applicable)"
-              inputMode="numeric"
+              placeholder="Amount (optional)"
               className="bg-black/40 border border-white/10 rounded-lg p-3"
             />
+
           </div>
 
           <textarea
@@ -167,77 +183,68 @@ export default function EmployeePortalPage() {
           />
         </div>
 
+        {/* Approval */}
+
         <div>
           <h2 className="text-lg font-semibold mb-4">Approval Details</h2>
 
           <div className="grid md:grid-cols-2 gap-4">
-            {/* Severity Select - Fixed Handler and Controlled State */}
+
             <select
               value={severity}
               onChange={(e) => setSeverity(e.target.value)}
-              className="bg-black/40 border border-white/10 rounded-lg p-3 text-white"
+              className="bg-black/40 border border-white/10 rounded-lg p-3"
             >
-              <option value="" disabled className="text-gray-400">
-                Select Severity Level
-              </option>
+              <option value="">Severity Level</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
             </select>
 
-            <div>
-              <p className="text-sm text-white/60 mb-2">Approval Urgency</p>
+            <div className="flex gap-6 items-center">
+              <label className="flex items-center gap-2">
+                <input type="radio" name="urgency" value="Normal"
+                checked={urgency === "Normal"}
+                onChange={(e)=>setUrgency(e.target.value)}
+                />
+                Normal
+              </label>
 
-              <div className="flex gap-6 text-sm">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="urgency"
-                    value="Normal"
-                    checked={urgency === "Normal"}
-                    onChange={(e) => setUrgency(e.target.value)}
-                  />
-                  Normal
-                </label>
+              <label className="flex items-center gap-2">
+                <input type="radio" name="urgency" value="Urgent"
+                checked={urgency === "Urgent"}
+                onChange={(e)=>setUrgency(e.target.value)}
+                />
+                Urgent
+              </label>
 
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="urgency"
-                    value="Urgent"
-                    checked={urgency === "Urgent"}
-                    onChange={(e) => setUrgency(e.target.value)}
-                  />
-                  Urgent
-                </label>
-
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="urgency"
-                    value="Very Urgent"
-                    checked={urgency === "Very Urgent"}
-                    onChange={(e) => setUrgency(e.target.value)}
-                  />
-                  Very Urgent
-                </label>
-              </div>
+              <label className="flex items-center gap-2">
+                <input type="radio" name="urgency" value="Very Urgent"
+                checked={urgency === "Very Urgent"}
+                onChange={(e)=>setUrgency(e.target.value)}
+                />
+                Very Urgent
+              </label>
             </div>
+
           </div>
 
           <textarea
-            placeholder="Additional remarks (optional)"
+            placeholder="Additional remarks"
             rows="3"
             value={remarks}
-            onChange={(e) => setRemarks(e.target.value)}
+            onChange={(e)=>setRemarks(e.target.value)}
             className="w-full mt-4 bg-black/40 border border-white/10 rounded-lg p-3"
           />
         </div>
+
+        {/* Upload */}
 
         <div>
           <h2 className="text-lg font-semibold mb-4">Upload Document</h2>
 
           <div className="border-2 border-dashed border-white/20 rounded-xl p-10 text-center">
+
             <input
               type="file"
               accept="application/pdf"
@@ -250,10 +257,6 @@ export default function EmployeePortalPage() {
               Drag & drop PDF here or click to upload
             </label>
 
-            <p className="text-xs text-white/50 mt-2">
-              Only PDF files are allowed
-            </p>
-
             {file && (
               <p className="text-green-400 mt-3 text-sm">
                 Uploaded: {file.name}
@@ -265,6 +268,7 @@ export default function EmployeePortalPage() {
         </div>
 
         <div className="flex justify-end">
+
           <button
             onClick={handleSubmit}
             disabled={loading}
@@ -272,7 +276,9 @@ export default function EmployeePortalPage() {
           >
             {loading ? "Uploading..." : "Submit Document"}
           </button>
+
         </div>
+
       </div>
     </div>
   );
