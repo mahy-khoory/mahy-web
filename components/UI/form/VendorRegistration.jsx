@@ -235,9 +235,9 @@ export default function VendorRegistration() {
       normalizeFiles(values.emiratesIdFile).forEach((file) =>
         formData.append("files", file),
       );
-      console.log("Vendor form payload:");
+      // console.log("Vendor form payload:");
       for (const pair of formData.entries()) {
-        console.log(pair[0], pair[1]);
+        // console.log(pair[0], pair[1]);
       }
 
       await createVendorMutation.mutateAsync(formData);

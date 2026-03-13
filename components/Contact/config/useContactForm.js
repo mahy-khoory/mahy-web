@@ -29,7 +29,7 @@ export function useContactForm() {
       alert("must agree!");
       return;
     }
-    console.log("payload being snet", form);
+    // console.log("payload being snet", form);
   };
 
   return {

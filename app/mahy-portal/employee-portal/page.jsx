@@ -5,6 +5,8 @@ import { useAuth } from "@/context/AuthContext";
 
 export default function EmployeePortalPage() {
   const { user } = useAuth();
+  // console.log(user);
+  
 
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");

@@ -105,7 +105,7 @@ export default function ServiceRequestForm({
       images: data.images ? Array.from(data.images) : [],
     };
 
-    console.log("SERVICE REQUEST PAYLOAD:", payload);
+    // console.log("SERVICE REQUEST PAYLOAD:", payload);
 
     setIsSubmitting(false);
   };

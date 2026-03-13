@@ -48,7 +48,7 @@ export default function ContactFormPane({ data, agreement, submit }) {
       recaptchaToken: "",
     };
 
-    console.log("payload:", payload);
+    // console.log("payload:", payload);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="pt-4 max-w-3xl">

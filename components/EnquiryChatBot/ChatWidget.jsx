@@ -119,7 +119,7 @@ export default function ChatWidget({ data, locale }) {
   }
 
   async function submitToCRM(payload) {
-    console.log(payload);
+    // console.log(payload);
 
     try {
       const res = await fetch(
@@ -135,7 +135,7 @@ export default function ChatWidget({ data, locale }) {
 
       const data = await res.json();
 
-      console.log("CRM Response:", data);
+      // console.log("CRM Response:", data);
 
       if (!res.ok) {
         throw new Error(data.message || "Lead submission failed");

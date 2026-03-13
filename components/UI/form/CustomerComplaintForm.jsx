@@ -101,7 +101,7 @@ export default function CustomerComplaintForm() {
     mutationFn: submitCustomerComplaint,
     onSuccess: (data) => {
       alert("Complaint submitted successfully");
-      console.log("CRM Response:", data);
+      // console.log("CRM Response:", data);
     },
     onError: (error) => {
       alert(error.message);

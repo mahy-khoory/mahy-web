@@ -14,7 +14,12 @@ import {
   useIsAuthenticated,
   useMsal,
 } from "@azure/msal-react";
-import { createMsalInstance, loginRequest, apiRequest, msalConfig } from "@/config/msal/msalConfig";
+import {
+  createMsalInstance,
+  loginRequest,
+  apiRequest,
+  msalConfig,
+} from "@/config/msal/msalConfig";
 
 const msalInstance = createMsalInstance();
 
@@ -121,6 +126,7 @@ const AuthProviderInner = ({ children }) => {
           console.log("Token:", tokenResp);
 
           const profile = await fetchUserProfile(tokenResp.accessToken);
+          const roles = await fetchUserRoles(tokenResp.accessToken);
 
           console.log("Graph profile:", profile);
 
@@ -130,6 +136,7 @@ const AuthProviderInner = ({ children }) => {
             email: profile.mail || activeAccount.username,
             department: profile.department,
             company: profile.companyName,
+            roles: roles,
             account: activeAccount,
           });
         } catch (err) {
@@ -159,6 +166,27 @@ const AuthProviderInner = ({ children }) => {
     clearAuthError,
   ]);
 
+  const fetchUserRoles = async (accessToken) => {
+    const response = await fetch(
+      "https://graph.microsoft.com/v1.0/me/transitiveMemberOf/microsoft.graph.directoryRole?$select=id,displayName",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch roles");
+    }
+
+    const data = await response.json();
+
+    // console.log("directory roles:", data);
+
+    return data.value.map((role) => role.displayName);
+  };
+
   const fetchUserProfile = async (accessToken) => {
     const response = await fetch(
       "https://graph.microsoft.com/v1.0/me?$select=displayName,mail,department,companyName",
@@ -172,8 +200,7 @@ const AuthProviderInner = ({ children }) => {
     if (!response.ok) {
       throw new Error("Failed to fetch Microsoft profile");
     }
-    console.log(response);
-    
+    // console.log(response);
 
     return response.json();
   };
@@ -193,8 +220,8 @@ const AuthProviderInner = ({ children }) => {
       console.log(tokenResp);
 
       const profile = await fetchUserProfile(tokenResp.accessToken);
-
-      console.log(profile);
+      const roles = await fetchUserRoles(tokenResp.accessToken);
+      // console.log(profile);
 
       setUser({
         id: response.account.localAccountId,
@@ -205,6 +232,7 @@ const AuthProviderInner = ({ children }) => {
         email: profile.mail || response.account.username,
         department: profile.department,
         company: profile.companyName,
+        roles: roles,
         account: response.account,
       });
       clearAuthError();

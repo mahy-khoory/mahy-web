@@ -250,9 +250,9 @@ export default function CustomerRegistration() {
         formData.append("files", file),
       );
 
-      console.log("Customer form payload:");
+      // console.log("Customer form payload:");
       for (const pair of formData.entries()) {
-        console.log(pair[0], pair[1]);
+        // console.log(pair[0], pair[1]);
       }
 
       await createCustomerMutation.mutateAsync(formData);
