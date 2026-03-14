@@ -182,7 +182,7 @@ const AuthProviderInner = ({ children }) => {
 
     const data = await response.json();
 
-    // console.log("directory roles:", data);
+    console.log("directory roles:", data);
 
     return data.value.map((role) => role.displayName);
   };
@@ -200,7 +200,7 @@ const AuthProviderInner = ({ children }) => {
     if (!response.ok) {
       throw new Error("Failed to fetch Microsoft profile");
     }
-    // console.log(response);
+    console.log(response);
 
     return response.json();
   };
@@ -221,7 +221,7 @@ const AuthProviderInner = ({ children }) => {
 
       const profile = await fetchUserProfile(tokenResp.accessToken);
       const roles = await fetchUserRoles(tokenResp.accessToken);
-      // console.log(profile);
+      console.log(profile);
 
       setUser({
         id: response.account.localAccountId,

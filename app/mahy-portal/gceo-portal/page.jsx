@@ -5,6 +5,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { companies } from "@/constants/companies";
 
+const GCEO_ALLOWED_ROLES = [
+  "Group General Manager Bionic",
+  "Dynamics 365 Administrator",
+  "Power Platform Administrator",
+  "Power BI Administrator",
+];
+
 function ToastStack({ toasts, removeToast }) {
   return (
     <div className="pointer-events-none fixed right-4 top-4 z-[120] flex w-[calc(100%-2rem)] max-w-sm flex-col gap-3">
@@ -134,7 +141,7 @@ function ConfirmDialog({
 
 export default function GCEOPortalPage() {
   const [documents, setDocuments] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [documentsLoading, setDocumentsLoading] = useState(true);
   const [selectedDocs, setSelectedDocs] = useState([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("PENDING");
@@ -142,7 +149,15 @@ export default function GCEOPortalPage() {
   const [severityFilter, setSeverityFilter] = useState("ALL");
   const [actionLoading, setActionLoading] = useState(false);
 
-  const { user } = useAuth();
+  const { user, loading: authLoading, initializing } = useAuth();
+
+  const userRoles = Array.isArray(user?.roles) ? user.roles : [];
+  const hasGceoAccess = userRoles.some((role) =>
+    GCEO_ALLOWED_ROLES.includes(role),
+  );
+  const authReady = !authLoading && !initializing;
+
+  console.log("GCEO user roles:", userRoles);
 
   const [toasts, setToasts] = useState([]);
 
@@ -182,7 +197,7 @@ export default function GCEOPortalPage() {
 
   const fetchDocuments = async (showLoader = true) => {
     try {
-      if (showLoader) setLoading(true);
+      if (showLoader) setDocumentsLoading(true);
 
       const res = await fetch(
         `${API}api/gceo/documents?status=${statusFilter}`,
@@ -198,13 +213,14 @@ export default function GCEOPortalPage() {
       console.error(err);
       pushToast("Failed to load documents", err.message, "error");
     } finally {
-      if (showLoader) setLoading(false);
+      if (showLoader) setDocumentsLoading(false);
     }
   };
 
   useEffect(() => {
+    if (!authReady || !hasGceoAccess) return;
     fetchDocuments();
-  }, [statusFilter]);
+  }, [statusFilter, authReady, hasGceoAccess]);
 
   const filteredDocuments = useMemo(() => {
     return documents.filter((doc) => {
@@ -479,6 +495,38 @@ export default function GCEOPortalPage() {
     filteredDocuments.length > 0 &&
     filteredDocuments.every((doc) => selectedDocs.includes(doc.id));
 
+  if (!authReady) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center px-4">
+        <div className="w-full max-w-md rounded-3xl border border-white/10 bg-[#0b1220] p-8 text-center text-white/80">
+          Checking access...
+        </div>
+      </div>
+    );
+  }
+
+  if (!hasGceoAccess) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center px-4">
+        <div className="w-full max-w-xl rounded-3xl border border-red-500/25 bg-red-500/10 p-8 text-center text-white">
+          <h2 className="text-2xl font-semibold text-red-100">Access denied</h2>
+          <p className="mt-3 text-sm text-white/80">
+            You must be assigned at least one of the following roles to use the
+            GCEO portal.
+          </p>
+          <ul className="mt-4 list-disc space-y-1 pl-6 text-left text-sm text-white/85">
+            {GCEO_ALLOWED_ROLES.map((role) => (
+              <li key={role}>{role}</li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs text-white/70">
+            Please contact the IT administrator if you believe this is an error.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <ToastStack toasts={toasts} removeToast={removeToast} />
@@ -636,7 +684,7 @@ export default function GCEOPortalPage() {
                   </thead>
 
                   <tbody>
-                    {loading ? (
+                    {documentsLoading ? (
                       [...Array(6)].map((_, index) => (
                         <tr
                           key={index}

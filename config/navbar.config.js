@@ -611,16 +611,7 @@ export function getNavigation(t) {
                 href: "/careers/employee-benefits",
               },
               { label: "Life at MAHY", href: "/careers/life-at-mahy" },
-              {
-                label: "Employee Portal",
-                href: "/mahy-portal/employee-portal",
-                newTab: true,
-              },
-              {
-                label: "GCEO Portal",
-                href: "/mahy-portal/gceo-portal",
-                newTab: true,
-              },
+             
             ],
           },
         ],
@@ -683,6 +674,18 @@ export function getNavigation(t) {
                 label: "Customer Registration",
                 href: "/contact-us/customer-registration",
               },
+
+              {
+                label: "Employee Portal",
+                href: "/mahy-portal/employee-portal",
+                newTab: true,
+              },
+              {
+                label: "GCEO Portal",
+                href: "/mahy-portal/gceo-portal",
+                newTab: true,
+              },
+
             ],
           },
         ],
@@ -690,3 +693,6 @@ export function getNavigation(t) {
     ],
   };
 }
+
+
+ 
