@@ -1,10 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
 export default function PortalAccessGuard({ children }) {
-  const { user, initializing, loading } = useAuth();
+  const router = useRouter();
+  const { user, initializing, loading, logout } = useAuth();
+
+  const handleGoBack = async (event) => {
+    event.preventDefault();
+
+    try {
+      await logout();
+    } finally {
+      router.push("/");
+    }
+  };
 
   const profileIncomplete =
     Boolean(user) &&
@@ -31,6 +43,7 @@ export default function PortalAccessGuard({ children }) {
           </p>
           <Link
             href="/"
+            onClick={handleGoBack}
             className="mt-8 inline-flex items-center justify-center rounded-full bg-white/10 px-6 py-2 text-sm font-medium text-white transition hover:bg-white/20"
           >
             Go back home
