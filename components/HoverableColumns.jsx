@@ -6,7 +6,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
-/* Background animation */
 const bgVariants = {
   initial: { opacity: 0, scale: 1 },
   animate: { opacity: 1, scale: 1.06, transition: { duration: 0.7 } },
@@ -55,7 +54,6 @@ export default function HoverableColumns({
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      {/* GLOBAL BACKGROUND */}
       <AnimatePresence mode="wait">
         <motion.div
           key={items[active].image}
@@ -74,11 +72,7 @@ export default function HoverableColumns({
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* COLOR OVERLAY */}
       <div className="absolute inset-0 bg-[#061737]/85" />
-
-      {/* GRID LINES (desktop only) */}
       <div className="absolute inset-0 hidden lg:grid grid-cols-4 pointer-events-none">
         <div className="border-r border-white/10" />
         <div className="border-r border-white/10" />
@@ -86,21 +80,13 @@ export default function HoverableColumns({
         <div />
       </div>
 
-      {/* CONTENT */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20">
-        {/* HEADER */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
           <h2 className="text-white text-[42px] md:text-[48px] leading-tight font-semibold max-w-xl">
             {title}
           </h2>
-
-          {/* <p className="text-white/80 max-w-md leading-7 pt-2">
-            Lorem ipsum dolor sit amet consectetur. Vel odio netus vel sed.
-            In integer magna ultricies ullamcorper et.
-          </p> */}
         </div>
 
-        {/* COLUMNS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-auto lg:h-[540px] gap-y-12 lg:gap-y-0">
           {items.map((item, idx) => {
             const isActive = idx === active;
@@ -112,7 +98,6 @@ export default function HoverableColumns({
                 onMouseEnter={() => setActive(idx)}
                 onFocus={() => setActive(idx)}
               >
-                {/* BASE PLATE (always present) */}
                 <motion.div
                   animate={{ y: isActive ? -160 : 0 }}
                   transition={{
@@ -146,8 +131,6 @@ export default function HoverableColumns({
                     </div>
                   </div>
                 </motion.div>
-
-                {/* ACTIVE PANEL */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
