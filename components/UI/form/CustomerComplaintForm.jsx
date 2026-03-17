@@ -3,6 +3,7 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 import { FormSection } from "@/components/form/FormSection";
 import { InputField, TextareaField } from "@/components/form/InputField";
@@ -81,30 +82,58 @@ const BUSINESS_IMPACT = [
   { value: "inconvenience_only", label: "Inconvenience Only" },
 ];
 
+const sanitizeDigits = (value = "", limit) =>
+  String(value ?? "")
+    .replace(/\D/g, "")
+    .slice(0, limit);
+
+const normalizeMobileNumber = (value = "") => {
+  const raw = String(value ?? "").trim();
+  if (!raw) return "";
+
+  if (raw.startsWith("+122")) {
+    const digits = raw.slice(4).replace(/\D/g, "").slice(0, 7);
+    return `+122${digits}`;
+  }
+
+  return raw.replace(/\D/g, "").slice(0, 7);
+};
+
+const isFutureDate = (date) => {
+  if (!date) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const candidate = new Date(date);
+  candidate.setHours(0, 0, 0, 0);
+  return candidate > today;
+};
+
 export default function CustomerComplaintForm() {
   const {
     control,
     register,
     watch,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(complaintSchema),
     defaultValues: {
       customerType: "Organization",
       businessImpact: [],
+      year: "",
     },
     mode: "onTouched",
   });
 
   const mutation = useMutation({
     mutationFn: submitCustomerComplaint,
-    onSuccess: (data) => {
-      alert("Complaint submitted successfully");
-      // console.log("CRM Response:", data);
+    onSuccess: () => {
+      toast.success("Complaint submitted successfully.");
+      reset();
     },
     onError: (error) => {
-      alert(error.message);
+      toast.error(error.message || "Failed to submit complaint.");
     },
   });
 
@@ -124,14 +153,12 @@ export default function CustomerComplaintForm() {
           </h1>
         </div>
 
-        {/* Card */}
         <div className="mt-10 rounded-2xl border border-gray-200 bg-white shadow-sm">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="p-6 sm:p-8 space-y-10"
           >
             <AnimatedGroup className="space-y-10">
-              {/* ================= Customer Information ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Customer Information">
                   <FormField label="Organization / Person" required>
@@ -172,7 +199,14 @@ export default function CustomerComplaintForm() {
                   <InputField
                     label="Mobile Number"
                     required
-                    {...register("mobileNumber")}
+                    type="tel"
+                    maxLength={11}
+                    inputMode="tel"
+                    pattern="(\\+122\\d{7}|\\d{1,7})"
+                    title="Enter 7 digits or +122 followed by 7 digits"
+                    {...register("mobileNumber", {
+                      setValueAs: normalizeMobileNumber,
+                    })}
                     error={errors.mobileNumber?.message}
                   />
 
@@ -240,6 +274,16 @@ export default function CustomerComplaintForm() {
                   />
                   <InputField label="Brand" {...register("brand")} />
                   <InputField label="Model" {...register("model")} />
+                  <InputField
+                    label="Year"
+                    maxLength={4}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    {...register("year", {
+                      setValueAs: (value) => sanitizeDigits(value, 4),
+                    })}
+                    error={errors.year?.message}
+                  />
                   <InputField label="Serial No" {...register("serialNo")} />
                   <InputField label="Invoice No" {...register("invoiceNo")} />
                 </FormSection>
@@ -259,7 +303,12 @@ export default function CustomerComplaintForm() {
                     control={control}
                     name="incidentDate"
                     render={({ field }) => (
-                      <DatePickerField label="Incident Date" {...field} />
+                      <DatePickerField
+                        label="Incident Date"
+                        error={errors.incidentDate?.message}
+                        disabled={isFutureDate}
+                        {...field}
+                      />
                     )}
                   />
 
@@ -334,7 +383,7 @@ export default function CustomerComplaintForm() {
                 </FormSection>
               </AnimatedGroupItem>
 
-              {/* <AnimatedGroupItem>
+              <AnimatedGroupItem>
                 <FormSection title="Evidence">
                   <Controller
                     control={control}
@@ -383,7 +432,7 @@ export default function CustomerComplaintForm() {
                     )}
                   />
                 </FormSection>
-              </AnimatedGroupItem> */}
+              </AnimatedGroupItem>
 
               <AnimatedGroupItem>
                 <div className="flex justify-center pt-4">

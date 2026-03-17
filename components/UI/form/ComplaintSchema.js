@@ -1,7 +1,16 @@
 import { z } from "zod";
 
-const phoneRegexUAE = /^(?:\+971|971|0)?5\d{8}$/;
-const phoneRegexInternational = /^\+?[1-9]\d{6,14}$/;
+const mobileNumberRegex = /^(?:\d{1,7}|\+122\d{7})$/;
+const yearRegex = /^\d{1,4}$/;
+
+const isFutureDate = (date) => {
+  if (!date) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const candidate = new Date(date);
+  candidate.setHours(0, 0, 0, 0);
+  return candidate > today;
+};
 
 export const complaintSchema = z
   .object({
@@ -13,12 +22,17 @@ export const complaintSchema = z
     mobileNumber: z
       .string()
       .min(1, "Mobile Number is required")
-      .refine(
-        (val) => phoneRegexUAE.test(val) || phoneRegexInternational.test(val),
-        { message: "Enter a valid mobile number" },
-      ),
+      .refine((val) => mobileNumberRegex.test(val), {
+        message: "Use 7 digits or +122 followed by 7 digits",
+      }),
 
     email: z.string().email("Enter a valid email").optional(),
+    year: z
+      .string()
+      .optional()
+      .refine((val) => !val || yearRegex.test(val), {
+        message: "Year must be up to 4 digits",
+      }),
 
     // Complaint Reference
     source: z.enum(["phone", "email", "website", "whatsapp", "walk-in"]),
@@ -34,7 +48,12 @@ export const complaintSchema = z
 
     // Complaint Core
     problemDescription: z.string().min(1, "Problem Description is required"),
-    incidentDate: z.date().optional(),
+    incidentDate: z
+      .date()
+      .optional()
+      .refine((val) => !val || !isFutureDate(val), {
+        message: "Incident Date cannot be in the future",
+      }),
     frequency: z
       .enum(["once", "intermittent", "frequent", "always"])
       .optional(),
