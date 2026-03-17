@@ -3,7 +3,7 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 import { FormSection } from "@/components/form/FormSection";
 import { InputField, TextareaField } from "@/components/form/InputField";
@@ -87,18 +87,6 @@ const sanitizeDigits = (value = "", limit) =>
     .replace(/\D/g, "")
     .slice(0, limit);
 
-const normalizeMobileNumber = (value = "") => {
-  const raw = String(value ?? "").trim();
-  if (!raw) return "";
-
-  if (raw.startsWith("+122")) {
-    const digits = raw.slice(4).replace(/\D/g, "").slice(0, 7);
-    return `+122${digits}`;
-  }
-
-  return raw.replace(/\D/g, "").slice(0, 7);
-};
-
 const isFutureDate = (date) => {
   if (!date) return false;
   const today = new Date();
@@ -128,8 +116,10 @@ export default function CustomerComplaintForm() {
 
   const mutation = useMutation({
     mutationFn: submitCustomerComplaint,
-    onSuccess: () => {
-      toast.success("Complaint submitted successfully.");
+    onSuccess: (data) => {
+      const successMessage =
+        data?.message || "Complaint submitted successfully.";
+      toast.success(successMessage);
       reset();
     },
     onError: (error) => {
@@ -144,7 +134,19 @@ export default function CustomerComplaintForm() {
   };
 
   return (
-    <section className="w-full bg-white">
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <section className="w-full bg-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12">
         {/* Header */}
         <div className="text-center">
@@ -200,13 +202,8 @@ export default function CustomerComplaintForm() {
                     label="Mobile Number"
                     required
                     type="tel"
-                    maxLength={11}
                     inputMode="tel"
-                    pattern="(\\+122\\d{7}|\\d{1,7})"
-                    title="Enter 7 digits or +122 followed by 7 digits"
-                    {...register("mobileNumber", {
-                      setValueAs: normalizeMobileNumber,
-                    })}
+                    {...register("mobileNumber")}
                     error={errors.mobileNumber?.message}
                   />
 
@@ -446,5 +443,6 @@ export default function CustomerComplaintForm() {
         </div>
       </div>
     </section>
+    </>
   );
 }

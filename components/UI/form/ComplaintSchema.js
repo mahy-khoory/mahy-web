@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-const mobileNumberRegex = /^(?:\d{1,7}|\+122\d{7})$/;
 const yearRegex = /^\d{1,4}$/;
 
 const isFutureDate = (date) => {
@@ -19,12 +18,7 @@ export const complaintSchema = z
     contactPerson: z.string().optional(),
     companyName: z.string().optional(),
 
-    mobileNumber: z
-      .string()
-      .min(1, "Mobile Number is required")
-      .refine((val) => mobileNumberRegex.test(val), {
-        message: "Use 7 digits or +122 followed by 7 digits",
-      }),
+    mobileNumber: z.string().min(1, "Mobile Number is required"),
 
     email: z.string().email("Enter a valid email").optional(),
     year: z
