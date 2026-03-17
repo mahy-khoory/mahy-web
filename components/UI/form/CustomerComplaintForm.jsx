@@ -215,8 +215,6 @@ export default function CustomerComplaintForm() {
                   />
                 </FormSection>
               </AnimatedGroupItem>
-
-              {/* ================= Complaint Reference ================= */}
               <AnimatedGroupItem>
                 <FormSection title="Complaint Reference">
                   <FormField label="Source" required>
