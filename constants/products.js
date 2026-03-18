@@ -105,8 +105,6 @@ export const getPaginatedRandomProducts = async (page, category, price_min, pric
             stored: null,
         };
     };
-
-    // 1️⃣ If this page already has products, return them immediately
     if (Array.isArray(stored[pageKey]) && stored[pageKey].length > 0) {
         const cachedPartNumbers = stored[pageKey];
         return {
@@ -118,22 +116,18 @@ export const getPaginatedRandomProducts = async (page, category, price_min, pric
         };
     }
 
-    // 2️⃣ Collect used partNumbers from other pages only
     const usedPartNumbers = Object.entries(stored)
         .filter(([key]) => key !== pageKey)
         .flatMap(([_, partNumbers]) => partNumbers);
 
-    // 3️⃣ Filter remaining products
     const available = allProducts.filter(
         p => !usedPartNumbers.includes(p.partNumber)
     );
 
-    // 4️⃣ Pick random products
     const selectedObjects = available
         .sort(() => Math.random() - 0.5)
         .slice(0, productsPerPage);
 
-    // 5️⃣ Store only partNumbers in cookie object
     stored[pageKey] = selectedObjects.map(p => p.partNumber);
 
     return {
