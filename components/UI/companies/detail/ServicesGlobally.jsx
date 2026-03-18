@@ -23,7 +23,7 @@ function ServicesGlobally({
       </h2>
 
       <motion.div
-        className="mt-10 md:mt-14 p-8 md:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 bg-blue-100"
+        className="mt-10 md:mt-14 p-8 md:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 bg-blue-100 md:min-h-100"
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
@@ -78,7 +78,7 @@ function ServicesGlobally({
         </div>
 
         <div
-          className={`rounded-3xl overflow-hidden relative h-60 md:min-h-100 md:h-full md:col-span-3 ${invert ? "md:order-1" : "md:order-2"
+          className={`rounded-3xl overflow-hidden relative h-60 md:h-full md:col-span-3 ${invert ? "md:order-1" : "md:order-2"
             }`}
         >
           <Image src={image} alt="Services" fill style={{ objectFit: "cover" }} />
