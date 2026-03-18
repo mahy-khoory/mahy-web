@@ -18,7 +18,7 @@ function SustainabilityPage() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 max-w-6xl gap-8 lg:gap-15 mx-auto relative bottom-40 lg:bottom-20 px-4 lg:px-0 h-150 lg:h-fit">
                 <div className="relative h-70 lg:h-90 rounded-4xl overflow-hidden">
-                    <Image src={"https://res.cloudinary.com/db3fd1qah/image/upload/v1766140489/office_m5htoa.png"} alt="Office"
+                    <Image src={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp"} alt="Office"
                         fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="flex flex-col justify-center">
