@@ -30,9 +30,8 @@ function ServicesGlobally({
         viewport={{ once: true }}
       >
         <div
-          className={`md:py-4 md:col-span-2 ${
-            invert ? "md:order-2" : "md:order-1"
-          }`}
+          className={`md:py-4 md:col-span-2 ${invert ? "md:order-2" : "md:order-1"
+            }`}
         >
           {text && <p className="leading-7 text-gray-700">{text}</p>}
 
@@ -79,9 +78,8 @@ function ServicesGlobally({
         </div>
 
         <div
-          className={`rounded-3xl overflow-hidden relative h-60 md:h-full md:col-span-3 ${
-            invert ? "md:order-1" : "md:order-2"
-          }`}
+          className={`rounded-3xl overflow-hidden relative h-60 md:min-h-100 md:h-full md:col-span-3 ${invert ? "md:order-1" : "md:order-2"
+            }`}
         >
           <Image src={image} alt="Services" fill style={{ objectFit: "cover" }} />
         </div>

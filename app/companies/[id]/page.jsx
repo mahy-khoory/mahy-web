@@ -11,7 +11,13 @@ function CompanyDetailPage() {
         <main>
             <CompanyOverview />
             {/* <CompanyVisionPurpose /> */}
-            <ServicesGlobally />
+            <ServicesGlobally
+                heading="Your Single-Point Solution"
+                text="Whether you need a one-time repair, a full system overhaul, or a long-term maintenance partner, our service team delivers reliability, accountability, and technical excellence."
+                texts2={[
+                    "Talk to us today to discuss a service plan or AMC tailored to your building and operational needs."
+                ]}
+            />
             {/* <CompanyDetailMenu /> */}
             <CompanyDetailCards />
             <CompanyTextGrid />

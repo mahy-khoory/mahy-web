@@ -31,7 +31,7 @@ function Gallery({ galleryItems, cta }) {
         },
         {
             title: galleryItems[4],
-            image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961631/gallery-5_rckdvg.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822215/gallery-5_wcndsr.jpg"
         },
     ]
 
