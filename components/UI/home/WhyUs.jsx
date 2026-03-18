@@ -10,18 +10,18 @@ const containerVariants = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-export default function WhyUs({ items, reverse = false }) {
+export default function WhyUs({ items, reverse = true }) {
     return (
-        <div className={`grid lg:grid-cols-2 lg:h-[70vh] ${reverse && "[&>*:first-child]:order-2"}`}>
+        <div className={`grid lg:grid-cols-2 lg:h-[70vh] ${reverse && "[&>*:first-child]:order-2"} my-6`}>
             <motion.div
-                className="p-8 lg:p-15"
+                className="p-8 lg:px-12 lg:py-15 max-w-155"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
             >
                 {items.heading && (
-                    <p className="font-bold text-3xl uppercase">{items.heading}</p>
+                    <p className="font-semibold text-3xl uppercase">{items.heading}</p>
                 )}
                 {items.description && (
                     <p className="text-gray-600 my-5">{items.description}</p>
@@ -41,7 +41,7 @@ export default function WhyUs({ items, reverse = false }) {
                 >
                     {items.data?.map((item, i) => (
                         <AccordionItem key={i} value={`item-${i + 1}`}>
-                            <AccordionTrigger className="cursor-pointer t-base-hover transition-colors duration-500 font-bold text-lg">
+                            <AccordionTrigger className="cursor-pointer t-base-hover transition-colors duration-500 font-medium text-lg">
                                 {item.title}
                             </AccordionTrigger>
 
@@ -60,7 +60,7 @@ export default function WhyUs({ items, reverse = false }) {
                     ))}
                 </Accordion>
             </motion.div>
-            <div className="relative w-full h-80 lg:h-full">
+            <div className="relative w-full h-80 lg:h-full lg:rounded-r-2xl overflow-hidden">
                 <Image
                     src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp"
                     alt="Why Us"

@@ -25,7 +25,7 @@ async function Jobs({ searchParams }) {
             <PageHeading
                 title={t("Heading")}
                 description={t("SubHeading")}
-                image={"https://res.cloudinary.com/db3fd1qah/image/upload/v1766132761/careers_tkbmhq.avif"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822107/careers_samv9o.webp"}
             />
             <Breadcrumb
                 segments={[{ label: t2("Page"), href: "/careers" }, { label: t("Page"), href: "/jobs" }]}

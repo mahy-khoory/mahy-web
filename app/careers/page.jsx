@@ -14,7 +14,7 @@ async function Careers() {
   const heading = {
     title: t("Heading"),
     description: t("Description"),
-    image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1766132761/careers_tkbmhq.avif",
+    image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822107/careers_samv9o.webp",
   };
   const departments = [
     { title: t("Featured1"), description: t("Description1"), image: "/gallery/gallery-1.jpg" },

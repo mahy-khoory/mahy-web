@@ -14,24 +14,24 @@ function Gallery({ galleryItems, cta }) {
     const items = [
         {
             title: galleryItems[0],
-            image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961377/gallery-2_mgmir1.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822187/gallery-1_exhyck.jpg"
         },
 
         {
             title: galleryItems[1],
-            image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961326/gallery-1_u7bk29.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822184/gallery-2_qwc2me.jpg"
         },
         {
             title: galleryItems[2],
-            image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961312/gallery-3_o7q6xp.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822181/gallery-3_exvuhu.jpg"
         },
         {
             title: galleryItems[3],
-            image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961506/gallery-4_jxixjw.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822205/gallery-4_oxzrpw.jpg"
         },
         {
             title: galleryItems[4],
-            image: "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961631/gallery-5_rckdvg.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822215/gallery-5_wcndsr.jpg"
         },
     ]
 

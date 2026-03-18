@@ -11,28 +11,28 @@ const services = [
     desc:
       "Lorem ipsum dolor sit amet consectetur. Vulputate iaculis morbi morbi convallis erat. Blandit lacinia donec semper ut nam aliquam mus duis.",
     image:
-      "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961312/gallery-3_o7q6xp.jpg",
+      "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822181/gallery-3_exvuhu.jpg",
   },
   {
     title: "Financial strategy",
     desc:
       "Lorem ipsum dolor sit amet consectetur. Vulputate iaculis morbi morbi convallis erat. Blandit lacinia donec semper ut nam aliquam mus duis.",
     image:
-      "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961312/gallery-3_o7q6xp.jpg",
+      "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822181/gallery-3_exvuhu.jpg",
   },
   {
     title: "Business consulting",
     desc:
       "Lorem ipsum dolor sit amet consectetur. Vulputate iaculis morbi morbi convallis erat. Blandit lacinia donec semper ut nam aliquam mus duis.",
     image:
-      "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961312/gallery-3_o7q6xp.jpg",
+      "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822181/gallery-3_exvuhu.jpg",
   },
   {
     title: "Market research",
     desc:
       "Lorem ipsum dolor sit amet consectetur. Vulputate iaculis morbi morbi convallis erat. Blandit lacinia donec semper ut nam aliquam mus duis.",
     image:
-      "https://res.cloudinary.com/db3fd1qah/image/upload/v1765961312/gallery-3_o7q6xp.jpg",
+      "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822181/gallery-3_exvuhu.jpg",
   },
 ];
 

@@ -249,9 +249,7 @@ async function About() {
         title={t("Heading")}
         description={t("Description")}
         // image={"/gallery/MAHYABOUT.jpg"}
-        image={
-          "https://res.cloudinary.com/db3fd1qah/image/upload/v1766140489/office_m5htoa.png"
-        }
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp"}
       />
       <Breadcrumb
         segments={[{ label: t("Page"), href: "/about-us" }]}

@@ -28,7 +28,7 @@ function ChilldWaterPumpsPage() {
         <main>
             <SubPageHeading
                 title="Chilled Water Pumps"
-                image="https://res.cloudinary.com/db3fd1qah/image/upload/v1765961326/gallery-1_u7bk29.jpg"
+                image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773822187/gallery-1_exhyck.jpg"
             />
             <div className='my-20'>
                 <SolarPanelImagesGrid
