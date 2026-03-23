@@ -117,58 +117,76 @@ export function getNavigation(t) {
             title: t("BusinessSectors"),
             links: [
               {
-                label: "Containerboard Manufacturing",
-                href: "/companies/containerboard-manufacturing",
+                label: "Manufacturing",
+                href: "/companies/manufacturing",
               },
+
               {
-                label: "Trading & Distribution",
-                href: "/companies/trading-distribution",
+                label: "Trading",
+                href: "/companies/trading",
+              },
+
+              {
+                label: "Engineering",
+                href: "/companies/engineering-technical-services",
               },
               {
                 label: "Waste Management",
                 href: "/companies/waste-management",
               },
               {
-                label: "Industrial Packaging Solutions",
-                href: "/companies/industrial-packaging-solutions",
-              },
-              {
-                label: "Engineering & Technical Services",
-                href: "/companies/engineering-technical-services",
-              },
-              {
                 label: "Automotive",
                 href: "/companies/automotive",
-              },
-              {
-                label: "Compressed Wood Blocks",
-                href: "/companies/compressed-wood-blocks",
               },
               {
                 label: "Energy & Sustainability Consulting",
                 href: "/companies/energy-sustainability-consulting",
               },
+
+              // {
+              //   label: "Containerboard Manufacturing",
+              //   href: "/companies/containerboard-manufacturing",
+              // },
+
               {
-                label: "Solar & Renewable Energy",
-                href: "/companies/solar-renewable-energy",
-              },
-              {
-                label: "Transportation & Logistics",
+                label: "Transportation",
                 href: "/companies/transportation-logistics",
               },
               {
-                label: "Hospitality",
-                href: "/companies/hospitality",
-              },
-              {
-                label: "Food & Beverage",
+                label: "Hospitality & Food",
                 href: "/companies/food-and-beverage",
               },
-              {
-                label:
-                  "Packaging Manufacturing & Sustainable Packaging Solutions",
-                href: "/companies/packaging-manufacturing-sustainable-packaging-solutions",
-              },
+
+              // {
+              //   label: "Automotive",
+              //   href: "/companies/automotive",
+              // },
+              // {
+              //   label: "Compressed Wood Blocks",
+              //   href: "/companies/compressed-wood-blocks",
+              // },
+
+              // {
+              //   label: "Solar & Renewable Energy",
+              //   href: "/companies/solar-renewable-energy",
+              // },
+              // {
+              //   label: "Transportation & Logistics",
+              //   href: "/companies/transportation-logistics",
+              // },
+              // {
+              //   label: "Hospitality",
+              //   href: "/companies/hospitality",
+              // },
+              // {
+              //   label: "Food & Beverage",
+              //   href: "/companies/food-and-beverage",
+              // },
+              // {
+              //   label:
+              //     "Packaging Manufacturing & Sustainable Packaging Solutions",
+              //   href: "/companies/packaging-manufacturing-sustainable-packaging-solutions",
+              // },
             ],
             // {
             //   label: t("Trading&Distribution"),
@@ -611,7 +629,6 @@ export function getNavigation(t) {
                 href: "/careers/employee-benefits",
               },
               { label: "Life at MAHY", href: "/careers/life-at-mahy" },
-             
             ],
           },
         ],
@@ -685,7 +702,6 @@ export function getNavigation(t) {
                 href: "/mahy-portal/gceo-portal",
                 newTab: true,
               },
-
             ],
           },
         ],
@@ -693,6 +709,3 @@ export function getNavigation(t) {
     ],
   };
 }
-
-
- 

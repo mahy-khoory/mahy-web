@@ -5,7 +5,7 @@ function EnergySustainabilityConsulting() {
         <main>
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"/gallery/gallery-1.jpg"}
+                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770203523/solar-panels-against-blue-sky-2026-01-09-09-16-02-utc_1_mgox1d.png"}
                     title={"Energy & Sustainability Consulting"}
                     texts={[
                         "This sector provides sustainability advisory and green-building consultancy services.",
