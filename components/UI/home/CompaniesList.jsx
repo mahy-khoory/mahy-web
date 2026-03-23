@@ -21,7 +21,7 @@ const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road,
 
 function CompaniesList({ darkBg = false, industeriesFirst = true }) {
 
-    const tabs = [industeriesFirst ? "Industeries" : "Companies", industeriesFirst ? "Companies" : "Industeries"];
+    const tabs = [industeriesFirst ? "Industries" : "Companies", industeriesFirst ? "Companies" : "Industeries"];
 
     // const [hoveredCards, setHoveredCards] = useState(0);
 
