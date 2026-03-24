@@ -217,10 +217,16 @@ export default function GCEOPortalPage() {
     }
   };
 
-  useEffect(() => {
-    if (!authReady || !hasGceoAccess) return;
+  // useEffect(() => {
+  //   if (!authReady || !hasGceoAccess) return;
+  //   fetchDocuments();
+  // }, [statusFilter, authReady, hasGceoAccess]);
+
+  useEffect(() => { //useeffect added till roles are not available for testing 
+    if (!authReady) return;
     fetchDocuments();
-  }, [statusFilter, authReady, hasGceoAccess]);
+  }, [statusFilter, authReady]);
+
 
   const filteredDocuments = useMemo(() => {
     return documents.filter((doc) => {
