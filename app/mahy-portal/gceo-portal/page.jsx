@@ -505,27 +505,27 @@ export default function GCEOPortalPage() {
     );
   }
 
-  if (!hasGceoAccess) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center px-4">
-        <div className="w-full max-w-xl rounded-3xl border border-red-500/25 bg-red-500/10 p-8 text-center text-white">
-          <h2 className="text-2xl font-semibold text-red-100">Access denied</h2>
-          <p className="mt-3 text-sm text-white/80">
-            You must be assigned at least one of the following roles to use the
-            GCEO portal.
-          </p>
-          <ul className="mt-4 list-disc space-y-1 pl-6 text-left text-sm text-white/85">
-            {GCEO_ALLOWED_ROLES.map((role) => (
-              <li key={role}>{role}</li>
-            ))}
-          </ul>
-          <p className="mt-4 text-xs text-white/70">
-            Please contact the IT administrator if you believe this is an error.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // if (!hasGceoAccess) {
+  //   return (
+  //     <div className="flex min-h-[60vh] items-center justify-center px-4">
+  //       <div className="w-full max-w-xl rounded-3xl border border-red-500/25 bg-red-500/10 p-8 text-center text-white">
+  //         <h2 className="text-2xl font-semibold text-red-100">Access denied</h2>
+  //         <p className="mt-3 text-sm text-white/80">
+  //           You must be assigned at least one of the following roles to use the
+  //           GCEO portal.
+  //         </p>
+  //         <ul className="mt-4 list-disc space-y-1 pl-6 text-left text-sm text-white/85">
+  //           {GCEO_ALLOWED_ROLES.map((role) => (
+  //             <li key={role}>{role}</li>
+  //           ))}
+  //         </ul>
+  //         <p className="mt-4 text-xs text-white/70">
+  //           Please contact the IT administrator if you believe this is an error.
+  //         </p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
