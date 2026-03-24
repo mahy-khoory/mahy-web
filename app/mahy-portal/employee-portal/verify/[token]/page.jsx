@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  HiOutlineShieldCheck,
+  HiOutlineExclamationCircle,
+} from "react-icons/hi";
 
 export default function VerifyPage() {
-
   const { token } = useParams();
-
   const API = process.env.NEXT_PUBLIC_BASE_URL;
 
   const [doc, setDoc] = useState(null);
@@ -14,12 +17,11 @@ export default function VerifyPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-
     async function verifyDocument() {
-
       try {
-
-        const res = await fetch(`${API}api/portal/documents/verify/${token}`);
+        const res = await fetch(
+          `${API}api/portal/documents/verify/${token}`
+        );
 
         const data = await res.json();
 
@@ -28,7 +30,6 @@ export default function VerifyPage() {
         }
 
         setDoc(data.data);
-
       } catch (err) {
         console.error(err);
         setError("Verification failed");
@@ -38,74 +39,135 @@ export default function VerifyPage() {
     }
 
     if (token) verifyDocument();
-
   }, [token]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-white bg-[#0b1220]">
-        Verifying document...
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-red-400 bg-[#0b1220]">
-        {error}
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0b1220] text-white">
+    <div className="min-h-screen bg-[#0b1120] text-white flex items-center justify-center px-4">
+      <div className="w-full max-w-xl">
 
-      <div className="bg-[#111827] p-10 rounded-2xl w-[520px] shadow-xl">
+        <div className="rounded-3xl border border-white/10 bg-[#0b1220]/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-6 md:p-8">
+          <div className="flex flex-col items-center text-center">
 
-        <h1 className="text-green-400 text-2xl font-semibold mb-6">
-          Document Verified
-        </h1>
+            <AnimatePresence mode="wait">
 
-        <div className="space-y-2 text-sm">
+              {loading && (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex flex-col items-center"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 1.5,
+                      ease: "linear",
+                    }}
+                    className="mb-4"
+                  >
+                    <HiOutlineShieldCheck className="text-5xl text-sky-400" />
+                  </motion.div>
 
-          <p>
-            <span className="text-gray-400">Reference:</span>{" "}
-            {doc.referenceNo}
-          </p>
+                  <h2 className="text-xl font-semibold">
+                    Authenticating Document
+                  </h2>
+                  <p className="mt-1 text-sm text-white/60">
+                    Please wait while we verify this document...
+                  </p>
+                </motion.div>
+              )}
 
-          <p>
-            <span className="text-gray-400">Document Type:</span>{" "}
-            {doc.documentType}
-          </p>
+              {!loading && error && (
+                <motion.div
+                  key="error"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1 }}
+                  className="flex flex-col items-center"
+                >
+                  <HiOutlineExclamationCircle className="text-5xl text-red-400 mb-3" />
 
-          <p>
-            <span className="text-gray-400">Status:</span>{" "}
-            {doc.status}
-          </p>
+                  <h2 className="text-xl font-semibold text-red-400">
+                    Verification Failed
+                  </h2>
 
-          <p>
-            <span className="text-gray-400">Approved At:</span>{" "}
-            {new Date(doc.approvedAt).toLocaleString()}
-          </p>
+                  <p className="mt-2 text-sm text-white/60">
+                    {error}
+                  </p>
+                </motion.div>
+              )}
 
-          <p>
-            <span className="text-gray-400">Department:</span>{" "}
-            {doc.department}
-          </p>
+              {!loading && !error && doc && (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex flex-col items-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <HiOutlineShieldCheck className="text-5xl text-emerald-400 mb-3" />
+                  </motion.div>
 
-          <p>
-            <span className="text-gray-400">Company:</span>{" "}
-            {doc.company}
-          </p>
+                  <h2 className="text-xl font-semibold text-emerald-400">
+                    Document Verified
+                  </h2>
+
+                  <p className="mt-1 text-sm text-white/60">
+                    This document is authentic and approved
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          {!loading && !error && doc && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="mt-6 border-t border-white/10 pt-6 space-y-3 text-sm"
+            >
+
+              <Detail label="Reference" value={doc.referenceNo} />
+              <Detail label="Verification Token" value={token} />
+              <Detail label="Uploaded By" value={doc.uploadedByEmail} />
+              <Detail label="Document Type" value={doc.documentType} />
+              <Detail label="Status" value={doc.status} />
+              <Detail
+                label="Approved At"
+                value={
+                  doc.approvedAt
+                    ? new Date(doc.approvedAt).toLocaleString()
+                    : "-"
+                }
+              />
+              <Detail label="Department" value={doc.department} />
+              <Detail label="Company" value={doc.company} />
+
+              <div className="pt-4 text-xs text-white/50 text-center">
+                This document has been verified through the MAHY
+                verification system.
+              </div>
+
+            </motion.div>
+          )}
 
         </div>
-
-        <div className="mt-6 text-sm text-gray-400">
-          This document has been verified through the MAHY verification system.
-        </div>
-
       </div>
-
+    </div>
+  );
+}
+function Detail({ label, value }) {
+  return (
+    <div className="flex justify-between gap-4 border-b border-white/[0.05] pb-2">
+      <span className="text-white/50">{label}</span>
+      <span className="text-right font-medium text-white break-all">
+        {value || "-"}
+      </span>
     </div>
   );
 }

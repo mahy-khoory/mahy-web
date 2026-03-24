@@ -12,6 +12,50 @@ const GCEO_ALLOWED_ROLES = [
   "Power BI Administrator",
 ];
 
+const getUniqueValues = (items, extractor) => {
+  const seen = new Map();
+
+  items.forEach((item) => {
+    const rawValue = extractor(item);
+    if (rawValue === undefined || rawValue === null) return;
+
+    const stringValue = String(rawValue).trim();
+    if (!stringValue) return;
+
+    const normalized = stringValue.toLowerCase();
+    if (!seen.has(normalized)) {
+      seen.set(normalized, stringValue);
+    }
+  });
+
+  return Array.from(seen.values()).sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: "base" }),
+  );
+};
+
+const parseDateValue = (value) => {
+  if (!value) return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date;
+};
+
+const ACTION_BUTTON_BASE =
+  "inline-flex min-w-[110px] items-center justify-center rounded-xl px-3 py-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40 disabled:cursor-not-allowed disabled:opacity-60";
+
+const FILTER_LABEL_CLASS =
+  "mb-1.5 block text-[0.72rem] font-medium text-white/70";
+
+const FILTER_INPUT_CLASS =
+  "h-11 w-full rounded-xl border border-white/15 bg-[#101b2f] px-4 text-sm text-white/85 outline-none transition placeholder:text-white/45 focus:border-sky-400/45 focus:ring-0";
+
+const FILTER_OPTION_CLASS = "bg-[#101b2f] text-white";
+
+const TABLE_HEAD_CELL_CLASS =
+  "px-3 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/60 whitespace-nowrap";
+
+const TABLE_CELL_BASE_CLASS =
+  "px-3 py-4 align-middle text-sm text-white/85";
+
 function ToastStack({ toasts, removeToast }) {
   return (
     <div className="pointer-events-none fixed right-4 top-4 z-[120] flex w-[calc(100%-2rem)] max-w-sm flex-col gap-3">
@@ -140,6 +184,8 @@ function ConfirmDialog({
 }
 
 export default function GCEOPortalPage() {
+
+  
   const [documents, setDocuments] = useState([]);
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [selectedDocs, setSelectedDocs] = useState([]);
@@ -147,6 +193,10 @@ export default function GCEOPortalPage() {
   const [statusFilter, setStatusFilter] = useState("PENDING");
   const [companyFilter, setCompanyFilter] = useState("ALL");
   const [severityFilter, setSeverityFilter] = useState("ALL");
+  const [urgencyFilter, setUrgencyFilter] = useState("ALL");
+  const [documentTypeFilter, setDocumentTypeFilter] = useState("ALL");
+  const [uploadDateFrom, setUploadDateFrom] = useState("");
+  const [uploadDateTo, setUploadDateTo] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
 
   const { user, loading: authLoading, initializing } = useAuth();
@@ -203,6 +253,7 @@ export default function GCEOPortalPage() {
         `${API}api/gceo/documents?status=${statusFilter}`,
       );
       const data = await res.json();
+      console.log(data);
 
       if (!res.ok || !data.success) {
         throw new Error(data?.message || "Failed to fetch documents");
@@ -222,27 +273,98 @@ export default function GCEOPortalPage() {
   //   fetchDocuments();
   // }, [statusFilter, authReady, hasGceoAccess]);
 
-  useEffect(() => { //useeffect added till roles are not available for testing 
+  useEffect(() => {
+    //useeffect added till roles are not available for testing
     if (!authReady) return;
     fetchDocuments();
   }, [statusFilter, authReady]);
 
+  const urgencyOptions = useMemo(
+    () => getUniqueValues(documents, (doc) => doc.urgency),
+    [documents],
+  );
+
+  const documentTypeOptions = useMemo(
+    () => getUniqueValues(documents, (doc) => doc.documentType),
+    [documents],
+  );
+
+  const companyOptions = useMemo(() => {
+    const seen = new Set();
+    const ordered = [];
+
+    const register = (label) => {
+      if (!label) return;
+      const cleaned = String(label).trim();
+      if (!cleaned) return;
+      const normalized = cleaned.toLowerCase();
+      if (seen.has(normalized)) return;
+      seen.add(normalized);
+      ordered.push(cleaned);
+    };
+
+    documents.forEach((doc) => register(doc.company));
+    companies.forEach((company) => register(company.label));
+
+    return ordered;
+  }, [documents]);
 
   const filteredDocuments = useMemo(() => {
+    const fromDateValue = parseDateValue(uploadDateFrom);
+    const toDateValue = parseDateValue(uploadDateTo);
+
+    if (toDateValue) {
+      toDateValue.setHours(23, 59, 59, 999);
+    }
+
     return documents.filter((doc) => {
       const matchesSearch =
         doc.referenceNo?.toLowerCase().includes(search.toLowerCase()) ||
         doc.uploadedByEmail?.toLowerCase().includes(search.toLowerCase());
-
+      const normalize = (val) => (val || "").toString().trim().toLowerCase();
       const matchesCompany =
-        companyFilter === "ALL" || doc.company === companyFilter;
+        companyFilter === "ALL" ||
+        normalize(doc.company) === normalize(companyFilter);
 
       const matchesSeverity =
         severityFilter === "ALL" || doc.severity === severityFilter;
 
-      return matchesSearch && matchesCompany && matchesSeverity;
+      const matchesUrgency =
+        urgencyFilter === "ALL" ||
+        normalize(doc.urgency) === normalize(urgencyFilter);
+
+      const matchesDocumentType =
+        documentTypeFilter === "ALL" ||
+        normalize(doc.documentType) === normalize(documentTypeFilter);
+
+      const uploadedAt = doc.createdAt ? new Date(doc.createdAt) : null;
+      const uploadedAtValid =
+        uploadedAt && !Number.isNaN(uploadedAt.getTime());
+
+      const matchesUploadDate =
+        (!fromDateValue ||
+          (uploadedAtValid && uploadedAt >= fromDateValue)) &&
+        (!toDateValue || (uploadedAtValid && uploadedAt <= toDateValue));
+
+      return (
+        matchesSearch &&
+        matchesCompany &&
+        matchesSeverity &&
+        matchesUrgency &&
+        matchesDocumentType &&
+        matchesUploadDate
+      );
     });
-  }, [documents, search, companyFilter, severityFilter]);
+  }, [
+    documents,
+    search,
+    companyFilter,
+    severityFilter,
+    urgencyFilter,
+    documentTypeFilter,
+    uploadDateFrom,
+    uploadDateTo,
+  ]);
 
   useEffect(() => {
     setSelectedDocs((prev) =>
@@ -562,68 +684,154 @@ export default function GCEOPortalPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:p-5">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-2xl border border-white/5 bg-[#0b1220]/70 p-4 shadow-[0_8px_30px_rgba(2,6,23,0.35)] md:p-6">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               <div className="xl:col-span-1">
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.16em] text-white/45">
-                  Search
-                </label>
+                <label className={FILTER_LABEL_CLASS}>Search</label>
                 <input
                   placeholder="Search reference or user"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="h-11 w-full rounded-2xl border border-white/10 bg-[#0b1220]/90 px-4 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-sky-400/40 focus:ring-2 focus:ring-sky-400/20"
+                  className={`${FILTER_INPUT_CLASS} placeholder:text-white/40`}
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.16em] text-white/45">
-                  Company
-                </label>
+                <label className={FILTER_LABEL_CLASS}>Company</label>
 
                 <select
                   value={companyFilter}
                   onChange={(e) => setCompanyFilter(e.target.value)}
-                  className="h-11 w-full rounded-2xl border border-white/10 bg-[#0b1220]/90 px-4 text-sm text-white outline-none transition focus:border-sky-400/40 focus:ring-2 focus:ring-sky-400/20"
+                  className={FILTER_INPUT_CLASS}
                 >
-                  <option value="ALL">All Companies</option>
-
-                  {companies.map((company) => (
-                    <option key={company.id} value={company.label}>
-                      {company.label}
+                  <option value="ALL" className={FILTER_OPTION_CLASS}>
+                    All Companies
+                  </option>
+                  {companyOptions.map((label) => (
+                    <option
+                      key={label}
+                      value={label}
+                      className={FILTER_OPTION_CLASS}
+                    >
+                      {label}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.16em] text-white/45">
-                  Severity
-                </label>
+                <label className={FILTER_LABEL_CLASS}>Severity</label>
                 <select
                   value={severityFilter}
                   onChange={(e) => setSeverityFilter(e.target.value)}
-                  className="h-11 w-full rounded-2xl border border-white/10 bg-[#0b1220]/90 px-4 text-sm text-white outline-none transition focus:border-sky-400/40 focus:ring-2 focus:ring-sky-400/20"
+                  className={FILTER_INPUT_CLASS}
                 >
-                  <option value="ALL">All Severity</option>
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="ALL" className={FILTER_OPTION_CLASS}>
+                    All Severity
+                  </option>
+                  <option value="Low" className={FILTER_OPTION_CLASS}>
+                    Low
+                  </option>
+                  <option value="Medium" className={FILTER_OPTION_CLASS}>
+                    Medium
+                  </option>
+                  <option value="High" className={FILTER_OPTION_CLASS}>
+                    High
+                  </option>
                 </select>
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.16em] text-white/45">
-                  Status
-                </label>
+                <label className={FILTER_LABEL_CLASS}>Status</label>
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="h-11 w-full rounded-2xl border border-white/10 bg-[#0b1220]/90 px-4 text-sm text-white outline-none transition focus:border-sky-400/40 focus:ring-2 focus:ring-sky-400/20"
+                  className={FILTER_INPUT_CLASS}
                 >
-                  <option value="PENDING">Pending</option>
-                  <option value="APPROVED">Approved</option>
-                  <option value="REJECTED">Rejected</option>
+                  <option value="PENDING" className={FILTER_OPTION_CLASS}>
+                    Pending
+                  </option>
+                  <option value="APPROVED" className={FILTER_OPTION_CLASS}>
+                    Approved
+                  </option>
+                  <option value="REJECTED" className={FILTER_OPTION_CLASS}>
+                    Rejected
+                  </option>
                 </select>
+              </div>
+
+              <div>
+                <label className={FILTER_LABEL_CLASS}>Document Type</label>
+                <select
+                  value={documentTypeFilter}
+                  onChange={(e) => setDocumentTypeFilter(e.target.value)}
+                  className={FILTER_INPUT_CLASS}
+                >
+                  <option value="ALL" className={FILTER_OPTION_CLASS}>
+                    All Types
+                  </option>
+                  {documentTypeOptions.map((type) => (
+                    <option
+                      key={type}
+                      value={type}
+                      className={FILTER_OPTION_CLASS}
+                    >
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className={FILTER_LABEL_CLASS}>Approval Urgency</label>
+                <select
+                  value={urgencyFilter}
+                  onChange={(e) => setUrgencyFilter(e.target.value)}
+                  className={FILTER_INPUT_CLASS}
+                >
+                  <option value="ALL" className={FILTER_OPTION_CLASS}>
+                    All Urgency
+                  </option>
+                  {urgencyOptions.map((urgency) => (
+                    <option
+                      key={urgency}
+                      value={urgency}
+                      className={FILTER_OPTION_CLASS}
+                    >
+                      {urgency}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="xl:col-span-2">
+                <label className={FILTER_LABEL_CLASS}>Upload Date</label>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <div className="flex-1">
+                    <p className="mb-1 text-[0.68rem] font-medium text-white/55">
+                      From
+                    </p>
+                    <input
+                      type="date"
+                      value={uploadDateFrom}
+                      max={uploadDateTo || undefined}
+                      onChange={(e) => setUploadDateFrom(e.target.value)}
+                      className={FILTER_INPUT_CLASS}
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <p className="mb-1 text-[0.68rem] font-medium text-white/55">
+                      To
+                    </p>
+                    <input
+                      type="date"
+                      value={uploadDateTo}
+                      min={uploadDateFrom || undefined}
+                      onChange={(e) => setUploadDateTo(e.target.value)}
+                      className={FILTER_INPUT_CLASS}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -633,7 +841,7 @@ export default function GCEOPortalPage() {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
-                  className="mt-4 flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#0b1220]/70 p-3 sm:flex-row sm:items-center sm:justify-between"
+                  className="mt-4 flex flex-col gap-3 rounded-xl border border-white/8 bg-[#0c1627]/70 p-3 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <p className="text-sm text-white/75">
                     <span className="font-semibold text-white">
@@ -663,12 +871,12 @@ export default function GCEOPortalPage() {
               )}
             </AnimatePresence>
 
-            <div className="mt-5 overflow-hidden rounded-3xl border border-white/10 bg-[#08101d]/60">
+            <div className="mt-6 overflow-hidden rounded-2xl border border-white/8 bg-[#0c1525] shadow-[0_14px_45px_rgba(1,9,20,0.6)]">
               <div className="w-full overflow-x-auto">
-                <table className="w-full min-w-[1180px] text-left text-sm text-white/85">
-                  <thead className="sticky top-0 z-10 bg-[#0e1727]/95 backdrop-blur-md">
-                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em] text-white/50">
-                      <th className="px-4 py-4">
+                <table className="w-full min-w-[1180px] table-auto text-left text-[0.92rem] text-white/85">
+                  <thead className="sticky top-0 z-10 bg-[#101a2d]">
+                    <tr className="border-b border-white/10">
+                      <th className={TABLE_HEAD_CELL_CLASS}>
                         <input
                           type="checkbox"
                           checked={selectedAllVisible}
@@ -676,16 +884,20 @@ export default function GCEOPortalPage() {
                           className="h-4 w-4 cursor-pointer rounded border-white/20 bg-transparent accent-sky-500"
                         />
                       </th>
-                      <th className="px-4 py-4">Reference</th>
-                      <th className="px-4 py-4">Company</th>
-                      <th className="px-4 py-4">Department</th>
-                      <th className="px-4 py-4">Submitted By</th>
-                      <th className="px-4 py-4">Type</th>
-                      <th className="px-4 py-4">Severity</th>
-                      <th className="px-4 py-4">Urgency</th>
-                      <th className="px-4 py-4">Amount</th>
-                      <th className="px-4 py-4">Status</th>
-                      <th className="px-4 py-4">Actions</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Reference</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Company</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Department</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Submitted By</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Type</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Description</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Severity</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Urgency</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Amount</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Status</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Uploaded At</th>
+                      <th className={`${TABLE_HEAD_CELL_CLASS} text-right`}>
+                        Actions
+                      </th>
                     </tr>
                   </thead>
 
@@ -694,13 +906,13 @@ export default function GCEOPortalPage() {
                       [...Array(6)].map((_, index) => (
                         <tr
                           key={index}
-                          className="border-b border-white/[0.06] last:border-b-0"
+                          className="border-b border-white/[0.05] last:border-b-0"
                         >
-                          <td className="px-4 py-4">
+                          <td className="px-3 py-3">
                             <div className="h-4 w-4 animate-pulse rounded bg-white/10" />
                           </td>
-                          {[...Array(10)].map((__, i) => (
-                            <td key={i} className="px-4 py-4">
+                          {[...Array(12)].map((__, i) => (
+                            <td key={i} className="px-3 py-3">
                               <div className="h-4 w-full animate-pulse rounded bg-white/10" />
                             </td>
                           ))}
@@ -708,7 +920,7 @@ export default function GCEOPortalPage() {
                       ))
                     ) : filteredDocuments.length === 0 ? (
                       <tr>
-                        <td colSpan={11} className="px-6 py-14 text-center">
+                        <td colSpan={13} className="px-6 py-14 text-center">
                           <div className="mx-auto max-w-md">
                             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl">
                               📄
@@ -730,9 +942,9 @@ export default function GCEOPortalPage() {
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.2, delay: index * 0.02 }}
-                          className="border-b border-white/[0.06] transition hover:bg-white/[0.035]"
+                          className="border-b border-white/[0.05] transition hover:bg-white/[0.06]"
                         >
-                          <td className="px-4 py-4 align-middle">
+                          <td className={`${TABLE_CELL_BASE_CLASS} w-[40px]`}>
                             <input
                               type="checkbox"
                               checked={selectedDocs.includes(doc.id)}
@@ -741,27 +953,67 @@ export default function GCEOPortalPage() {
                             />
                           </td>
 
-                          <td className="px-4 py-4 font-medium text-white">
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} font-semibold text-white whitespace-nowrap`}
+                          >
                             {doc.referenceNo || "-"}
                           </td>
-                          <td className="px-4 py-4">{doc.company || "-"}</td>
-                          <td className="px-4 py-4">{doc.department || "-"}</td>
-                          <td className="px-4 py-4 text-white/70">
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white/80 whitespace-nowrap`}
+                            title={doc.company || ""}
+                          >
+                            {doc.company || "-"}
+                          </td>
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white/75 whitespace-nowrap`}
+                            title={doc.department || ""}
+                          >
+                            {doc.department || "-"}
+                          </td>
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white/70 max-w-[200px] truncate`}
+                            title={doc.uploadedByEmail || ""}
+                          >
                             {doc.uploadedByEmail || "-"}
                           </td>
-                          <td className="px-4 py-4">
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white/80 whitespace-nowrap`}
+                            title={doc.documentType || ""}
+                          >
                             {doc.documentType || "-"}
                           </td>
-                          <td className="px-4 py-4">{doc.severity || "-"}</td>
-                          <td className="px-4 py-4">{doc.urgency || "-"}</td>
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-normal leading-5 max-w-[260px]`}
+                            title={doc.description || ""}
+                          >
+                            {doc.description || "-"}
+                          </td>
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
+                          >
+                            {doc.severity || "-"}
+                          </td>
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
+                          >
+                            {doc.urgency || "-"}
+                          </td>
 
-                          <td className="px-4 py-4">
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap tabular-nums font-semibold`}
+                          >
                             {doc.amount
                               ? Number(doc.amount).toLocaleString()
                               : "-"}
                           </td>
 
-                          <td className="px-4 py-4">
+                          <td
+                            className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-nowrap`}
+                          >
+                            {doc.createdAt || "-"}
+                          </td>
+
+                          <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap`}>
                             <span
                               className={`inline-flex min-w-[96px] justify-center rounded-full px-3 py-1.5 text-xs font-semibold ${badge(
                                 doc.status,
@@ -771,11 +1023,11 @@ export default function GCEOPortalPage() {
                             </span>
                           </td>
 
-                          <td className="px-4 py-4">
-                            <div className="flex flex-wrap gap-2">
+                          <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap text-right`}>
+                            <div className="flex flex-wrap justify-end gap-2">
                               <button
                                 onClick={() => downloadFile(doc.id)}
-                                className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-semibold text-white transition hover:bg-white/[0.08]"
+                                className={`${ACTION_BUTTON_BASE} border border-white/12 bg-white/[0.03] text-white/90 hover:bg-white/[0.08]`}
                               >
                                 View
                               </button>
@@ -785,7 +1037,7 @@ export default function GCEOPortalPage() {
                                   <button
                                     onClick={() => openApproveDialog(doc.id)}
                                     disabled={actionLoading}
-                                    className="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className={`${ACTION_BUTTON_BASE} bg-emerald-600 text-white hover:bg-emerald-500`}
                                   >
                                     Approve
                                   </button>
@@ -793,7 +1045,7 @@ export default function GCEOPortalPage() {
                                   <button
                                     onClick={() => openRejectDialog(doc.id)}
                                     disabled={actionLoading}
-                                    className="rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className={`${ACTION_BUTTON_BASE} bg-red-600 text-white hover:bg-red-500`}
                                   >
                                     Reject
                                   </button>
