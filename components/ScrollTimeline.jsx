@@ -2,13 +2,17 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import SlideReveal from "./UI/SlideReveal";
 
-export default function ScrollTimeline({ items }) {
+export default function ScrollTimeline({ items, size = "lg", }) {
     const containerRef = useRef(null);
     const sectionsRef = useRef([]);
     const [activeIndex, setActiveIndex] = useState(0);
+
+    const sizeClasses = {
+        sm: "px-4 py-2 text-xs gap-2",
+        lg: "px-8 py-4 text-base gap-3",
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,9 +36,9 @@ export default function ScrollTimeline({ items }) {
     const stepHeight = 100 / (items.length - 1);
 
     return (
-        <section ref={containerRef} className="relative flex md:pt-20">
+        <section ref={containerRef} className="relative flex md:pt-15">
             {/* TIMELINE */}
-            <div className="w-56 hidden md:flex justify-center">
+            <div className="w-40 hidden md:flex justify-center">
                 <div className="sticky top-1/2 -translate-y-1/2 h-[70vh]">
 
                     {/* Vertical Line */}
@@ -57,7 +61,7 @@ export default function ScrollTimeline({ items }) {
                                         : "text-gray-800"
                                 }
                             >
-                                {item.title}
+                                {i + 1}
                             </span>
                         </div>
                     ))}
@@ -79,20 +83,20 @@ export default function ScrollTimeline({ items }) {
                     <div
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:pl-8"
                     >
                         {i === 0 ? (
                             <FirstSection
                                 title={"The History"}
+                                texts={item.texts}
                                 start={items[0].title}
                                 end={items[items.length - 1].title}
-                                image={"/gallery/gallery-1.jpg"}
+                                image={item.image}
                             />
                         ) : (
                             <Sections
                                 title={item.title}
                                 heading={item.heading}
-                                text={item.text}
+                                texts={item.texts}
                                 image={item.image}
                                 dark={i % 2 !== 0}
                             />
@@ -104,22 +108,22 @@ export default function ScrollTimeline({ items }) {
     );
 }
 
-const FirstSection = ({ title, start, end, image }) => (
-    <div className="relative max-w-5xl my-8 px-5 md:px-0 md:my-20">
+const FirstSection = ({ title, start, end, image, texts }) => (
+    <div className="relative max-w-6xl px-5 md:px-0 mt-5 md:mt-0">
         <div className="relative z-10">
-            <SlideReveal direction="up" triggerOnce={false}>
+            {/* <SlideReveal direction="up" triggerOnce={false}>
                 <p className="text-2xl md:text-3xl t-base font-bold uppercase">{title}</p>
-            </SlideReveal>
+            </SlideReveal> */}
             <SlideReveal direction="up" delay={0.2} triggerOnce={false}>
-                <p className="text-transparent stroke-text text-[100px] md:text-[150px]">{start}</p>
+                <p className="text-transparent stroke-text text-[40px] md:text-[60px] leading-12 md:leading-tight">{start}</p>
             </SlideReveal>
-            <SlideReveal direction="right" delay={0.4} triggerOnce={false}>
-                <p className="text-transparent stroke-text text-[100px] md:text-[150px] mt-30 flex justify-end">{end}</p>
-            </SlideReveal>
+            {/* <SlideReveal direction="right" delay={0.4} triggerOnce={false}>
+                <p className="text-transparent stroke-text text-[45px] md:text-[60px] leading-tight text-right mt-30 flex justify-end">{end}</p>
+            </SlideReveal> */}
         </div>
-        <div className="absolute left-0 right-0 bottom-22 md:bottom-10 flex justify-center">
+        <div className="flex justify-center mt-6 md:mt-8">
             <SlideReveal direction="left" triggerOnce={false}>
-                <div className="w-96 md:w-170 h-60 md:h-110 flex-none relative">
+                <div className="w-96 md:w-6xl h-60 md:h-110 flex-none relative">
                     <Image
                         src={image}
                         alt={title}
@@ -129,29 +133,40 @@ const FirstSection = ({ title, start, end, image }) => (
                 </div>
             </SlideReveal>
         </div>
+        <SlideReveal direction="left" delay={0.4} triggerOnce={false}>
+            <div className="mt-6 md:mt-8 space-y-3 md:space-y-4 text-sm text-gray-700 mb-8 md:mb-12">
+                {texts.map((text, i) => (
+                    <p key={i} className="">{text}</p>
+                ))}
+            </div>
+        </SlideReveal>
     </div>
 );
 
-const Sections = ({ title, heading, text, image, dark }) => (
-    <div className={`grid grid-cols-1 md:grid-cols-2 py-8 px-5 md:px-0 md:py-20 ${dark ? "text-white" : "t-base"} relative`}>
+const Sections = ({ title, heading, texts, image, dark }) => (
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-15 py-8 px-5 md:px-0 md:py-20 ${dark ? "text-white" : "t-base"} relative`}>
         {dark && (
-            <div className="absolute w-screen h-full b-base md:-translate-x-64 -z-10" />
+            <div className="absolute w-screen h-full b-base md:-translate-x-40 -z-10" />
         )}
         <div className="relative z-10">
-            <div className="w-sm">
+            <div className="">
                 <SlideReveal direction="up" triggerOnce={false}>
-                    <p className="text-2xl md:text-3xl font-bold uppercase">{heading}</p>
+                    <p className="text-2xl md:text-lg font-bold uppercase">{heading}</p>
                 </SlideReveal>
                 <SlideReveal direction="left" delay={0.2} triggerOnce={false}>
-                    <p className={`text-transparent ${dark ? "stroke-text-white" : "stroke-text"}  text-[80px] md:text-[140px]`}>{title}</p>
-                    <div className={`h-0.5 w-7/12 ${dark ? "bg-white" : "b-base"} `} />
+                    <p className={`text-transparent ${dark ? "stroke-text-white" : "stroke-text"}  text-[40px] md:text-[60px] leading-12 md:leading-tight`}>{title}</p>
+                    <div className={`h-0.5 w-7/12 mt-5 ${dark ? "bg-white" : "b-base"} `} />
                 </SlideReveal>
                 <SlideReveal direction="left" delay={0.4} triggerOnce={false}>
-                    <p className="mt-8 md:mt-15 w-xs mb-10">{text}</p>
+                    <div className="mt-7 space-y-3 md:space-y-4 text-sm">
+                        {texts.map((text, i) => (
+                            <p key={i} className="">{text}</p>
+                        ))}
+                    </div>
                 </SlideReveal>
             </div>
         </div>
-        <div className="flex items-end overflow-hidden">
+        <div className="flex items-center overflow-hidden">
             <SlideReveal direction="right" delay={0.4} triggerOnce={false}>
                 <div className="relative w-full md:w-170 h-90 md:h-100">
                     <Image

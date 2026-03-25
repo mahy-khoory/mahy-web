@@ -405,9 +405,9 @@ button {
 }
 
 .stroke-text {
-  -webkit-text-stroke: 3px var(--accent-color);
+  -webkit-text-stroke: 1.5px var(--accent-color);
 }
 
 .stroke-text-white {
-  -webkit-text-stroke: 3px white;
+  -webkit-text-stroke: 1.5px white;
 }

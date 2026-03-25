@@ -13,6 +13,14 @@ export default function PortalLogin() {
 
   const redirect = params.get("redirect") || "/contact-us";
 
+  let title = "MAHY Portal";
+
+  if (redirect.includes("vendor-registration")) {
+    title = "Vendor Registration";
+  } else if (redirect.includes("customer-registration")) {
+    title = "Customer Registration";
+  }
+
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({
     name: "",
@@ -85,7 +93,7 @@ export default function PortalLogin() {
           className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-100 p-8"
         >
           <h1 className="text-2xl font-semibold text-center">
-            MAHY Portal
+            {title}
           </h1>
 
           <div className="flex bg-slate-100 rounded-full p-1 my-6">
@@ -93,11 +101,10 @@ export default function PortalLogin() {
               <button
                 key={t}
                 onClick={() => setMode(t)}
-                className={`flex-1 py-2 rounded-full text-sm font-medium ${
-                  mode === t
-                    ? "bg-white shadow"
-                    : "text-slate-500"
-                }`}
+                className={`flex-1 py-2 rounded-full text-sm font-medium ${mode === t
+                  ? "bg-white shadow"
+                  : "text-slate-500"
+                  }`}
               >
                 {t === "login" ? "Login" : "Sign up"}
               </button>
@@ -140,8 +147,8 @@ export default function PortalLogin() {
               {loading
                 ? "Please wait..."
                 : mode === "login"
-                ? "Continue"
-                : "Create account"}
+                  ? "Continue"
+                  : "Create account"}
             </button>
           </form>
         </motion.div>

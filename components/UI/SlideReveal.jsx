@@ -29,6 +29,7 @@ export default function SlideReveal({ children, direction = "up", delay = 0, tri
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             variants={variants}
+            className="w-full"
         >
             {children}
         </motion.div>
