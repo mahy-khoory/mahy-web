@@ -36,9 +36,9 @@ export default function ScrollTimeline({ items, size = "lg", }) {
     const stepHeight = 100 / (items.length - 1);
 
     return (
-        <section ref={containerRef} className="relative flex md:pt-15">
+        <section ref={containerRef} className="relative flex xl:pt-15">
             {/* TIMELINE */}
-            <div className="w-40 hidden md:flex justify-center">
+            <div className="w-40 hidden xl:flex justify-center">
                 <div className="sticky top-1/2 -translate-y-1/2 h-[70vh]">
 
                     {/* Vertical Line */}
@@ -109,21 +109,21 @@ export default function ScrollTimeline({ items, size = "lg", }) {
 }
 
 const FirstSection = ({ title, start, end, image, texts }) => (
-    <div className="relative max-w-6xl px-5 md:px-0 mt-5 md:mt-0">
+    <div className="relative max-w-6xl px-5 xl:px-0 mt-5 xl:mt-0">
         <div className="relative z-10">
             {/* <SlideReveal direction="up" triggerOnce={false}>
-                <p className="text-2xl md:text-3xl t-base font-bold uppercase">{title}</p>
+                <p className="text-2xl xl:text-3xl t-base font-bold uppercase">{title}</p>
             </SlideReveal> */}
             <SlideReveal direction="up" delay={0.2} triggerOnce={false}>
-                <p className="text-transparent stroke-text text-[40px] md:text-[60px] leading-12 md:leading-tight">{start}</p>
+                <p className="text-transparent stroke-text text-[40px] xl:text-[60px] leading-12 xl:leading-tight">{start}</p>
             </SlideReveal>
             {/* <SlideReveal direction="right" delay={0.4} triggerOnce={false}>
-                <p className="text-transparent stroke-text text-[45px] md:text-[60px] leading-tight text-right mt-30 flex justify-end">{end}</p>
+                <p className="text-transparent stroke-text text-[45px] xl:text-[60px] leading-tight text-right mt-30 flex justify-end">{end}</p>
             </SlideReveal> */}
         </div>
-        <div className="flex justify-center mt-6 md:mt-8">
+        <div className="flex justify-center mt-6 xl:mt-8">
             <SlideReveal direction="left" triggerOnce={false}>
-                <div className="w-96 md:w-6xl h-60 md:h-110 flex-none relative">
+                <div className="w-96 xl:w-6xl h-60 xl:h-110 flex-none relative">
                     <Image
                         src={image}
                         alt={title}
@@ -134,7 +134,7 @@ const FirstSection = ({ title, start, end, image, texts }) => (
             </SlideReveal>
         </div>
         <SlideReveal direction="left" delay={0.4} triggerOnce={false}>
-            <div className="mt-6 md:mt-8 space-y-3 md:space-y-4 text-sm text-gray-700 mb-8 md:mb-12">
+            <div className="mt-6 xl:mt-8 space-y-3 xl:space-y-4 text-sm text-gray-700 mb-8 xl:mb-12">
                 {texts.map((text, i) => (
                     <p key={i} className="">{text}</p>
                 ))}
@@ -144,21 +144,21 @@ const FirstSection = ({ title, start, end, image, texts }) => (
 );
 
 const Sections = ({ title, heading, texts, image, dark }) => (
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-15 py-8 px-5 md:px-0 md:py-20 ${dark ? "text-white" : "t-base"} relative`}>
+    <div className={`grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-15 py-8 px-5 xl:px-0 xl:py-20 ${dark ? "text-white" : "t-base"} relative`}>
         {dark && (
-            <div className="absolute w-screen h-full b-base md:-translate-x-40 -z-10" />
+            <div className="absolute w-screen h-full b-base xl:-translate-x-40 -z-10" />
         )}
         <div className="relative z-10">
             <div className="">
                 <SlideReveal direction="up" triggerOnce={false}>
-                    <p className="text-2xl md:text-lg font-bold uppercase">{heading}</p>
+                    <p className="text-2xl xl:text-lg font-bold uppercase">{heading}</p>
                 </SlideReveal>
                 <SlideReveal direction="left" delay={0.2} triggerOnce={false}>
-                    <p className={`text-transparent ${dark ? "stroke-text-white" : "stroke-text"}  text-[40px] md:text-[60px] leading-12 md:leading-tight`}>{title}</p>
+                    <p className={`text-transparent ${dark ? "stroke-text-white" : "stroke-text"}  text-[40px] xl:text-[60px] leading-12 xl:leading-tight`}>{title}</p>
                     <div className={`h-0.5 w-7/12 mt-5 ${dark ? "bg-white" : "b-base"} `} />
                 </SlideReveal>
                 <SlideReveal direction="left" delay={0.4} triggerOnce={false}>
-                    <div className="mt-7 space-y-3 md:space-y-4 text-sm">
+                    <div className="mt-7 space-y-3 xl:space-y-4 text-sm">
                         {texts.map((text, i) => (
                             <p key={i} className="">{text}</p>
                         ))}
@@ -168,7 +168,7 @@ const Sections = ({ title, heading, texts, image, dark }) => (
         </div>
         <div className="flex items-center overflow-hidden">
             <SlideReveal direction="right" delay={0.4} triggerOnce={false}>
-                <div className="relative w-full md:w-170 h-90 md:h-100">
+                <div className="relative w-full xl:w-170 h-90 xl:h-100">
                     <Image
                         src={image}
                         alt={title}
