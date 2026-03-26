@@ -51,7 +51,7 @@ export default function ProjectsSection() {
             </div>
 
             <div className="text-body text-[#23313a] ml-4 text-sm">
-              <p className="font-medium leading-[1.9]">
+              <p className="leading-loose opacity-90">
                 Over the decades, MAHY Khoory Group has played a pivotal role in delivering reliable, high-performance solutions across a diverse portfolio of landmark projects in the UAE and beyond. Our experience spans premium residential developments, large-scale mixed-use communities, industrial facilities, educational institutions, and international exhibition pavilions—each reflecting our unwavering commitment to quality, innovation, and long-term value.
               </p>
 

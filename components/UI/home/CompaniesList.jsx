@@ -8,16 +8,17 @@ import { useCallback, useState } from "react";
 import IndustryCard from './IndustryCard';
 import { companies } from '@/constants/companies';
 import CompanyCard from './CompanyCard';
+import ScrollToTop from '../ScrollToTop';
 
 const industeries = [
-    { label: "Trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" },
-    { label: "Manufacturing", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210649/factory-workers-operating-machinery-on-production-2026-01-09-10-18-36-utc_tsa0tc.jpg" },
-    { label: "Automobile", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210379/two-businessmen-are-working-together-in-the-car-sh-2026-01-08-23-56-20-utc_tjv68e.jpg" },
-    { label: "Waste Management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210761/joyful-indian-worker-in-protective-vest-and-gloves-2026-01-06-00-11-34-utc_m8310z.jpg" },
-    { label: "Logistics", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210613/interior-warehouse-storage-and-cardboard-boxes-aga-2026-01-09-01-03-54-utc_dzzlr6.jpg" },
-    { label: "Energy Management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210530/businesswoman-with-solar-panels-model-having-prese-2026-01-09-09-42-23-utc_l5vlii.jpg" },
+    { label: "Trading", href: "/companies/trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" },
+    { label: "Manufacturing", href: "/companies/manufacturing", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210649/factory-workers-operating-machinery-on-production-2026-01-09-10-18-36-utc_tsa0tc.jpg" },
+    { label: "Automobile", href: "/companies/automotive", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210379/two-businessmen-are-working-together-in-the-car-sh-2026-01-08-23-56-20-utc_tjv68e.jpg" },
+    { label: "Waste Management", href: "/companies/waste-management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210761/joyful-indian-worker-in-protective-vest-and-gloves-2026-01-06-00-11-34-utc_m8310z.jpg" },
+    { label: "Logistics", href: "/companies/transportation-logistics", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210613/interior-warehouse-storage-and-cardboard-boxes-aga-2026-01-09-01-03-54-utc_dzzlr6.jpg" },
+    { label: "Energy Management", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210530/businesswoman-with-solar-panels-model-having-prese-2026-01-09-09-42-23-utc_l5vlii.jpg" },
 ];
-const moreIndusteries = ["Airports", "Data Center", "Defence & Airspace", "Road, Metro, & Rail"];
+const moreIndusteries = ["Hospitality", "Engineering"];
 
 function CompaniesList({ darkBg = false, industeriesFirst = true }) {
 
@@ -127,7 +128,7 @@ const IndustriesTab = ({ industeries, moreIndusteries }) => (
                         <Link href={"/"} key={i} className='bg-black/40 py-2 px-4 rounded-xl text-sm'>{item}</Link>
                     ))}
                 </div>
-                <Link href={"/"} className='border-b border-gray-200 pb-1'>Explore More</Link>
+                <ScrollToTop href={"/companies/all"} className='border-b border-gray-200 pb-1'>Explore More</ScrollToTop>
             </div>
         </div>
     </TabPanel>

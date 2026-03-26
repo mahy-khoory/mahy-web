@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ChatBot from "../EnquiryChatBot/FloatingWrapper/Chatbot";
+import { useState } from "react";
 // import { getTranslations } from "next-intl/server";
 
 export default function LayoutWrapper({
@@ -21,6 +22,8 @@ export default function LayoutWrapper({
   const isPortal = pathname.startsWith("/mahy-portal");
   // const chatbotTranslations = await getTranslations("Chatbot");
 
+  const [isWidgetOpen, setIsWidgetOpen] = useState(false);
+
   return (
     <>
       {!isPortal && <Navbar navigation={navigation} />}
@@ -29,12 +32,12 @@ export default function LayoutWrapper({
 
       {!isPortal && (
         <section id="useful-links">
-          <Footer data={footerData} />
+          <Footer data={footerData} setIsWidgetOpen={setIsWidgetOpen} />
         </section>
       )}
 
       {!isPortal && (
-        <ChatBot data={chatbotData} locale={locale} />
+        <ChatBot data={chatbotData} locale={locale} isWidgetOpen={isWidgetOpen} setIsWidgetOpen={setIsWidgetOpen} />
       )}
     </>
   );

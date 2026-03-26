@@ -53,6 +53,7 @@ function TransferPumpsPage() {
             />
             <SustainabilitySection
                 heading="Applications"
+                items={applications}
             />
         </main>
     )

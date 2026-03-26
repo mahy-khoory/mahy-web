@@ -58,9 +58,11 @@ function CompanyDetailCards({
                     <div className='absolute inset-0 bg-black/30' />
                 </div>
                 <div className='relative md:w-[45%] bg-gray-50 h-fit py-10 px-8 md:py-15 md:px-10'>
-                    <h2 className='t-base font-semibold uppercase'>{heading2}</h2>
+                    {heading2 && (
+                        <h2 className='t-base font-semibold uppercase mb-3'>{heading2}</h2>
+                    )}
                     {text2.map((paragraph, index) => (
-                        <p key={index} className='mt-3 text-gray-700'>{paragraph}</p>
+                        <p key={index} className='text-gray-700'>{paragraph}</p>
                     ))}
                 </div>
                 <div className='md:w-[20%] bg-[#aed4e5] p-8 h-fit flex justify-center'>

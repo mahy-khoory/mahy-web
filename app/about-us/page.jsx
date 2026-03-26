@@ -153,7 +153,7 @@ async function About() {
           t("History.Item1Description4"),
           t("History.Item1Description5"),
         ],
-        image: "/office.jpg",
+        image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp",
       },
       {
         title: t("History.Item2Title"),
@@ -164,7 +164,7 @@ async function About() {
           t("History.Item2Description3"),
           t("History.Item2Description4"),
         ],
-        image: "/office.jpg",
+        image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp",
       },
       {
         title: t("History.Item3Title"),
@@ -176,7 +176,7 @@ async function About() {
           t("History.Item3Description4"),
           t("History.Item3Description5"),
         ],
-        image: "/office.jpg",
+        image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp",
       },
       {
         title: t("History.Item4Title"),
@@ -188,7 +188,7 @@ async function About() {
           t("History.Item4Description4"),
           t("History.Item4Description5"),
         ],
-        image: "/office.jpg",
+        image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1771915804/office_jaeuiz.webp",
       },
     ],
   };

@@ -14,7 +14,7 @@ import IdlePrompt from "./IdlePrompt";
 import MahyraAvatar from "./MahyraAvatar";
 import { useCart } from "@/components/Providers/CartProvider";
 
-export default function ChatWidget({ data, locale }) {
+export default function ChatWidget({ data, locale, isWidgetOpen, setIsWidgetOpen }) {
   const { flow, layout } = data;
   const [messages, setMessages] = useState([
     { from: "bot", text: flow.q1_business.text },
@@ -23,7 +23,6 @@ export default function ChatWidget({ data, locale }) {
   const [history, setHistory] = useState(["q1_business"]);
   const [answers, setAnswers] = useState({});
   const [isTyping, setIsTyping] = useState(false);
-  const [isWidgetOpen, setIsWidgetOpen] = useState(false);
   const { isOpen: isCartOpen } = useCart();
 
   const IDLE_DELAY = 12000;
@@ -39,6 +38,18 @@ export default function ChatWidget({ data, locale }) {
       if (!isWidgetOpen) setShowIdlePrompt(true);
     }, IDLE_DELAY);
   }
+
+  useEffect(() => {
+    if (isWidgetOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isWidgetOpen]);
 
   function handleIdleTease() {
     setShowIdlePrompt(false);

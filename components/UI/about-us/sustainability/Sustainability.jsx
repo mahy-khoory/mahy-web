@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 function SustainabilitySection({
     heading = "Sustainability",
+    cardHeight = "lg:h-65",
     items = [
         {
             title: "Shaping Digital Innovation for a Sustainable Future",
@@ -39,11 +40,14 @@ function SustainabilitySection({
             <AnimatedLines />
             <h2 className='text-center text-3xl font-semibold pt-1'>{heading}</h2>
             <div className='grid grid-cols-1 lg:grid-cols-3 lg:gap-5 mt-10'>
-                {items.map((items, i) => (
-                    <div key={i} className={`${i === 0 && "lg:col-span-2"} relative lg:rounded-3xl overflow-hidden lg:h-65 flex flex-col justify-end group`}>
+                {items.map((item, i) => (
+                    <div key={i} className={`${i === 0 && "lg:col-span-2"} relative lg:rounded-3xl overflow-hidden ${cardHeight} flex flex-col justify-end group`}>
                         <div className="relative z-10 px-7 py-6 lg:p-5 transition-all duration-300 ease-in-out" >
-                            <h3 className="text-white font-semibold text-lg">{items.title}</h3>
-                            <p className="text-gray-100 text-sm mt-3">{items.text}</p>
+                            <h3 className="text-white font-semibold text-lg">{item.title}</h3>
+                            <p className="text-gray-100 text-sm mt-3">{item.text}</p>
+                            {item.text2 && (
+                                <p className="text-gray-100 text-sm mt-2">{item.text2}</p>
+                            )}
                             {/* <Link href={"/"}>
                                 <div className="flex gap-2 items-center text-white border border-white py-1.5 px-5 rounded-2xl text-sm w-fit">
                                     Learn More
@@ -52,7 +56,7 @@ function SustainabilitySection({
                             </Link> */}
                         </div>
                         <div className="absolute inset-0 group-hover:scale-120 group-hover:blur-xs transition-all duration-300 ease-in-out">
-                            <Image src={items.image} alt={items.title} fill style={{ objectFit: "cover" }} />
+                            <Image src={item.image} alt={item.title} fill style={{ objectFit: "cover" }} />
                         </div>
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                     </div>

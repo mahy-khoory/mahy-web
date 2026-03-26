@@ -60,18 +60,22 @@ export default function NarrativeCard({
           {title}
         </motion.h2>
 
-        <p className="mt-6 text-slate-300/90 text-lg leading-relaxed max-w-lg">
-          {subtitle}
-        </p>
+        {subtitle && (
+          <p className="mt-6 text-slate-300/90 text-lg leading-relaxed max-w-lg">
+            {subtitle}
+          </p>
+        )}
 
-        <ul className="mt-8 space-y-4">
-          {bullets.map((item, i) => (
-            <li key={i} className="flex items-start gap-3 text-white">
-              <span className="t-base mt-1">✓</span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+        {bullets && (
+          <ul className="mt-8 space-y-4">
+            {bullets.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-white">
+                <span className="t-base mt-1">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {endText && (
           <p className="mt-6 text-slate-300/90 leading-relaxed max-w-lg">

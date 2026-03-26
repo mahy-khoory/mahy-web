@@ -249,7 +249,7 @@ async function companyProfile() {
         // // description2={
         // //   "The Group's capabilities are anchored in physical assets, skilled teams, and integrated operations that allow us to deliver reliable solutions at scale, while maintaining high standards of governance, safety, and performance."
         // // }
-        image={"/profile/bg.jpg"}
+        image={"/profile/bg2.jpg"}
         height="h-screen"
       />
       <WhoWeAre image={"/gallery/gallery-2.jpg"} />
@@ -294,7 +294,13 @@ async function companyProfile() {
         </p>
       </div>
 
-      <CompanyStructure data={structure} />
+      <CompanyStructure
+        data={structure}
+        textClasses="variant2"
+        bg="bg-gray-50"
+        bgHover="hove:bg-gray-50"
+        collape={false}
+      />
 
       <ManufacturingNetworkSection network={network} locale={locale} />
 

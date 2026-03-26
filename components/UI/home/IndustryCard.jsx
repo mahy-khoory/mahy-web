@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 import { FaArrowRightLong } from 'react-icons/fa6'
+import ScrollToTop from '../ScrollToTop'
 
 function IndustryCard({ item }) {
     return (
-        <div className="relative h-60 md:h-45 group overflow-hidden">
+        <ScrollToTop href={item.href} className="relative h-60 md:h-45 group overflow-hidden">
             <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3] group-hover:blur-xs">
                 <Image src={item.image} alt={item.label} fill style={{ objectFit: "cover" }} />
             </div>
@@ -18,7 +19,7 @@ function IndustryCard({ item }) {
                     <div className='h-px w-full bg-white mt-3 -translate-x-120 group-hover:translate-x-0 transition-all duration-500' />
                 </div>
             </div>
-        </div >
+        </ScrollToTop>
     )
 }
 

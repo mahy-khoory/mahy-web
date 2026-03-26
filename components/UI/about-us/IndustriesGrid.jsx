@@ -39,7 +39,7 @@ export default function IndustriesGrid({ heading, industries }) {
             const Icon = item.icon;
 
             return (
-              <motion.a
+              <motion.div
                 key={item.label}
                 href={item.href}
                 initial={{ opacity: 0, y: 24 }}
@@ -60,7 +60,6 @@ export default function IndustriesGrid({ heading, industries }) {
                   border
                   border-gray-200
                   rounded-xl
-                  cursor-pointer
                   bg-white
                   transition-all
                   hover:border-sky-400
@@ -99,7 +98,7 @@ export default function IndustriesGrid({ heading, industries }) {
                     group-hover:w-12
                   "
                 />
-              </motion.a>
+              </motion.div>
             );
           })}
         </div>

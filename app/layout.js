@@ -65,35 +65,34 @@ export default async function RootLayout({ children }) {
         className={`${poppins.variable} antialiased`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        
-          <ReactQueryProvider>
-            <SmoothScrollProvider>
-              <NextIntlClientProvider locale={locale}>
-                <LoaderWrapper>
-                  <CartProvider>
-                    {/* <Navbar navigation={getNavigation(navTranslations)} />
+
+        <ReactQueryProvider>
+          <SmoothScrollProvider>
+            <NextIntlClientProvider locale={locale}>
+              <LoaderWrapper>
+                <CartProvider>
+                  {/* <Navbar navigation={getNavigation(navTranslations)} />
                   {children}
                   <section id="useful-links">
                     <Footer data={getFooter(footerTranslations)} />
                   </section> */}
 
-                    <LayoutWrapper
-                      navigation={getNavigation(navTranslations)}
-                      footerData={getFooter(footerTranslations)}
-                      chatbotData={chatbotData(chatbotTranslations)}
-                      locale={locale}
-                    >
-                      <AuthContextProvider>
-
+                  <LayoutWrapper
+                    navigation={getNavigation(navTranslations)}
+                    footerData={getFooter(footerTranslations)}
+                    chatbotData={chatbotData(chatbotTranslations)}
+                    locale={locale}
+                  >
+                    <AuthContextProvider>
                       {children}
-                      </AuthContextProvider>
-                    </LayoutWrapper>
-                    <CartDrawer />
-                  </CartProvider>
-                </LoaderWrapper>
-              </NextIntlClientProvider>
-            </SmoothScrollProvider>
-          </ReactQueryProvider>
+                    </AuthContextProvider>
+                  </LayoutWrapper>
+                  <CartDrawer />
+                </CartProvider>
+              </LoaderWrapper>
+            </NextIntlClientProvider>
+          </SmoothScrollProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

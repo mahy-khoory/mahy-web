@@ -6,7 +6,7 @@ function TradingPage() {
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
                     image={"/gallery/gallery-4.jpg"}
-                    title={"Manufacturing"}
+                    title={"Trading"}
                     texts={[
                         "This sector represents the Group's commercial foundation, delivering a comprehensive range of industrial supply, distribution, and sustainable energy solutions across regional markets",
                         "The Trading sector focuses on the sourcing, import, distribution, and project supply of high-quality industrial, electromechanical, pumping, HVAC, and building systems equipment sourced from leading global manufacturers. It supports a wide spectrum of industries, including infrastructure, construction, utilities, hospitality, and industrial operations, ensuring reliable and efficient supply of critical equipment.",

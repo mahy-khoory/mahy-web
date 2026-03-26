@@ -6,8 +6,19 @@ import AnimatedLines from "../AnimatedLines";
 import DesktopStructure from "./DesktopStructure";
 import MobileStructure from "./MobileStructure";
 
-function CompanyStructure({ data }) {
+function CompanyStructure({
+    data,
+    textClasses = "variant1",
+    bg = "bg-white",
+    bgHover = "hover:bg-white",
+    collape = true
+}) {
     const locale = useLocale();
+
+    const textClassesVariants = {
+        variant1: "text-2xl lgtext-3xl text-center font-medium mt-6 lg:mt-12 text-black uppercase",
+        variant2: "mt-4 lg:mt-6 mb-6 lg:text-xl text-center px-4"
+    }
 
     const containerVariants = {
         hidden: { opacity: 0, x: (locale === "ar" ? 20 : -20) },
@@ -23,14 +34,25 @@ function CompanyStructure({ data }) {
     };
 
     return (
-        <section className='max-w-7xl mx-auto pt-20 pb-15 lg:pb-20 border-b border-gray-300'>
+        <section className='max-w-7xl mx-auto py-12 lg:pt-20 lg:pb-20 border-b border-gray-300'>
             <AnimatedLines />
             <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                 <h2 className='font-bold text-2xl lg:text-4xl text-center uppercase'>{data.heading}</h2>
             </motion.div>
-            <p className='text-2xl lgtext-3xl text-center font-medium mt-6 lg:mt-12 text-black uppercase'>{data.company}</p>
-            <DesktopStructure items={data.items} itemVariants={itemVariants} containerVariants={containerVariants} />
-            <MobileStructure items={data.items} itemVariants={itemVariants} />
+            <p className={textClassesVariants[textClasses]}>{data.company}</p>
+            <DesktopStructure
+                items={data.items}
+                itemVariants={itemVariants}
+                containerVariants={containerVariants}
+                bg={bg}
+                bgHover={bgHover}
+            />
+            <MobileStructure
+                items={data.items}
+                itemVariants={itemVariants}
+                bg={bg}
+                collape={collape}
+            />
         </section>
     )
 }

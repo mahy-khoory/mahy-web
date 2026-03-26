@@ -19,8 +19,6 @@ function ScrollToTop({ href, children, className, ariaLabel, onClick }) {
         if (onClick) onClick();
 
         const finalUrl = buildUrl();
-        // console.log(finalUrl);
-
 
         if (window.scrollY === 0) {
             router.push(finalUrl);

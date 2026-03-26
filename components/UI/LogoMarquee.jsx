@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
-import Link from "next/link";
 
 export default function LogoMarquee({ partners = [], speed = 30 }) {
     const [paused, setPaused] = useState(false);
@@ -44,7 +43,7 @@ export default function LogoMarquee({ partners = [], speed = 30 }) {
 
 function LogoItem({ partner, onHover, href }) {
     return (
-        <Link href={href} className=" group flex items-center justify-center mx-10 min-w-30 sm:min-w-[160px]cursor-pointer"
+        <div className="group flex items-center justify-center mx-10 min-w-30 sm:min-w-[160px]cursor-pointer"
             onMouseEnter={() => onHover(true)}
             onMouseLeave={() => onHover(false)}>
             <Image
@@ -53,6 +52,6 @@ function LogoItem({ partner, onHover, href }) {
                 width={140}
                 height={60}
                 className="object-contain opacity-60 grayscale transition-all duration-300 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-125 group-hover:drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]" />
-        </Link>
+        </div>
     );
 }

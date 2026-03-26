@@ -123,7 +123,7 @@ export default function GovernancePage() {
         items={timelineItems}
       />
       <CodeOfConductSection />
-      <LargeArticleSection />
+      {/* <LargeArticleSection /> */}
     </main>
   );
 }

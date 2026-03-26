@@ -4,8 +4,40 @@ import RandD from "@/components/UI/about-us/sustainability/Randd"
 import SustainabilitySection from "@/components/UI/about-us/sustainability/Sustainability"
 import Image from "next/image"
 
-
 function SustainabilityPage() {
+    const items = [
+        {
+            title: "Responsible Operations",
+            text: "Sustainability at MAHY Khoory Group is closely linked to operational discipline and governance. Environmental considerations are incorporated into operational planning, investment decisions, and continuous improvement initiatives across all businesses.",
+            text2: "We apply structured management systems, monitoring processes, and audits to ensure responsible operations, environmental protection, and ongoing performance improvement.",
+            image: "/gallery/gallery-4.jpg"
+        },
+        {
+            title: "Health, Safety & People",
+            text: "The Group places strong emphasis on the health, safety, and well-being of its employees, contractors, and stakeholders. Safe working environments, risk management, and continuous training are essential components of our sustainability framework.",
+            text2: "By investing in people, skills development, and safety awareness, we aim to create stable, productive, and responsible workplaces across all operations.",
+            image: "/gallery/gallery-5.jpg"
+        },
+        {
+            title: "Community Engagement & Social Responsibility",
+            text: "MAHY Khoory Group is committed to contributing positively to the communities in which it operates. Our businesses support local employment, skills development, and economic activity across multiple emirates.",
+            text2: "Where appropriate, the Group engages in community-focused initiatives that reflect local needs and align with our values, contributing to social well-being and long-term community development.",
+            image: "/gallery/gallery-6.jpg"
+        },
+        {
+            title: "Ethical Business & Governance",
+            text: "Strong corporate governance and ethical conduct underpin our sustainability and CSR commitments. The Group operates in accordance with clear policies, codes of conduct, and compliance frameworks that promote transparency, accountability, and responsible decision-making.",
+            text2: "By maintaining high ethical standards and disciplined governance, we aim to build trust with customers, partners, employees, and stakeholders.",
+            image: "/gallery/gallery-8.jpeg"
+        },
+        {
+            title: "Continuous Improvement & Long-Term Commitment",
+            text: "Sustainability and CSR at MAHY Khoory Group are ongoing commitments. We continuously review our practices, monitor performance, and enhance systems to respond to evolving regulatory requirements, industry standards, and stakeholder expectations.",
+            text2: "Through responsible operations, environmental stewardship, and community engagement, the Group seeks to support sustainable growth and long-term value creation across all sectors in which it operates.",
+            image: "/gallery/gallery-4.jpg"
+        }
+    ];
+
     return (
         <main className='lg:pb-20'>
             <div className="w-full h-screen relative">
@@ -30,9 +62,23 @@ function SustainabilityPage() {
                     <p className="text-sm mt-2">To create an intelligent future with digital innovation, excellent growth platform for employees, and greater value for customers, shareholders, and stakeholders across the globe.</p> */}
                 </div>
             </div>
+            <QualityPolicies
+                heading="Environmental Responsibility"
+                text="Environmental stewardship is a core focus across the Group’s operations, particularly within manufacturing, recycling, waste management, logistics, and energy-related activities. We actively work to minimize environmental impact, improve resource efficiency, and support circular economy principles."
+                items={[
+                    { title: "Recycling & Resource Recovery", text: "Recycling and resource recovery of wood, metal, cartons, and OCC" },
+                    { title: "Manufacturing Integration", text: "Integration of recovered materials into manufacturing processes" },
+                    { title: "Waste Management", text: "Responsible waste collection, handling, and disposal" },
+                    { title: "Energy Efficiency & Clean Energy", text: "Energy efficiency improvements and clean energy solutions" },
+                    { title: "Regulatory Compliance", text: "Compliance with environmental laws, permits, and regulatory standards" }
+                ]}
+                endText="Through these efforts, the Group contributes to reducing waste, conserving resources, and supporting sustainable industrial practices."
+            />
+            <SustainabilitySection
+                cardHeight="lg:h-100"
+                items={items}
+            />
             <RandD />
-            <QualityPolicies />
-            <SustainabilitySection />
             <CorporateCulture />
         </main>
     )

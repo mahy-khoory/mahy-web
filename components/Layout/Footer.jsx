@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa6";
 import ScrollToTop from "../UI/ScrollToTop";
 
-export default function Footer({ data }) {
+export default function Footer({ data, setIsWidgetOpen }) {
   const socials = [
     { icon: FaXTwitter, href: "#" },
     { icon: FaLinkedinIn, href: "#" },
@@ -137,7 +137,7 @@ export default function Footer({ data }) {
             )}
           </div>
           {sections.map((section) => (
-            <FooterSection key={section.title} section={section} />
+            <FooterSection key={section.title} section={section} setIsWidgetOpen={setIsWidgetOpen} />
           ))}
         </div>
       </div>
@@ -173,7 +173,7 @@ export default function Footer({ data }) {
   );
 }
 
-function FooterSection({ section }) {
+function FooterSection({ section, setIsWidgetOpen }) {
   return (
     <div className="space-y-4">
       <h4 className="text-sm font-semibold text-white">{section.title}</h4>
@@ -189,16 +189,24 @@ function FooterSection({ section }) {
       >
         {section.links.map((link) => (
           <li key={link.label}>
-            <ScrollToTop
-              href={link.href}
-              className="
+            {link.openBot ? (
+              <button
+                className="text-sm text-slate-400 hover:text-white transition"
+                onClick={() => setIsWidgetOpen(true)}>
+                {link.label}
+              </button>
+            ) : (
+              <ScrollToTop
+                href={link.href}
+                className="
                 text-sm text-slate-400
                 hover:text-white
                 transition
               "
-            >
-              {link.label}
-            </ScrollToTop>
+              >
+                {link.label}
+              </ScrollToTop>
+            )}
           </li>
         ))}
       </ul>
