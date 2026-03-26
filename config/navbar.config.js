@@ -481,7 +481,7 @@ export function getNavigation(t) {
       {
         id: "shop",
         label: t("Shop"),
-        href: "https://mahy-ecommerce.vercel.app/",
+        href: `${process.env.NEXT_PUBLIC_MAHY_SHOP_URL}`,
         // linkType: "mega",
         // columns: [
         //   {
