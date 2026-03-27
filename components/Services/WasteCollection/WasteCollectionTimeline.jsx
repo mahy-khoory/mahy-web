@@ -27,8 +27,8 @@ function WasteCollectionTimeline({
                     {text2 && <p className="text-lg mt-4">{text2}</p>}
                     {text3 && text4 && (
                         <div className="flex justify-center text-xs uppercase text-white mt-5">
-                            <p className="bg-[#2da5dc] px-3 py-1 rounded-l-2xl">{text3}</p>
-                            <p className="bg-[#79c4e7] px-3 py-1 rounded-r-2xl">{text4}</p>
+                            <p className="bg-slate-500 px-3 py-1 rounded-l-2xl">{text3}</p>
+                            <p className="bg-[#2c3f6e] px-3 py-1 rounded-r-2xl">{text4}</p>
                         </div>
                     )}
                     <div className="absolute -top-3 left-0 right-0 flex justify-center">

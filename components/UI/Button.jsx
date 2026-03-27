@@ -42,7 +42,7 @@ export default function Button({ children = "", onClick, size = "md", bg = false
         damping: 20,
       }}
       className={`
-        ${bg ? "b-base text-white hover:bg-[#79c4e7]" : "hover:bg-black hover:border-black"}
+        ${bg ? "b-base text-white hover:bg-[#2c3f6e]" : "hover:bg-black hover:border-black"}
         cursor-pointer
         group
         inline-flex items-center gap-2 md:gap-3

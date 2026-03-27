@@ -17,8 +17,8 @@ export default function PrimaryButton({
   icon: Icon = FiArrowUpRight,
   motionEnabled = true,
   className,
-  href,       
-  onClick,      
+  href,
+  onClick,
 }) {
   const sizeClasses = {
     sm: "px-4 py-2 text-xs gap-2",
@@ -40,10 +40,10 @@ export default function PrimaryButton({
 
   const motionProps = motionEnabled
     ? {
-        whileHover: { y: -2 },
-        whileTap: { scale: 0.97 },
-        transition: { type: "spring", stiffness: 320, damping: 18 },
-      }
+      whileHover: { y: -2 },
+      whileTap: { scale: 0.97 },
+      transition: { type: "spring", stiffness: 320, damping: 18 },
+    }
     : {};
 
   const Content = (

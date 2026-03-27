@@ -46,7 +46,7 @@ export default function DewaltStrategySection() {
               className="
                 text-[38px] md:text-[52px] lg:text-[60px]
                 font-medium leading-[1.15] tracking-tight
-                text-[#E8F5B2]
+                text-slate-400
                 max-w-[620px]
               "
             >
@@ -78,7 +78,7 @@ export default function DewaltStrategySection() {
             <motion.p
               variants={fadeUp}
               className="
-                text-[#9FA89A] text-[16px]
+                text-slate-400 text-[16px]
                 leading-relaxed
                 max-w-[420px]
               "
@@ -107,9 +107,9 @@ export default function DewaltStrategySection() {
                 <motion.li
                   key={i}
                   variants={fadeUp}
-                  className="flex items-start gap-3 text-[#C7CEBE]"
+                  className="flex items-start gap-3 text-slate-400"
                 >
-                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-[#E8F5B2]" />
+                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-slate-400" />
                   <span className="leading-relaxed">{item}</span>
                 </motion.li>
               ))}
@@ -131,7 +131,7 @@ export default function DewaltStrategySection() {
                 mt-12
                 inline-flex items-center justify-center
                 rounded-full
-                bg-[#F3FFC2] text-black
+                bg-slate-400 text-black
                 px-10 py-4
                 font-medium
                 shadow-[0_10px_30px_rgba(0,0,0,0.4)]

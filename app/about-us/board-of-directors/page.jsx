@@ -34,7 +34,7 @@ const Director = ({ item, index }) => {
             {isOdd && (
                 <>
                     <div
-                        className="absolute inset-0 bottom-10 bg-[#e3eaee]"
+                        className="absolute inset-0 bottom-10 bg-slate-200"
                         style={{ clipPath: 'polygon(0 15%, 100% 0, 100% 85%, 0 100%)' }}
                     />
                     <VerticalLine classes={"absolute top-9 lg:top-4 left-0 right-0"} />
@@ -62,7 +62,7 @@ const Director = ({ item, index }) => {
 
 const VerticalLine = ({ classes }) => (
     <div className={`${classes} flex justify-center`}>
-        <div className='h-12 lg:h-24 w-0.5 bg-[#2da5dc]' />
+        <div className='h-12 lg:h-24 w-0.5 bg-slate-600' />
     </div>
 )
 

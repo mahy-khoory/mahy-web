@@ -37,8 +37,8 @@ const FilterOptions = ({ title, paramKey, options, initialVisibleCount = 5 }) =>
                             onClick={() => handleSelect(option.value)}
                             className="flex items-center gap-2.5 py-1 px-0 text-left bg-transparent border-none cursor-pointer group"
                         >
-                            <span className={`size-4.5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all duration-150 ${currentValue === option.value ? "border-[#79c4e7]" : "border-gray-500"}`}>
-                                {currentValue === option.value && <span className="size-2.5 rounded-full bg-[#79c4e7]" />}
+                            <span className={`size-4.5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all duration-150 ${currentValue === option.value ? "border-[#2c3f6e]" : "border-gray-500"}`}>
+                                {currentValue === option.value && <span className="size-2.5 rounded-full bg-[#2c3f6e]" />}
                             </span>
                             {option.label && (
                                 <span className={`text-sm leading-tight transition-colors duration-150 group-hover:text-[#2faae2] ${currentValue === option.value ? "font-medium text-foreground" : "text-foreground"}`}>

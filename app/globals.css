@@ -10,13 +10,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --accent-color: #79c4e7;
-  --accent-light: rgb(143, 199, 225) 7;
-  --accent-dark: #2da5dc;
+  --accent-color: #0f172b;
+  --accent-light: #2c3f6e;
+  --accent-dark: #000000;
 }
 
 .t-base {
-  color: var(--accent-color);
+  color: var(--accent-light);
 }
 
 .t-base-hover:hover {
@@ -25,6 +25,10 @@
 
 .b-base {
   background-color: var(--accent-color);
+}
+
+.b-base-light {
+  background-color: var(--accent-light);
 }
 
 .b-base-hover:hover {

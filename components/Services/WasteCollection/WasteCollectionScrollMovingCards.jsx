@@ -36,7 +36,7 @@ const Mobile = ({ heading, items }) => (
 );
 
 const MobileCard = ({ item, i }) => (
-    <div className={`${i % 2 === 0 ? "bg-[#97dbfa]" : "bg-[#46b7ec]"} p-5 h-110 rounded-2xl`}>
+    <div className={`${i % 2 === 0 ? "bg-slate-300" : "bg-slate-400"} p-5 h-110 rounded-2xl`}>
         <div className="flex flex-col justify-between h-full">
             <div className="relative size-15">
                 <Image src={"/waste/logo.svg"} alt={`Logo ${i + 1}`} fill style={{ objectFit: "contain" }} />
@@ -86,7 +86,7 @@ const DesktopCard = ({ item, i, scrollYProgress }) => {
         [0, 80 * direction]
     );
     return (
-        <motion.div style={{ y }} className={`${i % 2 === 0 ? "bg-[#97dbfa]" : "bg-[#46b7ec]"} p-5 h-110 rounded-2xl`}>
+        <motion.div style={{ y }} className={`${i % 2 === 0 ? "bg-slate-300" : "bg-slate-400"} p-5 h-110 rounded-2xl`}>
             <div className="flex flex-col justify-between h-full">
                 <div className="relative size-15">
                     <Image src="/waste/logo.svg" alt="" fill />

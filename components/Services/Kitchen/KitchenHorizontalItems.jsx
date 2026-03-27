@@ -43,10 +43,10 @@ function KitchenHorizontalItems() {
                 end: "right center",
                 onEnter: () => {
                     title.classList.remove("md:bg-gray-100");
-                    title.classList.add("md:bg-[#79c4e7]", "md:text-white");
+                    title.classList.add("md:bg-[#2c3f6e]", "md:text-white");
                 },
                 onLeaveBack: () => {
-                    title.classList.remove("md:bg-[#79c4e7]", "md:text-white");
+                    title.classList.remove("md:bg-[#2c3f6e]", "md:text-white");
                     title.classList.add("md:bg-gray-100");
                 },
             });
@@ -124,7 +124,7 @@ const Card = ({ dataItem }) => (
     <div className="k-card w-full md:w-xl flex-none">
         <div className="grid grid-cols-6 gap-2">
             <div className="col-span-4">
-                <h2 className="k-title py-4 px-4 text-white md:text-black bg-[#79c4e7] md:bg-gray-100 uppercase font-medium transition-colors">
+                <h2 className="k-title py-4 px-4 text-white md:text-black bg-[#2c3f6e] md:bg-gray-100 uppercase font-medium transition-colors">
                     {dataItem.title}
                 </h2>
                 <ul className="mt-7 px-4 space-y-3">

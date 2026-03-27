@@ -42,7 +42,7 @@ export default function CompaniesCard({ id, category, title, logo, locale }) {
                         <div className="">
                             <button
                                 className="group relative inline-flex items-center justify-center h-8 w-20 overflow-hidden rounded-full border-base text-[#0B0F14]
-                    transition-colors duration-300 group-hover:bg-[#79C4E7] group-hover:text-white" aria-label="Open company">
+                    transition-colors duration-300 group-hover:bg-[#2c3f6e] group-hover:text-white" aria-label="Open company">
                                 {locale === "ar"
                                     ? (
                                         <FiArrowLeft size={19} className={arrowClasses} />

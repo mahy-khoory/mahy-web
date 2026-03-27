@@ -62,15 +62,15 @@ export default function IndustriesGrid({ heading, industries }) {
                   rounded-xl
                   bg-white
                   transition-all
-                  hover:border-sky-400
+                  hover:border-slate-700
                   hover:shadow-lg
                 "
               >
                 <Icon
                   className="
                     text-4xl
-                    text-sky-500
-                    group-hover:text-sky-600
+                    text-slate-700
+                    group-hover:text-slate-800
                     transition-colors
                   "
                 />
@@ -92,7 +92,7 @@ export default function IndustriesGrid({ heading, industries }) {
                     bottom-5
                     h-[2px]
                     w-0
-                    bg-sky-500
+                    bg-slate-800
                     transition-all
                     duration-300
                     group-hover:w-12

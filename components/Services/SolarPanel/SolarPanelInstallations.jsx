@@ -26,7 +26,7 @@ function SolarPanelInstallations() {
         return () => window.removeEventListener("resize", update);
     }, []);
 
-    const ProgressCircle = ({ percent, stroke = 4, color = "#79c4e7" }) => {
+    const ProgressCircle = ({ percent, stroke = 4, color = "#2c3f6e" }) => {
         const radius = (circleSize - stroke) / 2;
         const circumference = 2 * Math.PI * radius;
         const offset = circumference * (1 - percent / 100);

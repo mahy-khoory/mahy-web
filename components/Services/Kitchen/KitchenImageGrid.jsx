@@ -14,7 +14,7 @@ function KitchenImageGrid({
             <div className="relative md:absolute inset-0 z-20 flex flex-col justify-between pt-10 pb-10 md:pb-13 max-w-7xl mx-auto px-5">
                 <div>
                     {/* <h1 className="t-base font-bold text-lg text-center md:text-start">{topHeading}</h1> */}
-                    <h2 className="text-white font-bold text-4xl md:text-5xl mt-4 text-center md:text-start">{headings[0]} <span className="block t-base mt-2">{headings[1]}</span></h2>
+                    <h2 className="text-white font-bold text-4xl md:text-5xl mt-4 text-center md:text-start">{headings[0]} <span className="block text-slate-400 mt-2">{headings[1]}</span></h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mt-8">
                     {items.map((item, i) => (

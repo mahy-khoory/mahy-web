@@ -19,7 +19,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
                 caption_label: "hidden",
                 dropdowns: "flex gap-2",
                 dropdown:
-                    "h-8 rounded-md border border-gray-300 bg-gray-50 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#79c4e7]",
+                    "h-8 rounded-md border border-gray-300 bg-gray-50 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2c3f6e]",
                 nav: "flex items-center gap-1 justify-between mb-3",
                 nav_button:
                     "h-8 w-8 rounded-md hover:bg-gray-100 flex items-center justify-center transition",
@@ -32,9 +32,9 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
                 day:
                     "h-9 w-9 text-center rounded-md text-sm hover:bg-gray-100 transition",
                 day_selected:
-                    "bg-[#79c4e7] text-white hover:bg-[#5fb3db]",
+                    "bg-[#2c3f6e] text-white hover:bg-[#5fb3db]",
                 day_today:
-                    "border border-[#79c4e7] text-[#79c4e7] font-semibold",
+                    "border border-[#2c3f6e] text-[#2c3f6e] font-semibold",
                 day_outside: "text-gray-300",
                 day_disabled: "text-gray-300 opacity-50",
                 ...classNames,

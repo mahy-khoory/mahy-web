@@ -18,7 +18,7 @@ export default function TrustedAdvisorSection({
 
   const Images = {
     first: images[0] || defaultFallBack[0],
-    second: images[1] || defaultFallBack[1], 
+    second: images[1] || defaultFallBack[1],
   };
   return (
     <section className="bg-white py-24">
@@ -103,7 +103,7 @@ export default function TrustedAdvisorSection({
                   backgroundColor: "#0B1320",
                 }}
                 transition={{ duration: 0.45, ease: "easeOut" }}
-                className="aspect-[4/5] bg-[#0A6CF1] text-white flex items-center justify-center text-center cursor-pointer"
+                className="aspect-[4/5] bg-slate-700 text-white flex items-center justify-center text-center cursor-pointer"
               >
                 <div>
                   <h3 className="text-5xl font-bold">1000+</h3>

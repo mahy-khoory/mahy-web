@@ -28,7 +28,7 @@ function WasteCollectionMenu({
                         <TabList className={"flex flex-wrap gap-y-2 gap-x-8 items-center mt-7"}>
                             {tabs.map((tab, i) => (
                                 <Tab key={i}
-                                    className={"text-sm border-b-3 py-2 border-transparent focus:outline-0 text-gray-400 data-selected:border-[#79c4e7] data-selected:text-[#79c4e7] transition-all duration-300 cursor-pointer"}>
+                                    className={"text-sm border-b-3 py-2 border-transparent focus:outline-0 text-gray-400 data-selected:border-[#2c3f6e] data-selected:text-[#2c3f6e] transition-all duration-300 cursor-pointer"}>
                                     {tab}
                                 </Tab>
                             ))}

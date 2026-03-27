@@ -27,7 +27,7 @@ function BoosterPumpSlideRevealSection({
                 <div className="max-w-md flex flex-col justify-between gap-10">
                     <div>
                         <div className="flex gap-2 items-center t-base">
-                            <StarsIcon fill="#79c4e7" size={15} />
+                            <StarsIcon fill="#2c3f6e" size={15} />
                             <span>{heading}</span>
                         </div>
                         <h2 className="text-4xl tracking-tight font-semibold mt-3 leading-11">{subHeading}</h2>
@@ -50,7 +50,7 @@ function BoosterPumpSlideRevealSection({
 
 const Card = ({ item, i }) => (
     <motion.div key={i} variants={itemVariants} initial="hidden" whileInView="visible" custom={i} viewport={{ once: true }}
-        className={`border-l-2 ${i % 2 === 0 ? "border-[#007db7]" : "border-[#79c4e7]"} bg-gray-50 p-5 w-full ${item.width}`}>
+        className={`border-l-2 ${i % 2 === 0 ? "border-[#007db7]" : "border-[#2c3f6e]"} bg-gray-50 p-5 w-full ${item.width}`}>
         <span className="text-xl font-medium">{item.title}</span>
         <p className="mt-1 text-gray-700 text-sm">{item.text}</p>
     </motion.div>

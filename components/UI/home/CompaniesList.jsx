@@ -46,7 +46,7 @@ function CompaniesList({ darkBg = false, industeriesFirst = true }) {
                             <TabList className={"flex items-center gap-5"}>
                                 {tabs.map((tab, i) => (
                                     <Tab key={i}
-                                        className={`border-b-4 py-3 px-7 border-transparent focus:outline-0 ${darkBg ? "text-gray-200" : "text-gray-400"} data-selected:border-[#79c4e7] data-selected:text-[#79c4e7] transition-all duration-300`}>
+                                        className={`border-b-4 py-3 px-7 border-transparent focus:outline-0 ${darkBg ? "text-gray-200" : "text-gray-400"} data-selected:border-[#2c3f6e] data-selected:text-[#2c3f6e] transition-all duration-300`}>
                                         {tab}
                                     </Tab>
                                 ))}

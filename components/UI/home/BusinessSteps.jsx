@@ -43,7 +43,7 @@ function BusinessSteps({ items, steps }) {
             </div>
             <div className="flex flex-wrap justify-center items-center mt-50 lg:mt-40 mx-5 gap-2">
                 <p>{items.text}</p>
-                <ScrollToTop href={"/contact-us"} className={"b-base px-6 py-3 text-sm inline-flex items-center font-medium transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 text-white rounded-full"}>
+                <ScrollToTop href={"/contact-us"} className={"b-base-light px-6 py-3 text-sm inline-flex items-center font-medium transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 text-white rounded-full"}>
                     Consult Now
                 </ScrollToTop>
             </div>

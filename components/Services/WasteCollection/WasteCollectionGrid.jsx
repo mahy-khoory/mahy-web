@@ -46,14 +46,14 @@ function WasteCollectionGrid({
               {items.map((item, i) => (
                 <div key={i} className="relative z-10">
                   <div className="flex gap-3 items-center">
-                    <div className="p-2 bg-[#2da5dc] text-white aspect-square">
+                    <div className="p-2 bg-slate-600 text-white aspect-square">
                       {icon ? icon : <FaQuestion size={25} />}
                     </div>
                     <h3>{item.query}</h3>
                   </div>
                   {item.reply && (
                     <div className="flex gap-3 items-center mt-4">
-                      <div className="p-2 bg-[#79c4e7] text-white aspect-square">
+                      <div className="p-2 bg-[#2c3f6e] text-white aspect-square">
                         <Mail size={25} />
                       </div>
                       <p className="text-gray-700">{item.reply}</p>

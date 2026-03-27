@@ -151,10 +151,10 @@ const MilestoneTimeline = ({ title, milestones }) => {
                     >
                         <defs>
                             <linearGradient id="timelineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#79c4e7 / 0)" />
-                                <stop offset="5%" stopColor="#79c4e7 / 1)" />
-                                <stop offset="95%" stopColor="#79c4e7 / 1)" />
-                                <stop offset="100%" stopColor="#79c4e7 / 0)" />
+                                <stop offset="0%" stopColor="#2c3f6e / 0)" />
+                                <stop offset="5%" stopColor="#2c3f6e / 1)" />
+                                <stop offset="95%" stopColor="#2c3f6e / 1)" />
+                                <stop offset="100%" stopColor="#2c3f6e / 0)" />
                             </linearGradient>
                         </defs>
 
@@ -162,7 +162,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                         <motion.path
                             d={pathD}
                             fill="none"
-                            stroke="#79c4e7"
+                            stroke="#2c3f6e"
                             strokeWidth={3}
                             strokeLinecap="round"
                             style={{ pathLength: lineProgress }}
@@ -193,14 +193,14 @@ const MilestoneTimeline = ({ title, milestones }) => {
                                         cx={dotX}
                                         cy={dotYs[i]}
                                         r={10}
-                                        fill="#79c4e7"
+                                        fill="#2c3f6e"
                                     />
                                     <circle
                                         cx={dotX}
                                         cy={dotYs[i]}
                                         r={18}
                                         fill="none"
-                                        stroke="#79c4e7 / 0.3)"
+                                        stroke="#2c3f6e / 0.3)"
                                         strokeWidth={1.5}
                                     />
                                 </motion.g>
@@ -283,7 +283,7 @@ const MilestoneTimeline = ({ title, milestones }) => {
                         <span>2026</span>
                     </div>
                     <div className="absolute left-0 right-0 bottom-3 flex justify-center items-center">
-                        <span className="text-xs border-2 border-[#79c4e7] t-base font-medium px-4 py-2 bg-white rounded-2xl">{milestones[activeIndex]?.year}</span>
+                        <span className="text-xs border-2 border-[#2c3f6e] t-base font-medium px-4 py-2 bg-white rounded-2xl">{milestones[activeIndex]?.year}</span>
                     </div>
                 </div>
             </div>

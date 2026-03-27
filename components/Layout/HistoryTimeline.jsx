@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HistoryTimeline({
   title = "Milestones of OPPO AI",
   items = [],
-  accent = "#79c4e7",
+  accent = "#2c3f6e",
 }) {
   const sectionRef = useRef(null);
   const pinWrapRef = useRef(null);

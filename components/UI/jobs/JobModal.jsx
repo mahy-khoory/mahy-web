@@ -96,7 +96,7 @@ export default function JobModal({ formLabels, toastText }) {
                                                 type="file"
                                                 accept="application/pdf"
                                                 required
-                                                className="mt-1 w-full text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-teal-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-[#79C4E7] hover:file:bg-[#8cc9e6] hover:file:text-white"
+                                                className="mt-1 w-full text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-teal-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-[#2c3f6e] hover:file:bg-[#8cc9e6] hover:file:text-white"
                                             />
                                         </div>
                                         {/* Actions */}

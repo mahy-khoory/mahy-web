@@ -11,7 +11,7 @@ function NewsroomSection({ articles, locale }) {
                     <h2 className='text-heading text-3xl md:text-5xl font-semibold tracking-tight uppercase'>Newsroom</h2>
                     <Link className='flex items-center gap-3 group' href={"/news"}>
                         <p>Visit the newsroom</p>
-                        <div className='bg-[#79c4e7] p-2 rounded-full group-hover:bg-[#2da5dc] transition-colors duration-500'>
+                        <div className='bg-[#2c3f6e] p-2 rounded-full group-hover:bg-[#2da5dc] transition-colors duration-500'>
                             <ChevronRight size={20} color='white' />
                         </div>
                     </Link>

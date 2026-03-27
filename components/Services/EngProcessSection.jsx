@@ -153,11 +153,11 @@ export default function EngProcessSection({
                   viewport={{ once: true, amount: 0.38 }}
                 >
                   <div className="relative">
-                    <div className="h-10 w-10 rounded-full bg-[#16F1A3] flex items-center justify-center text-[12px] font-semibold text-[#0B1320]">
+                    <div className="h-10 w-10 text-white rounded-full bg-slate-700 flex items-center justify-center text-[12px] font-semibold">
                       {i + 1} {/* Step number */}
                     </div>
                     {/* Dot outline */}
-                    <div className="absolute inset-0 rounded-full border-2 border-[#16F1A3]/50" />
+                    <div className="absolute inset-0 rounded-full border-2 border-slate-600" />
                   </div>
                   <div className="pt-[1px]">
                     <h3 className="text-[20px] font-semibold text-[#0B1320]">

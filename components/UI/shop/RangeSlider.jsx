@@ -65,13 +65,13 @@ const RangeSlider = ({ title, paramKey, min, max, step = 1 }) => {
                 minStepsBetweenThumbs={1}
             >
                 <SliderPrimitive.Track className="relative grow h-1 bg-[#9acee6] rounded-full">
-                    <SliderPrimitive.Range className="absolute h-full bg-[#79c4e7] rounded-full" />
+                    <SliderPrimitive.Range className="absolute h-full bg-[#2c3f6e] rounded-full" />
                 </SliderPrimitive.Track>
-                <SliderPrimitive.Thumb className="size-6 bg-white border-[3px] border-[#79c4e7] rounded-full shadow-md flex items-center cursor-grab active:cursor-grabbing justify-center outline-none">
-                    <span className="size-2 bg-[#79c4e7] rounded-full pointer-events-none" />
+                <SliderPrimitive.Thumb className="size-6 bg-white border-[3px] border-[#2c3f6e] rounded-full shadow-md flex items-center cursor-grab active:cursor-grabbing justify-center outline-none">
+                    <span className="size-2 bg-[#2c3f6e] rounded-full pointer-events-none" />
                 </SliderPrimitive.Thumb>
-                <SliderPrimitive.Thumb className="size-6 bg-white border-[3px] border-[#79c4e7] rounded-full shadow-md flex items-center cursor-grab active:cursor-grabbing justify-center outline-none">
-                    <span className="size-2 bg-[#79c4e7] rounded-full pointer-events-none" />
+                <SliderPrimitive.Thumb className="size-6 bg-white border-[3px] border-[#2c3f6e] rounded-full shadow-md flex items-center cursor-grab active:cursor-grabbing justify-center outline-none">
+                    <span className="size-2 bg-[#2c3f6e] rounded-full pointer-events-none" />
                 </SliderPrimitive.Thumb>
             </SliderPrimitive.Root>
         </div>

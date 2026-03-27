@@ -29,7 +29,7 @@ export default function ArrowActionButton({
     transition-colors
     duration-300
     hover:text-white
-    group-hover:bg-[#79C4E7]
+    group-hover:bg-[#2c3f6e]
     b-base-hover
   `,
     className

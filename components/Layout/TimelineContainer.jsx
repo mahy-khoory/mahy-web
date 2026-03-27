@@ -143,7 +143,7 @@ function TimelineContainer({ title }) {
     return (
         <section>
             <div className="md:hidden">
-                <MobileTimeline title={title} items={milestones} accent={"#79c4e7"} />
+                <MobileTimeline title={title} items={milestones} accent={"#2c3f6e"} />
             </div>
             <div className="hidden md:block">
                 <MilestoneTimeline title={title} milestones={milestones} />

@@ -65,7 +65,7 @@ function CompanyDetailCards({
                         <p key={index} className='text-gray-700'>{paragraph}</p>
                     ))}
                 </div>
-                <div className='md:w-[20%] bg-[#aed4e5] p-8 h-fit flex justify-center'>
+                <div className='md:w-[20%] bg-slate-500 p-8 h-fit flex justify-center'>
                     <Quote size={100} color='white' />
                 </div>
             </div>

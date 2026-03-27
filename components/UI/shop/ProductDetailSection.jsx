@@ -96,7 +96,7 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
                         <p className='font-medium uppercase text-sm text-gray-600 mb-2'>{product.models.length > 1 ? modelsHeading : modelHeading}</p>
                         {product.models.map((model, i) => (
                             <button key={i} onClick={() => setModelIndex(i)}
-                                className={`rounded-xl border border-[#79c4e7] ${i === modelIndex ? "text-white bg-[#79c4e7]" : "text-[#79c4e7]"}  py-1 px-4 mr-2 text-sm hover:text-white hover:bg-[#79c4e7] transition-colors duration-300`}>
+                                className={`rounded-xl border border-[#2c3f6e] ${i === modelIndex ? "text-white bg-[#2c3f6e]" : "text-[#2c3f6e]"}  py-1 px-4 mr-2 text-sm hover:text-white hover:bg-[#2c3f6e] transition-colors duration-300`}>
                                 {model}
                             </button>
                         ))}
@@ -105,7 +105,7 @@ function ProductDetailSection({ company, product, model, locale, currency, addTo
             </div>
             <div className='lg:w-2/6'>
                 <div className='border border-gray-300 rounded-lg p-5'>
-                    <Van stroke='#79c4e7' size={35} />
+                    <Van stroke='#2c3f6e' size={35} />
                     <p className='text-sm mt-2.5 text-gray-700'>Reliable delivery and great deals on quality products delivered to your door.</p>
                 </div>
                 <div className='border border-gray-300 rounded-lg p-5 mt-4'>

@@ -26,14 +26,14 @@ export default function GroupCompaniesGrid({ companies }) {
               key={i}
               className="
                 border
-                border-[#B7D7F5]
+                border-slate-400
                 rounded-[8px]
                 bg-white
                 px-6
                 py-5
                 min-h-[160px]
                 transition
-                hover:border-blue-400
+                hover:border-slate-600
               "
             >
               {/* Logo + Name */}

@@ -84,15 +84,13 @@ export default function CartDrawer() {
     return (
         <>
             <div
-                className={`fixed inset-0 z-40 bg-black/50 transition-all duration-300 ${
-                    isOpen ? "visible opacity-100" : "invisible opacity-0"
-                }`}
+                className={`fixed inset-0 z-40 bg-black/50 transition-all duration-300 ${isOpen ? "visible opacity-100" : "invisible opacity-0"
+                    }`}
                 onClick={closeCart}
             />
             <aside
-                className={`fixed right-0 top-0 z-50 h-full w-full max-w-md bg-white shadow-2xl transition-transform duration-300 ${
-                    isOpen ? "translate-x-0" : "translate-x-full"
-                }`}
+                className={`fixed right-0 top-0 z-50 h-full w-full max-w-md bg-white shadow-2xl transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
+                    }`}
             >
                 <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5">
                     <div>
@@ -163,7 +161,7 @@ export default function CartDrawer() {
                             </Link>
                             <Link
                                 href="/cart"
-                                className="w-full rounded-2xl bg-gradient-to-r from-[#79c4e7] to-[#3597d3] px-4 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-[#79c4e7]/40 transition hover:brightness-105"
+                                className="w-full rounded-2xl bg-gradient-to-r from-[#2c3f6e] to-[#3597d3] px-4 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-[#2c3f6e]/40 transition hover:brightness-105"
                                 onClick={closeCart}
                             >
                                 {t("Checkout")}

@@ -75,7 +75,7 @@ export default function ComprehensiveProcessSection({
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <p className="text-xs tracking-widest uppercase text-indigo-600 font-semibold mb-3">
+          <p className="text-xs tracking-widest uppercase t-base font-semibold mb-3">
             {subHeading}
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold text-[#0F1F3E] leading-tight">
@@ -103,7 +103,7 @@ export default function ComprehensiveProcessSection({
               <div className="absolute left-[18px] top-0 bottom-0 w-px bg-indigo-200">
                 <div
                   ref={lineRef}
-                  className="absolute top-0 left-0 w-px h-full bg-indigo-600"
+                  className="absolute top-0 left-0 w-px h-full b-base"
                 />
               </div>
 
@@ -111,7 +111,7 @@ export default function ComprehensiveProcessSection({
                 {steps.map((step, i) => (
                   <div key={i} className="relative flex gap-10">
                     <div className="relative z-10">
-                      <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center">
                         <div className="w-3 h-3 bg-white rounded-full" />
                       </div>
                     </div>

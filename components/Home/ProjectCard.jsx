@@ -93,7 +93,7 @@ export default function ProjectCard({ id, name, image }) {
             items-center
             justify-center
             rounded-full
-            bg-[#79C4E7]
+            bg-slate-900
             text-white
             shadow-lg
           "

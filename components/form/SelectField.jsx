@@ -34,7 +34,7 @@ export function SelectField({ label, value, onChange, options, placeholder = "Se
                 <div className="relative mt-1">
                     <Combobox.Input
                         ref={inputRef}
-                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#79c4e7]"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-900"
                         displayValue={(opt) => opt?.label || ""}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder={placeholder}
@@ -75,7 +75,7 @@ export function SelectField({ label, value, onChange, options, placeholder = "Se
                                     key={opt.value}
                                     value={opt}
                                     className={({ active }) =>
-                                        `combobox-option cursor-pointer select-none px-3 py-2 text-sm ${active ? "bg-[#79c4e7] text-white" : "text-gray-900"}`
+                                        `combobox-option cursor-pointer select-none px-3 py-2 text-sm ${active ? "bg-slate-900 text-white" : "text-gray-900"}`
                                     }
                                     onClick={() => setIsOpen(false)}
                                 >
