@@ -85,17 +85,17 @@ function ServiceCard({ item }) {
         scale: 1.01,
         transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
       }}
-      className="group relative rounded-2xl border border-blue-500/70 bg-white p-7 md:p-8 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:shadow-[0_18px_55px_rgba(2,8,23,0.10)]"
+      className="group relative rounded-2xl border border-slate-400 bg-white p-7 md:p-8 shadow-[0_0_0_rgba(0,0,0,0)] transition-shadow duration-300 hover:shadow-[0_18px_55px_rgba(2,8,23,0.10)]"
     >
       {/* subtle hover glow like the reference */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100">
-        <div className="absolute inset-6 rounded-2xl bg-blue-500/10" />
+        <div className="absolute inset-6 rounded-2xl bg-slate-500/10" />
       </div>
 
       <div className="relative flex gap-5">
         {/* Icon block (matches “icon on left” look) */}
         <div className="shrink-0">
-          <div className="relative grid h-12 w-12 place-items-center rounded-xl border border-blue-200 bg-white shadow-sm">
+          <div className="relative grid h-12 w-12 place-items-center rounded-xl border border-slate-200 bg-white shadow-sm">
             {/* tiny animated ring */}
             <motion.span
               aria-hidden
@@ -109,7 +109,7 @@ function ServiceCard({ item }) {
               whileHover={{ rotate: -6, scale: 1.05 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Icon className="h-6 w-6 text-blue-600" />
+              <Icon className="h-6 w-6 text-slate-600" />
             </motion.div>
           </div>
         </div>
@@ -127,7 +127,7 @@ function ServiceCard({ item }) {
       </div>
 
       {/* crisp border on hover */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-0 ring-blue-500/0 transition duration-300 group-hover:ring-2 group-hover:ring-blue-500/25" />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-0 ring-slate-500/0 transition duration-300 group-hover:ring-2 group-hover:ring-slate-500/25" />
     </motion.article>
   );
 }

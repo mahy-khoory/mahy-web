@@ -89,7 +89,7 @@ export default function PalletProcessSection({
               >
                 {/* Number */}
                 <div className="absolute left-0 top-1">
-                  <div className="w-10 h-10 rounded-full bg-emerald-400 text-black text-sm font-semibold flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-slate-400 text-black text-sm font-semibold flex items-center justify-center">
                     {String(index + 1).padStart(2, "0")}
                   </div>
                 </div>

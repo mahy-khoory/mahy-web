@@ -14,13 +14,13 @@ export default function CompanyVisionPurpose({
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-[#F4F1E8]">
+    <section className="bg-slate-900">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 py-14 sm:py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0">
 
           {/* LEFT SIDE */}
           <div className="lg:col-span-5">
-            <h2 className="font-serif text-[32px] sm:text-[40px] lg:text-[56px] leading-[1.15] text-[#1E1E1E]">
+            <h2 className="font-serif text-[32px] sm:text-[40px] lg:text-[56px] leading-[1.15] text-white">
               {heading}
             </h2>
 
@@ -28,7 +28,7 @@ export default function CompanyVisionPurpose({
             <div className="relative mt-8 sm:mt-10 lg:mt-14 lg:pl-10">
 
               {/* Vertical line (desktop only) */}
-              <span className="hidden lg:block absolute left-[10px] top-0 h-full w-px bg-[#CFC6B8]" />
+              <span className="hidden lg:block absolute left-[10px] top-0 h-full w-px bg-slate-300" />
 
               {/* Fade edges for mobile swipe */}
               <div className="relative lg:hidden">
@@ -59,15 +59,15 @@ export default function CompanyVisionPurpose({
                   >
                     {/* Active vertical indicator (desktop) */}
                     {activeIndex === i && (
-                      <span className="hidden lg:block absolute -left-[30px] top-1/2 h-[36px] w-px -translate-y-1/2 bg-[#8E826F]" />
+                      <span className="hidden lg:block absolute -left-[30px] top-1/2 h-[36px] w-px -translate-y-1/2 bg-slate-500" />
                     )}
 
                     <span
                       className={clsx(
                         "font-serif text-[18px] sm:text-[20px] lg:text-[22px] whitespace-nowrap transition-colors",
                         activeIndex === i
-                          ? "text-[#2B2B2B]"
-                          : "text-[#2B2B2B]/45"
+                          ? "text-white"
+                          : "text-white/45"
                       )}
                     >
                       {tab}
@@ -75,7 +75,7 @@ export default function CompanyVisionPurpose({
 
                     {/* Mobile underline */}
                     {activeIndex === i && (
-                      <span className="lg:hidden block mt-2 h-[1px] w-full bg-[#8E826F]" />
+                      <span className="lg:hidden block mt-2 h-[1px] w-full bg-slate-500" />
                     )}
                   </button>
                 ))}
@@ -113,21 +113,21 @@ export default function CompanyVisionPurpose({
               </div>
 
               {/* Content */}
-              <div className="bg-[#D9CFBF] px-5 sm:px-6 lg:px-8 py-6 sm:py-7 space-y-5">
+              <div className="bg-slate-500 px-5 sm:px-6 lg:px-8 py-6 sm:py-7 space-y-5">
                 {items[activeIndex].items?.map((item, i) => (
                   <div key={i}>
-                    <h3 className="font-serif text-[18px] sm:text-[20px] md:text-xl text-[#1E1E1E]">
+                    <h3 className="font-serif text-[18px] sm:text-[20px] md:text-xl text-white">
                       {item.title}
                     </h3>
 
                     {item.text && (
-                      <p className="mt-1.5 text-sm sm:text-base text-[#2B2B2B]/80 leading-relaxed">
+                      <p className="mt-1.5 text-sm sm:text-base text-white/80 leading-relaxed">
                         {item.text}
                       </p>
                     )}
 
                     {item.items && (
-                      <ul className="list-disc pl-5 mt-1.5 text-sm sm:text-base text-[#2B2B2B]/80 space-y-1.5">
+                      <ul className="list-disc pl-5 mt-1.5 text-sm sm:text-base text-white/80 space-y-1.5">
                         {item.items.map((bullet, index) => (
                           <li key={index}>{bullet}</li>
                         ))}
@@ -135,7 +135,7 @@ export default function CompanyVisionPurpose({
                     )}
 
                     {item.lastText && (
-                      <p className="mt-2 text-sm sm:text-base text-[#2B2B2B]/80 leading-relaxed">
+                      <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed">
                         {item.lastText}
                       </p>
                     )}
