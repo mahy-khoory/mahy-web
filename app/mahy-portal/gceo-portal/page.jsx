@@ -309,7 +309,7 @@ export default function GCEOPortalPage() {
         throw new Error(data?.message || "Failed to fetch documents");
       }
 
-      setDocuments(Array.isArray(data.data) ? data.data : []);
+      setDocuments(Array.isArray(data.data.data) ? data.data.data : []);
     } catch (err) {
       console.error(err);
       pushToast("Failed to load documents", err.message, "error");
