@@ -57,12 +57,12 @@ function PageHeading({ title, description, image }) {
                     {/* Title */}
                     <h1
                         ref={titleRef}
-                        className="text-white text-5xl font-semibold tracking-[-0.02em] leading-[1.05] bg-linear-to-r from-white via-white/90 to-white/70 bg-clip-text ">
+                        className="text-white text-3xl md:text-5xl font-semibold tracking-[-0.02em] leading-[1.05] bg-linear-to-r from-white via-white/90 to-white/70 bg-clip-text ">
                         {title}
                     </h1>
 
                     {/* Description */}
-                    <p ref={descRef} className="text-gray-400 mt-4 leading-relaxed max-w-2xl">
+                    <p ref={descRef} className="text-gray-400 mt-3 leading-relaxed max-w-2xl">
                         {description}
                     </p>
 
