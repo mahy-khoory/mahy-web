@@ -3,13 +3,42 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
-import { companies } from "@/constants/companies";
+import ExpandableCell from "@/components/UI/ExpandableCell";
 
 const GCEO_ALLOWED_ROLES = [
   "Group General Manager Bionic",
   "Dynamics 365 Administrator",
   "Power Platform Administrator",
   "Power BI Administrator",
+];
+
+const companies = [
+  "Al Dhafra Paper Manufacturing",
+  "Al Dhafra Waste Collection",
+  "Al Etihad Waste Management",
+  "Al Khoory Engineering",
+  "Al Mehvar Alfede General Trading L.L.C",
+  "Clean Earth L.L.C",
+  "Creative Solution Green Building",
+  "Emirates International Equipment & Machinery L.L.C",
+  "Green Arabia",
+  "Greenland Equipment & Machinery, Est. L.L.C",
+  "Greenland General Transport",
+  "MAHY Khoory & Co. L.L.C",
+  "MAHY Khoory Automotive",
+  "MAHY Khoory Motors",
+  "MAHY Khoory Trading",
+  "National Paper Industry",
+  "Pearl Marina Hotel Apartments",
+  "Pure Energy Construction L.L.C",
+  "Recyclable Waste Management Division",
+  "Senan Industry L.L.C",
+  "Solid Waste Management Division",
+  "The Market Restaurant & Cafe",
+  "Union Nonwoven Industries",
+  "Union Paper Mills",
+  "Union Sustainable Packaging Solutions",
+  "Union Wood Works"
 ];
 
 const getUniqueValues = (items, extractor) => {
@@ -51,10 +80,35 @@ const FILTER_INPUT_CLASS =
 const FILTER_OPTION_CLASS = "bg-[#101b2f] text-white";
 
 const TABLE_HEAD_CELL_CLASS =
-  "px-3 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/60 whitespace-nowrap";
+  "px-3 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/60 whitespace-nowrap text-center";
 
 const TABLE_CELL_BASE_CLASS =
-  "px-3 py-4 align-middle text-sm text-white/85";
+  "px-3 py-4 align-middle text-sm text-white/85 text-center";
+
+const formatDateTimeGST = (iso) => {
+  if (!iso) return { date: "-", time: "-" };
+
+  const dateObj = new Date(iso);
+
+  // Date → DD-MM-YYYY
+  const day = dateObj.getUTCDate();
+  const month = dateObj.getUTCMonth() + 1;
+  const year = dateObj.getUTCFullYear();
+
+  // Time → GST (UTC+4)
+  const gstTime = new Date(dateObj.getTime() + 4 * 60 * 60 * 1000);
+
+  let hours = gstTime.getUTCHours();
+  const minutes = gstTime.getUTCMinutes().toString().padStart(2, "0");
+
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+
+  return {
+    date: `${day}-${month}-${year}`,
+    time: `${hours}:${minutes} ${ampm} GST`,
+  };
+};
 
 function ToastStack({ toasts, removeToast }) {
   return (
@@ -67,23 +121,21 @@ function ToastStack({ toasts, removeToast }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className={`pointer-events-auto overflow-hidden rounded-2xl border px-4 py-3 shadow-2xl backdrop-blur-xl ${
-              toast.type === "success"
-                ? "border-emerald-400/25 bg-emerald-500/12 text-emerald-100"
-                : toast.type === "error"
-                  ? "border-red-400/25 bg-red-500/12 text-red-100"
-                  : "border-sky-400/25 bg-sky-500/12 text-sky-100"
-            }`}
+            className={`pointer-events-auto overflow-hidden rounded-2xl border px-4 py-3 shadow-2xl backdrop-blur-xl ${toast.type === "success"
+              ? "border-emerald-400/25 bg-emerald-500/12 text-emerald-100"
+              : toast.type === "error"
+                ? "border-red-400/25 bg-red-500/12 text-red-100"
+                : "border-sky-400/25 bg-sky-500/12 text-sky-100"
+              }`}
           >
             <div className="flex items-start gap-3">
               <div
-                className={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full ${
-                  toast.type === "success"
-                    ? "bg-emerald-400"
-                    : toast.type === "error"
-                      ? "bg-red-400"
-                      : "bg-sky-400"
-                }`}
+                className={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full ${toast.type === "success"
+                  ? "bg-emerald-400"
+                  : toast.type === "error"
+                    ? "bg-red-400"
+                    : "bg-sky-400"
+                  }`}
               />
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold">{toast.title}</p>
@@ -184,8 +236,6 @@ function ConfirmDialog({
 }
 
 export default function GCEOPortalPage() {
-
-  
   const [documents, setDocuments] = useState([]);
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [selectedDocs, setSelectedDocs] = useState([]);
@@ -253,7 +303,7 @@ export default function GCEOPortalPage() {
         `${API}api/gceo/documents?status=${statusFilter}`,
       );
       const data = await res.json();
-      console.log(data);
+      console.log("response", data);
 
       if (!res.ok || !data.success) {
         throw new Error(data?.message || "Failed to fetch documents");
@@ -304,7 +354,7 @@ export default function GCEOPortalPage() {
     };
 
     documents.forEach((doc) => register(doc.company));
-    companies.forEach((company) => register(company.label));
+    companies.forEach((company) => register(company));
 
     return ordered;
   }, [documents]);
@@ -760,7 +810,7 @@ export default function GCEOPortalPage() {
               </div>
 
               <div>
-                <label className={FILTER_LABEL_CLASS}>Document Type</label>
+                <label className={`${FILTER_LABEL_CLASS} xl:mb-6.75`}>Document Type</label>
                 <select
                   value={documentTypeFilter}
                   onChange={(e) => setDocumentTypeFilter(e.target.value)}
@@ -782,7 +832,7 @@ export default function GCEOPortalPage() {
               </div>
 
               <div>
-                <label className={FILTER_LABEL_CLASS}>Approval Urgency</label>
+                <label className={`${FILTER_LABEL_CLASS} xl:mb-6.75`}>Approval Urgency</label>
                 <select
                   value={urgencyFilter}
                   onChange={(e) => setUrgencyFilter(e.target.value)}
@@ -893,8 +943,9 @@ export default function GCEOPortalPage() {
                       <th className={TABLE_HEAD_CELL_CLASS}>Severity</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Urgency</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Amount</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Date & Time</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Status</th>
-                      <th className={TABLE_HEAD_CELL_CLASS}>Uploaded At</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Additional Remarks</th>
                       <th className={`${TABLE_HEAD_CELL_CLASS} text-right`}>
                         Actions
                       </th>
@@ -936,125 +987,126 @@ export default function GCEOPortalPage() {
                         </td>
                       </tr>
                     ) : (
-                      filteredDocuments.map((doc, index) => (
-                        <motion.tr
-                          key={doc.id}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.2, delay: index * 0.02 }}
-                          className="border-b border-white/[0.05] transition hover:bg-white/[0.06]"
-                        >
-                          <td className={`${TABLE_CELL_BASE_CLASS} w-[40px]`}>
-                            <input
-                              type="checkbox"
-                              checked={selectedDocs.includes(doc.id)}
-                              onChange={() => toggleSelect(doc.id)}
-                              className="h-4 w-4 cursor-pointer rounded border-white/20 bg-transparent accent-sky-500"
-                            />
-                          </td>
+                      filteredDocuments.map((doc, index) => {
+                        const { date, time } = formatDateTimeGST(doc.createdAt);
+                        return (
+                          <motion.tr
+                            key={doc.id}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2, delay: index * 0.02 }}
+                            className="border-b border-white/[0.05] transition hover:bg-white/[0.06]"
+                          >
+                            <td className={`${TABLE_CELL_BASE_CLASS} w-[40px]`}>
+                              <input
+                                type="checkbox"
+                                checked={selectedDocs.includes(doc.id)}
+                                onChange={() => toggleSelect(doc.id)}
+                                className="h-4 w-4 cursor-pointer rounded border-white/20 bg-transparent accent-sky-500"
+                              />
+                            </td>
 
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} font-semibold text-white whitespace-nowrap`}
-                          >
-                            {doc.referenceNo || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white/80 whitespace-nowrap`}
-                            title={doc.company || ""}
-                          >
-                            {doc.company || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white/75 whitespace-nowrap`}
-                            title={doc.department || ""}
-                          >
-                            {doc.department || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white/70 max-w-[200px] truncate`}
-                            title={doc.uploadedByEmail || ""}
-                          >
-                            {doc.uploadedByEmail || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white/80 whitespace-nowrap`}
-                            title={doc.documentType || ""}
-                          >
-                            {doc.documentType || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-normal leading-5 max-w-[260px]`}
-                            title={doc.description || ""}
-                          >
-                            {doc.description || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
-                          >
-                            {doc.severity || "-"}
-                          </td>
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
-                          >
-                            {doc.urgency || "-"}
-                          </td>
-
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap tabular-nums font-semibold`}
-                          >
-                            {doc.amount
-                              ? Number(doc.amount).toLocaleString()
-                              : "-"}
-                          </td>
-
-                          <td
-                            className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-nowrap`}
-                          >
-                            {doc.createdAt || "-"}
-                          </td>
-
-                          <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap`}>
-                            <span
-                              className={`inline-flex min-w-[96px] justify-center rounded-full px-3 py-1.5 text-xs font-semibold ${badge(
-                                doc.status,
-                              )}`}
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} font-semibold text-white whitespace-nowrap`}
                             >
-                              {doc.status}
-                            </span>
-                          </td>
+                              {doc.userReferenceNo || "-"}
+                            </td>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white/80 whitespace-nowrap`}
+                              title={doc.company || ""}
+                            >
+                              {doc.company || "-"}
+                            </td>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white/75 whitespace-nowrap`}
+                              title={doc.department || ""}
+                            >
+                              {doc.department || "-"}
+                            </td>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white/70 max-w-[200px] truncate`}
+                              title={doc.uploadedByEmail || ""}
+                            >
+                              {doc.uploadedByEmail || "-"}
+                            </td>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white/80 whitespace-nowrap`}
+                              title={doc.documentType || ""}
+                            >
+                              {doc.documentType || "-"}
+                            </td>
 
-                          <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap text-right`}>
-                            <div className="flex flex-wrap justify-end gap-2">
-                              <button
-                                onClick={() => downloadFile(doc.id)}
-                                className={`${ACTION_BUTTON_BASE} border border-white/12 bg-white/[0.03] text-white/90 hover:bg-white/[0.08]`}
+                            <ExpandableCell text={doc.description || "-"} tableClasses={TABLE_CELL_BASE_CLASS} />
+
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
+                            >
+                              {doc.severity || "-"}
+                            </td>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
+                            >
+                              {doc.urgency || "-"}
+                            </td>
+
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap tabular-nums font-semibold`}
+                            >
+                              {doc.amount
+                                ? Number(doc.amount).toLocaleString()
+                                : "-"}
+                            </td>
+
+                            <td className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-nowrap`}>
+                              <div>{date}</div>
+                              <div className="text-xs opacity-70 mt-0.5">{time}</div>
+                            </td>
+
+                            <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap`}>
+                              <span
+                                className={`inline-flex min-w-[96px] justify-center rounded-full px-3 py-1.5 text-xs font-semibold ${badge(
+                                  doc.status,
+                                )}`}
                               >
-                                View
-                              </button>
+                                {doc.status}
+                              </span>
+                            </td>
 
-                              {doc.status === "PENDING" && (
-                                <>
-                                  <button
-                                    onClick={() => openApproveDialog(doc.id)}
-                                    disabled={actionLoading}
-                                    className={`${ACTION_BUTTON_BASE} bg-emerald-600 text-white hover:bg-emerald-500`}
-                                  >
-                                    Approve
-                                  </button>
+                            <ExpandableCell text={doc.remarks || "-"} tableClasses={TABLE_CELL_BASE_CLASS} />
 
-                                  <button
-                                    onClick={() => openRejectDialog(doc.id)}
-                                    disabled={actionLoading}
-                                    className={`${ACTION_BUTTON_BASE} bg-red-600 text-white hover:bg-red-500`}
-                                  >
-                                    Reject
-                                  </button>
-                                </>
-                              )}
-                            </div>
-                          </td>
-                        </motion.tr>
-                      ))
+                            <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap text-right`}>
+                              <div className="flex flex-wrap justify-end gap-2">
+                                <button
+                                  onClick={() => downloadFile(doc.id)}
+                                  className={`${ACTION_BUTTON_BASE} border border-white/12 bg-white/[0.03] text-white/90 hover:bg-white/[0.08]`}
+                                >
+                                  View
+                                </button>
+
+                                {doc.status === "PENDING" && (
+                                  <>
+                                    <button
+                                      onClick={() => openApproveDialog(doc.id)}
+                                      disabled={actionLoading}
+                                      className={`${ACTION_BUTTON_BASE} bg-emerald-600 text-white hover:bg-emerald-500`}
+                                    >
+                                      Approve
+                                    </button>
+
+                                    <button
+                                      onClick={() => openRejectDialog(doc.id)}
+                                      disabled={actionLoading}
+                                      className={`${ACTION_BUTTON_BASE} bg-red-600 text-white hover:bg-red-500`}
+                                    >
+                                      Reject
+                                    </button>
+                                  </>
+                                )}
+                              </div>
+                            </td>
+                          </motion.tr>
+                        )
+                      })
                     )}
                   </tbody>
                 </table>

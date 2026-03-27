@@ -165,7 +165,7 @@ export default function DocumentsPage() {
                     key={doc.id}
                     className="border-b border-white/5 hover:bg-white/5"
                   >
-                    <td className="p-4 font-medium">{doc.referenceNo}</td>
+                    <td className="p-4 font-medium">{doc.userReferenceNo}</td>
 
                     <td className="p-4">{doc.documentType}</td>
 
