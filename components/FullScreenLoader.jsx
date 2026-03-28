@@ -44,25 +44,25 @@ export default function FullScreenLoader({ onFinish }) {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
-      
       <div className="relative w-full max-w-md mb-6">
         <div
           className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none"
           style={{
             width: `${progress}%`,
-            height: "40px",
+            height: "180%",
             borderRadius: "9999px",
             background: `
-              linear-gradient(
-                90deg,
-                rgba(59,130,246,0) 0%,
-                rgba(59,130,246,0.15) 20%,
-                rgba(96,165,250,0.35) 50%,
-                rgba(147,197,253,0.85) 85%,
-                rgba(147,197,253,1) 100%
-              )
-            `,
-            filter: "blur(18px)",
+      linear-gradient(
+        90deg,
+        rgba(59,130,246,0) 0%,
+        rgba(59,130,246,0.12) 25%,
+        rgba(96,165,250,0.28) 55%,
+        rgba(147,197,253,0.7) 85%,
+        rgba(147,197,253,0.9) 100%
+      )
+    `,
+            filter: "blur(10px)",
+            transform: "translateY(-50%) scaleY(0.7)",
             zIndex: 1,
           }}
         />
