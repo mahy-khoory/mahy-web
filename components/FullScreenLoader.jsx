@@ -44,14 +44,9 @@ export default function FullScreenLoader({ onFinish }) {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
-      
-      {/* Progress Bar */}
       <div className="w-full max-w-md h-3.5 bg-white/15 rounded-full relative mb-6 overflow-visible">
-        
-        {/* Track border */}
         <div className="absolute inset-0 rounded-full border border-white/10" />
 
-        {/* Progress Fill */}
         <div
           className="h-full relative rounded-full transition-all duration-100 ease-linear overflow-visible"
           style={{
@@ -60,19 +55,20 @@ export default function FullScreenLoader({ onFinish }) {
             borderRadius: "9999px",
           }}
         >
-          
           <div className="absolute inset-0 pointer-events-none flex items-center">
             <div
-              className="h-8 rounded-full blur-2xl opacity-80 transition-all duration-100 ease-linear"
+              className="h-10 blur-2xl opacity-80"
               style={{
                 width: `${progress}%`,
-                background:
-                  "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
+                background: `
+        radial-gradient(circle at 95% 50%, rgba(147,197,253,0.9), transparent 70%),
+        linear-gradient(90deg, rgba(59,130,246,0.4), rgba(147,197,253,0.2), transparent)
+      `,
+                borderRadius: "9999px",
               }}
             />
           </div>
 
-        
           <div
             className="absolute inset-0 rounded-full"
             style={{
@@ -80,8 +76,6 @@ export default function FullScreenLoader({ onFinish }) {
                 "0 0 10px rgba(59,130,246,0.7), 0 0 20px rgba(59,130,246,0.5)",
             }}
           />
-
-          {/* Shine effect */}
           <div className="absolute inset-0 overflow-hidden rounded-full">
             <div className="shine-bar" />
           </div>
