@@ -215,6 +215,40 @@ button {
 .shine-bar {
   position: absolute;
   top: 0;
+  left: -35%;
+  width: 28%;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.06) 80%,
+    transparent 100%
+  );
+  filter: blur(4px);
+  animation: shineMove 2.2s ease-in-out infinite;
+}
+
+@keyframes shineMove {
+  0% {
+    left: -35%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+
+/* .shine-bar {
+  position: absolute;
+  top: 0;
   left: -60%;
   width: 30%;
   height: 100%;
@@ -240,7 +274,7 @@ button {
     left: 120%;
     opacity: 0.4;
   }
-}
+} */
 
 @keyframes arrow-loop {
   0% {
