@@ -44,7 +44,7 @@ export default function FullScreenLoader({ onFinish }) {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
-      <div className="w-full max-w-md h-3 bg-white/15 rounded-full relative mb-6 overflow-visible">
+      <div className="w-full max-w-md h-3.5 bg-white/15 rounded-full relative mb-6 overflow-visible">
        
         <div className="absolute inset-0 rounded-full border border-white/10" />
 
@@ -69,7 +69,7 @@ export default function FullScreenLoader({ onFinish }) {
             className="absolute inset-0 rounded-full"
             style={{
               boxShadow:
-                "0 0 12px rgba(59,130,246,0.7), 0 0 25px rgba(59,130,246,0.5)",
+                "0 0 12px rgba(59,130,246,0.8), 0 0 25px rgba(59,130,246,0.6)",
             }}
           />
 
