@@ -69,7 +69,7 @@ export default function FullScreenLoader({ onFinish }) {
             className="absolute inset-0 rounded-full"
             style={{
               boxShadow:
-                "0 0 12px rgba(59,130,246,0.8), 0 0 25px rgba(59,130,246,0.6)",
+                "0 0 12px rgba(59,130,246,0.7), 0 0 25px rgba(59,130,246,1.2)",
             }}
           />
 
