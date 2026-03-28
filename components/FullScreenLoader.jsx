@@ -45,7 +45,6 @@ export default function FullScreenLoader({ onFinish }) {
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
       <div className="w-full max-w-md h-3.5 bg-white/15 rounded-full relative mb-6 overflow-visible">
-       
         <div className="absolute inset-0 rounded-full border border-white/10" />
 
         {/* Progress Fill */}
@@ -58,7 +57,7 @@ export default function FullScreenLoader({ onFinish }) {
         >
           <div className="absolute inset-0 pointer-events-none flex items-center">
             <div
-              className="w-full h-8 blur-2xl opacity-80"
+              className="w-full h-8 rounded-full blur-2xl opacity-80"
               style={{
                 background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
               }}
@@ -69,11 +68,10 @@ export default function FullScreenLoader({ onFinish }) {
             className="absolute inset-0 rounded-full"
             style={{
               boxShadow:
-                "0 0 12px rgba(59,130,246,0.7), 0 0 25px rgba(59,130,246,1.2)",
+                "0 0 12px rgba(59,130,246,0.7), 0 0 25px rgba(59,130,246,0.9)",
             }}
           />
 
-         
           <div className="absolute inset-0 overflow-hidden rounded-full">
             <div className="shine-bar" />
           </div>
