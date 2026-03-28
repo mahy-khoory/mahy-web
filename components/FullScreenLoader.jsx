@@ -55,14 +55,16 @@ export default function FullScreenLoader({ onFinish }) {
             background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
           }}
         >
-          <div className="absolute inset-0 pointer-events-none flex items-center">
-            <div
-              className="w-full h-8 rounded-full blur-2xl opacity-80"
-              style={{
-                background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
-              }}
-            />
-          </div>
+          <div
+            className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+            style={{
+              width: "100%",
+              height: "14px",
+              filter: "blur(12px)",
+              opacity: 0.7,
+              background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
+            }}
+          />
 
           <div
             className="absolute inset-0 rounded-full"
