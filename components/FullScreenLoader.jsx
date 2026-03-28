@@ -56,19 +56,16 @@ export default function FullScreenLoader({ onFinish }) {
             borderRadius: "9999px",
           }}
         >
-          <div className="absolute inset-0 pointer-events-none flex items-center">
-            <div
-              className="h-10 blur-2xl opacity-80"
-              style={{
-                width: `${progress}%`,
-                background: `
-        radial-gradient(circle at 95% 50%, rgba(147,197,253,0.9), transparent 70%),
-        linear-gradient(90deg, rgba(59,130,246,0.4), rgba(147,197,253,0.2), transparent)
-      `,
-                borderRadius: "9999px",
-              }}
-            />
-          </div>
+          <div
+            className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+            style={{
+              width: "100%",
+              height: "14px",
+              filter: "blur(12px)",
+              opacity: 0.7,
+              background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
+            }}
+          />
 
           <div
             className="absolute inset-0 rounded-full"

@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import ExpandableCell from "@/components/UI/ExpandableCell";
+import Pagination from "@/components/UI/shop/Pagination";
+import { useSearchParams } from "next/navigation";
 
 const GCEO_ALLOWED_ROLES = [
   "Group General Manager Bionic",
@@ -236,6 +238,11 @@ function ConfirmDialog({
 }
 
 export default function GCEOPortalPage() {
+  const searchParams = useSearchParams();
+  const pageParam = searchParams.get("page");
+  const page = Number(pageParam) > 0 ? Number(pageParam) : 1;
+  const [totalPages, setTotalPages] = useState(1);
+
   const [documents, setDocuments] = useState([]);
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [selectedDocs, setSelectedDocs] = useState([]);
@@ -295,28 +302,35 @@ export default function GCEOPortalPage() {
     };
   }, []);
 
-  const fetchDocuments = async (showLoader = true) => {
+  const fetchDocuments = useCallback(async (showLoader = true) => {
     try {
       if (showLoader) setDocumentsLoading(true);
 
       const res = await fetch(
-        `${API}api/gceo/documents?status=${statusFilter}`,
+        `${API}api/gceo/documents?status=${statusFilter}&page=${page}&limit=15`
       );
       const data = await res.json();
-      console.log("response", data);
 
       if (!res.ok || !data.success) {
         throw new Error(data?.message || "Failed to fetch documents");
       }
 
       setDocuments(Array.isArray(data.data.data) ? data.data.data : []);
+
+      const total = Number(data?.data?.pagination);
+      setTotalPages(total > 0 ? total : 1);
+
     } catch (err) {
       console.error(err);
       pushToast("Failed to load documents", err.message, "error");
     } finally {
       if (showLoader) setDocumentsLoading(false);
     }
-  };
+  }, [page, statusFilter]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
 
   // useEffect(() => {
   //   if (!authReady || !hasGceoAccess) return;
@@ -370,6 +384,7 @@ export default function GCEOPortalPage() {
     return documents.filter((doc) => {
       const matchesSearch =
         doc.referenceNo?.toLowerCase().includes(search.toLowerCase()) ||
+        doc.userReferenceNo?.toLowerCase().includes(search.toLowerCase()) ||
         doc.uploadedByEmail?.toLowerCase().includes(search.toLowerCase());
       const normalize = (val) => (val || "").toString().trim().toLowerCase();
       const matchesCompany =
@@ -934,6 +949,7 @@ export default function GCEOPortalPage() {
                           className="h-4 w-4 cursor-pointer rounded border-white/20 bg-transparent accent-sky-500"
                         />
                       </th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>Document ID</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Reference</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Company</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Department</th>
@@ -1005,7 +1021,11 @@ export default function GCEOPortalPage() {
                                 className="h-4 w-4 cursor-pointer rounded border-white/20 bg-transparent accent-sky-500"
                               />
                             </td>
-
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} font-semibold text-white whitespace-nowrap`}
+                            >
+                              {doc.referenceNo || "-"}
+                            </td>
                             <td
                               className={`${TABLE_CELL_BASE_CLASS} font-semibold text-white whitespace-nowrap`}
                             >
@@ -1112,6 +1132,10 @@ export default function GCEOPortalPage() {
                 </table>
               </div>
             </div>
+
+            <Pagination
+              currentPage={page} totalPages={totalPages} lightBg={false}
+            />
           </div>
         </div>
       </div>
