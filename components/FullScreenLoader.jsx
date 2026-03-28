@@ -16,8 +16,8 @@ export default function FullScreenLoader({ onFinish }) {
   ];
 
   useEffect(() => {
-    const duration = 10000; 
-    const intervalTime = 100; 
+    const duration = 10000;
+    const intervalTime = 100;
     const step = 100 / (duration / intervalTime);
 
     const interval = setInterval(() => {
@@ -44,26 +44,36 @@ export default function FullScreenLoader({ onFinish }) {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
-      <div className="w-full max-w-md h-2 bg-white/15 rounded-full relative mb-6 overflow-visible">
-        <div className="absolute inset-0 pointer-events-none flex items-center">
-          <div
-            className="w-full h-4 blur-2xl opacity-50"
-            style={{
-              background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
-            }}
-          />
-        </div>
+      <div className="w-full max-w-md h-3 bg-white/15 rounded-full relative mb-6 overflow-visible">
+       
+        <div className="absolute inset-0 rounded-full border border-white/10" />
 
+        {/* Progress Fill */}
         <div
-          className="h-full relative rounded-full transition-all duration-100 ease-linear overflow-hidden"
+          className="h-full relative rounded-full transition-all duration-100 ease-linear overflow-visible"
           style={{
             width: `${progress}%`,
             background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
-            boxShadow: "0 0 10px rgba(59,130,246,0.6)",
           }}
         >
-          <div className="absolute inset-0 rounded-full bg-white/10 blur-[2px]" />
+          <div className="absolute inset-0 pointer-events-none flex items-center">
+            <div
+              className="w-full h-5 blur-2xl opacity-60"
+              style={{
+                background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
+              }}
+            />
+          </div>
 
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              boxShadow:
+                "0 0 12px rgba(59,130,246,0.7), 0 0 25px rgba(59,130,246,0.5)",
+            }}
+          />
+
+         
           <div className="absolute inset-0 overflow-hidden rounded-full">
             <div className="shine-bar" />
           </div>
