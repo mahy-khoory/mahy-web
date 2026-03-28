@@ -58,7 +58,7 @@ export default function FullScreenLoader({ onFinish }) {
         >
           <div className="absolute inset-0 pointer-events-none flex items-center">
             <div
-              className="w-full h-5 blur-2xl opacity-60"
+              className="w-full h-8 blur-2xl opacity-80"
               style={{
                 background: "linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)",
               }}
