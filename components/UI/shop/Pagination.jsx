@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ currentPage, totalPages }) => {
+const Pagination = ({ currentPage, totalPages, lightBg = true }) => {
     const router = useRouter();
 
     const handlePageChange = (newPage) => {
@@ -12,6 +12,7 @@ const Pagination = ({ currentPage, totalPages }) => {
 
         const searchParams = new URLSearchParams(window.location.search);
         searchParams.set("page", newPage);
+        searchParams.set("limit", 15);
 
         router.push(
             `${window.location.pathname}?${searchParams.toString()}`,
@@ -58,17 +59,20 @@ const Pagination = ({ currentPage, totalPages }) => {
 
     return (
         <nav className="flex justify-center mt-8">
-            <div className="inline-flex items-center justify-center gap-1 border border-gray-200 bg-white rounded-2xl p-1.5">
+            <div className={`inline-flex items-center justify-center gap-1 border rounded-2xl p-1.5
+                    ${lightBg
+                    ? "border-gray-200 bg-white"
+                    : "border-white/8 bg-[#0c1525] shadow-[0_14px_45px_rgba(1,9,20,0.6)]"}`}>
                 {/* Previous Button */}
                 <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                     className={cn(
                         "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
-                        "hover:text-gray-800",
+                        lightBg ? "hover:text-gray-800" : "hover:text-gray-100",
                         currentPage === 1
-                            ? "cursor-not-allowed text-gray-700"
-                            : "text-gray-600"
+                            ? "cursor-not-allowed text-gray-600"
+                            : (lightBg ? "text-gray-600" : "hover:text-gray-200")
                     )}
                 >
                     <ChevronLeft className="h-4 w-4" />
@@ -82,7 +86,7 @@ const Pagination = ({ currentPage, totalPages }) => {
                             return (
                                 <span
                                     key={`ellipsis-${index}`}
-                                    className="flex h-10 w-10 items-center justify-center text-gray-500"
+                                    className={`flex h-10 w-10 items-center justify-center ${lightBg ? "text-gray-500" : "text-gray-400"} `}
                                 >
                                     ···
                                 </span>
@@ -99,9 +103,9 @@ const Pagination = ({ currentPage, totalPages }) => {
                                 className={cn(
                                     "flex h-10 w-10 items-center justify-center text-sm font-medium transition-all",
                                     "border border-transparent",
-                                    isCurrentPage && "border-gray-400 rounded-full bg-background font-semibold",
+                                    isCurrentPage && `border-gray-400 rounded-full ${lightBg ? "bg-background" : "bg-gray-800"} font-semibold`,
                                     isEndPage && !isCurrentPage && "border-gray-300 rounded-full",
-                                    !isCurrentPage && "text-gray-600 hover:text-gray-800"
+                                    !isCurrentPage && (lightBg ? "text-gray-600 hover:text-gray-800" : "text-gray-200 hover:text-gray-100")
                                 )}
                             >
                                 {page}
@@ -116,10 +120,10 @@ const Pagination = ({ currentPage, totalPages }) => {
                     disabled={currentPage === totalPages}
                     className={cn(
                         "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
-                        "hover:text-gray-800",
+                        lightBg ? "hover:text-gray-800" : "hover:text-gray-100",
                         currentPage === totalPages
-                            ? "cursor-not-allowed text-gray-500"
-                            : "text-gray-800"
+                            ? `cursor-not-allowed ${lightBg ? "text-gray-500" : "text-gray-600"}`
+                            : lightBg ? "text-gray-800" : "text-gray-200"
                     )}
                 >
                     Next
