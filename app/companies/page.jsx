@@ -59,29 +59,29 @@ async function Companies({ searchParams }) {
     ];
     const companies = [
         {
-            name: t("Comapny1"),
-            image: "/companies/Grundfos.jpg",
+            name: "MAHY Khoory Group",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774900740/union-industries_qsyee7.png",
             sectorId: 1,
             sizeId: 4,
             locationId: 1,
         },
         {
-            name: t("Comapny2"),
-            image: "/companies/oventop.jpeg",
+            name: "MAHY Khoory Trading",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774900740/union-industries_qsyee7.png",
             sectorId: 2,
             sizeId: 3,
             locationId: 2,
         },
         {
-            name: t("Comapny3"),
-            image: "/companies/partners-ariston.jpg",
+            name: "MAHY Khoory Automotive",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774900741/MKA_wwor7m.png",
             sectorId: 3,
             sizeId: 5,
             locationId: 3,
         },
         {
-            name: t("Comapny4"),
-            image: "/companies/partners-gaia.jpg",
+            name: "National Paper Industry ",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774901474/npi-logo_yq0h45.png",
             sectorId: 4,
             sizeId: 2,
             locationId: 4,
