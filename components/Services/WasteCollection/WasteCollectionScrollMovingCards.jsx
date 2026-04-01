@@ -17,7 +17,7 @@ function WasteCollectionScrollMovingCards({
 }) {
 
     return (
-        <section>
+        <section className="overflow-hidden">
             <Mobile heading={heading} items={items} />
             <Desktop heading={heading} items={items} />
         </section>

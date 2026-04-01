@@ -177,7 +177,7 @@ export default function Navbar({ navigation }) {
               <div className="flex items-center xl:gap-1">
                 <ScrollToTop
                   href={item.href}
-                  className="xl:px-4 py-2 rounded-full hover:bg-white/10 transition"
+                  className="xl:px-2 2xl:px-4 py-2 rounded-full hover:bg-white/10 transition"
                   
                 >
                   {item.label}
