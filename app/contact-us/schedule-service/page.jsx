@@ -32,7 +32,7 @@ export default async function ScheduleServicePage() {
     submit: [t("Submit1"), t("Submit2")],
   };
   return (
-    <main className="max-w-7xl mx-auto px-5 py-25">
+    <main className="max-w-7xl mx-auto md:px-5 pt-20 pb-10 md:pb-14">
       <main>
         <ServiceRequest />
       </main>

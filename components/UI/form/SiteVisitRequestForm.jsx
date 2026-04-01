@@ -451,6 +451,7 @@ export default function SiteVisitRequestForm() {
                         value={field.value}
                         onChange={field.onChange}
                         error={errors.preferredVisitDate?.message}
+                        disabled={(date) => date < new Date()}
                       />
                     )}
                   />

@@ -9,14 +9,13 @@ export const TextareaField = React.forwardRef(
             <div className={cn("space-y-1.5", className)}>
                 <Label className="text-sm font-medium text-foreground">
                     {label}
-                    {required && <span className="text-destructive ml-1">*</span>}
+                    {required && <span className="text-red-500 ml-1">*</span>}
                 </Label>
                 <Textarea
                     ref={ref}
-                    className={cn(error && "border-destructive")}
                     {...props}
                 />
-                {error && <p className="text-xs text-destructive">{error}</p>}
+                {error && <p className="text-xs text-red-500">{error}</p>}
             </div>
         );
     }

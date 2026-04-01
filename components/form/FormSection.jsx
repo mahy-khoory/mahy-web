@@ -1,6 +1,6 @@
 export function FormSection({ title, children }) {
     return (
-        <section className="space-y-4">
+        <section className="space-y-4 mt-6">
             <h2 className="text-gray-900 font-semibold border-b border-gray-300 pb-2">
                 {title}
             </h2>

@@ -94,7 +94,7 @@ export default function ServiceRequest() {
     defaultValues: {
       customerType: "organization",
       mobileCountryCode: "+971",
-
+      buildingType: "residential",
       pumpSymptoms: "",
       pumpObservedSigns: "",
       acSymptoms: "",
@@ -251,9 +251,9 @@ export default function ServiceRequest() {
         initial="hidden"
         animate="visible"
         variants={pageVariants}
-        className="min-h-screen bg-background py-8 px-4"
+        className="min-h-screen bg-background px-3 md:px-4"
       >
-        <div className="max-w-5xl mx-auto pt-20">
+        <div className="max-w-5xl mx-auto">
           <motion.div variants={sectionVariants}>
             <Card className="shadow-lg overflow-hidden">
               <CardHeader className="border-b border-gray-300">
@@ -278,7 +278,7 @@ export default function ServiceRequest() {
                 </motion.div>
               </CardHeader>
 
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                   {/* Customer & Site Information Section */}
                   <motion.div variants={sectionVariants}>
@@ -316,35 +316,31 @@ export default function ServiceRequest() {
                         />
                       </AnimatedField>
 
-                      <div className="grid grid-cols-3 gap-2">
-                        <Controller
-                          name="mobileCountryCode"
-                          control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Mobile"
-                              value={field.value}
-                              onChange={field.onChange}
-                              options={[...COUNTRY_CODES]}
-                            />
-                          )}
-                        />
-                        <div className="col-span-2">
-                          <InputField
-                            label=""
-                            placeholder="Mobile number"
-                            required
-                            error={errors.mobileNumber?.message}
-                            {...register("mobileNumber")}
-                          />
-                        </div>
-                      </div>
-
                       <InputField
                         label="Email"
                         type="email"
                         error={errors.email?.message}
                         {...register("email")}
+                      />
+
+                      <Controller
+                        name="mobileCountryCode"
+                        control={control}
+                        render={({ field }) => (
+                          <SelectField
+                            label="Country Code"
+                            value={field.value}
+                            required
+                            onChange={field.onChange}
+                            options={[...COUNTRY_CODES]}
+                          />
+                        )}
+                      />
+                      <InputField
+                        label="Mobile number"
+                        required
+                        error={errors.mobileNumber?.message}
+                        {...register("mobileNumber")}
                       />
 
                       <Controller
@@ -369,6 +365,7 @@ export default function ServiceRequest() {
                             label="Contract Expiry"
                             value={field.value}
                             onChange={field.onChange}
+                            disabled={(date) => date < new Date()}
                           />
                         )}
                       />
@@ -447,6 +444,7 @@ export default function ServiceRequest() {
                             label="Installation Date"
                             value={field.value}
                             onChange={field.onChange}
+                            disabled={(date) => date < new Date()}
                           />
                         )}
                       />
@@ -1129,6 +1127,7 @@ export default function ServiceRequest() {
                             options={[...PREFERRED_VISITS]}
                             required
                             error={errors.preferredVisit?.message}
+                            wrap={false}
                           />
                         )}
                       />

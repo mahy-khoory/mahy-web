@@ -65,7 +65,6 @@ export default async function RootLayout({ children }) {
         className={`${poppins.variable} antialiased`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-
         <ReactQueryProvider>
           <SmoothScrollProvider>
             <NextIntlClientProvider locale={locale}>

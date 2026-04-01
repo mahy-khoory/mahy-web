@@ -31,7 +31,7 @@ export function NumberField({
         <div className={cn("space-y-1.5", className)}>
             <Label className="text-sm font-medium text-foreground">
                 {label}
-                {required && <span className="text-destructive ml-1">*</span>}
+                {required && <span className="text-red-500 ml-1">*</span>}
                 {suffix && <span className="text-muted-foreground ml-1">({suffix})</span>}
             </Label>
             <Input
@@ -43,7 +43,7 @@ export function NumberField({
                 max={max}
                 className={cn(error && "border-destructive")}
             />
-            {error && <p className="text-xs text-destructive">{error}</p>}
+            {error && <p className="text-xs text-red-500">{error}</p>}
         </div>
     );
 }

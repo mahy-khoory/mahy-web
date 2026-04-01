@@ -162,19 +162,25 @@ export function FileUploadField({
                     {value.map((file, index) => (
                         <div
                             key={index}
-                            className="flex items-center gap-2 p-2 border border-border rounded-md bg-accent/50"
+                            className="group flex items-center gap-3 px-3 py-2 rounded-xl border border-border bg-gradient-to-r from-accent/40 to-accent/10 hover:shadow-sm transition-all"
                         >
-                            <FileText className="h-4 w-4 text-primary" />
-                            <span className="text-sm flex-1 truncate">{file.name}</span>
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
+                            <div className="p-2 rounded-lg bg-primary/10">
+                                <FileText className="h-4 w-4 text-primary" />
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                                <p className="text-sm text-gray-800 truncate">{file.name}</p>
+                                <p className="text-xs text-gray-500">
+                                    {(file.size / (1024 * 1024)).toFixed(2)} MB
+                                </p>
+                            </div>
+
+                            <button
                                 onClick={() => handleRemove(index)}
-                                className="h-6 w-6 p-0"
+                                className="opacity-0 group-hover:opacity-100 transition p-1.5 rounded-md hover:bg-red-50"
                             >
-                                <X className="h-4 w-4" />
-                            </Button>
+                                <X className="h-4 w-4 text-red-500" />
+                            </button>
                         </div>
                     ))}
                 </div>

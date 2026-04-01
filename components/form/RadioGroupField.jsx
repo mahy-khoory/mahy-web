@@ -10,10 +10,11 @@ export function RadioGroupField({
     options,
     required,
     error,
+    wrap = true
 }) {
     return (
         <FormField label={label} required={required} error={error}>
-            <RadioGroup value={value} onValueChange={onChange} className="flex items-center gap-4 mt-2">
+            <RadioGroup value={value} onValueChange={onChange} className={`flex items-center gap-4 mt-2 ${wrap && "flex-wrap"}`}>
                 {options.map((option) => (
                     <div key={option.value} className="flex items-center space-x-1.5">
                         <RadioGroupItem value={option.value} id={option.value} />
