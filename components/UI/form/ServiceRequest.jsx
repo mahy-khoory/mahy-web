@@ -105,6 +105,7 @@ export default function ServiceRequest() {
       businessImpact: "",
     },
   });
+  console.log(errors);
 
   const customerType = watch("customerType");
   const productCategory = watch("productCategory");
@@ -234,6 +235,7 @@ export default function ServiceRequest() {
       );
 
       await createMutation.mutateAsync(formData);
+
 
       toast.success("Service request submitted successfully");
     } catch (err) {
