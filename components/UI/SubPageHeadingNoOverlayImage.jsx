@@ -1,36 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import clsx from "clsx";
 
 export default function SubPageHeadingNoOverlayImage({
   image,
   image2,
-  height = "h-[100vh]",
+  height = "h-auto 2xl:h-screen"
 }) {
   return (
-    <section
-      className={clsx(
-        "relative w-full overflow-hidden flex flex-col",
-        height
-      )}>
+    <section className="relative w-full overflow-hidden flex flex-col">
       <div className="relative h-16.25">
         <Image
           src={image2}
-          alt={"bg"}
+          alt="bg"
           fill
           className="object-cover"
         />
       </div>
-      <div className="relative flex-1">
-        <Image
-          src={image}
-          alt={"hi"}
-          fill
-          priority
-          className="object-cover object-top"
-        />
-      </div>
+
+      <Image
+        src={image}
+        alt="hi"
+        sizes="100vw"
+        width={0}
+        height={0}
+        className="w-full h-auto object-cover object-top 2xl:h-screen"
+      />
     </section>
   );
 }

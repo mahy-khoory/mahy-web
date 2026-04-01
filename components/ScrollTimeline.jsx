@@ -123,7 +123,7 @@ const FirstSection = ({ title, start, end, image, texts }) => (
         </div>
         <div className="flex justify-center mt-6 xl:mt-8">
             <SlideReveal direction="left" triggerOnce={false}>
-                <div className="w-96 xl:w-6xl h-60 xl:h-110 flex-none relative">
+                <div className="w-full xl:w-6xl h-60 sm:h-80 md:90  xl:h-110 flex-none relative">
                     <Image
                         src={image}
                         alt={title}

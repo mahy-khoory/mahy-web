@@ -10,7 +10,7 @@ export default function SubPageHeading({
   description2,
   image,
   align = "center",
-  height = "h-[80vh]",
+  height = "pt-22 pb-12 lg:py-0 lg:h-[80vh]",
 }) {
   return (
     <section
@@ -47,7 +47,7 @@ export default function SubPageHeading({
       <div
         className="
           relative z-10
-          flex h-full items-center
+          flex h-full min-h-[60vh] items-center
         "
       >
         <div

@@ -58,7 +58,7 @@ function SustainabilitySection({
                         <div className="absolute inset-0 group-hover:scale-120 group-hover:blur-xs transition-all duration-300 ease-in-out">
                             <Image src={item.image} alt={item.title} fill style={{ objectFit: "cover" }} />
                         </div>
-                        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/90 to-transparent" />
                     </div>
                 ))}
             </div>

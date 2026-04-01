@@ -28,7 +28,8 @@ export default function ValuesSection({
     items,
     contribution2,
     impact,
-    impact2
+    impact2,
+    imageFirstInMobile = false
 }) {
     const isImageLeft = imagePosition === "left";
 
@@ -36,6 +37,26 @@ export default function ValuesSection({
         <section className={`w-full bg-white ${className}`}>
             <div className={`${width} ${padding}`}>
                 <div className={`grid items-center ${gap} ${isImageLeft ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                    {imageFirstInMobile && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.96 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                            className="w-full h-80 sm:h-120 md:h-150 lg:hidden"
+                        >
+                            <div className="group relative w-full overflow-hidden bg-slate-100 rounded-xl h-full">
+                                <div className="pointer-events-none absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-tr from-white/10 via-white/5 to-transparent" />
+                                <Image
+                                    src={imageSrc}
+                                    alt={imageAlt}
+                                    fill
+                                    priority={priority}
+                                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                                />
+                            </div>
+                        </motion.div>
+                    )}
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +79,7 @@ export default function ValuesSection({
                             </h2>
                         }
 
-                        <p className="mt-2 font-light leading-relaxed text-slate-700 text-sm">
+                        <p className="mt-3 font-light leading-relaxed text-slate-700 text-sm">
                             {description}
                         </p>
 
@@ -119,7 +140,7 @@ export default function ValuesSection({
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         viewport={{ once: true }}
-                        className={`w-full ${col2} h-80 lg:h-full`}
+                        className={`w-full ${col2} h-80 lg:h-full ${imageFirstInMobile && "hidden lg:block"}`}
                     >
                         <div className="group relative w-full overflow-hidden bg-slate-100 rounded-xl h-full">
                             <div className="pointer-events-none absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-tr from-white/10 via-white/5 to-transparent" />

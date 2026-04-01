@@ -9,7 +9,7 @@ async function ProjectDetailPage({ params }) {
     const project = getProject(id);
 
     return (
-        <main className="pb-14 pt-16 max-w-350 mx-auto px-4">
+        <main className="pb-8 md:pb-14 pt-16 max-w-350 mx-auto px-4">
             <Breadcrumb segments={[{ label: "Projects", href: "/projects" }, { label: project.name }]} locale={locale} maxWidth={false} />
             <ValuesSection
                 title={project.name}
@@ -24,12 +24,13 @@ async function ProjectDetailPage({ params }) {
                 impact={project.impact}
                 impact2={project.impact2}
                 width=""
-                gap={"gap-8 lg:grid-cols-5"}
+                gap={"gap-5 lg:gap-8 lg:grid-cols-5"}
                 h1={true}
                 col1={"lg:col-span-3"}
                 col2={"lg:col-span-2"}
                 padding=""
                 className="mt-4"
+                imageFirstInMobile={true}
             />
         </main>
     )
