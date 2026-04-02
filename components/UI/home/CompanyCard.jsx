@@ -17,7 +17,7 @@ function CompanyCard({ item, index, shouldPlay = false, onHoverStart, onHoverEnd
                     if (entry.isIntersecting) {
                         setTimeout(() => {
                             setPlay(true);
-                        }, 100);
+                        }, 400);
                     } else {
                         setPlay(false);
                     }
