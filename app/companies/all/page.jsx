@@ -12,7 +12,8 @@ function AllCompaniesPage() {
                 "Sustainability and responsible growth are central to the Group's philosophy, with significant operations in recycling, resource recovery, and environmental services. Its advanced infrastructure—including automated manufacturing facilities, logistics networks, and regional warehouses—supports efficient project execution and after-sales service. Looking ahead, the company focuses on controlled diversification, digital transformation, and technology adoption to remain competitive and resilient while delivering sustainable value to stakeholders.",
             ],
             image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438758/0_-_mahy-khoory-group_azokpi.jpg",
+                // "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438758/0_-_mahy-khoory-group_azokpi.jpg",
+                "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775160129/grundfos_cklxxr.png",
         },
         {
             title: "M.A.H.Y. Khoory Trading",
@@ -42,7 +43,7 @@ function AllCompaniesPage() {
                 "Headquartered in Dubai and supported by showrooms, warehouses, and a strong logistics network, Greenland ensures fast delivery and nationwide service coverage. It plays a strategic role within the MAHY Khoory Group as the primary HVAC and electromechanical trading arm, complementing the Group's broader engineering and pumping capabilities. With a focus on sustainability, innovation, and digital enablement—including smart controls, IoT-ready systems, and advanced energy-management tools—Greenland continues to strengthen its market presence and support the region's shift toward efficient, environmentally responsible building systems",
             ],
             image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438717/3_-_greenland-equipment_rcqppv.jpg",
+                "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775160049/greenland-mech_uenskm.jpg",
         },
         {
             title: "Al Mehwar Alfede General Trading LLC",
@@ -162,7 +163,8 @@ function AllCompaniesPage() {
                 "Sustainability is central to USPS operations, with a strong focus on recycling, reuse, and waste reduction. Its processes use chemical-free, recycled wood to produce eco-friendly packaging while supporting circular economy principles. Backed by advanced manufacturing, in-house design expertise, and strict quality standards, USPS delivers reliable and customized solutions. The company strengthens MAHY Khoory Group's position in industrial and environmental sectors by combining local expertise with global partnerships.",
             ],
             image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438764/15_-_union-packaging_uugj62.jpg",
+                // "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438764/15_-_union-packaging_uugj62.jpg",
+                "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775159998/palletbiz_qeqscs.jpg"
         },
         {
             title: "National Paper Industry (S.P.S - L.L.C)",
