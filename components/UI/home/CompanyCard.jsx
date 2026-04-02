@@ -14,19 +14,17 @@ function CompanyCard({ item, index, shouldPlay = false, onHoverStart, onHoverEnd
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    const rect = entry.boundingClientRect;
-                    const screenCenter = window.innerHeight / 2;
-                    const elementCenter = rect.top + rect.height / 2;
-                    const isAtCenter = Math.abs(screenCenter - elementCenter) < rect.height / 3;
-                    if (isAtCenter) {
-                        setTimeout(() => setPlay(true), 100);
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            setPlay(true);
+                        }, 100);
                     } else {
                         setPlay(false);
                     }
                 });
             },
             {
-                threshold: [0, 0.5, 1],
+                threshold: 0.6, // 60% visible
             }
         );
 
