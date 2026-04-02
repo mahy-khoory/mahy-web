@@ -2,39 +2,49 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 function CompanyCard({ item, index, shouldPlay = false, onHoverStart, onHoverEnd }) {
-    // const videoRef = useRef(null);
-    // useEffect(() => {
-    //     const videoElement = videoRef.current;
-    //     if (!videoElement) return;
-
-    //     if (shouldPlay) {
-    //         const playPromise = videoElement.play();
-    //         if (playPromise?.catch) {
-    //             playPromise.catch(() => { });
-    //         }
-    //     } else {
-    //         videoElement.pause();
-    //         videoElement.currentTime = 0;
-    //     }
-    // }, [shouldPlay]);
-
-    // const handleMouseEnter = () => {
-    //     if (onHoverStart) {
-    //         onHoverStart();
-    //     }
-    // };
-
-    // const handleMouseLeave = () => {
-    //     if (onHoverEnd) {
-    //         onHoverEnd();
-    //     }
-    // };
-
     const [play, setPlay] = useState(false);
+    const cardRef = useRef(null);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+        if (!isMobile) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const rect = entry.boundingClientRect;
+                    const screenCenter = window.innerHeight / 2;
+                    const elementCenter = rect.top + rect.height / 2;
+                    const isAtCenter = Math.abs(screenCenter - elementCenter) < rect.height / 3;
+                    if (isAtCenter) {
+                        setTimeout(() => setPlay(true), 100);
+                    } else {
+                        setPlay(false);
+                    }
+                });
+            },
+            {
+                threshold: [0, 0.5, 1],
+            }
+        );
+
+        if (cardRef.current) observer.observe(cardRef.current);
+
+        return () => {
+            if (cardRef.current) observer.unobserve(cardRef.current);
+        };
+    }, []);
 
     return (
-        <div className={`relative ${index === 0 ? "lg:row-span-2 lg:col-span-2 h-auto" : "h-80 md:h-40"} group overflow-hidden`}
-            onMouseEnter={() => setPlay(true)} onMouseLeave={() => setPlay(false)} onTouchEnd={() => (setPlay(!play))}>
+        <div
+            ref={cardRef}
+            className={`relative ${index === 0 ? "lg:row-span-2 lg:col-span-2 h-auto" : "h-80 md:h-40"} group overflow-hidden`}
+            onMouseEnter={() => setPlay(true)}
+            onMouseLeave={() => setPlay(false)}
+            onTouchEnd={() => setPlay(!play)}
+        >
             <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3]">
                 <Image src={item.image} alt={item.label} fill objectFit="cover" />
                 {play && (
