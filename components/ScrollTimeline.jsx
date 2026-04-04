@@ -61,8 +61,6 @@ export default function ScrollTimeline({ items, size = "lg" }) {
               </span>
             </div>
           ))}
-
-          {/* Slider Circle */}
           <div
             className="absolute left-1/2 w-5 h-5 bg-[#2da5dc] rounded-full transition-all duration-300"
             style={{
@@ -72,8 +70,6 @@ export default function ScrollTimeline({ items, size = "lg" }) {
           />
         </div>
       </div>
-
-      {/* CONTENT */}
       <div className="flex-1">
         {items.map((item, i) => (
           <div key={i} ref={(el) => (sectionsRef.current[i] = el)}>
