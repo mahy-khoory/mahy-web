@@ -4,11 +4,11 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "framer-motion";
-import { useCallback, useState } from "react";
 import IndustryCard from './IndustryCard';
 import { companies } from '@/constants/companies';
 import CompanyCard from './CompanyCard';
 import ScrollToTop from '../ScrollToTop';
+import { useRef, useState, useEffect } from "react";
 
 const industeries = [
     { label: "Trading", href: "/companies/trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" },
@@ -82,27 +82,57 @@ function CompaniesList({ darkBg = false, industeriesFirst = true }) {
     )
 };
 
-const CompaniesTab = ({ companies }) => (
-    <TabPanel
-        key="companies"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
-        as={motion.div}
-        initial={{ y: 10, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: false, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}>
-        {companies.map((company, i) => (
-            <CompanyCard
-                key={i}
-                index={i}
-                item={company}
-            // shouldPlay={shouldPlayVideos}
-            // onHoverStart={handleCardHoverStart}
-            // onHoverEnd={handleCardHoverEnd}
-            />
-        ))}
-    </TabPanel>
-);
+const CompaniesTab = ({ companies }) => {
+    const [activeIndex, setActiveIndex] = useState(null);
+    const refs = useRef([]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const screenCenter = window.innerHeight / 2;
+
+            let closestIndex = null;
+            let closestDistance = Infinity;
+
+            refs.current.forEach((el, i) => {
+                if (!el) return;
+
+                const rect = el.getBoundingClientRect();
+                const cardCenter = rect.top + rect.height / 2;
+
+                const distance = Math.abs(screenCenter - cardCenter);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = i;
+                }
+            });
+
+            setActiveIndex(closestIndex);
+        };
+
+        handleScroll(); // initial
+        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("resize", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleScroll);
+        };
+    }, []);
+
+    return (
+        <TabPanel className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {companies.map((company, i) => (
+                <CompanyCard
+                    index={i}
+                    ref={el => (refs.current[i] = el)}
+                    item={company}
+                    shouldPlay={activeIndex === i}
+                />
+            ))}
+        </TabPanel>
+    );
+};
 
 const IndustriesTab = ({ industeries, moreIndusteries }) => (
     <TabPanel

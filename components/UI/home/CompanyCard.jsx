@@ -1,63 +1,59 @@
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
-function CompanyCard({ item, index, shouldPlay = false, onHoverStart, onHoverEnd }) {
+const CompanyCard = forwardRef(({ item, index, shouldPlay }, ref) => {
+    const videoRef = useRef(null);
     const [play, setPlay] = useState(false);
-    const cardRef = useRef(null);
+    const [manualOverride, setManualOverride] = useState(false);
 
+    // 🔁 Sync only if user hasn't manually touched
     useEffect(() => {
-        if (typeof window === "undefined") return;
+        if (!manualOverride) {
+            setPlay(shouldPlay);
+        }
+    }, [shouldPlay, manualOverride]);
 
-        const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-        if (!isMobile) return;
+    // 🎥 Control video
+    useEffect(() => {
+        if (!videoRef.current) return;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            setPlay(true);
-                        }, 400);
-                    } else {
-                        setPlay(false);
-                    }
-                });
-            },
-            {
-                threshold: 0.6, // 60% visible
-            }
-        );
+        if (play) {
+            videoRef.current.play().catch(() => { });
+        } else {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+        }
+    }, [play]);
 
-        if (cardRef.current) observer.observe(cardRef.current);
-
-        return () => {
-            if (cardRef.current) observer.unobserve(cardRef.current);
-        };
-    }, []);
+    // 👆 Handle touch toggle
+    const handleTouch = () => {
+        setManualOverride(true);
+        setPlay(prev => !prev);
+    };
 
     return (
         <div
-            ref={cardRef}
-            className={`relative ${index === 0 ? "lg:row-span-2 lg:col-span-2 h-auto" : "h-80 md:h-40"} group overflow-hidden`}
+            ref={ref}
+            className={`relative ${index === 0 ? "lg:row-span-2 lg:col-span-2 h-80 md:h-auto" : "h-80 md:h-40"} group overflow-hidden`}
             onMouseEnter={() => setPlay(true)}
             onMouseLeave={() => setPlay(false)}
-            onTouchEnd={() => setPlay(!play)}
+            onTouchEnd={handleTouch}
         >
-            <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3]">
+            <div className="absolute inset-0">
                 <Image src={item.image} alt={item.label} fill objectFit="cover" />
-                {play && (
-                    <video
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                        preload="metadata"
-                        className="absolute inset-0 w-full h-full object-cover"
-                    >
-                        <source src={item.video} type="video/mp4" />
-                    </video>
-                )}
+
+                <video
+                    ref={videoRef}
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${play ? "opacity-100" : "opacity-0"}`}
+                >
+                    <source src={item.video} type="video/mp4" />
+                </video>
             </div>
+
             <div className="absolute inset-0 z-10 bg-linear-to-t from-black/30 to-transparent">
                 <div className={`absolute bottom-5 left-0 right-0 ${play ? "translate-y-0" : "translate-y-5"} transition-all duration-300`}>
                     <div className='flex justify-between gap-3 px-3'>
@@ -66,33 +62,8 @@ function CompanyCard({ item, index, shouldPlay = false, onHoverStart, onHoverEnd
                     <div className='h-px w-full bg-white mt-2 -translate-x-120 group-hover:translate-x-0 transition-all duration-500' />
                 </div>
             </div>
-        </div >
-    )
-}
+        </div>
+    );
+});
 
-export default CompanyCard
-
-
-
-
-// function CompanyCard({ item }) {
-//     return (
-//         <div className="relative h-60 md:h-45 group overflow-hidden">
-//             <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:scale-[1.3]">
-//                 <video muted loop playsInline autoPlay className="absolute inset-0 w-full h-full object-cover">
-//                     <source src={item.video} type="video/mp4" />
-//                 </video>
-//             </div>
-//             <div className="absolute inset-0 z-10 bg-linear-to-t from-black/30 to-transparent">
-//                 <div className='absolute bottom-5 left-0 right-0'>
-//                     <div className='flex justify-between gap-3 px-7'>
-//                         <p className='text-gray-50'>{item.label}</p>
-//                     </div>
-//                     <div className='h-px w-full bg-white mt-3 -translate-x-120 group-hover:translate-x-0 transition-all duration-500' />
-//                 </div>
-//             </div>
-//         </div >
-//     )
-// }
-
-// export default CompanyCard
+export default CompanyCard;
