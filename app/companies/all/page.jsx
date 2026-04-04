@@ -234,7 +234,7 @@ function AllCompaniesPage() {
                 "Innovation and sustainability are central to MAHY Khoory Motors' strategy, with a strong emphasis on EV and hybrid technologies. Supported by partnerships with leading automotive manufacturers, the company is aligned with the UAE's vision for smart and sustainable mobility. It continues to invest in advanced platforms, AI-enabled features, and connected vehicle technologies. As part of the MAHY Khoory Group, it strengthens the organization's presence in future-ready industries while delivering modern mobility solutions.",
             ],
             image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438739/22_-_mahy-motors_e8zmc6.jpg",
+                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1775283251/IMG_gwgb1p.png",
         },
         {
             title: "MAHY Khoory Automotive",
@@ -268,7 +268,6 @@ function AllCompaniesPage() {
         },
     ];
     return (
-        // <FullScreenLoader />
         <main>
             <SubPageHeading
                 title={"All Companies"}
@@ -276,12 +275,6 @@ function AllCompaniesPage() {
             />
             <ScrollTimeline
                 items={companies}
-            // items={[
-            //     { title: "1950", heading: "Pallion's Beginnings", text: "Palloys commences operations as Palloys Refining Co in Woollahra, Sydney, Australia, founded by Felix Parry (Felix Pisarewski), a Polish war hero who arrived in Australia as a refugee after the second world war. Palloys Refining Co's business is solely related to the refining of precious metals sourced from the jewellery and dental industries.", image: "/gallery/gallery-2.jpg" },
-            //     { title: "1980", heading: "Pallion's Beginnings", text: "Palloys commences operations as Palloys Refining Co in Woollahra, Sydney, Australia, founded by Felix Parry (Felix Pisarewski), a Polish war hero who arrived in Australia as a refugee after the second world war. Palloys Refining Co's business is solely related to the refining of precious metals sourced from the jewellery and dental industries.", image: "/gallery/gallery-3.jpg" },
-            //     { title: "2000", heading: "Pallion's Beginnings", text: "Palloys commences operations as Palloys Refining Co in Woollahra, Sydney, Australia, founded by Felix Parry (Felix Pisarewski), a Polish war hero who arrived in Australia as a refugee after the second world war. Palloys Refining Co's business is solely related to the refining of precious metals sourced from the jewellery and dental industries.", image: "/gallery/gallery-4.jpg" },
-            //     { title: "2020", heading: "Pallion's Beginnings", text: "Palloys commences operations as Palloys Refining Co in Woollahra, Sydney, Australia, founded by Felix Parry (Felix Pisarewski), a Polish war hero who arrived in Australia as a refugee after the second world war. Palloys Refining Co's business is solely related to the refining of precious metals sourced from the jewellery and dental industries.", image: "/gallery/gallery-5.jpg" },
-            // ]}
             />
         </main>
     );

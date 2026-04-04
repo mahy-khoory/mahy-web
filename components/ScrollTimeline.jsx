@@ -9,11 +9,6 @@ export default function ScrollTimeline({ items, size = "lg" }) {
   const sectionsRef = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const sizeClasses = {
-    sm: "px-4 py-2 text-xs gap-2",
-    lg: "px-8 py-4 text-base gap-3",
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       const triggerPoint = window.innerHeight / 2;
@@ -35,13 +30,15 @@ export default function ScrollTimeline({ items, size = "lg" }) {
 
   const stepHeight = 100 / (items.length - 1);
 
+  const isActiveDark = activeIndex % 2 !== 0;
+
   return (
     <section ref={containerRef} className="relative flex xl:pt-15">
       {/* TIMELINE */}
       <div className="w-40 hidden xl:flex justify-center">
         <div className="sticky top-1/2 -translate-y-1/2 h-[70vh]">
           {/* Vertical Line */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-[2px] h-full bg-gray-300" />
+          <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-gray-300" />
 
           {/* Titles */}
           {items.map((item, i) => (
@@ -56,8 +53,8 @@ export default function ScrollTimeline({ items, size = "lg" }) {
               <span
                 className={
                   i === activeIndex
-                    ? "font-semibold text-black"
-                    : "text-gray-800"
+                    ? `font-semibold ${isActiveDark ? "text-white" : "text-black"}`
+                    : `${isActiveDark ? "text-gray-300" : "text-gray-800"}`
                 }
               >
                 {i + 1}
