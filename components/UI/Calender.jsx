@@ -30,7 +30,9 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }) {
                 row: "flex w-full mt-2",
                 cell: "w-9 h-9 text-center relative",
                 day:
-                    "h-9 w-9 text-center rounded-md text-sm hover:bg-gray-100 transition",
+                    "text-center text-sm",
+                day_button:
+                    "flex h-9 w-9 items-center justify-center rounded-md transition hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2c3f6e] focus-visible:ring-offset-2",
                 day_selected:
                     "bg-[#2c3f6e] text-white hover:bg-[#5fb3db]",
                 day_today:

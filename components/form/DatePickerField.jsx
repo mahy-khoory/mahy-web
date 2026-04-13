@@ -37,7 +37,7 @@ export function DatePickerField({
                         onSelect={onChange}
                         disabled={disabled}
                         initialFocus
-                        className="pointer-events-auto bg-white rounded-md"
+                        className="bg-white rounded-md"
                     />
                 </PopoverContent>
             </Popover>

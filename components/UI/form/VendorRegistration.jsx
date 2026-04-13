@@ -548,8 +548,6 @@ export default function VendorRegistration() {
                           label="Company name"
                           {...register("companyName")}
                         />
-
-                        {/* Regular-specific organization fields */}
                         <AnimatedField show={isRegular}>
                           <div className="flex items-center gap-2">
                             <Controller
@@ -596,20 +594,29 @@ export default function VendorRegistration() {
                         </AnimatedField>
 
                         <AnimatedField show={trnType === "with_trn"}>
-                          <InputField
-                            label="TRN"
-                            required
-                            error={errors.trn?.message}
-                            inputMode="numeric"
-                            autoComplete="off"
-                            placeholder="Enter 15-digit TRN"
-                            {...register("trn", {
-                              onChange: (e) => {
-                                e.target.value = e.target.value
-                                  .replace(/\D/g, "")
-                                  .slice(0, 15);
-                              },
-                            })}
+                          <Controller
+                            name="trn"
+                            control={control}
+                            render={({ field }) => (
+                              <InputField
+                                label="TRN"
+                                required
+                                error={errors.trn?.message}
+                                inputMode="numeric"
+                                autoComplete="off"
+                                placeholder="Enter 15-digit TRN"
+                                value={field.value || ""}
+                                onChange={(e) => {
+                                  const sanitized = e.target.value
+                                    .replace(/\D/g, "")
+                                    .slice(0, 15);
+                                  field.onChange(sanitized);
+                                }}
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
+                            )}
                           />
                         </AnimatedField>
                       </FormSection>
