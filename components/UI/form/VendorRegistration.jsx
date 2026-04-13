@@ -235,7 +235,7 @@ export default function VendorRegistration() {
       normalizeFiles(values.emiratesIdFile).forEach((file) =>
         formData.append("files", file),
       );
-      // console.log("Vendor form payload:");
+      console.log("Vendor form payload:");
       for (const pair of formData.entries()) {
         // console.log(pair[0], pair[1]);
       }
@@ -1001,13 +1001,13 @@ export default function VendorRegistration() {
                         required
                         type="tel"
                         placeholder="Enter telephone number"
-                        {...register("telephone", {
+                        {...register("telNumber", {
                           onChange: (e) => {
-                            const countryCode = watch("telCountryCode"); 
-                            let value = e.target.value.replace(/\D/g, ""); 
+                            const countryCode = watch("telCountryCode");
+                            let value = e.target.value.replace(/\D/g, "");
 
                             if (countryCode === "+971") {
-                              value = value.slice(0, 7); 
+                              value = value.slice(0, 7);
                             } else {
                               value = value.slice(0, 10);
                             }
@@ -1016,7 +1016,7 @@ export default function VendorRegistration() {
                           },
                           required: "Telephone number is required",
                         })}
-                        error={errors.telephone?.message}
+                        error={errors.telNumber?.message}
                       />
 
                       <InputField
