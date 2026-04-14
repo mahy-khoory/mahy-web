@@ -45,6 +45,7 @@ import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
 import { useZipCodes } from "@/lib/hooks/useZipCodes";
 import { useCreateCustomer } from "@/lib/hooks/useCreateCustomer";
 import SelectedCompany from "@/components/SelectedCompany";
+import { useCustomerGroups } from "@/lib/hooks/useCustomerGroups";
 
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -91,6 +92,11 @@ export default function CustomerRegistration() {
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
     company,
     openLookup === "paymentTerms",
+  );
+
+  const {data: custGroups = [], isLoading: cgLoading} = useCustomerGroups(
+    company,
+    openLookup === "customerGroups",
   );
 
   const { data: currencies = [], isLoading: currenciesLoading } = useCurrencies(
@@ -160,6 +166,7 @@ export default function CustomerRegistration() {
   const isOrganization = customerType === "organization";
   const isPerson = customerType === "individual";
   const isUAE = country === "UAE";
+  const showMethodOfPayment = !(isPerson && isOneTime);
   const showTrn = isOneTime
     ? trnType === "with_trn"
     : isCredit && vatRegistered && isOrganization;
@@ -184,6 +191,12 @@ export default function CustomerRegistration() {
       });
     }
   }, [isPerson, setValue]);
+
+  useEffect(() => {
+    if (!showMethodOfPayment) {
+      setValue("paymentMethod", "");
+    }
+  }, [showMethodOfPayment, setValue]);
 
   const normalizeFiles = (val) => {
     if (!val) return [];
@@ -326,6 +339,38 @@ export default function CustomerRegistration() {
                   {/* Basic Details - Combined Section */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Basic Details">
+
+                        <Controller
+                        name="customerType"
+                        control={control}
+                        render={({ field }) => (
+                          <RadioGroupField
+                            label="Organization/Person"
+                            required
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={customerTypeOptions}
+                            error={errors.customerType?.message}
+                          />
+                        )}
+                      />
+
+
+                       <Controller
+                        name="classificationGroup"
+                        control={control}
+                        render={({ field }) => (
+                          <RadioGroupField
+                            label="Customer Classification Group"
+                            required
+                            value={field.value}
+                            onChange={field.onChange}
+                            options={[...CUSTOMER_CLASSIFICATION_GROUPS]}
+                          />
+                        )}
+                      />
+
+
                       {/* Basic Customer Details */}
                       <AnimatedField show={showTrn}>
                         <InputField
@@ -345,23 +390,28 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <Controller
-                        name="customerType"
-                        control={control}
-                        render={({ field }) => (
-                          <RadioGroupField
-                            label="Organization/Person"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={customerTypeOptions}
-                            error={errors.customerType?.message}
-                          />
-                        )}
-                      />
+                    
 
-                      <InputField
+                      {/* <InputField
                         label="Customer Group"
                         {...register("customerGroup")}
+                      /> */}
+
+                      <FormD365Lookup
+                        name="customerGroup"
+                        control={control}
+                        enableSearch
+                        searchPlaceholder={"Search Customer Group"}
+                        label="Customer Group"
+                        required
+                        data={custGroups}
+                        loading={cgLoading}
+                        onOpen={() => setOpenLookup("customerGroups")}
+                        columns={[
+                          { key: "label", label: "Group" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.custGroups?.message}
                       />
 
                       <AnimatedField>
@@ -406,18 +456,7 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <Controller
-                        name="classificationGroup"
-                        control={control}
-                        render={({ field }) => (
-                          <RadioGroupField
-                            label="Customer Classification Group"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={[...CUSTOMER_CLASSIFICATION_GROUPS]}
-                          />
-                        )}
-                      />
+                     
 
                       <FormD365Lookup
                         name="currency"
@@ -503,6 +542,8 @@ export default function CustomerRegistration() {
                       <AnimatedField show={isOrganization}>
                         <InputField
                           label="Company Name"
+                          required
+                          error={errors.companyName?.message}
                           {...register("companyName")}
                         />
                       </AnimatedField>
@@ -618,6 +659,7 @@ export default function CustomerRegistration() {
 
                         <InputField
                           label="Middle name"
+                          required
                           error={errors.middleName?.message}
                           {...register("middleName")}
                         />
@@ -706,21 +748,23 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <Controller
-                        name="paymentMethod"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Method of Payment"
-                            value={field.value}
-                            onChange={field.onChange}
-                            options={[...PAYMENT_METHODS]}
-                            required
-                            error={errors.paymentMethod?.message}
-                            placeholder="Select..."
-                          />
-                        )}
-                      />
+                      <AnimatedField show={showMethodOfPayment}>
+                        <Controller
+                          name="paymentMethod"
+                          control={control}
+                          render={({ field }) => (
+                            <SelectField
+                              label="Method of Payment"
+                              value={field.value}
+                              onChange={field.onChange}
+                              options={[...PAYMENT_METHODS]}
+                              required
+                              error={errors.paymentMethod?.message}
+                              placeholder="Select..."
+                            />
+                          )}
+                        />
+                      </AnimatedField>
 
                       <FormD365Lookup
                         name="paymentTerms"
@@ -1069,6 +1113,7 @@ export default function CustomerRegistration() {
 
                           <InputField
                             label="Mobile Number"
+                            required
                             type="tel"
                             placeholder="Enter mobile number"
                             {...register("mobileNumber", {

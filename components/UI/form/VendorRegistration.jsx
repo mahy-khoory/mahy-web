@@ -340,6 +340,7 @@ export default function VendorRegistration() {
                         render={({ field }) => (
                           <RadioGroupField
                             label="Vendor classification group"
+                            required
                             value={field.value || ""}
                             onChange={field.onChange}
                             options={[...VENDOR_CLASSIFICATION_GROUPS]}
@@ -546,6 +547,8 @@ export default function VendorRegistration() {
 
                         <InputField
                           label="Company name"
+                          required
+                          error={errors.companyName?.message}
                           {...register("companyName")}
                         />
                         <AnimatedField show={isRegular}>
@@ -1055,6 +1058,7 @@ export default function VendorRegistration() {
 
                       <InputField
                         label="Mobile Number"
+                        required
                         type="tel"
                         placeholder="Enter mobile number"
                         {...register("mobileNumber", {
