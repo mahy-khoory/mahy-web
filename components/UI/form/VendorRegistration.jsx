@@ -26,8 +26,6 @@ import {
 import {
   PAYMENT_METHODS,
   COUNTRY_CODES,
-  getCitiesForCountry,
-  COUNTRIES,
 } from "@/lib/formConstants";
 
 import {
@@ -60,6 +58,9 @@ import { useDeliveryModes } from "@/lib/hooks/useDeliveryModes";
 import { useCreateVendor } from "@/lib/hooks/useCreateVendor";
 import Link from "next/link";
 import SelectedCompany from "@/components/SelectedCompany";
+import { useCountries } from "@/lib/hooks/useCountries";
+import { useCities } from "@/lib/hooks/useCities";
+import { isUAECountry } from "@/lib/utils/country";
 
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -138,6 +139,7 @@ export default function VendorRegistration() {
     handleSubmit,
     control,
     watch,
+    setValue,
     setError,
     clearErrors,
     formState: { errors },
@@ -152,25 +154,47 @@ export default function VendorRegistration() {
       vendorClassificationGroup: "onetime",
       trnType: "with_trn",
       salesTaxGroup: "vat",
-      countryRegion: "UAE",
+      countryRegion: "ARE",
       telCountryCode: "+971",
       mobileCountryCode: "+971",
     },
   });
+
+  const { data: countries = [], isLoading: countriesLoading } = useCountries(
+    openLookup === "countries",
+  );
 
   const vendorType = watch("vendorType");
   const vendorClassificationGroup = watch("vendorClassificationGroup");
   const trnType = watch("trnType");
   const countryRegion = watch("countryRegion");
 
+  const {
+    data: cities = [],
+    isLoading: citiesLoading,
+    isFetched: citiesFetched,
+  } = useCities(
+    countryRegion,
+    openLookup === "cities",
+  );
+  const allowCustomCityEntry = citiesFetched && cities.length === 0;
+
   const isOrganization = vendorType === "organization";
   const isPerson = vendorType === "person";
   const isRegular = vendorClassificationGroup === "regular";
-  const isUAE = countryRegion === "UAE";
+  const isUAE = isUAECountry(countryRegion);
+  const showPersonNameFields =
+    isPerson &&
+    ["onetime", "regular"].includes(vendorClassificationGroup);
   const showPassport = isPerson && !isUAE;
   const showEmiratesId = isPerson && isUAE;
 
   const showExtendedAddress = (isOrganization && isRegular) || isPerson;
+
+  useEffect(() => {
+    setValue("city", "");
+    setValue("state", "");
+  }, [countryRegion, setValue]);
 
   const normalizeFiles = (val) => {
     if (!val) return [];
@@ -778,18 +802,21 @@ export default function VendorRegistration() {
                             )}
                           />
                         </AnimatedField>
-                        <InputField
-                          label="First name"
-                          required
-                          error={errors.firstName?.message}
-                          {...register("firstName")}
-                        />
+                        <AnimatedField show={showPersonNameFields}>
+                          <InputField
+                            label="First name"
+                            required
+                            error={errors.firstName?.message}
+                            {...register("firstName")}
+                          />
 
-                        <InputField
-                          label="Middle name"
-                          error={errors.middleName?.message}
-                          {...register("middleName")}
-                        />
+                          <InputField
+                            label="Middle name"
+                            required
+                            error={errors.middleName?.message}
+                            {...register("middleName")}
+                          />
+                        </AnimatedField>
 
                         {/* <Controller
                           name="lastNamePrefix"
@@ -807,12 +834,14 @@ export default function VendorRegistration() {
                           )}
                         /> */}
 
-                        <InputField
-                          label="Last name"
-                          required
-                          error={errors.lastName?.message}
-                          {...register("lastName")}
-                        />
+                        <AnimatedField show={showPersonNameFields}>
+                          <InputField
+                            label="Last name"
+                            required
+                            error={errors.lastName?.message}
+                            {...register("lastName")}
+                          />
+                        </AnimatedField>
                       </FormSection>
                     </motion.div>
                   </AnimatedField>
@@ -820,34 +849,40 @@ export default function VendorRegistration() {
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Address">
                       <AnimatedField show={isOrganization}>
-                        <Controller
+                        <FormD365Lookup
                           name="countryRegion"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Country/region"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...COUNTRIES]}
-                              required
-                            />
-                          )}
+                          label="Country/region"
+                          required
+                          enableSearch
+                          searchPlaceholder={"Search Country/Region"}
+                          data={countries}
+                          loading={countriesLoading}
+                          onOpen={() => setOpenLookup("countries")}
+                          columns={[
+                            { key: "label", label: "Country/Region" },
+                            { key: "description", label: "Description" },
+                          ]}
+                          error={errors.countryRegion?.message}
                         />
                       </AnimatedField>
 
                       <AnimatedField show={isPerson}>
-                        <Controller
+                        <FormD365Lookup
                           name="countryRegion"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Country/region"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...COUNTRIES]}
-                              required
-                            />
-                          )}
+                          label="Country/region"
+                          required
+                          enableSearch
+                          searchPlaceholder={"Search Country/Region"}
+                          data={countries}
+                          loading={countriesLoading}
+                          onOpen={() => setOpenLookup("countries")}
+                          columns={[
+                            { key: "label", label: "Country/Region" },
+                            { key: "description", label: "Description" },
+                          ]}
+                          error={errors.countryRegion?.message}
                         />
                       </AnimatedField>
 
@@ -873,11 +908,28 @@ export default function VendorRegistration() {
                         error={errors.zipPostalCode?.message}
                       />
 
-                      <InputField
+                      <FormD365Lookup
+                        name="city"
+                        control={control}
                         label="City"
                         required
+                        placeholder={
+                          allowCustomCityEntry
+                            ? "Enter city"
+                            : "Select city"
+                        }
+                        enableSearch
+                        searchPlaceholder={"Search City"}
+                        data={cities}
+                        loading={citiesLoading}
+                        onOpen={() => setOpenLookup("cities")}
+                        allowCustomValue={allowCustomCityEntry}
+                        columns={[
+                          { key: "label", label: "City" },
+                          { key: "description", label: "State" },
+                        ]}
                         error={errors.city?.message}
-                        {...register("city")}
+                        disabled={!countryRegion}
                       />
                       <InputField
                         label="Street"

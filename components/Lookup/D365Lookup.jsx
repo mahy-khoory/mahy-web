@@ -24,28 +24,18 @@ export default function D365Lookup({
 }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
-  const [inputValue, setInputValue] = useState("");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const handler = (e) => {
       if (!containerRef.current?.contains(e.target)) {
         setOpen(false);
+        setQuery("");
       }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
-
-  useEffect(() => {
-    if (!allowCustomValue) return;
-
-    // keep input synced with external value
-    setInputValue(value ?? "");
-  }, [value, allowCustomValue]);
-
-  useEffect(() => {
-    if (disabled) setOpen(false);
-  }, [disabled]);
 
   const selected = data.find((d) => d.value === value);
   const textToShow =
@@ -53,12 +43,6 @@ export default function D365Lookup({
     displayValue ||
     (value ? String(value) : "") ||
     placeholder;
-
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    if (!open) setQuery(""); // reset when closed
-  }, [open]);
 
   const keysToSearch = useMemo(() => {
     if (Array.isArray(searchKeys) && searchKeys.length > 0) return searchKeys;
@@ -112,15 +96,15 @@ export default function D365Lookup({
 
       {allowCustomValue ? (
         <input
-          value={inputValue}
+          value={value ?? ""}
           onChange={(e) => {
-            setInputValue(e.target.value);
             onChange(e.target.value);
           }}
           onFocus={() => {
             if (disabled) return;
             onOpen?.();
             setOpen(true);
+            setQuery("");
           }}
           disabled={disabled}
           placeholder={placeholder}
@@ -138,6 +122,7 @@ export default function D365Lookup({
             if (disabled) return;
             onOpen?.();
             setOpen(true);
+            setQuery("");
           }}
           className={`
       relative h-[36px] px-2 pr-7 flex items-center
@@ -238,10 +223,11 @@ export default function D365Lookup({
                       const isSelected = row.value === value;
                       return (
                         <tr
-                          key={row.id ?? row.value}
+                          key={row.key ?? row.id ?? row.value}
                           onClick={() => {
                             onChange(row.value);
                             setOpen(false);
+                            setQuery("");
                           }}
                           className={`
             cursor-pointer

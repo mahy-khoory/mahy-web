@@ -24,10 +24,7 @@ import {
   CUSTOMER_TYPES,
   CUSTOMER_CLASSIFICATION_GROUPS,
   PAYMENT_METHODS,
-  NAME_PREFIXES,
-  COUNTRIES,
   COUNTRY_CODES,
-  VAT_TYPES,
   SUBSEGMENTS,
   ADDRESS_BOOKS,
   getStatesForCountry,
@@ -46,6 +43,9 @@ import { useZipCodes } from "@/lib/hooks/useZipCodes";
 import { useCreateCustomer } from "@/lib/hooks/useCreateCustomer";
 import SelectedCompany from "@/components/SelectedCompany";
 import { useCustomerGroups } from "@/lib/hooks/useCustomerGroups";
+import { useCountries } from "@/lib/hooks/useCountries";
+import { useCities } from "@/lib/hooks/useCities";
+import { isUAECountry } from "@/lib/utils/country";
 
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -99,6 +99,10 @@ export default function CustomerRegistration() {
     openLookup === "customerGroups",
   );
 
+ const {data : countries = [], isLoading: countriesLoading} = useCountries(
+  openLookup === "countries"
+ )
+
   const { data: currencies = [], isLoading: currenciesLoading } = useCurrencies(
     openLookup === "currencies",
   );
@@ -142,7 +146,7 @@ export default function CustomerRegistration() {
       classificationGroup: "credit",
       currency: "AED",
       trnType: "with_trn",
-      country: "UAE",
+      country: "ARE",
       paymentTerms: "",
       paymentMethod: "",
       deliveryTerms: "",
@@ -160,12 +164,25 @@ export default function CustomerRegistration() {
   const country = watch("country");
   const holdingCompany = watch("holdingCompany");
   const vatRegistered = watch("vatRegistered");
+  const shouldLoadCities = openLookup === "cities";
+
+  const {
+    data: cities = [],
+    isLoading: citiesLoading,
+    isFetched: citiesFetched,
+  } = useCities(
+    country,
+    shouldLoadCities,
+  );
+  const allowCustomCityEntry = citiesFetched && cities.length === 0;
 
   const isCredit = classificationGroup === "credit";
   const isOneTime = classificationGroup === "onetime";
   const isOrganization = customerType === "organization";
   const isPerson = customerType === "individual";
-  const isUAE = country === "UAE";
+  const isUAE = isUAECountry(country);
+  const showPersonNameFields =
+    isPerson && (isCredit || (isOneTime && trnType === "without_trn"));
   const showMethodOfPayment = !(isPerson && isOneTime);
   const showTrn = isOneTime
     ? trnType === "with_trn"
@@ -180,6 +197,7 @@ export default function CustomerRegistration() {
   // state when country changes
   useEffect(() => {
     setValue("state", "");
+    setValue("city", "");
   }, [country, setValue]);
 
   useEffect(() => {
@@ -642,7 +660,7 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <AnimatedField show={isPerson && isCredit}>
+                      <AnimatedField show={showPersonNameFields}>
                         {/* <InputField
                           label="Full Name"
                           required
@@ -665,7 +683,7 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <AnimatedField show={isPerson && isCredit}>
+                      <AnimatedField show={showPersonNameFields}>
                         {/* <Controller
                           name="lastNamePrefix"
                           control={control}
@@ -947,7 +965,7 @@ export default function CustomerRegistration() {
                   {/* E. Address Information */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Address">
-                      <Controller
+                      {/* <Controller
                         name="country"
                         control={control}
                         render={({ field }) => (
@@ -959,13 +977,48 @@ export default function CustomerRegistration() {
                             required
                           />
                         )}
+                      /> */}
+
+                      <FormD365Lookup
+                        name="country"
+                        control={control}
+                        label="Country/Region"
+                        enableSearch
+                        required
+                        searchPlaceholder={"Search Country/Region"}
+                        data={countries}
+                        loading={countriesLoading}
+                        onOpen={() => setOpenLookup("countries")}
+                        columns={[
+                          { key: "label", label: "Country/Region" },
+                          { key: "description", label: "Description" },
+                        ]}
+                        error={errors.country?.message}
                       />
 
-                      <InputField
+
+                      <FormD365Lookup
+                        name="city"
+                        control={control}
                         label="City"
                         required
+                        placeholder={
+                          allowCustomCityEntry
+                            ? "Enter City"
+                            : "Select city"
+                        }
+                        enableSearch
+                        searchPlaceholder={"Search City"}
+                        data={cities}
+                        loading={citiesLoading}
+                        onOpen={() => setOpenLookup("cities")}
+                        allowCustomValue={allowCustomCityEntry}
+                        columns={[
+                          { key: "label", label: "City" },
+                          { key: "description", label: "State" },
+                        ]}
                         error={errors.city?.message}
-                        {...register("city")}
+                        disabled={!country}
                       />
 
                       <FormD365Lookup
