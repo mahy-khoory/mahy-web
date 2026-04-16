@@ -12,7 +12,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "../card";
 
 import { FormSection } from "@/components/form/FormSection";
 import { InputField, TextareaField } from "@/components/form/InputField";
-import { SelectField } from "@/components/form/SelectField";
 import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
@@ -26,6 +25,11 @@ import {
 import {
   PAYMENT_METHODS,
   COUNTRY_CODES,
+  UAE_DIALING_CODE,
+  UAE_TELEPHONE_AREA_CODES,
+  UAE_MOBILE_AREA_CODES,
+  mergeAreaCodeWithPhoneNumber,
+  sanitizePassportNumber,
 } from "@/lib/formConstants";
 
 import {
@@ -109,11 +113,13 @@ export default function VendorRegistration() {
   const [openLookup, setOpenLookup] = useState(null);
 
   const { data: paymentTerms = [], isLoading: ptLoading } = usePaymentTerms(
-    company, openLookup === "paymentTerms",
+    company,
+    openLookup === "paymentTerms",
   );
 
   const { data: taxGroups = [], isLoading: taxGroupsLoading } = useTaxGroups(
-    company, openLookup === "taxGroups",
+    company,
+    openLookup === "taxGroups",
   );
 
   const { data: lineOfBusiness = [], isLoading: lineOfBusinessLoading } =
@@ -131,7 +137,8 @@ export default function VendorRegistration() {
     useDeliveryTerms(company, openLookup === "deliveryTerms");
 
   const { data: dlvModes = [], isLoading: dlvModesLoading } = useDeliveryModes(
-    company, openLookup === "dlvModes",
+    company,
+    openLookup === "dlvModes",
   );
 
   const {
@@ -156,7 +163,9 @@ export default function VendorRegistration() {
       salesTaxGroup: "vat",
       countryRegion: "ARE",
       telCountryCode: "+971",
+      telAreaCode: "",
       mobileCountryCode: "+971",
+      mobileAreaCode: "",
     },
   });
 
@@ -168,15 +177,14 @@ export default function VendorRegistration() {
   const vendorClassificationGroup = watch("vendorClassificationGroup");
   const trnType = watch("trnType");
   const countryRegion = watch("countryRegion");
+  const telCountryCode = watch("telCountryCode");
+  const mobileCountryCode = watch("mobileCountryCode");
 
   const {
     data: cities = [],
     isLoading: citiesLoading,
     isFetched: citiesFetched,
-  } = useCities(
-    countryRegion,
-    openLookup === "cities",
-  );
+  } = useCities(countryRegion, openLookup === "cities");
   const allowCustomCityEntry = citiesFetched && cities.length === 0;
 
   const isOrganization = vendorType === "organization";
@@ -184,17 +192,30 @@ export default function VendorRegistration() {
   const isRegular = vendorClassificationGroup === "regular";
   const isUAE = isUAECountry(countryRegion);
   const showPersonNameFields =
-    isPerson &&
-    ["onetime", "regular"].includes(vendorClassificationGroup);
+    isPerson && ["onetime", "regular"].includes(vendorClassificationGroup);
   const showPassport = isPerson && !isUAE;
   const showEmiratesId = isPerson && isUAE;
 
   const showExtendedAddress = (isOrganization && isRegular) || isPerson;
+  const showTelAreaCodeLookup = telCountryCode === UAE_DIALING_CODE;
+  const showMobileAreaCodeLookup = mobileCountryCode === UAE_DIALING_CODE;
 
   useEffect(() => {
     setValue("city", "");
     setValue("state", "");
   }, [countryRegion, setValue]);
+
+  useEffect(() => {
+    if (!showTelAreaCodeLookup) {
+      setValue("telAreaCode", "");
+    }
+  }, [showTelAreaCodeLookup, setValue]);
+
+  useEffect(() => {
+    if (!showMobileAreaCodeLookup) {
+      setValue("mobileAreaCode", "");
+    }
+  }, [showMobileAreaCodeLookup, setValue]);
 
   const normalizeFiles = (val) => {
     if (!val) return [];
@@ -225,12 +246,26 @@ export default function VendorRegistration() {
 
     try {
       const formData = new FormData();
-      Object.entries(values).forEach(([key, value]) => {
+      const payloadValues = {
+        ...values,
+        telNumber: mergeAreaCodeWithPhoneNumber(
+          values.telAreaCode,
+          values.telNumber,
+        ),
+        mobileNumber: mergeAreaCodeWithPhoneNumber(
+          values.mobileAreaCode,
+          values.mobileNumber,
+        ),
+      };
+
+      Object.entries(payloadValues).forEach(([key, value]) => {
         if (
           value === undefined ||
           value === null ||
           value === "" ||
-          key.endsWith("File")
+          key.endsWith("File") ||
+          key === "telAreaCode" ||
+          key === "mobileAreaCode"
         ) {
           return;
         }
@@ -465,18 +500,13 @@ export default function VendorRegistration() {
 
                       <InputField label="Segment" {...register("segment")} />
 
-                      <Controller
+                      <FormD365Lookup
                         name="subsegment"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Subsegment"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SUBSEGMENTS]}
-                            placeholder="Select subsegment"
-                          />
-                        )}
+                        label="Subsegment"
+                        data={SUBSEGMENTS}
+                        columns={[{ key: "label", label: "Subsegment" }]}
+                        placeholder="Select subsegment"
                       />
                     </FormSection>
                   </motion.div>
@@ -497,19 +527,16 @@ export default function VendorRegistration() {
                           )}
                         />
 
-                        <Controller
+                        <FormD365Lookup
                           name="methodOfPayment"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Method of payment"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...PAYMENT_METHODS]}
-                              required
-                              error={errors.methodOfPayment?.message}
-                            />
-                          )}
+                          label="Method of payment"
+                          required
+                          data={PAYMENT_METHODS}
+                          columns={[
+                            { key: "label", label: "Method of payment" },
+                          ]}
+                          error={errors.methodOfPayment?.message}
                         />
 
                         <InputField
@@ -605,18 +632,13 @@ export default function VendorRegistration() {
                         </AnimatedField>
 
                         <AnimatedField show={isRegular}>
-                          <Controller
+                          <FormD365Lookup
                             name="companyChain"
                             control={control}
-                            render={({ field }) => (
-                              <SelectField
-                                label="Company chain"
-                                value={field.value || ""}
-                                onChange={field.onChange}
-                                options={[...COMPANY_CHAINS]}
-                                placeholder="Select company chain"
-                              />
-                            )}
+                            label="Company chain"
+                            data={COMPANY_CHAINS}
+                            columns={[{ key: "label", label: "Company chain" }]}
+                            placeholder="Select company chain"
                           />
                         </AnimatedField>
 
@@ -658,14 +680,14 @@ export default function VendorRegistration() {
                           <InputField
                             label="Passport number"
                             required
-                            inputMode="numeric"
+                            inputMode="text"
                             autoComplete="off"
                             error={errors.passportNumber?.message}
                             {...register("passportNumber", {
                               onChange: (e) => {
-                                e.target.value = e.target.value
-                                  .replace(/\D/g, "")
-                                  .slice(0, 15);
+                                e.target.value = sanitizePassportNumber(
+                                  e.target.value,
+                                );
                               },
                             })}
                           />
@@ -812,9 +834,14 @@ export default function VendorRegistration() {
 
                           <InputField
                             label="Middle name"
-                            required
                             error={errors.middleName?.message}
                             {...register("middleName")}
+                          />
+
+                          <InputField
+                            label="Last Name Prefix"
+                            error={errors?.lastNamePrefix?.message}
+                            {...register("lastNamePrefix")}
                           />
                         </AnimatedField>
 
@@ -914,9 +941,7 @@ export default function VendorRegistration() {
                         label="City"
                         required
                         placeholder={
-                          allowCustomCityEntry
-                            ? "Enter city"
-                            : "Select city"
+                          allowCustomCityEntry ? "Enter city" : "Select city"
                         }
                         enableSearch
                         searchPlaceholder={"Search City"}
@@ -954,18 +979,13 @@ export default function VendorRegistration() {
                       </AnimatedField>
 
                       <AnimatedField show={showExtendedAddress}>
-                        <Controller
+                        <FormD365Lookup
                           name="state"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="State"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...STATES]}
-                              placeholder="Select state"
-                            />
-                          )}
+                          label="State"
+                          data={STATES}
+                          columns={[{ key: "label", label: "State" }]}
+                          placeholder="Select state"
                         />
                       </AnimatedField>
 
@@ -977,18 +997,13 @@ export default function VendorRegistration() {
                       </AnimatedField>
 
                       <AnimatedField show={showExtendedAddress}>
-                        <Controller
+                        <FormD365Lookup
                           name="district"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="District"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...DISTRICTS]}
-                              placeholder="Select district"
-                            />
-                          )}
+                          label="District"
+                          data={DISTRICTS}
+                          columns={[{ key: "label", label: "District" }]}
+                          placeholder="Select district"
                         />
                       </AnimatedField>
 
@@ -1000,34 +1015,24 @@ export default function VendorRegistration() {
                       </AnimatedField>
 
                       <AnimatedField show={showExtendedAddress}>
-                        <Controller
+                        <FormD365Lookup
                           name="county"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="County"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...COUNTIES]}
-                              placeholder="Select county"
-                            />
-                          )}
+                          label="County"
+                          data={COUNTIES}
+                          columns={[{ key: "label", label: "County" }]}
+                          placeholder="Select county"
                         />
                       </AnimatedField>
 
                       <AnimatedField show={showExtendedAddress}>
-                        <Controller
+                        <FormD365Lookup
                           name="addressBooks"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Address books"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...ADDRESS_BOOKS]}
-                              placeholder="Select address book"
-                            />
-                          )}
+                          label="Address books"
+                          data={ADDRESS_BOOKS}
+                          columns={[{ key: "label", label: "Address books" }]}
+                          placeholder="Select address book"
                         />
                       </AnimatedField>
                     </FormSection>
@@ -1042,49 +1047,61 @@ export default function VendorRegistration() {
                         </p>
                       </div>
 
-                      {/* <AnimatedField show={isOrganization}> */}
-                      <Controller
-                        name="telCountryCode"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Country code"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...COUNTRY_CODES]}
-                            required
+                      <div className="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <FormD365Lookup
+                          name="telCountryCode"
+                          control={control}
+                          label="Country code"
+                          required
+                          data={COUNTRY_CODES}
+                          columns={[
+                            { key: "label", label: "Country code" },
+                          ]}
+                          placeholder="Select country code"
+                        />
+
+                        {showTelAreaCodeLookup && (
+                          <FormD365Lookup
+                            name="telAreaCode"
+                            control={control}
+                            label="Code/ Area code"
+                            data={UAE_TELEPHONE_AREA_CODES}
+                            columns={[
+                              { key: "countryCode", label: "Country code" },
+                              { key: "label", label: "Code/ Area code" },
+                            ]}
+                            placeholder="Select code"
                           />
                         )}
-                      />
-                      {/* </AnimatedField> */}
 
-                      <InputField
-                        label="Tel Number"
-                        required
-                        type="tel"
-                        placeholder="Enter telephone number"
-                        {...register("telNumber", {
-                          onChange: (e) => {
-                            const countryCode = watch("telCountryCode");
-                            let value = e.target.value.replace(/\D/g, "");
+                        <InputField
+                          label="Tel Number"
+                          required
+                          type="tel"
+                          placeholder="Enter telephone number"
+                          {...register("telNumber", {
+                            onChange: (e) => {
+                              const countryCode = watch("telCountryCode");
+                              let value = e.target.value.replace(/\D/g, "");
 
-                            if (countryCode === "+971") {
-                              value = value.slice(0, 7);
-                            } else {
-                              value = value.slice(0, 10);
-                            }
+                              if (countryCode === "+971") {
+                                value = value.slice(0, 7);
+                              } else {
+                                value = value.slice(0, 10);
+                              }
 
-                            e.target.value = value;
-                          },
-                          required: "Telephone number is required",
-                        })}
-                        error={errors.telNumber?.message}
-                      />
+                              e.target.value = value;
+                            },
+                            required: "Telephone number is required",
+                          })}
+                          error={errors.telNumber?.message}
+                        />
 
-                      <InputField
-                        label="Extension"
-                        {...register("extension")}
-                      />
+                        <InputField
+                          label="Extension"
+                          {...register("extension")}
+                        />
+                      </div>
 
                       {/* Mobile */}
                       <div className="col-span-full mt-4">
@@ -1093,44 +1110,57 @@ export default function VendorRegistration() {
                         </p>
                       </div>
 
-                      <Controller
-                        name="mobileCountryCode"
-                        control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Country code"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...COUNTRY_CODES]}
-                            required
-                            error={errors.mobileCountryCode?.message}
+                      <div className="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <FormD365Lookup
+                          name="mobileCountryCode"
+                          control={control}
+                          label="Country code"
+                          required
+                          data={COUNTRY_CODES}
+                          columns={[
+                            { key: "label", label: "Country code" },
+                          ]}
+                          placeholder="Select country code"
+                          error={errors.mobileCountryCode?.message}
+                        />
+
+                        {showMobileAreaCodeLookup && (
+                          <FormD365Lookup
+                            name="mobileAreaCode"
+                            control={control}
+                            label="Code/ Area code"
+                            data={UAE_MOBILE_AREA_CODES}
+                            columns={[
+                              { key: "countryCode", label: "Country code" },
+                              { key: "label", label: "Code/ Area code" },
+                            ]}
+                            placeholder="Select code"
                           />
                         )}
-                      />
 
-                      <InputField
-                        label="Mobile Number"
-                        required
-                        type="tel"
-                        placeholder="Enter mobile number"
-                        {...register("mobileNumber", {
-                          onChange: (e) => {
-                            const countryCode = watch("mobileCountryCode"); // get current country code
-                            let value = e.target.value.replace(/\D/g, ""); // remove non-numbers
+                        <InputField
+                          label="Mobile Number"
+                          required
+                          type="tel"
+                          placeholder="Enter mobile number"
+                          {...register("mobileNumber", {
+                            onChange: (e) => {
+                              const countryCode = watch("mobileCountryCode"); // get current country code
+                              let value = e.target.value.replace(/\D/g, ""); // remove non-numbers
 
-                            // Limit length based on country
-                            if (countryCode === "+971") {
-                              value = value.slice(0, 7); // UAE 7 digits
-                            }
-                            else {
-                              value = value.slice(0, 15);
-                            }
-                            e.target.value = value;
-                          },
-                          required: "Mobile number is required",
-                        })}
-                        error={errors.mobileNumber?.message}
-                      />
+                              // Limit length based on country
+                              if (countryCode === "+971") {
+                                value = value.slice(0, 7); // UAE 7 digits
+                              } else {
+                                value = value.slice(0, 15);
+                              }
+                              e.target.value = value;
+                            },
+                            required: "Mobile number is required",
+                          })}
+                          error={errors.mobileNumber?.message}
+                        />
+                      </div>
 
                       <InputField label="Fax" {...register("fax")} />
 

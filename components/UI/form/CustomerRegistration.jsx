@@ -9,7 +9,6 @@ import { Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { FormSection } from "@/components/form/FormSection";
 import { InputField } from "@/components/form/InputField";
-import { SelectField } from "@/components/form/SelectField";
 import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { DatePickerField } from "@/components/form/DatePickerField";
 import { FileUploadField } from "@/components/form/FileUploadField";
@@ -25,6 +24,11 @@ import {
   CUSTOMER_CLASSIFICATION_GROUPS,
   PAYMENT_METHODS,
   COUNTRY_CODES,
+  UAE_DIALING_CODE,
+  UAE_TELEPHONE_AREA_CODES,
+  UAE_MOBILE_AREA_CODES,
+  mergeAreaCodeWithPhoneNumber,
+  sanitizePassportNumber,
   SUBSEGMENTS,
   ADDRESS_BOOKS,
   getStatesForCountry,
@@ -94,14 +98,14 @@ export default function CustomerRegistration() {
     openLookup === "paymentTerms",
   );
 
-  const {data: custGroups = [], isLoading: cgLoading} = useCustomerGroups(
+  const { data: custGroups = [], isLoading: cgLoading } = useCustomerGroups(
     company,
     openLookup === "customerGroups",
   );
 
- const {data : countries = [], isLoading: countriesLoading} = useCountries(
-  openLookup === "countries"
- )
+  const { data: countries = [], isLoading: countriesLoading } = useCountries(
+    openLookup === "countries",
+  );
 
   const { data: currencies = [], isLoading: currenciesLoading } = useCurrencies(
     openLookup === "currencies",
@@ -152,7 +156,9 @@ export default function CustomerRegistration() {
       deliveryTerms: "",
       deliveryMode: "",
       telCountryCode: "+971",
+      telAreaCode: "",
       mobileCountryCode: "+971",
+      mobileAreaCode: "",
       holdingCompany: false,
       vatRegistered: true,
     },
@@ -162,6 +168,8 @@ export default function CustomerRegistration() {
   const customerType = watch("customerType");
   const trnType = watch("trnType");
   const country = watch("country");
+  const telCountryCode = watch("telCountryCode");
+  const mobileCountryCode = watch("mobileCountryCode");
   const holdingCompany = watch("holdingCompany");
   const vatRegistered = watch("vatRegistered");
   const shouldLoadCities = openLookup === "cities";
@@ -170,10 +178,7 @@ export default function CustomerRegistration() {
     data: cities = [],
     isLoading: citiesLoading,
     isFetched: citiesFetched,
-  } = useCities(
-    country,
-    shouldLoadCities,
-  );
+  } = useCities(country, shouldLoadCities);
   const allowCustomCityEntry = citiesFetched && cities.length === 0;
 
   const isCredit = classificationGroup === "credit";
@@ -187,6 +192,8 @@ export default function CustomerRegistration() {
   const showTrn = isOneTime
     ? trnType === "with_trn"
     : isCredit && vatRegistered && isOrganization;
+  const showTelAreaCodeLookup = telCountryCode === UAE_DIALING_CODE;
+  const showMobileAreaCodeLookup = mobileCountryCode === UAE_DIALING_CODE;
 
   useEffect(() => {
     if (isOneTime && isPerson && trnType === "with_trn") {
@@ -215,6 +222,18 @@ export default function CustomerRegistration() {
       setValue("paymentMethod", "");
     }
   }, [showMethodOfPayment, setValue]);
+
+  useEffect(() => {
+    if (!showTelAreaCodeLookup) {
+      setValue("telAreaCode", "");
+    }
+  }, [showTelAreaCodeLookup, setValue]);
+
+  useEffect(() => {
+    if (!showMobileAreaCodeLookup) {
+      setValue("mobileAreaCode", "");
+    }
+  }, [showMobileAreaCodeLookup, setValue]);
 
   const normalizeFiles = (val) => {
     if (!val) return [];
@@ -245,13 +264,26 @@ export default function CustomerRegistration() {
 
     try {
       const formData = new FormData();
+      const payloadValues = {
+        ...values,
+        telephone: mergeAreaCodeWithPhoneNumber(
+          values.telAreaCode,
+          values.telephone,
+        ),
+        mobileNumber: mergeAreaCodeWithPhoneNumber(
+          values.mobileAreaCode,
+          values.mobileNumber,
+        ),
+      };
 
-      Object.entries(values).forEach(([key, value]) => {
+      Object.entries(payloadValues).forEach(([key, value]) => {
         if (
           value === undefined ||
           value === null ||
           value === "" ||
-          key.endsWith("File")
+          key.endsWith("File") ||
+          key === "telAreaCode" ||
+          key === "mobileAreaCode"
         ) {
           return;
         }
@@ -357,8 +389,7 @@ export default function CustomerRegistration() {
                   {/* Basic Details - Combined Section */}
                   <motion.div variants={sectionVariants}>
                     <FormSection title="Basic Details">
-
-                        <Controller
+                      <Controller
                         name="customerType"
                         control={control}
                         render={({ field }) => (
@@ -373,8 +404,7 @@ export default function CustomerRegistration() {
                         )}
                       />
 
-
-                       <Controller
+                      <Controller
                         name="classificationGroup"
                         control={control}
                         render={({ field }) => (
@@ -387,7 +417,6 @@ export default function CustomerRegistration() {
                           />
                         )}
                       />
-
 
                       {/* Basic Customer Details */}
                       <AnimatedField show={showTrn}>
@@ -407,8 +436,6 @@ export default function CustomerRegistration() {
                           })}
                         />
                       </AnimatedField>
-
-                    
 
                       {/* <InputField
                         label="Customer Group"
@@ -473,8 +500,6 @@ export default function CustomerRegistration() {
                           )}
                         />
                       </AnimatedField>
-
-                     
 
                       <FormD365Lookup
                         name="currency"
@@ -647,14 +672,14 @@ export default function CustomerRegistration() {
                         <InputField
                           label="Passport Number"
                           required
-                          inputMode="numeric"
+                          inputMode="text"
                           autoComplete="off"
                           error={errors.passportNumber?.message}
                           {...register("passportNumber", {
                             onChange: (e) => {
-                              e.target.value = e.target.value
-                                .replace(/\D/g, "")
-                                .slice(0, 15);
+                              e.target.value = sanitizePassportNumber(
+                                e.target.value,
+                              );
                             },
                           })}
                         />
@@ -677,9 +702,15 @@ export default function CustomerRegistration() {
 
                         <InputField
                           label="Middle name"
-                          required
                           error={errors.middleName?.message}
                           {...register("middleName")}
+                        />
+
+                        <InputField
+                          required
+                          label="Last Name Prefix"
+                          error={errors?.lastNamePrefix?.message}
+                          {...register("lastNamePrefix")}
                         />
                       </AnimatedField>
 
@@ -767,20 +798,17 @@ export default function CustomerRegistration() {
                       </AnimatedField>
 
                       <AnimatedField show={showMethodOfPayment}>
-                        <Controller
+                        <FormD365Lookup
                           name="paymentMethod"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Method of Payment"
-                              value={field.value}
-                              onChange={field.onChange}
-                              options={[...PAYMENT_METHODS]}
-                              required
-                              error={errors.paymentMethod?.message}
-                              placeholder="Select..."
-                            />
-                          )}
+                          label="Method of Payment"
+                          required
+                          data={PAYMENT_METHODS}
+                          columns={[
+                            { key: "label", label: "Method of Payment" },
+                          ]}
+                          error={errors.paymentMethod?.message}
+                          placeholder="Select..."
                         />
                       </AnimatedField>
 
@@ -841,18 +869,13 @@ export default function CustomerRegistration() {
 
                       {/* Credit only: Company Chain */}
                       <AnimatedField show={isCredit && isOrganization}>
-                        <Controller
+                        <FormD365Lookup
                           name="companyChain"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="Company Chain"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[]}
-                              placeholder="Select..."
-                            />
-                          )}
+                          label="Company Chain"
+                          data={[]}
+                          columns={[{ key: "label", label: "Company Chain" }]}
+                          placeholder="Select..."
                         />
                       </AnimatedField>
 
@@ -909,18 +932,13 @@ export default function CustomerRegistration() {
                         error={errors.salesTaxGroup?.message}
                       />
 
-                      <Controller
+                      <FormD365Lookup
                         name="taxExemptNumber"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Tax Exempt Number"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[]}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Tax Exempt Number"
+                        data={[]}
+                        columns={[{ key: "label", label: "Tax Exempt Number" }]}
+                        placeholder="Select..."
                       />
 
                       <FormD365Lookup
@@ -946,18 +964,13 @@ export default function CustomerRegistration() {
                         {...register("segment")}
                       />
 
-                      <Controller
+                      <FormD365Lookup
                         name="subsegment"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Subsegment"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...SUBSEGMENTS]}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Subsegment"
+                        data={SUBSEGMENTS}
+                        columns={[{ key: "label", label: "Subsegment" }]}
+                        placeholder="Select..."
                       />
                     </FormSection>
                   </motion.div>
@@ -996,16 +1009,13 @@ export default function CustomerRegistration() {
                         error={errors.country?.message}
                       />
 
-
                       <FormD365Lookup
                         name="city"
                         control={control}
                         label="City"
                         required
                         placeholder={
-                          allowCustomCityEntry
-                            ? "Enter City"
-                            : "Select city"
+                          allowCustomCityEntry ? "Enter City" : "Select city"
                         }
                         enableSearch
                         searchPlaceholder={"Search City"}
@@ -1040,18 +1050,13 @@ export default function CustomerRegistration() {
                       />
 
                       <AnimatedField show={stateOptions.length > 0}>
-                        <Controller
+                        <FormD365Lookup
                           name="state"
                           control={control}
-                          render={({ field }) => (
-                            <SelectField
-                              label="State"
-                              value={field.value || ""}
-                              onChange={field.onChange}
-                              options={[...stateOptions]}
-                              placeholder="Select state..."
-                            />
-                          )}
+                          label="State"
+                          data={stateOptions}
+                          columns={[{ key: "label", label: "State" }]}
+                          placeholder="Select state..."
                         />
                       </AnimatedField>
 
@@ -1076,18 +1081,13 @@ export default function CustomerRegistration() {
                         {...register("street")}
                       />
 
-                      <Controller
+                      <FormD365Lookup
                         name="addressBooks"
                         control={control}
-                        render={({ field }) => (
-                          <SelectField
-                            label="Address Books"
-                            value={field.value || ""}
-                            onChange={field.onChange}
-                            options={[...ADDRESS_BOOKS]}
-                            placeholder="Select..."
-                          />
-                        )}
+                        label="Address Books"
+                        data={ADDRESS_BOOKS}
+                        columns={[{ key: "label", label: "Address Books" }]}
+                        placeholder="Select..."
                       />
                     </FormSection>
                   </motion.div>
@@ -1099,20 +1099,32 @@ export default function CustomerRegistration() {
                         <h3 className="text-sm font-semibold text-muted-foreground mb-3">
                           TELEPHONE
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <Controller
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                          <FormD365Lookup
                             name="telCountryCode"
                             control={control}
-                            render={({ field }) => (
-                              <SelectField
-                                key={field.value}
-                                label="Country Code"
-                                value={field.value}
-                                onChange={field.onChange}
-                                options={[...COUNTRY_CODES]}
-                              />
-                            )}
+                            label="Country Code"
+                            required
+                            data={COUNTRY_CODES}
+                            columns={[
+                              { key: "label", label: "Country code" },
+                            ]}
+                            placeholder="Select country code"
                           />
+
+                          {showTelAreaCodeLookup && (
+                            <FormD365Lookup
+                              name="telAreaCode"
+                              control={control}
+                              label="Code/ Area code"
+                              data={UAE_TELEPHONE_AREA_CODES}
+                              columns={[
+                                { key: "countryCode", label: "Country code" },
+                                { key: "label", label: "Code/ Area code" },
+                              ]}
+                              placeholder="Select code"
+                            />
+                          )}
 
                           <InputField
                             label="Tel Number"
@@ -1150,19 +1162,32 @@ export default function CustomerRegistration() {
                         <h3 className="text-sm font-semibold text-muted-foreground mb-3">
                           MOBILE
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <Controller
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          <FormD365Lookup
                             name="mobileCountryCode"
                             control={control}
-                            render={({ field }) => (
-                              <SelectField
-                                label="Country Code"
-                                value={field.value}
-                                onChange={field.onChange}
-                                options={[...COUNTRY_CODES]}
-                              />
-                            )}
+                            label="Country Code"
+                            required
+                            data={COUNTRY_CODES}
+                            columns={[
+                              { key: "label", label: "Country code" },
+                            ]}
+                            placeholder="Select country code"
                           />
+
+                          {showMobileAreaCodeLookup && (
+                            <FormD365Lookup
+                              name="mobileAreaCode"
+                              control={control}
+                              label="Code/ Area code"
+                              data={UAE_MOBILE_AREA_CODES}
+                              columns={[
+                                { key: "countryCode", label: "Country code" },
+                                { key: "label", label: "Code/ Area code" },
+                              ]}
+                              placeholder="Select code"
+                            />
+                          )}
 
                           <InputField
                             label="Mobile Number"
@@ -1177,8 +1202,7 @@ export default function CustomerRegistration() {
                                 // Limit length based on country
                                 if (countryCode === "+971") {
                                   value = value.slice(0, 7); // UAE 7 digits
-                                }
-                                else {
+                                } else {
                                   value = value.slice(0, 15);
                                 }
                                 e.target.value = value;
