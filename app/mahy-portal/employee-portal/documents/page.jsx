@@ -60,7 +60,6 @@ export default function DocumentsPage() {
     try {
       inputRef.current.showPicker?.();
     } catch {
-      // Ignore browsers that restrict programmatic picker opening.
     }
   };
 
