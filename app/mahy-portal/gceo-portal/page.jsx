@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import ExpandableCell from "@/components/UI/ExpandableCell";
 import Pagination from "@/components/UI/shop/Pagination";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const GCEO_ALLOWED_ROLES = [
   "Group General Manager Bionic",
@@ -40,7 +40,7 @@ const companies = [
   "Union Nonwoven Industries",
   "Union Paper Mills",
   "Union Sustainable Packaging Solutions",
-  "Union Wood Works"
+  "Union Wood Works",
 ];
 
 const getUniqueValues = (items, extractor) => {
@@ -87,6 +87,39 @@ const TABLE_HEAD_CELL_CLASS =
 const TABLE_CELL_BASE_CLASS =
   "px-3 py-4 align-middle text-sm text-white/85 text-center";
 
+const PAGE_SIZE = 15;
+
+const getTotalPagesFromPagination = (pagination) => {
+  const directTotalPages = Number(
+    pagination?.totalPages ??
+      pagination?.pageCount ??
+      pagination?.pages ??
+      pagination?.lastPage ??
+      pagination,
+  );
+
+  if (directTotalPages > 0) {
+    return directTotalPages;
+  }
+
+  const totalItems = Number(
+    pagination?.totalItems ??
+      pagination?.total ??
+      pagination?.count ??
+      pagination?.records ??
+      0,
+  );
+  const perPage = Number(
+    pagination?.limit ?? pagination?.perPage ?? pagination?.pageSize ?? PAGE_SIZE,
+  );
+
+  if (totalItems > 0 && perPage > 0) {
+    return Math.ceil(totalItems / perPage);
+  }
+
+  return 1;
+};
+
 const formatDateTimeGST = (iso) => {
   if (!iso) return { date: "-", time: "-" };
 
@@ -123,21 +156,23 @@ function ToastStack({ toasts, removeToast }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className={`pointer-events-auto overflow-hidden rounded-2xl border px-4 py-3 shadow-2xl backdrop-blur-xl ${toast.type === "success"
-              ? "border-emerald-400/25 bg-emerald-500/12 text-emerald-100"
-              : toast.type === "error"
-                ? "border-red-400/25 bg-red-500/12 text-red-100"
-                : "border-sky-400/25 bg-sky-500/12 text-sky-100"
-              }`}
+            className={`pointer-events-auto overflow-hidden rounded-2xl border px-4 py-3 shadow-2xl backdrop-blur-xl ${
+              toast.type === "success"
+                ? "border-emerald-400/25 bg-emerald-500/12 text-emerald-100"
+                : toast.type === "error"
+                  ? "border-red-400/25 bg-red-500/12 text-red-100"
+                  : "border-sky-400/25 bg-sky-500/12 text-sky-100"
+            }`}
           >
             <div className="flex items-start gap-3">
               <div
-                className={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full ${toast.type === "success"
-                  ? "bg-emerald-400"
-                  : toast.type === "error"
-                    ? "bg-red-400"
-                    : "bg-sky-400"
-                  }`}
+                className={`mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full ${
+                  toast.type === "success"
+                    ? "bg-emerald-400"
+                    : toast.type === "error"
+                      ? "bg-red-400"
+                      : "bg-sky-400"
+                }`}
               />
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold">{toast.title}</p>
@@ -238,6 +273,8 @@ function ConfirmDialog({
 }
 
 export default function GCEOPortalPage() {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageParam = searchParams.get("page");
   const page = Number(pageParam) > 0 ? Number(pageParam) : 1;
@@ -276,9 +313,28 @@ export default function GCEOPortalPage() {
   const [reason, setReason] = useState("");
 
   const toastTimers = useRef({});
+  const previousStatusFilterRef = useRef(statusFilter);
   const API = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const pushToast = (title, message = "", type = "info") => {
+  const updatePageInQuery = useCallback(
+    (nextPage, { replace = false } = {}) => {
+      const resolvedPage = Math.max(1, Number(nextPage) || 1);
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("page", String(resolvedPage));
+
+      const url = `${pathname}?${params.toString()}`;
+
+      if (replace) {
+        router.replace(url, { scroll: true });
+        return;
+      }
+
+      router.push(url, { scroll: true });
+    },
+    [pathname, router, searchParams],
+  );
+
+  const pushToast = useCallback((title, message = "", type = "info") => {
     const id = `${Date.now()}-${Math.random()}`;
     setToasts((prev) => [...prev, { id, title, message, type }]);
 
@@ -286,62 +342,72 @@ export default function GCEOPortalPage() {
       setToasts((prev) => prev.filter((t) => t.id !== id));
       delete toastTimers.current[id];
     }, 3500);
-  };
+  }, []);
 
-  const removeToast = (id) => {
+  const removeToast = useCallback((id) => {
     if (toastTimers.current[id]) {
       clearTimeout(toastTimers.current[id]);
       delete toastTimers.current[id];
     }
     setToasts((prev) => prev.filter((t) => t.id !== id));
-  };
+  }, []);
 
   useEffect(() => {
+    const timers = toastTimers.current;
+
     return () => {
-      Object.values(toastTimers.current).forEach(clearTimeout);
+      Object.values(timers).forEach(clearTimeout);
     };
   }, []);
 
-  const fetchDocuments = useCallback(async (showLoader = true) => {
-    try {
-      if (showLoader) setDocumentsLoading(true);
+  const fetchDocuments = useCallback(
+    async (showLoader = true) => {
+      try {
+        if (showLoader) setDocumentsLoading(true);
 
-      const res = await fetch(
-        `${API}api/gceo/documents?status=${statusFilter}&page=${page}&limit=15`
-      );
-      const data = await res.json();
+        const res = await fetch(
+          `${API}api/gceo/documents?status=${statusFilter}&page=${page}&limit=${PAGE_SIZE}`,
+        );
+        const data = await res.json();
 
-      if (!res.ok || !data.success) {
-        throw new Error(data?.message || "Failed to fetch documents");
+        if (!res.ok || !data.success) {
+          throw new Error(data?.message || "Failed to fetch documents");
+        }
+
+        const nextTotalPages = getTotalPagesFromPagination(data?.data?.pagination);
+        setTotalPages(nextTotalPages);
+
+        if (page > nextTotalPages) {
+          updatePageInQuery(nextTotalPages, { replace: true });
+          return;
+        }
+
+        setDocuments(Array.isArray(data?.data?.data) ? data.data.data : []);
+      } catch (err) {
+        console.error(err);
+        pushToast("Failed to load documents", err.message, "error");
+      } finally {
+        if (showLoader) setDocumentsLoading(false);
       }
-
-      setDocuments(Array.isArray(data.data.data) ? data.data.data : []);
-
-      const total = Number(data?.data?.pagination);
-      setTotalPages(total > 0 ? total : 1);
-
-    } catch (err) {
-      console.error(err);
-      pushToast("Failed to load documents", err.message, "error");
-    } finally {
-      if (showLoader) setDocumentsLoading(false);
-    }
-  }, [page, statusFilter]);
+    },
+    [API, page, pushToast, statusFilter, updatePageInQuery],
+  );
 
   useEffect(() => {
-    fetchDocuments();
-  }, [fetchDocuments]);
-
-  // useEffect(() => {
-  //   if (!authReady || !hasGceoAccess) return;
-  //   fetchDocuments();
-  // }, [statusFilter, authReady, hasGceoAccess]);
-
-  useEffect(() => {
-    //useeffect added till roles are not available for testing
     if (!authReady) return;
     fetchDocuments();
-  }, [statusFilter, authReady]);
+  }, [authReady, fetchDocuments]);
+
+  useEffect(() => {
+    if (previousStatusFilterRef.current === statusFilter) return;
+
+    previousStatusFilterRef.current = statusFilter;
+    setSelectedDocs([]);
+
+    if (page !== 1) {
+      updatePageInQuery(1, { replace: true });
+    }
+  }, [page, statusFilter, updatePageInQuery]);
 
   const urgencyOptions = useMemo(
     () => getUniqueValues(documents, (doc) => doc.urgency),
@@ -403,12 +469,10 @@ export default function GCEOPortalPage() {
         normalize(doc.documentType) === normalize(documentTypeFilter);
 
       const uploadedAt = doc.createdAt ? new Date(doc.createdAt) : null;
-      const uploadedAtValid =
-        uploadedAt && !Number.isNaN(uploadedAt.getTime());
+      const uploadedAtValid = uploadedAt && !Number.isNaN(uploadedAt.getTime());
 
       const matchesUploadDate =
-        (!fromDateValue ||
-          (uploadedAtValid && uploadedAt >= fromDateValue)) &&
+        (!fromDateValue || (uploadedAtValid && uploadedAt >= fromDateValue)) &&
         (!toDateValue || (uploadedAtValid && uploadedAt <= toDateValue));
 
       return (
@@ -825,7 +889,9 @@ export default function GCEOPortalPage() {
               </div>
 
               <div>
-                <label className={`${FILTER_LABEL_CLASS} xl:mb-6.75`}>Document Type</label>
+                <label className={`${FILTER_LABEL_CLASS} xl:mb-6.75`}>
+                  Document Type
+                </label>
                 <select
                   value={documentTypeFilter}
                   onChange={(e) => setDocumentTypeFilter(e.target.value)}
@@ -847,7 +913,9 @@ export default function GCEOPortalPage() {
               </div>
 
               <div>
-                <label className={`${FILTER_LABEL_CLASS} xl:mb-6.75`}>Approval Urgency</label>
+                <label className={`${FILTER_LABEL_CLASS} xl:mb-6.75`}>
+                  Approval Urgency
+                </label>
                 <select
                   value={urgencyFilter}
                   onChange={(e) => setUrgencyFilter(e.target.value)}
@@ -961,7 +1029,9 @@ export default function GCEOPortalPage() {
                       <th className={TABLE_HEAD_CELL_CLASS}>Amount</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Date & Time</th>
                       <th className={TABLE_HEAD_CELL_CLASS}>Status</th>
-                      <th className={TABLE_HEAD_CELL_CLASS}>Additional Remarks</th>
+                      <th className={TABLE_HEAD_CELL_CLASS}>
+                        Additional Remarks
+                      </th>
                       <th className={`${TABLE_HEAD_CELL_CLASS} text-right`}>
                         Actions
                       </th>
@@ -1056,7 +1126,11 @@ export default function GCEOPortalPage() {
                               {doc.documentType || "-"}
                             </td>
 
-                            <ExpandableCell text={doc.description || "-"} tableClasses={TABLE_CELL_BASE_CLASS} />
+                            <ExpandableCell
+                              text={doc.description || "-"}
+                              tableClasses={TABLE_CELL_BASE_CLASS}
+                              modalTitle="Description"
+                            />
 
                             <td
                               className={`${TABLE_CELL_BASE_CLASS} text-white whitespace-nowrap`}
@@ -1077,12 +1151,18 @@ export default function GCEOPortalPage() {
                                 : "-"}
                             </td>
 
-                            <td className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-nowrap`}>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} text-white/70 whitespace-nowrap`}
+                            >
                               <div>{date}</div>
-                              <div className="text-xs opacity-70 mt-0.5">{time}</div>
+                              <div className="text-xs opacity-70 mt-0.5">
+                                {time}
+                              </div>
                             </td>
 
-                            <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap`}>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap`}
+                            >
                               <span
                                 className={`inline-flex min-w-[96px] justify-center rounded-full px-3 py-1.5 text-xs font-semibold ${badge(
                                   doc.status,
@@ -1092,9 +1172,15 @@ export default function GCEOPortalPage() {
                               </span>
                             </td>
 
-                            <ExpandableCell text={doc.remarks || "-"} tableClasses={TABLE_CELL_BASE_CLASS} />
+                            <ExpandableCell
+                              text={doc.remarks || "-"}
+                              tableClasses={TABLE_CELL_BASE_CLASS}
+                              modalTitle="Additional Remarks"
+                            />
 
-                            <td className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap text-right`}>
+                            <td
+                              className={`${TABLE_CELL_BASE_CLASS} whitespace-nowrap text-right`}
+                            >
                               <div className="flex flex-wrap justify-end gap-2">
                                 <button
                                   onClick={() => downloadFile(doc.id)}
@@ -1125,7 +1211,7 @@ export default function GCEOPortalPage() {
                               </div>
                             </td>
                           </motion.tr>
-                        )
+                        );
                       })
                     )}
                   </tbody>
@@ -1134,7 +1220,9 @@ export default function GCEOPortalPage() {
             </div>
 
             <Pagination
-              currentPage={page} totalPages={totalPages} lightBg={false}
+              currentPage={page}
+              totalPages={totalPages}
+              lightBg={false}
             />
           </div>
         </div>

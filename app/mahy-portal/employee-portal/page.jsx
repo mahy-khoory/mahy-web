@@ -135,9 +135,6 @@ export default function EmployeePortalPage() {
       </p>
 
       <div className="border border-white/10 rounded-xl p-8 bg-white/5 backdrop-blur-xl space-y-8">
-
-        {/* Document Info */}
-
         <div>
           <h2 className="text-lg font-semibold mb-4">Document Information</h2>
 
@@ -182,9 +179,6 @@ export default function EmployeePortalPage() {
             className="w-full mt-4 bg-black/40 border border-white/10 rounded-lg p-3"
           />
         </div>
-
-        {/* Approval */}
-
         <div>
           <h2 className="text-lg font-semibold mb-4">Approval Details</h2>
 
@@ -237,8 +231,6 @@ export default function EmployeePortalPage() {
             className="w-full mt-4 bg-black/40 border border-white/10 rounded-lg p-3"
           />
         </div>
-
-        {/* Upload */}
 
         <div>
           <h2 className="text-lg font-semibold mb-4">Upload Document</h2>

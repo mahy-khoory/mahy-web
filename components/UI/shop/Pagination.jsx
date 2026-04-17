@@ -1,137 +1,176 @@
-"use client"
+"use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 
-const Pagination = ({ currentPage, totalPages, lightBg = true }) => {
-    const router = useRouter();
+const Pagination = ({ currentPage = 1, totalPages = 1, lightBg = true }) => {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-    const handlePageChange = (newPage) => {
-        if (newPage < 1 || newPage > totalPages) return;
+  const safeTotalPages = Math.max(1, Number(totalPages) || 1);
+  const safeCurrentPage = Math.min(
+    Math.max(1, Number(currentPage) || 1),
+    safeTotalPages,
+  );
 
-        const searchParams = new URLSearchParams(window.location.search);
-        searchParams.set("page", newPage);
-        searchParams.set("limit", 15);
+  const handlePageChange = (newPage) => {
+    if (
+      newPage < 1 ||
+      newPage > safeTotalPages ||
+      newPage === safeCurrentPage
+    ) {
+      return;
+    }
 
-        router.push(
-            `${window.location.pathname}?${searchParams.toString()}`,
-            { scroll: true } // ensures scroll to top
-        );
+    const nextSearchParams = new URLSearchParams(searchParams.toString());
+    nextSearchParams.set("page", String(newPage));
+
+    router.push(`${pathname}?${nextSearchParams.toString()}`, {
+      scroll: true,
+    });
+  };
+
+  const getVisiblePages = () => {
+    if (safeTotalPages <= 5) {
+      return Array.from({ length: safeTotalPages }, (_, index) => index + 1);
+    }
+
+    const pages = [];
+
+    const pushPage = (value) => {
+      if (typeof value === "number" && (value < 1 || value > safeTotalPages)) {
+        return;
+      }
+
+      if (pages[pages.length - 1] !== value) {
+        pages.push(value);
+      }
     };
 
-    const getVisiblePages = () => {
-        const pages = [];
+    pushPage(1);
 
-        // Always show first 3 pages if we're near the start
-        if (currentPage <= 3) {
-            for (let i = 1; i <= Math.min(3, totalPages); i++) {
-                pages.push(i);
-            }
-            if (totalPages > 3) {
-                pages.push("ellipsis");
-                pages.push(totalPages);
-            }
-        }
-        // Always show last 3 pages if we're near the end
-        else if (currentPage >= totalPages - 2) {
-            pages.push(1);
-            pages.push("ellipsis");
-            for (let i = Math.max(totalPages - 2, 1); i <= totalPages; i++) {
-                pages.push(i);
-            }
-        }
-        // Show current page with neighbors
-        else {
-            pages.push(1);
-            pages.push("ellipsis");
-            pages.push(currentPage - 1);
-            pages.push(currentPage);
-            pages.push(currentPage + 1);
-            pages.push("ellipsis");
-            pages.push(totalPages);
-        }
+    if (safeCurrentPage <= 3) {
+      pushPage(2);
+      pushPage(3);
+      pushPage(4);
+      pushPage("ellipsis");
+      pushPage(safeTotalPages);
+      return pages;
+    }
 
-        return pages;
-    };
+    if (safeCurrentPage >= safeTotalPages - 2) {
+      pushPage("ellipsis");
+      pushPage(safeTotalPages - 3);
+      pushPage(safeTotalPages - 2);
+      pushPage(safeTotalPages - 1);
+      pushPage(safeTotalPages);
+      return pages;
+    }
 
-    const visiblePages = getVisiblePages();
+    pushPage("ellipsis");
+    pushPage(safeCurrentPage - 1);
+    pushPage(safeCurrentPage);
+    pushPage(safeCurrentPage + 1);
+    pushPage("ellipsis");
+    pushPage(safeTotalPages);
 
-    return (
-        <nav className="flex justify-center mt-8">
-            <div className={`inline-flex items-center justify-center gap-1 border rounded-2xl p-1.5
-                    ${lightBg
-                    ? "border-gray-200 bg-white"
-                    : "border-white/8 bg-[#0c1525] shadow-[0_14px_45px_rgba(1,9,20,0.6)]"}`}>
-                {/* Previous Button */}
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className={cn(
-                        "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
-                        lightBg ? "hover:text-gray-800" : "hover:text-gray-100",
-                        currentPage === 1
-                            ? "cursor-not-allowed text-gray-600"
-                            : (lightBg ? "text-gray-600" : "hover:text-gray-200")
-                    )}
+    return pages;
+  };
+
+  if (safeTotalPages <= 1) {
+    return null;
+  }
+
+  const visiblePages = getVisiblePages();
+
+  return (
+    <nav className="mt-8 flex justify-center">
+      <div
+        className={`inline-flex items-center justify-center gap-1 rounded-2xl border p-1.5 ${
+          lightBg
+            ? "border-gray-200 bg-white"
+            : "border-white/8 bg-[#0c1525] shadow-[0_14px_45px_rgba(1,9,20,0.6)]"
+        }`}
+      >
+        <button
+          onClick={() => handlePageChange(safeCurrentPage - 1)}
+          disabled={safeCurrentPage === 1}
+          className={cn(
+            "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
+            lightBg ? "hover:text-gray-800" : "hover:text-gray-100",
+            safeCurrentPage === 1
+              ? "cursor-not-allowed text-gray-600"
+              : lightBg
+                ? "text-gray-600"
+                : "text-gray-200 hover:text-gray-100",
+          )}
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Previous
+        </button>
+
+        <div className="flex items-center">
+          {visiblePages.map((page, index) => {
+            if (page === "ellipsis") {
+              return (
+                <span
+                  key={`ellipsis-${index}`}
+                  className={`flex h-10 w-10 items-center justify-center ${
+                    lightBg ? "text-gray-500" : "text-gray-400"
+                  }`}
                 >
-                    <ChevronLeft className="h-4 w-4" />
-                    Previous
-                </button>
+                  ...
+                </span>
+              );
+            }
 
-                {/* Page Numbers */}
-                <div className="flex items-center">
-                    {visiblePages.map((page, index) => {
-                        if (page === "ellipsis") {
-                            return (
-                                <span
-                                    key={`ellipsis-${index}`}
-                                    className={`flex h-10 w-10 items-center justify-center ${lightBg ? "text-gray-500" : "text-gray-400"} `}
-                                >
-                                    ···
-                                </span>
-                            );
-                        }
+            const isCurrentPage = page === safeCurrentPage;
+            const isEndPage = page === safeTotalPages && safeTotalPages > 3;
 
-                        const isCurrentPage = page === currentPage;
-                        const isEndPage = page === totalPages && totalPages > 3;
+            return (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={cn(
+                  "flex h-10 w-10 items-center justify-center border border-transparent text-sm font-medium transition-all",
+                  isCurrentPage &&
+                    `rounded-full border-gray-400 font-semibold ${
+                      lightBg ? "bg-background" : "bg-gray-800"
+                    }`,
+                  isEndPage && !isCurrentPage && "rounded-full border-gray-300",
+                  !isCurrentPage &&
+                    (lightBg
+                      ? "text-gray-600 hover:text-gray-800"
+                      : "text-gray-200 hover:text-gray-100"),
+                )}
+              >
+                {page}
+              </button>
+            );
+          })}
+        </div>
 
-                        return (
-                            <button
-                                key={page}
-                                onClick={() => handlePageChange(page)}
-                                className={cn(
-                                    "flex h-10 w-10 items-center justify-center text-sm font-medium transition-all",
-                                    "border border-transparent",
-                                    isCurrentPage && `border-gray-400 rounded-full ${lightBg ? "bg-background" : "bg-gray-800"} font-semibold`,
-                                    isEndPage && !isCurrentPage && "border-gray-300 rounded-full",
-                                    !isCurrentPage && (lightBg ? "text-gray-600 hover:text-gray-800" : "text-gray-200 hover:text-gray-100")
-                                )}
-                            >
-                                {page}
-                            </button>
-                        );
-                    })}
-                </div>
-
-                {/* Next Button */}
-                <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className={cn(
-                        "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
-                        lightBg ? "hover:text-gray-800" : "hover:text-gray-100",
-                        currentPage === totalPages
-                            ? `cursor-not-allowed ${lightBg ? "text-gray-500" : "text-gray-600"}`
-                            : lightBg ? "text-gray-800" : "text-gray-200"
-                    )}
-                >
-                    Next
-                    <ChevronRight className="h-4 w-4" />
-                </button>
-            </div>
-        </nav>
-    );
+        <button
+          onClick={() => handlePageChange(safeCurrentPage + 1)}
+          disabled={safeCurrentPage === safeTotalPages}
+          className={cn(
+            "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors",
+            lightBg ? "hover:text-gray-800" : "hover:text-gray-100",
+            safeCurrentPage === safeTotalPages
+              ? `cursor-not-allowed ${lightBg ? "text-gray-500" : "text-gray-600"}`
+              : lightBg
+                ? "text-gray-800"
+                : "text-gray-200",
+          )}
+        >
+          Next
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
+    </nav>
+  );
 };
 
 export default Pagination;
