@@ -189,6 +189,10 @@ export default function CustomerRegistration() {
   const showPersonNameFields =
     isPerson && (isCredit || (isOneTime && trnType === "without_trn"));
   const showMethodOfPayment = !(isPerson && isOneTime);
+  const showPassportFields =
+    isPerson &&
+    !isUAE &&
+    (isCredit || (isOneTime && trnType === "without_trn"));
   const showTrn = isOneTime
     ? trnType === "with_trn"
     : isCredit && vatRegistered && isOrganization;
@@ -668,7 +672,10 @@ export default function CustomerRegistration() {
                       </AnimatedField>
 
                       {/* Person Non-UAE - Passport */}
-                      <AnimatedField show={isPerson && isCredit && !isUAE}>
+                      {/* <AnimatedField show={isPerson && isCredit && !isUAE}> */}
+
+                    
+                      <AnimatedField show={showPassportFields}>
                         <InputField
                           label="Passport Number"
                           required
@@ -684,8 +691,66 @@ export default function CustomerRegistration() {
                           })}
                         />
                       </AnimatedField>
+                      <AnimatedField show={showPassportFields}>
+                        <Controller
+                          name="passportIssueDate"
+                          control={control}
+                          render={({ field }) => (
+                            <DatePickerField
+                              label="Passport Issue Date"
+                              value={field.value}
+                              onChange={(date) => {
+                                if (date && isFutureDate(date)) {
+                                  setError("passportIssueDate", {
+                                    type: "manual",
+                                    message:
+                                      "Passport issue date cannot be in the future",
+                                  });
+                                  return;
+                                }
+                                clearErrors("passportIssueDate");
+                                field.onChange(date);
+                              }}
+                              required
+                              error={errors.passportIssueDate?.message}
+                            />
+                          )}
+                        />
+                      </AnimatedField>
 
-                      <AnimatedField show={showPersonNameFields}>
+                      <AnimatedField show={showPassportFields}>
+                        <Controller
+                          name="passportExpiryDate"
+                          control={control}
+                          render={({ field }) => (
+                            <DatePickerField
+                              label="Passport Expiry Date"
+                              value={field.value}
+                              onChange={field.onChange}
+                              required
+                              error={errors.passportExpiryDate?.message}
+                            />
+                          )}
+                        />
+                      </AnimatedField>
+
+                      <AnimatedField show={showPassportFields}>
+                        <Controller
+                          name="passportFile"
+                          control={control}
+                          render={({ field }) => (
+                            <FileUploadField
+                              label="Attach Passport"
+                              value={field.value}
+                              onChange={field.onChange}
+                              required
+                            />
+                          )}
+                        />
+                      </AnimatedField>
+
+
+                        <AnimatedField show={showPersonNameFields}>
                         {/* <InputField
                           label="Full Name"
                           required
@@ -707,7 +772,6 @@ export default function CustomerRegistration() {
                         />
 
                         <InputField
-                          required
                           label="Last Name Prefix"
                           error={errors?.lastNamePrefix?.message}
                           {...register("lastNamePrefix")}
@@ -736,64 +800,6 @@ export default function CustomerRegistration() {
                           required
                           error={errors.lastName?.message}
                           {...register("lastName")}
-                        />
-                      </AnimatedField>
-
-                      <AnimatedField show={isPerson && isCredit && !isUAE}>
-                        <Controller
-                          name="passportIssueDate"
-                          control={control}
-                          render={({ field }) => (
-                            <DatePickerField
-                              label="Passport Issue Date"
-                              value={field.value}
-                              onChange={(date) => {
-                                if (date && isFutureDate(date)) {
-                                  setError("passportIssueDate", {
-                                    type: "manual",
-                                    message:
-                                      "Passport issue date cannot be in the future",
-                                  });
-                                  return;
-                                }
-                                clearErrors("passportIssueDate");
-                                field.onChange(date);
-                              }}
-                              required
-                              error={errors.passportIssueDate?.message}
-                            />
-                          )}
-                        />
-                      </AnimatedField>
-
-                      <AnimatedField show={isPerson && isCredit && !isUAE}>
-                        <Controller
-                          name="passportExpiryDate"
-                          control={control}
-                          render={({ field }) => (
-                            <DatePickerField
-                              label="Passport Expiry Date"
-                              value={field.value}
-                              onChange={field.onChange}
-                              required
-                              error={errors.passportExpiryDate?.message}
-                            />
-                          )}
-                        />
-                      </AnimatedField>
-
-                      <AnimatedField show={isPerson && isCredit && !isUAE}>
-                        <Controller
-                          name="passportFile"
-                          control={control}
-                          render={({ field }) => (
-                            <FileUploadField
-                              label="Attach Passport"
-                              value={field.value}
-                              onChange={field.onChange}
-                              required
-                            />
-                          )}
                         />
                       </AnimatedField>
 
@@ -1106,9 +1112,7 @@ export default function CustomerRegistration() {
                             label="Country Code"
                             required
                             data={COUNTRY_CODES}
-                            columns={[
-                              { key: "label", label: "Country code" },
-                            ]}
+                            columns={[{ key: "label", label: "Country code" }]}
                             placeholder="Select country code"
                           />
 
@@ -1169,9 +1173,7 @@ export default function CustomerRegistration() {
                             label="Country Code"
                             required
                             data={COUNTRY_CODES}
-                            columns={[
-                              { key: "label", label: "Country code" },
-                            ]}
+                            columns={[{ key: "label", label: "Country code" }]}
                             placeholder="Select country code"
                           />
 
