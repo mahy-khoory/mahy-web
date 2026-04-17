@@ -40,6 +40,11 @@ export default function EmployeePortalPage() {
     setAmount(formatted);
   };
 
+  const handleReferenceNoChange = (e) => {
+    const sanitizedValue = e.target.value.replace(/[^a-zA-Z0-9-]/g, "");
+    setReferenceNo(sanitizedValue.slice(0, 15));
+  };
+
   const handleFileChange = (e) => {
     const uploaded = e.target.files[0];
 
@@ -85,6 +90,9 @@ export default function EmployeePortalPage() {
           body: formData,
         }
       );
+
+      // console.log(formData);
+      
 
       const data = await response.json();
 
@@ -156,7 +164,8 @@ export default function EmployeePortalPage() {
 
             <input
               value={referenceNo}
-              onChange={(e) => setReferenceNo(e.target.value)}
+              onChange={handleReferenceNoChange}
+              maxLength={15}
               placeholder="Reference Number"
               className="bg-black/40 border border-white/10 rounded-lg p-3"
             />

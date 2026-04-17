@@ -1,11 +1,39 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { useEffect, useState, useMemo } from "react";
+import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const parseDateValue = (value) => {
+  if (!value) return null;
+
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date;
+};
+
+const matchesAmountFilter = (amount, filter) => {
+  if (filter === "ALL") return true;
+
+  const numericAmount = Number(amount);
+
+  if (!Number.isFinite(numericAmount)) {
+    return filter === "NO_AMOUNT";
+  }
+
+  if (filter === "UNDER_1000") return numericAmount < 1000;
+  if (filter === "1000_TO_9999")
+    return numericAmount >= 1000 && numericAmount <= 9999;
+  if (filter === "10000_TO_49999")
+    return numericAmount >= 10000 && numericAmount <= 49999;
+  if (filter === "50000_PLUS") return numericAmount >= 50000;
+
+  return false;
+};
 
 export default function DocumentsPage() {
   const { user } = useAuth();
+  const uploadDateFromRef = useRef(null);
+  const uploadDateToRef = useRef(null);
 
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,6 +41,9 @@ export default function DocumentsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [typeFilter, setTypeFilter] = useState("ALL");
+  const [amountFilter, setAmountFilter] = useState("ALL");
+  const [uploadDateFrom, setUploadDateFrom] = useState("");
+  const [uploadDateTo, setUploadDateTo] = useState("");
 
   const [toast, setToast] = useState(null);
 
@@ -21,7 +52,19 @@ export default function DocumentsPage() {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const fetchDocuments = async () => {
+  const openNativeDatePicker = (inputRef) => {
+    if (!inputRef?.current) return;
+
+    inputRef.current.focus();
+
+    try {
+      inputRef.current.showPicker?.();
+    } catch {
+      // Ignore browsers that restrict programmatic picker opening.
+    }
+  };
+
+  const fetchDocuments = useCallback(async () => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}api/portal/documents/my?email=${encodeURIComponent(
@@ -40,18 +83,22 @@ export default function DocumentsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user?.email]);
 
   useEffect(() => {
     if (user?.email) {
       fetchDocuments();
     }
-  }, [user]);
-
-  // console.log(documents);
-  
+  }, [fetchDocuments, user?.email]);
 
   const filteredDocuments = useMemo(() => {
+    const fromDateValue = parseDateValue(uploadDateFrom);
+    const toDateValue = parseDateValue(uploadDateTo);
+
+    if (toDateValue) {
+      toDateValue.setHours(23, 59, 59, 999);
+    }
+
     return documents.filter((doc) => {
       const matchesSearch =
         doc.userReferenceNo?.toLowerCase().includes(search.toLowerCase()) ||
@@ -63,9 +110,32 @@ export default function DocumentsPage() {
       const matchesType =
         typeFilter === "ALL" || doc.documentType === typeFilter;
 
-      return matchesSearch && matchesStatus && matchesType;
+      const matchesAmount = matchesAmountFilter(doc.amount, amountFilter);
+
+      const uploadedAt = doc.createdAt ? new Date(doc.createdAt) : null;
+      const uploadedAtValid = uploadedAt && !Number.isNaN(uploadedAt.getTime());
+
+      const matchesUploadDate =
+        (!fromDateValue || (uploadedAtValid && uploadedAt >= fromDateValue)) &&
+        (!toDateValue || (uploadedAtValid && uploadedAt <= toDateValue));
+
+      return (
+        matchesSearch &&
+        matchesStatus &&
+        matchesType &&
+        matchesAmount &&
+        matchesUploadDate
+      );
     });
-  }, [documents, search, statusFilter, typeFilter]);
+  }, [
+    amountFilter,
+    documents,
+    search,
+    statusFilter,
+    typeFilter,
+    uploadDateFrom,
+    uploadDateTo,
+  ]);
 
   const downloadFile = (id) => {
     window.open(
@@ -135,6 +205,42 @@ export default function DocumentsPage() {
           <option value="Invoice">Invoice</option>
           <option value="Contract">Contract</option>
         </select>
+
+        <select
+          value={amountFilter}
+          onChange={(e) => setAmountFilter(e.target.value)}
+          className="bg-black/40 border border-white/10 rounded-lg px-4 py-2 text-sm"
+        >
+          <option value="ALL">All Amounts</option>
+          <option value="NO_AMOUNT">No Amount</option>
+          <option value="UNDER_1000">Under 1,000</option>
+          <option value="1000_TO_9999">1,000 - 9,999</option>
+          <option value="10000_TO_49999">10,000 - 49,999</option>
+          <option value="50000_PLUS">50,000+</option>
+        </select>
+
+        <div className="flex flex-wrap items-center gap-2 rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm">
+          <span className="text-white/60">Uploaded</span>
+          <input
+            type="date"
+            ref={uploadDateFromRef}
+            value={uploadDateFrom}
+            max={uploadDateTo || undefined}
+            onChange={(e) => setUploadDateFrom(e.target.value)}
+            onClick={() => openNativeDatePicker(uploadDateFromRef)}
+            className="cursor-pointer rounded-md border border-white/10 bg-black/30 px-3 py-1.5 text-sm"
+          />
+          <span className="text-white/40">to</span>
+          <input
+            type="date"
+            ref={uploadDateToRef}
+            value={uploadDateTo}
+            min={uploadDateFrom || undefined}
+            onChange={(e) => setUploadDateTo(e.target.value)}
+            onClick={() => openNativeDatePicker(uploadDateToRef)}
+            className="cursor-pointer rounded-md border border-white/10 bg-black/30 px-3 py-1.5 text-sm"
+          />
+        </div>
 
       </div>
 
