@@ -217,6 +217,15 @@ export default function VendorRegistration() {
     }
   }, [showMobileAreaCodeLookup, setValue]);
 
+  const sanitizeDigits = (value, maxLength) =>
+    value.replace(/\D/g, "").slice(0, maxLength);
+
+  const sanitizePhoneNumber = (value, countryCode, uaeLength, defaultLength) =>
+    sanitizeDigits(
+      value,
+      countryCode === UAE_DIALING_CODE ? uaeLength : defaultLength,
+    );
+
   const normalizeFiles = (val) => {
     if (!val) return [];
     if (val instanceof FileList) return Array.from(val);
@@ -257,6 +266,16 @@ export default function VendorRegistration() {
           values.mobileNumber,
         ),
       };
+
+      if (isUAE) {
+        delete payloadValues.passportNumber;
+        delete payloadValues.passportDateOfIssue;
+        delete payloadValues.passportDateOfExpiry;
+      } else {
+        delete payloadValues.emiratesId;
+        delete payloadValues.emiratesIdIssueDate;
+        delete payloadValues.emiratesIdExpiryDate;
+      }
 
       Object.entries(payloadValues).forEach(([key, value]) => {
         if (
@@ -677,19 +696,27 @@ export default function VendorRegistration() {
                       <FormSection title="Person Details">
                         {/* Passport fields - Non-UAE */}
                         <AnimatedField show={showPassport}>
-                          <InputField
-                            label="Passport number"
-                            required
-                            inputMode="text"
-                            autoComplete="off"
-                            error={errors.passportNumber?.message}
-                            {...register("passportNumber", {
-                              onChange: (e) => {
-                                e.target.value = sanitizePassportNumber(
-                                  e.target.value,
-                                );
-                              },
-                            })}
+                          <Controller
+                            name="passportNumber"
+                            control={control}
+                            render={({ field }) => (
+                              <InputField
+                                label="Passport number"
+                                required
+                                inputMode="text"
+                                autoComplete="off"
+                                error={errors.passportNumber?.message}
+                                value={field.value || ""}
+                                onChange={(e) =>
+                                  field.onChange(
+                                    sanitizePassportNumber(e.target.value),
+                                  )
+                                }
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
+                            )}
                           />
                         </AnimatedField>
 
@@ -752,19 +779,27 @@ export default function VendorRegistration() {
 
                         {/* Emirates ID fields - UAE */}
                         <AnimatedField show={showEmiratesId}>
-                          <InputField
-                            label="Emirates ID"
-                            required
-                            inputMode="numeric"
-                            autoComplete="off"
-                            error={errors.emiratesId?.message}
-                            {...register("emiratesId", {
-                              onChange: (e) => {
-                                e.target.value = e.target.value
-                                  .replace(/\D/g, "")
-                                  .slice(0, 15);
-                              },
-                            })}
+                          <Controller
+                            name="emiratesId"
+                            control={control}
+                            render={({ field }) => (
+                              <InputField
+                                label="Emirates ID"
+                                required
+                                inputMode="numeric"
+                                autoComplete="off"
+                                error={errors.emiratesId?.message}
+                                value={field.value || ""}
+                                onChange={(e) =>
+                                  field.onChange(
+                                    sanitizeDigits(e.target.value, 15),
+                                  )
+                                }
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
+                            )}
                           />
                         </AnimatedField>
 
@@ -964,17 +999,25 @@ export default function VendorRegistration() {
                       />
 
                       <AnimatedField show={showExtendedAddress}>
-                        <InputField
-                          label="Makani number"
-                          inputMode="numeric"
-                          autoComplete="off"
-                          {...register("makaniNumber", {
-                            onChange: (e) => {
-                              e.target.value = e.target.value
-                                .replace(/\D/g, "")
-                                .slice(0, 10);
-                            },
-                          })}
+                        <Controller
+                          name="makaniNumber"
+                          control={control}
+                          render={({ field }) => (
+                            <InputField
+                              label="Makani number"
+                              inputMode="numeric"
+                              autoComplete="off"
+                              value={field.value || ""}
+                              onChange={(e) =>
+                                field.onChange(
+                                  sanitizeDigits(e.target.value, 10),
+                                )
+                              }
+                              onBlur={field.onBlur}
+                              name={field.name}
+                              ref={field.ref}
+                            />
+                          )}
                         />
                       </AnimatedField>
 
@@ -1054,9 +1097,7 @@ export default function VendorRegistration() {
                           label="Country code"
                           required
                           data={COUNTRY_CODES}
-                          columns={[
-                            { key: "label", label: "Country code" },
-                          ]}
+                          columns={[{ key: "label", label: "Country code" }]}
                           placeholder="Select country code"
                         />
 
@@ -1074,27 +1115,32 @@ export default function VendorRegistration() {
                           />
                         )}
 
-                        <InputField
-                          label="Tel Number"
-                          required
-                          type="tel"
-                          placeholder="Enter telephone number"
-                          {...register("telNumber", {
-                            onChange: (e) => {
-                              const countryCode = watch("telCountryCode");
-                              let value = e.target.value.replace(/\D/g, "");
-
-                              if (countryCode === "+971") {
-                                value = value.slice(0, 7);
-                              } else {
-                                value = value.slice(0, 10);
+                        <Controller
+                          name="telNumber"
+                          control={control}
+                          render={({ field }) => (
+                            <InputField
+                              label="Tel Number"
+                              required
+                              type="tel"
+                              placeholder="Enter telephone number"
+                              error={errors.telNumber?.message}
+                              value={field.value || ""}
+                              onChange={(e) =>
+                                field.onChange(
+                                  sanitizePhoneNumber(
+                                    e.target.value,
+                                    telCountryCode,
+                                    7,
+                                    10,
+                                  ),
+                                )
                               }
-
-                              e.target.value = value;
-                            },
-                            required: "Telephone number is required",
-                          })}
-                          error={errors.telNumber?.message}
+                              onBlur={field.onBlur}
+                              name={field.name}
+                              ref={field.ref}
+                            />
+                          )}
                         />
 
                         <InputField
@@ -1117,9 +1163,7 @@ export default function VendorRegistration() {
                           label="Country code"
                           required
                           data={COUNTRY_CODES}
-                          columns={[
-                            { key: "label", label: "Country code" },
-                          ]}
+                          columns={[{ key: "label", label: "Country code" }]}
                           placeholder="Select country code"
                           error={errors.mobileCountryCode?.message}
                         />
@@ -1138,27 +1182,32 @@ export default function VendorRegistration() {
                           />
                         )}
 
-                        <InputField
-                          label="Mobile Number"
-                          required
-                          type="tel"
-                          placeholder="Enter mobile number"
-                          {...register("mobileNumber", {
-                            onChange: (e) => {
-                              const countryCode = watch("mobileCountryCode"); // get current country code
-                              let value = e.target.value.replace(/\D/g, ""); // remove non-numbers
-
-                              // Limit length based on country
-                              if (countryCode === "+971") {
-                                value = value.slice(0, 7); // UAE 7 digits
-                              } else {
-                                value = value.slice(0, 15);
+                        <Controller
+                          name="mobileNumber"
+                          control={control}
+                          render={({ field }) => (
+                            <InputField
+                              label="Mobile Number"
+                              required
+                              type="tel"
+                              placeholder="Enter mobile number"
+                              error={errors.mobileNumber?.message}
+                              value={field.value || ""}
+                              onChange={(e) =>
+                                field.onChange(
+                                  sanitizePhoneNumber(
+                                    e.target.value,
+                                    mobileCountryCode,
+                                    7,
+                                    15,
+                                  ),
+                                )
                               }
-                              e.target.value = value;
-                            },
-                            required: "Mobile number is required",
-                          })}
-                          error={errors.mobileNumber?.message}
+                              onBlur={field.onBlur}
+                              name={field.name}
+                              ref={field.ref}
+                            />
+                          )}
                         />
                       </div>
 

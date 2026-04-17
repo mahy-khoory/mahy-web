@@ -239,6 +239,15 @@ export default function CustomerRegistration() {
     }
   }, [showMobileAreaCodeLookup, setValue]);
 
+  const sanitizeDigits = (value, maxLength) =>
+    value.replace(/\D/g, "").slice(0, maxLength);
+
+  const sanitizePhoneNumber = (value, countryCode, uaeLength, defaultLength) =>
+    sanitizeDigits(
+      value,
+      countryCode === UAE_DIALING_CODE ? uaeLength : defaultLength,
+    );
+
   const normalizeFiles = (val) => {
     if (!val) return [];
     if (val instanceof FileList) return Array.from(val);
@@ -279,6 +288,16 @@ export default function CustomerRegistration() {
           values.mobileNumber,
         ),
       };
+
+      if (isUAE) {
+        delete payloadValues.passportNumber;
+        delete payloadValues.passportIssueDate;
+        delete payloadValues.passportExpiryDate;
+      } else {
+        delete payloadValues.emiratesId;
+        delete payloadValues.emiratesIdIssueDate;
+        delete payloadValues.emiratesIdExpiryDate;
+      }
 
       Object.entries(payloadValues).forEach(([key, value]) => {
         if (
@@ -424,20 +443,28 @@ export default function CustomerRegistration() {
 
                       {/* Basic Customer Details */}
                       <AnimatedField show={showTrn}>
-                        <InputField
-                          label="TRN"
-                          required
-                          error={errors.trn?.message}
-                          inputMode="numeric"
-                          autoComplete="off"
-                          placeholder="Enter 15-digit TRN"
-                          {...register("trn", {
-                            onChange: (e) => {
-                              e.target.value = e.target.value
-                                .replace(/\D/g, "")
-                                .slice(0, 15);
-                            },
-                          })}
+                        <Controller
+                          name="trn"
+                          control={control}
+                          render={({ field }) => (
+                            <InputField
+                              label="TRN"
+                              required
+                              error={errors.trn?.message}
+                              inputMode="numeric"
+                              autoComplete="off"
+                              placeholder="Enter 15-digit TRN"
+                              value={field.value || ""}
+                              onChange={(e) =>
+                                field.onChange(
+                                  sanitizeDigits(e.target.value, 15),
+                                )
+                              }
+                              onBlur={field.onBlur}
+                              name={field.name}
+                              ref={field.ref}
+                            />
+                          )}
                         />
                       </AnimatedField>
 
@@ -597,19 +624,27 @@ export default function CustomerRegistration() {
 
                       {/* Person UAE - Emirates ID */}
                       <AnimatedField show={isPerson && isCredit && isUAE}>
-                        <InputField
-                          label="Emirates ID"
-                          required
-                          inputMode="numeric"
-                          autoComplete="off"
-                          error={errors.emiratesId?.message}
-                          {...register("emiratesId", {
-                            onChange: (e) => {
-                              e.target.value = e.target.value
-                                .replace(/\D/g, "")
-                                .slice(0, 15);
-                            },
-                          })}
+                        <Controller
+                          name="emiratesId"
+                          control={control}
+                          render={({ field }) => (
+                            <InputField
+                              label="Emirates ID"
+                              required
+                              inputMode="numeric"
+                              autoComplete="off"
+                              error={errors.emiratesId?.message}
+                              value={field.value || ""}
+                              onChange={(e) =>
+                                field.onChange(
+                                  sanitizeDigits(e.target.value, 15),
+                                )
+                              }
+                              onBlur={field.onBlur}
+                              name={field.name}
+                              ref={field.ref}
+                            />
+                          )}
                         />
                       </AnimatedField>
 
@@ -674,21 +709,28 @@ export default function CustomerRegistration() {
                       {/* Person Non-UAE - Passport */}
                       {/* <AnimatedField show={isPerson && isCredit && !isUAE}> */}
 
-                    
                       <AnimatedField show={showPassportFields}>
-                        <InputField
-                          label="Passport Number"
-                          required
-                          inputMode="text"
-                          autoComplete="off"
-                          error={errors.passportNumber?.message}
-                          {...register("passportNumber", {
-                            onChange: (e) => {
-                              e.target.value = sanitizePassportNumber(
-                                e.target.value,
-                              );
-                            },
-                          })}
+                        <Controller
+                          name="passportNumber"
+                          control={control}
+                          render={({ field }) => (
+                            <InputField
+                              label="Passport Number"
+                              required
+                              inputMode="text"
+                              autoComplete="off"
+                              error={errors.passportNumber?.message}
+                              value={field.value || ""}
+                              onChange={(e) =>
+                                field.onChange(
+                                  sanitizePassportNumber(e.target.value),
+                                )
+                              }
+                              onBlur={field.onBlur}
+                              name={field.name}
+                              ref={field.ref}
+                            />
+                          )}
                         />
                       </AnimatedField>
                       <AnimatedField show={showPassportFields}>
@@ -749,8 +791,7 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-
-                        <AnimatedField show={showPersonNameFields}>
+                      <AnimatedField show={showPersonNameFields}>
                         {/* <InputField
                           label="Full Name"
                           required
@@ -1066,18 +1107,24 @@ export default function CustomerRegistration() {
                         />
                       </AnimatedField>
 
-                      <InputField
-                        label="Makani Number"
-                        inputMode="numeric"
-                        autoComplete="off"
-                        placeholder="10-digit Makani number"
-                        {...register("makaniNo", {
-                          onChange: (e) => {
-                            e.target.value = e.target.value
-                              .replace(/\D/g, "")
-                              .slice(0, 10);
-                          },
-                        })}
+                      <Controller
+                        name="makaniNo"
+                        control={control}
+                        render={({ field }) => (
+                          <InputField
+                            label="Makani Number"
+                            inputMode="numeric"
+                            autoComplete="off"
+                            placeholder="10-digit Makani number"
+                            value={field.value || ""}
+                            onChange={(e) =>
+                              field.onChange(sanitizeDigits(e.target.value, 10))
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
+                          />
+                        )}
                       />
 
                       <InputField
@@ -1130,29 +1177,32 @@ export default function CustomerRegistration() {
                             />
                           )}
 
-                          <InputField
-                            label="Tel Number"
-                            required
-                            type="tel"
-                            placeholder="Enter telephone number"
-                            {...register("telephone", {
-                              onChange: (e) => {
-                                const countryCode = watch("telCountryCode"); // get selected tel country code
-                                let value = e.target.value.replace(/\D/g, ""); // remove non-digits
-
-                                // Example: limit by country
-                                if (countryCode === "+971") {
-                                  value = value.slice(0, 7); // UAE 7 digits
-                                } else {
-                                  value = value.slice(0, 15);
+                          <Controller
+                            name="telephone"
+                            control={control}
+                            render={({ field }) => (
+                              <InputField
+                                label="Tel Number"
+                                required
+                                type="tel"
+                                placeholder="Enter telephone number"
+                                error={errors.telephone?.message}
+                                value={field.value || ""}
+                                onChange={(e) =>
+                                  field.onChange(
+                                    sanitizePhoneNumber(
+                                      e.target.value,
+                                      telCountryCode,
+                                      7,
+                                      15,
+                                    ),
+                                  )
                                 }
-                                // Add other countries as needed
-
-                                e.target.value = value;
-                              },
-                              required: "Telephone number is required",
-                            })}
-                            error={errors.telephone?.message}
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
+                            )}
                           />
 
                           <InputField
@@ -1191,27 +1241,32 @@ export default function CustomerRegistration() {
                             />
                           )}
 
-                          <InputField
-                            label="Mobile Number"
-                            required
-                            type="tel"
-                            placeholder="Enter mobile number"
-                            {...register("mobileNumber", {
-                              onChange: (e) => {
-                                const countryCode = watch("mobileCountryCode"); // get current country code
-                                let value = e.target.value.replace(/\D/g, ""); // remove non-numbers
-
-                                // Limit length based on country
-                                if (countryCode === "+971") {
-                                  value = value.slice(0, 7); // UAE 7 digits
-                                } else {
-                                  value = value.slice(0, 15);
+                          <Controller
+                            name="mobileNumber"
+                            control={control}
+                            render={({ field }) => (
+                              <InputField
+                                label="Mobile Number"
+                                required
+                                type="tel"
+                                placeholder="Enter mobile number"
+                                error={errors.mobileNumber?.message}
+                                value={field.value || ""}
+                                onChange={(e) =>
+                                  field.onChange(
+                                    sanitizePhoneNumber(
+                                      e.target.value,
+                                      mobileCountryCode,
+                                      7,
+                                      15,
+                                    ),
+                                  )
                                 }
-                                e.target.value = value;
-                              },
-                              required: "Mobile number is required",
-                            })}
-                            error={errors.mobileNumber?.message}
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
+                            )}
                           />
                         </div>
                       </div>
