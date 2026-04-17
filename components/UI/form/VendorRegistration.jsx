@@ -102,6 +102,19 @@ const isFutureDate = (date) => {
   return normalizedDate > today;
 };
 
+const VENDOR_FORM_DEFAULT_VALUES = {
+  vendorType: "organization",
+  currency: "AED",
+  vendorClassificationGroup: "onetime",
+  trnType: "with_trn",
+  salesTaxGroup: "vat",
+  countryRegion: "ARE",
+  telCountryCode: "+971",
+  telAreaCode: "",
+  mobileCountryCode: "+971",
+  mobileAreaCode: "",
+};
+
 export default function VendorRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createVendorMutation = useCreateVendor();
@@ -147,6 +160,7 @@ export default function VendorRegistration() {
     control,
     watch,
     setValue,
+    reset,
     setError,
     clearErrors,
     formState: { errors },
@@ -155,18 +169,7 @@ export default function VendorRegistration() {
     mode: "onChange",
     reValidateMode: "onChange",
     criteriaMode: "firstError",
-    defaultValues: {
-      vendorType: "organization",
-      currency: "AED",
-      vendorClassificationGroup: "onetime",
-      trnType: "with_trn",
-      salesTaxGroup: "vat",
-      countryRegion: "ARE",
-      telCountryCode: "+971",
-      telAreaCode: "",
-      mobileCountryCode: "+971",
-      mobileAreaCode: "",
-    },
+    defaultValues: VENDOR_FORM_DEFAULT_VALUES,
   });
 
   const { data: countries = [], isLoading: countriesLoading } = useCountries(
@@ -320,6 +323,8 @@ export default function VendorRegistration() {
 
       await createVendorMutation.mutateAsync(formData);
 
+      reset(VENDOR_FORM_DEFAULT_VALUES);
+      setOpenLookup(null);
       toast.success("Vendor registered successfully");
     } catch (err) {
       console.error(err);
@@ -1106,12 +1111,14 @@ export default function VendorRegistration() {
                             name="telAreaCode"
                             control={control}
                             label="Code/ Area code"
+                            required
                             data={UAE_TELEPHONE_AREA_CODES}
                             columns={[
                               { key: "countryCode", label: "Country code" },
                               { key: "label", label: "Code/ Area code" },
                             ]}
                             placeholder="Select code"
+                            error={errors.telAreaCode?.message}
                           />
                         )}
 
@@ -1173,12 +1180,14 @@ export default function VendorRegistration() {
                             name="mobileAreaCode"
                             control={control}
                             label="Code/ Area code"
+                            required
                             data={UAE_MOBILE_AREA_CODES}
                             columns={[
                               { key: "countryCode", label: "Country code" },
                               { key: "label", label: "Code/ Area code" },
                             ]}
                             placeholder="Select code"
+                            error={errors.mobileAreaCode?.message}
                           />
                         )}
 

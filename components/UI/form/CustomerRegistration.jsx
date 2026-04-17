@@ -85,6 +85,24 @@ const isFutureDate = (date) => {
   return normalizedDate > today;
 };
 
+const CUSTOMER_FORM_DEFAULT_VALUES = {
+  customerType: "organization",
+  classificationGroup: "credit",
+  currency: "AED",
+  trnType: "with_trn",
+  country: "ARE",
+  paymentTerms: "",
+  paymentMethod: "",
+  deliveryTerms: "",
+  deliveryMode: "",
+  telCountryCode: "+971",
+  telAreaCode: "",
+  mobileCountryCode: "+971",
+  mobileAreaCode: "",
+  holdingCompany: false,
+  vatRegistered: true,
+};
+
 export default function CustomerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createCustomerMutation = useCreateCustomer();
@@ -137,6 +155,7 @@ export default function CustomerRegistration() {
     control,
     watch,
     setValue,
+    reset,
     setError,
     clearErrors,
     formState: { errors },
@@ -145,23 +164,7 @@ export default function CustomerRegistration() {
     mode: "onChange",
     reValidateMode: "onChange",
     criteriaMode: "firstError",
-    defaultValues: {
-      customerType: "organization",
-      classificationGroup: "credit",
-      currency: "AED",
-      trnType: "with_trn",
-      country: "ARE",
-      paymentTerms: "",
-      paymentMethod: "",
-      deliveryTerms: "",
-      deliveryMode: "",
-      telCountryCode: "+971",
-      telAreaCode: "",
-      mobileCountryCode: "+971",
-      mobileAreaCode: "",
-      holdingCompany: false,
-      vatRegistered: true,
-    },
+    defaultValues: CUSTOMER_FORM_DEFAULT_VALUES,
   });
 
   const classificationGroup = watch("classificationGroup");
@@ -343,6 +346,8 @@ export default function CustomerRegistration() {
 
       await createCustomerMutation.mutateAsync(formData);
 
+      reset(CUSTOMER_FORM_DEFAULT_VALUES);
+      setOpenLookup(null);
       toast.success("Customer registered successfully");
     } catch (err) {
       console.error(err);
@@ -1168,12 +1173,14 @@ export default function CustomerRegistration() {
                               name="telAreaCode"
                               control={control}
                               label="Code/ Area code"
+                              required
                               data={UAE_TELEPHONE_AREA_CODES}
                               columns={[
                                 { key: "countryCode", label: "Country code" },
                                 { key: "label", label: "Code/ Area code" },
                               ]}
                               placeholder="Select code"
+                              error={errors.telAreaCode?.message}
                             />
                           )}
 
@@ -1232,12 +1239,14 @@ export default function CustomerRegistration() {
                               name="mobileAreaCode"
                               control={control}
                               label="Code/ Area code"
+                              required
                               data={UAE_MOBILE_AREA_CODES}
                               columns={[
                                 { key: "countryCode", label: "Country code" },
                                 { key: "label", label: "Code/ Area code" },
                               ]}
                               placeholder="Select code"
+                              error={errors.mobileAreaCode?.message}
                             />
                           )}
 
