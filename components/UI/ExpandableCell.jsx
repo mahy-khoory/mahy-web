@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -12,17 +12,63 @@ export default function ExpandableCell({
   modalTitle = "Details",
 }) {
   const [open, setOpen] = useState(false);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     if (!open || typeof document === "undefined") return undefined;
 
-    const { body } = document;
-    const previousOverflow = body.style.overflow;
+    const body = document.body;
+    const scrollY = window.scrollY;
 
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
     body.style.overflow = "hidden";
 
     return () => {
-      body.style.overflow = previousOverflow;
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.width = "";
+      body.style.overflow = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const stopScrollPropagation = (event) => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const deltaY = event.deltaY;
+
+      const atTop = scrollTop <= 0;
+      const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+      if ((atTop && deltaY < 0) || (atBottom && deltaY > 0)) {
+        event.preventDefault();
+      }
+
+      event.stopPropagation();
+    };
+
+    const stopTouchPropagation = (event) => {
+      event.stopPropagation();
+    };
+
+    el.addEventListener("wheel", stopScrollPropagation, { passive: false });
+    el.addEventListener("touchmove", stopTouchPropagation, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", stopScrollPropagation);
+      el.removeEventListener("touchmove", stopTouchPropagation);
     };
   }, [open]);
 
@@ -75,9 +121,9 @@ export default function ExpandableCell({
                     exit={{ opacity: 0, y: 12, scale: 0.98 }}
                     transition={{ duration: 0.18 }}
                     onClick={(event) => event.stopPropagation()}
-                    className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0b1220] shadow-2xl"
+                    className="flex h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0b1220] shadow-2xl"
                   >
-                    <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5">
+                    <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5 shrink-0">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-300/85">
                           Document Details
@@ -90,13 +136,16 @@ export default function ExpandableCell({
                       <button
                         type="button"
                         onClick={() => setOpen(false)}
-                        className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/[0.06] hover:text-white"
+                        className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/[0.06] hover:text-white shrink-0"
                       >
                         Close
                       </button>
                     </div>
 
-                    <div className="min-h-0 flex-1 overflow-y-auto px-6 py-5">
+                    <div
+                      ref={scrollRef}
+                      className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-5 [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]"
+                    >
                       <p className="whitespace-pre-wrap break-words text-sm leading-7 text-white/80">
                         {safeText}
                       </p>

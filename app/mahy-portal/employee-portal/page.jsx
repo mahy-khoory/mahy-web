@@ -191,7 +191,7 @@ export default function EmployeePortalPage() {
         <div>
           <h2 className="text-lg font-semibold mb-4">Approval Details</h2>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-28">
 
             <select
               value={severity}

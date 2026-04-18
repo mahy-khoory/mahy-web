@@ -26,7 +26,7 @@ const companies = [
   "Green Arabia",
   "Greenland Equipment & Machinery, Est. L.L.C",
   "Greenland General Transport",
-  "MAHY Khoory & Co. L.L.C",
+  // "MAHY Khoory & Co. L.L.C",
   "MAHY Khoory Automotive",
   "MAHY Khoory Motors",
   "MAHY Khoory Trading",
@@ -284,6 +284,7 @@ export default function GCEOPortalPage() {
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [selectedDocs, setSelectedDocs] = useState([]);
   const [search, setSearch] = useState("");
+  const [total, setTotalDoc] = useState([]);
   const [statusFilter, setStatusFilter] = useState("PENDING");
   const [companyFilter, setCompanyFilter] = useState("ALL");
   const [severityFilter, setSeverityFilter] = useState("ALL");
@@ -383,6 +384,7 @@ export default function GCEOPortalPage() {
         }
 
         setDocuments(Array.isArray(data?.data?.data) ? data.data.data : []);
+        setTotalDoc(data?.data?.pagination?.totalAll);
       } catch (err) {
         console.error(err);
         pushToast("Failed to load documents", err.message, "error");
@@ -409,6 +411,10 @@ export default function GCEOPortalPage() {
     }
   }, [page, statusFilter, updatePageInQuery]);
 
+  // console.log(documents);
+  // console.log(total);
+  
+  
   const urgencyOptions = useMemo(
     () => getUniqueValues(documents, (doc) => doc.urgency),
     [documents],
@@ -802,7 +808,10 @@ export default function GCEOPortalPage() {
 
             <div className="flex flex-wrap items-center gap-2 text-xs text-white/55">
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">
-                Total: {documents.length}
+                Total: {total}
+              </span>
+               <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">
+                Total Filtered: {documents.length}
               </span>
               <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">
                 Visible: {filteredDocuments.length}

@@ -1,14 +1,49 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
+import Pagination from "@/components/UI/shop/Pagination";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+const PAGE_SIZE = 10;
 
 const parseDateValue = (value) => {
   if (!value) return null;
 
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date;
+};
+
+const getTotalPagesFromPagination = (pagination) => {
+  const directTotalPages = Number(
+    pagination?.totalPages ??
+      pagination?.pageCount ??
+      pagination?.pages ??
+      pagination?.lastPage ??
+      pagination,
+  );
+
+  if (directTotalPages > 0) {
+    return directTotalPages;
+  }
+
+  const totalItems = Number(
+    pagination?.totalItems ??
+      pagination?.total ??
+      pagination?.count ??
+      pagination?.records ??
+      0,
+  );
+  const perPage = Number(
+    pagination?.limit ?? pagination?.perPage ?? pagination?.pageSize ?? PAGE_SIZE,
+  );
+
+  if (totalItems > 0 && perPage > 0) {
+    return Math.ceil(totalItems / perPage);
+  }
+
+  return 1;
 };
 
 const matchesAmountFilter = (amount, filter) => {
@@ -32,11 +67,15 @@ const matchesAmountFilter = (amount, filter) => {
 
 export default function DocumentsPage() {
   const { user } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const uploadDateFromRef = useRef(null);
   const uploadDateToRef = useRef(null);
 
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
@@ -52,6 +91,34 @@ export default function DocumentsPage() {
     setTimeout(() => setToast(null), 3000);
   };
 
+  const page = useMemo(() => {
+    const value = Number(searchParams.get("page"));
+    return Number.isInteger(value) && value > 0 ? value : 1;
+  }, [searchParams]);
+
+  const updatePageInQuery = useCallback(
+    (nextPage, { replace = false } = {}) => {
+      const nextSearchParams = new URLSearchParams(searchParams.toString());
+
+      if (nextPage <= 1) {
+        nextSearchParams.delete("page");
+      } else {
+        nextSearchParams.set("page", String(nextPage));
+      }
+
+      const nextQuery = nextSearchParams.toString();
+      const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
+
+      if (replace) {
+        router.replace(nextUrl, { scroll: true });
+        return;
+      }
+
+      router.push(nextUrl, { scroll: true });
+    },
+    [pathname, router, searchParams],
+  );
+
   const openNativeDatePicker = (inputRef) => {
     if (!inputRef?.current) return;
 
@@ -65,24 +132,42 @@ export default function DocumentsPage() {
 
   const fetchDocuments = useCallback(async () => {
     try {
+      setLoading(true);
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}api/portal/documents/my?email=${encodeURIComponent(
-          user?.email
-        )}`
+          user?.email,
+        )}&page=${page}&limit=${PAGE_SIZE}`,
       );
 
       const data = await res.json();
 
-      if (data.success) {
-        setDocuments(data.data);
+      if (!res.ok || !data.success) {
+        throw new Error(data?.message || "Failed to load documents");
       }
+
+      const nextTotalPages = getTotalPagesFromPagination(data?.data?.pagination);
+      setTotalPages(nextTotalPages);
+
+      if (page > nextTotalPages) {
+        updatePageInQuery(nextTotalPages, { replace: true });
+        return;
+      }
+
+      setDocuments(
+        Array.isArray(data?.data?.data)
+          ? data.data.data
+          : Array.isArray(data?.data)
+            ? data.data
+            : [],
+      );
     } catch (err) {
       console.error(err);
       showToast("Failed to load documents", "error");
     } finally {
       setLoading(false);
     }
-  }, [user?.email]);
+  }, [page, updatePageInQuery, user?.email]);
 
   useEffect(() => {
     if (user?.email) {
@@ -157,7 +242,6 @@ export default function DocumentsPage() {
 
   return (
     <div className="w-full">
-
       <AnimatePresence>
         {toast && (
           <motion.div
@@ -262,7 +346,7 @@ export default function DocumentsPage() {
                   <th className="text-left p-4">Type</th>
                   <th className="text-left p-4">Amount</th>
                   <th className="text-left p-4">Status</th>
-                  <th className="text-left p-4">Uploaded</th>
+                  <th className="text-left p-4">Upload Date</th>
                   <th className="text-right p-4">Action</th>
                 </tr>
               </thead>
@@ -322,6 +406,10 @@ export default function DocumentsPage() {
         )}
 
       </div>
+
+      {!loading && (
+        <Pagination currentPage={page} totalPages={totalPages} lightBg={false} />
+      )}
     </div>
   );
 }

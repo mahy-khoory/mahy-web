@@ -19,9 +19,7 @@ export default function VerifyPage() {
   useEffect(() => {
     async function verifyDocument() {
       try {
-        const res = await fetch(
-          `${API}api/portal/documents/verify/${token}`
-        );
+        const res = await fetch(`${API}api/portal/documents/verify/${token}`);
 
         const data = await res.json();
 
@@ -43,13 +41,10 @@ export default function VerifyPage() {
 
   return (
     <div className="min-h-screen bg-[#0b1120] text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-xl">
-
+      <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl">
         <div className="rounded-3xl border border-white/10 bg-[#0b1220]/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-6 md:p-8">
           <div className="flex flex-col items-center text-center">
-
             <AnimatePresence mode="wait">
-
               {loading && (
                 <motion.div
                   key="loading"
@@ -92,9 +87,7 @@ export default function VerifyPage() {
                     Verification Failed
                   </h2>
 
-                  <p className="mt-2 text-sm text-white/60">
-                    {error}
-                  </p>
+                  <p className="mt-2 text-sm text-white/60">{error}</p>
                 </motion.div>
               )}
 
@@ -131,31 +124,24 @@ export default function VerifyPage() {
               transition={{ delay: 0.2 }}
               className="mt-6 border-t border-white/10 pt-6 space-y-3 text-sm"
             >
-
-              <Detail label="Reference" value={doc.referenceNo} />
+              <Detail label="Document ID" value={doc.referenceNo} />
               <Detail label="Verification Token" value={token} />
               <Detail label="Uploaded By" value={doc.uploadedByEmail} />
               <Detail label="Document Type" value={doc.documentType} />
               <Detail label="Status" value={doc.status} />
               <Detail
                 label="Approved At"
-                value={
-                  doc.approvedAt
-                    ? new Date(doc.approvedAt).toLocaleString()
-                    : "-"
-                }
+                value={doc.approvedAt ? formatDateTimeGST(doc.approvedAt) : "-"}
               />
               <Detail label="Department" value={doc.department} />
               <Detail label="Company" value={doc.company} />
 
               <div className="pt-4 text-xs text-white/50 text-center">
-                This document has been verified through the MAHY
-                verification system.
+                This document has been verified through the MAHY verification
+                system.
               </div>
-
             </motion.div>
           )}
-
         </div>
       </div>
     </div>
@@ -163,11 +149,30 @@ export default function VerifyPage() {
 }
 function Detail({ label, value }) {
   return (
-    <div className="flex justify-between gap-4 border-b border-white/[0.05] pb-2">
+    <div className="flex justify-between gap-6 border-b border-white/[0.05] pb-2">
       <span className="text-white/50">{label}</span>
       <span className="text-right font-medium text-white break-all">
         {value || "-"}
       </span>
     </div>
   );
+}
+
+function formatDateTimeGST(iso) {
+  if (!iso) return "-";
+
+  const date = new Date(iso);
+
+  const gst = new Date(date.getTime() + 4 * 60 * 60 * 1000);
+
+  const day = String(gst.getUTCDate()).padStart(2, "0");
+  const month = String(gst.getUTCMonth() + 1).padStart(2, "0");
+  const year = gst.getUTCFullYear();
+  let hours = gst.getUTCHours();
+  const minutes = String(gst.getUTCMinutes()).padStart(2, "0");
+
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+
+  return `${day}-${month}-${year} | ${hours}:${minutes} ${ampm} GST`;
 }
