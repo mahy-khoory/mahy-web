@@ -18,7 +18,7 @@ export default function ProjectCard({ id, name, image }) {
       className="
         group
         relative
-        h-[420px]
+       aspect-[3/4] md:aspect-[4/5] xl:aspect-[3/5]
         overflow-hidden
         cursor-pointer
         bg-black
@@ -38,7 +38,7 @@ export default function ProjectCard({ id, name, image }) {
           src={image}
           alt={name}
           fill
-          className="object-cover"
+          className="object-cover object-center"
         />
       </motion.div>
 

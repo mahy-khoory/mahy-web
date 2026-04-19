@@ -7,25 +7,25 @@ import clsx from "clsx";
 export default function SubPageHeading({
   title,
   description,
+  fullHeight = false,
   description2,
   image,
   align = "center",
-  height = "pt-22 pb-12 lg:py-0 lg:h-[80vh]",
+  // height = "pt-22 pb-12 lg:py-0 lg:h-[80vh]",
 }) {
+  const height = fullHeight
+    ? "h-screen pt-22"
+    : "pt-22 pb-12 lg:py-0 lg:h-[80vh]";
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section
-      className={clsx(
-        "relative w-full overflow-hidden z-40",
-        height
-      )}
-    >
-      <Image
-        src={image}
-        alt={title}
-        fill
-        priority
-        className="object-cover"
-      />
+    <section className={clsx("relative w-full overflow-hidden z-40", height)}>
+      <Image src={image} alt={title} fill priority className="object-cover" />
 
       <div
         className="
@@ -54,7 +54,7 @@ export default function SubPageHeading({
           className={clsx(
             "mx-auto max-w-4xl px-6",
             align === "center" && "text-center",
-            align === "left" && "text-left"
+            align === "left" && "text-left",
           )}
         >
           <motion.h1
@@ -107,6 +107,47 @@ export default function SubPageHeading({
           )}
         </div>
       </div>
+{fullHeight && (
+  <motion.div
+    onClick={handleScrollDown}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8, delay: 0.6 }}
+    className="
+      absolute
+      bottom-8
+      left-1/2
+      -translate-x-1/2
+      z-20
+      cursor-pointer
+      flex
+      flex-col
+      items-center
+      gap-3
+      group
+    "
+  >
+    {/* Scroll Text */}
+    <span className="text-white/60 text-[10px] tracking-[0.25em] uppercase">
+      Scroll
+    </span>
+
+    {/* Line Container */}
+    <div className="relative w-[1px] h-10 bg-white/20 overflow-hidden">
+      
+      {/* Animated dot */}
+      <motion.div
+        animate={{ y: ["-20%", "120%"] }}
+        transition={{
+          duration: 1.6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute left-1/2 -translate-x-1/2 w-[3px] h-[6px] rounded-full bg-white"
+      />
+    </div>
+  </motion.div>
+)}
     </section>
   );
 }

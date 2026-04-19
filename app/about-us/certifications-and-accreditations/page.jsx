@@ -12,7 +12,7 @@ function CapabilitiesPage() {
       <SubPageHeading
         title={"Awards, Certifications & Accreditiations"}
         // description={"Our key capabilities and expertise span strategic planning, advanced technology integration, and operational excellence. We deliver tailored solutions through deep industry knowledge, innovation-driven processes, and skilled teams. This enables us to consistently achieve high-quality outcomes and long-term value for our partners."}
-        image={"/gallery/gallery-5.jpg"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776594607/certifications-and-accreditations_a2ssqq.jpg"}
       />
       <section className="bg-[#ffffff] py-24">
         <div className="mx-auto max-w-7xl px-6">

@@ -124,6 +124,7 @@ const CompaniesTab = ({ companies }) => {
         <TabPanel className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {companies.map((company, i) => (
                 <CompanyCard
+                    key={company.id}
                     index={i}
                     ref={el => (refs.current[i] = el)}
                     item={company}

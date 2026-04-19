@@ -242,8 +242,8 @@ async function companyProfile() {
   return (
     <>
       <SubPageHeadingNoOverlayImage
-        image={"/profile/profile-bg.jpg"}
-        image2={"/profile/profile-bg-2.jpg"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593796/business-people-group-hd-8k-wallpaper-stock-photographic-image.jpg_bbf9gf.jpg"}
+        // image2={"/profile/profile-bg-2.jpg"}
         height="h-screen"
       />
       <WhoWeAre image={"/gallery/gallery-2.jpg"} />

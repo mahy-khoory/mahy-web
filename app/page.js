@@ -131,7 +131,7 @@ export default async function Home() {
       </div>
 
       <section id="who-we-are">
-        <WhoWeAre image={"/gallery/gallery-1.jpg"} />
+        <WhoWeAre image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1771915804/office_jaeuiz.webp"} />
       </section>
 
       <div id="companies">

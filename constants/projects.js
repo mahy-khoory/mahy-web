@@ -120,7 +120,7 @@ export const getFeaturedProjects = (ids = []) => {
 };
 
 const projects = [
-    { id: 1, name: "Cape Hayat Four Apartment Buildings", location: "Ras Al Khaimah", sector: "Luxury Residential", developer: "RAK Properties", scale: "Mega Project", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133409/cape-hayat_t0fyrj.jpg" },
+    { id: 1, name: "Cape Hayat Four Apartment Buildings", location: "Ras Al Khaimah", sector: "Luxury Residential", developer: "RAK Properties", scale: "Mega Project", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776590833/Cape_Hayat_Four_Apartment_Buildings.jpg_t5vxge.jpg" },
     { id: 2, name: "Falcon Island Villas Development", location: "Ras Al Khaimah", sector: "Luxury Residential", developer: "Al Hamra Real Estate", scale: "Mega Project", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133437/falcon-island_cd8c8j.jpg" },
     { id: 3, name: "Marbella Villa Extension Project (89 Villas, Mina Al Arab)", location: "Ras Al Khaimah", sector: "Residential", developer: "RAK Properties", scale: "Medium", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133403/marbella-villa_ppwlzs.jpg" },
     { id: 4, name: "G+M+8+R Residential & Commercial Building - Al Rigga, Dubai", location: "Dubai", sector: "Mixed-Use", developer: "Al Wasl Properties", scale: "Medium", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773133404/gm8r-residential_vd8hwy.jpg" },

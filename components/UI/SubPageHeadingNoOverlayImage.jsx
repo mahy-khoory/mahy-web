@@ -4,19 +4,18 @@ import Image from "next/image";
 
 export default function SubPageHeadingNoOverlayImage({
   image,
-  image2,
   height = "h-auto 2xl:h-screen"
 }) {
   return (
     <section className="relative w-full overflow-hidden flex flex-col">
-      <div className="relative h-16.25">
+      {/* <div className="relative h-16.25">
         <Image
           src={image2}
           alt="bg"
           fill
           className="object-cover"
         />
-      </div>
+      </div> */}
 
       <Image
         src={image}
