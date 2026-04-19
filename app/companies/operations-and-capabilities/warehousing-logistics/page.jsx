@@ -6,8 +6,11 @@ function WarehousingLogisticsPage() {
     return (
         <Fragment>
             <SubPageHeading
+            fullHeight
                 title={"Warehousing & Logistics"}
-                image={"/gallery/gallery-2.jpg"}
+                // image={"/gallery/gallery-2.jpg"}
+                                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776594879/quality-management-systems_yyivys.jpg"}
+
             />
             <CompanyDetailCards
                 heading1='Warehousing & Logistics'

@@ -6,10 +6,12 @@ function HoldingOverviewPage() {
   return (
     <main>
       <SubPageHeading
+      fullHeight
         title={"Holding Company Overview"}
         image={
-          "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593285/holding-overview-page.jpg_norjia.jpg"
-        }
+        //   "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593285/holding-overview-page.jpg_norjia.jpg"
+"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776629101/empty-corporate-boardroom-with-documents-city-skyline-twilight.jpg_bhsoze.jpg"
+    }
       />
       <CompanyTextGrid />
 

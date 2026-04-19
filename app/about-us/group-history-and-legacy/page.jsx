@@ -89,8 +89,10 @@ async function GroupHistoryAndLegacyPage() {
   return (
     <main>
       <SubPageHeading
+      fullHeight
         title={"Group History & Legacy"}
-        image={"/gallery/gallery-1.jpg"}
+        // image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776626064/formal-people-with-gadgets-meeting.jpg_et6idb.jpg"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776626413/grouphistory-legacy_ghps2d.png"}
       />
       <TimelineContainer
         title={"History Of MAHY Khoory"}

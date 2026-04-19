@@ -5,7 +5,7 @@ function TradingPage() {
         <main>
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"/gallery/gallery-4.jpg"}
+                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776629673/corporate-buildings.jpg_vxoi9u.jpg"}
                     title={"Trading"}
                     texts={[
                         "This sector represents the Group's commercial foundation, delivering a comprehensive range of industrial supply, distribution, and sustainable energy solutions across regional markets",

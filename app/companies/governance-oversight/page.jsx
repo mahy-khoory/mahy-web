@@ -6,7 +6,8 @@ function GovernanceOversightPage() {
         <main>
             <SubPageHeading
                 title={"Governance & Oversight"}
-                image={"/gallery/gallery-2.jpg"}
+                fullHeight
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776629821/governance-oversight_1_ssbsbx.jpg"}
             />
             <CompanyTextOnBackground />
         </main>

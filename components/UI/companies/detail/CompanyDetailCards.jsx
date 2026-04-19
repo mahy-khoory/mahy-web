@@ -40,7 +40,7 @@ function CompanyDetailCards({
                         ))}
                     </div>
                     <div className='absolute inset-0'>
-                        <Image src={"/gallery/gallery-2.jpg"} alt='Our History' fill style={{ objectFit: "cover" }} />
+                        <Image src={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630183/warehouse-workers-protective-uniform-walking-through-large-distribution-center-organizing-goods-distribution.jpg_2_oqky00.jpg"} alt='' fill style={{ objectFit: "cover" }} />
                     </div>
                     <div className='absolute inset-0 bg-black/30' />
                 </div>
@@ -53,7 +53,7 @@ function CompanyDetailCards({
                         ))}
                     </div>
                     <div className='absolute inset-0'>
-                        <Image src={"/gallery/gallery-1.jpg"} alt='Our History' fill style={{ objectFit: "cover" }} />
+                        <Image src={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"} alt='' fill style={{ objectFit: "cover" }} />
                     </div>
                     <div className='absolute inset-0 bg-black/30' />
                 </div>

@@ -111,7 +111,7 @@ function GroupStructure() {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, ease: "easeOut" }}>
-                    <h2 className="text-4xl md:text-6xl font-semibold text-center text-gray-100 pt-10">MAHY Khoory Group</h2>
+                    {/* <h2 className="text-4xl md:text-6xl font-semibold text-center text-gray-100 pt-10">MAHY Khoory Group</h2> */}
                 </motion.div>
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-7 mt-16">
                     {structure.map((column, i) => (

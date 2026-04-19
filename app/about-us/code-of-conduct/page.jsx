@@ -97,8 +97,10 @@ export default function GovernancePage() {
   return (
     <main className="bg-white">
       <SubPageHeading
+      fullHeight
         title="Code Of Conduct"
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772868318/Code_of_Conduct.jpg_qjqqzs.jpg"
+        // image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772868318/Code_of_Conduct.jpg_qjqqzs.jpg"
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776626763/code-of-conduct_hujjya.jpg"}
         align="center"
       />
       <DesignProcessContainer

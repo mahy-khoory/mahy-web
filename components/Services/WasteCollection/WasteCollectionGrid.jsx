@@ -30,7 +30,7 @@ function WasteCollectionGrid({
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="relative h-90 md:h-full bg-black">
           <Image
-            src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773041990/corporate_scene_representing_business_policy_and_governance_moder.jpg_jretrf.jpg"
+            src="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776627437/digital-document-online-electronic-signature-document-management-paperless-office-e-signing-signing-business-contract-concept-metaverse.jpg_zvimmr.jpg"
             alt="Waste Collection Grid"
             fill
             className="object-fill"

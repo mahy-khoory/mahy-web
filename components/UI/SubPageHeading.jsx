@@ -10,6 +10,7 @@ export default function SubPageHeading({
   fullHeight = false,
   description2,
   image,
+  scrollReadText = "View More",
   align = "center",
   // height = "pt-22 pb-12 lg:py-0 lg:h-[80vh]",
 }) {
@@ -107,15 +108,15 @@ export default function SubPageHeading({
           )}
         </div>
       </div>
-{fullHeight && (
-  <motion.div
-    onClick={handleScrollDown}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.8, delay: 0.6 }}
-    className="
+      {fullHeight && (
+        <motion.div
+          onClick={handleScrollDown}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="
       absolute
-      bottom-8
+      bottom-10
       left-1/2
       -translate-x-1/2
       z-20
@@ -126,28 +127,26 @@ export default function SubPageHeading({
       gap-3
       group
     "
-  >
-    {/* Scroll Text */}
-    <span className="text-white/60 text-[10px] tracking-[0.25em] uppercase">
-      Scroll
-    </span>
+        >
+          <span className="text-white/70 text-[16px] tracking-[0.28em] uppercase transition-opacity duration-300 group-hover:opacity-100 opacity-80">
+            {scrollReadText}
+          </span>
 
-    {/* Line Container */}
-    <div className="relative w-[1px] h-10 bg-white/20 overflow-hidden">
-      
-      {/* Animated dot */}
-      <motion.div
-        animate={{ y: ["-20%", "120%"] }}
-        transition={{
-          duration: 1.6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute left-1/2 -translate-x-1/2 w-[3px] h-[6px] rounded-full bg-white"
-      />
-    </div>
-  </motion.div>
-)}
+          <div className="relative w-[2px] h-15 bg-white/25 overflow-hidden">
+            <motion.div
+              animate={{ y: ["-30%", "130%"] }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              className="absolute left-1/2 -translate-x-1/2 w-[3px] h-[7px] rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.6)]"
+            />
+          </div>
+
+          <div className="w-6 h-[1px] bg-white/20 group-hover:bg-white/40 transition-all duration-300" />
+        </motion.div>
+      )}
     </section>
   );
 }

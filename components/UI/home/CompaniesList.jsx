@@ -13,11 +13,15 @@ import { useRef, useState, useEffect } from "react";
 const industeries = [
     { label: "Trading", href: "/companies/trading", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" },
     { label: "Manufacturing", href: "/companies/manufacturing", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210649/factory-workers-operating-machinery-on-production-2026-01-09-10-18-36-utc_tsa0tc.jpg" },
-    { label: "Automobile", href: "/companies/automotive", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210379/two-businessmen-are-working-together-in-the-car-sh-2026-01-08-23-56-20-utc_tjv68e.jpg" },
+    { label: "Automotive", href: "/companies/automotive", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210379/two-businessmen-are-working-together-in-the-car-sh-2026-01-08-23-56-20-utc_tjv68e.jpg" },
     { label: "Waste Management", href: "/companies/waste-management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210761/joyful-indian-worker-in-protective-vest-and-gloves-2026-01-06-00-11-34-utc_m8310z.jpg" },
-    { label: "Logistics", href: "/companies/transportation-logistics", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210613/interior-warehouse-storage-and-cardboard-boxes-aga-2026-01-09-01-03-54-utc_dzzlr6.jpg" },
-    { label: "Energy Management", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210530/businesswoman-with-solar-panels-model-having-prese-2026-01-09-09-42-23-utc_l5vlii.jpg" },
+    { label: "Transportation", href: "/companies/transportation-logistics", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628975/free-photo-ai-generated-truck.jpg_xjeied.jpg" },
+    { label: "Energy & Sustainability Consulting", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210530/businesswoman-with-solar-panels-model-having-prese-2026-01-09-09-42-23-utc_l5vlii.jpg" },
+    { label: "Hospitality & Food", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628677/Hospitality_food_b3zern.jpg" },
+    { label: "Engineering", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628907/worker-working-factory.jpg_fqcfkn.jpg" },
 ];
+
+
 const moreIndusteries = ["Hospitality", "Engineering"];
 
 function CompaniesList({ darkBg = false, industeriesFirst = true }) {
@@ -135,36 +139,156 @@ const CompaniesTab = ({ companies }) => {
     );
 };
 
-const IndustriesTab = ({ industeries, moreIndusteries }) => (
-    <TabPanel
-        key="industries"
-        className="grid grid-cols-1 lg:grid-cols-2 gap-3"
-        as={motion.div}
-        initial={{ y: 10, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: false, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {industeries.map((industry, i) => (
-                <IndustryCard key={i} item={industry} />
-            ))}
-        </div>
-        <div className="relative h-120 md:h-full w-full">
-            <Image src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" style={{ objectFit: "cover" }} alt="Companies" fill />
-            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
-            <div className='absolute bottom-7 left-7 text-gray-200'>
-                <div className='flex flex-wrap gap-3 mb-4'>
-                    {moreIndusteries.map((item, i) => (
-                        <Link href={"/"} key={i} className='bg-black/40 py-2 px-4 rounded-xl text-sm'>{item}</Link>
-                    ))}
-                </div>
-                <ScrollToTop href={"/companies/all"} className='border-b border-gray-200 pb-1'>Explore More</ScrollToTop>
-            </div>
-        </div>
-    </TabPanel>
-);
+// const IndustriesTab = ({ industeries, moreIndusteries }) => (
+//     <TabPanel
+//         key="industries"
+//         className="grid grid-cols-1 lg:grid-cols-2 gap-3"
+//         as={motion.div}
+//         initial={{ y: 10, opacity: 0 }}
+//         whileInView={{ y: 0, opacity: 1 }}
+//         viewport={{ once: false, margin: "-100px" }}
+//         transition={{ duration: 0.8, ease: "easeOut" }}
+//     >
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+//             {industeries.map((industry, i) => (
+//                 <IndustryCard key={i} item={industry} />
+//             ))}
+//         </div>
+//         {/* <div className="relative h-120 md:h-full w-full">
+//             <Image src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772869180/trading-mahy_wdglvr.jpg" style={{ objectFit: "cover" }} alt="Companies" fill />
+//             <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
+//             <div className='absolute bottom-7 left-7 text-gray-200'>
+//                 <div className='flex flex-wrap gap-3 mb-4'>
+//                     {moreIndusteries.map((item, i) => (
+//                         <Link href={"/"} key={i} className='bg-black/40 py-2 px-4 rounded-xl text-sm'>{item}</Link>
+//                     ))}
+//                 </div>
+//                 <ScrollToTop href={"/companies/all"} className='border-b border-gray-200 pb-1'>Explore More</ScrollToTop>
+//             </div>
+//         </div> */}
 
+
+
+// <div className="flex flex-col gap-3 h-120 md:h-full w-full">
+
+//   {/* 🔥 TOP IMAGE */}
+//   <div className="relative flex-1 w-full overflow-hidden">
+//     <Image
+//       src={topIndustries[0]?.image}
+//       alt={topIndustries[0]?.label}
+//       fill
+//       className="object-cover"
+//     />
+//     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+
+//     <div className="absolute bottom-6 left-6 text-white">
+//       <p className="text-lg font-medium">{topIndustries[0]?.label}</p>
+//     </div>
+//   </div>
+
+//   {/* 🔥 BOTTOM IMAGE */}
+//   <div className="relative flex-1 w-full overflow-hidden">
+//     <Image
+//       src={bottomIndustries[0]?.image}
+//       alt={bottomIndustries[0]?.label}
+//       fill
+//       className="object-cover"
+//     />
+//     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+
+//     <div className="absolute bottom-6 left-6 text-white">
+//       <p className="text-lg font-medium mb-2">
+//         {bottomIndustries[0]?.label}
+//       </p>
+
+//       <ScrollToTop
+//         href={"/companies/all"}
+//         className="border-b border-white/60 pb-1 text-sm"
+//       >
+//         Explore More
+//       </ScrollToTop>
+//     </div>
+//   </div>
+
+// </div>
+//     </TabPanel>
+// );
+
+const IndustriesTab = ({ industeries }) => {
+  const leftIndustries = industeries.slice(0, 6);
+  const rightIndustries = industeries.slice(6, 8);
+
+  return (
+    <TabPanel
+      key="industries"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-3"
+      as={motion.div}
+      initial={{ y: 10, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: false, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {leftIndustries.map((industry, i) => (
+          <IndustryCard key={i} item={industry} />
+        ))}
+      </div>
+
+ 
+      <div className="flex flex-col gap-3 h-120 md:h-full w-full">
+        <div className="relative flex-1 w-full overflow-hidden group">
+          <Image
+            src={rightIndustries[0]?.image}
+            alt={rightIndustries[0]?.label}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+
+          <div className="absolute bottom-6 left-6 text-white">
+            <p className="text-lg font-medium">
+              {rightIndustries[0]?.label}
+            </p>
+
+             <ScrollToTop
+              href={"/companies/all"}
+              className="border-b border-white/60 pb-1 text-sm hover:border-white transition"
+            >
+              Explore More
+            </ScrollToTop>
+          </div>
+        </div>
+
+
+        <div className="relative flex-1 w-full overflow-hidden group">
+          <Image
+            src={rightIndustries[1]?.image}
+            alt={rightIndustries[1]?.label}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+
+          <div className="absolute bottom-6 left-6 text-white">
+            <p className="text-lg font-medium mb-2">
+              {rightIndustries[1]?.label}
+            </p>
+
+            <ScrollToTop
+              href={"/companies/all"}
+              className="border-b border-white/60 pb-1 text-sm hover:border-white transition"
+            >
+              Explore More
+            </ScrollToTop>
+          </div>
+        </div>
+
+      </div>
+
+    </TabPanel>
+  );
+};
 
 const Companies = ({ companies }) => {
     const [currentIndex, setCurrentIndex] = useState(false);

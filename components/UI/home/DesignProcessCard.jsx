@@ -14,7 +14,7 @@ function DesignProcessCard({ process, locale }) {
                 </div>
                 <div className="w-14 h-1 border-b mt-3 relative -left-1"></div>
                 <div className="ml-3">
-                    <span className="font-semibold text-lg">{process.id}. {process.title}</span>
+                    <span className="font-semibold text-lg">{process.title}</span>
                     <p className="text-gray-600 font-medium text-sm mt-1">
                         {process.description}
                     </p>
