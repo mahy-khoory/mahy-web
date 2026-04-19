@@ -49,11 +49,13 @@
   border: 1px solid var(--accent-color);
 }
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-poppins);
 }
+
 
 /* @media (prefers-color-scheme: dark) {
   :root {
