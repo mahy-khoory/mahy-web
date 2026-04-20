@@ -20,13 +20,12 @@ function SolarPanelImagesGrid({
   return (
     <section className="max-w-7xl mx-auto px-5">
       <div className="grid grid-cols-1 lg:grid-cols-8 gap-8">
-        {/* LEFT SIDE */}
+
         <div className="lg:col-span-6">
           <h2 className="text-4xl font-medium text-center lg:text-left">
             {heading}
           </h2>
 
-          {/* CARD GRID */}
           <div className="grid md:grid-cols-2 gap-6 mt-8">
             {items.map((item, i) => (
               <motion.div
@@ -57,7 +56,6 @@ group-hover:text-[var(--accent-light)] transition-colors duration-300"
           </div>
         </div>
 
-        {/* RIGHT SIDE IMAGES */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           <div className="relative h-70 rounded overflow-hidden">
             <Image
@@ -76,8 +74,6 @@ group-hover:text-[var(--accent-light)] transition-colors duration-300"
               className="object-cover"
             />
           </div>
-
-          {/* STATS BOX */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
