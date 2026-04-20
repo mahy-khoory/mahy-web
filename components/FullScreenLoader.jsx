@@ -46,72 +46,8 @@ export default function FullScreenLoader({ onFinish }) {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
-      <div className="mb-0 flex justify-center items-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 1.6,
-            ease: [0.16, 1, 0.3, 1], // smoother entry
-          }}
-          className="relative w-64 h-64 md:w-72 md:h-72"
-        >
-          {/* 🔥 Soft ambient glow */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.58 }}
-            transition={{ duration: 2.2, delay: 0.4 }}
-            className="absolute inset-0 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(59,130,246,0.15), transparent 90%)",
-            }}
-          />
 
-          {/* 🔥 Smooth curtain reveal */}
-          <motion.div
-            initial={{ y: "0%" }}
-            animate={{ y: "-100%" }}
-            transition={{
-              duration: 2.2,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.5,
-            }}
-            className="absolute inset-0 bg-black z-30"
-          />
-
-          {/* 🔥 Logo entry (more natural) */}
-          <motion.div
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{
-              duration: 2.2,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.5,
-            }}
-            className="relative w-full h-full"
-          >
-            <motion.div
-              animate={{ scale: [1, 1.35, 1] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 2.6,
-              }}
-              className="relative w-full h-full"
-            >
-              <Image
-                src="/MAHY.png"
-                alt="Company Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
+      {/* place if needed for the image */}
       <div className="w-full max-w-md h-3.5 bg-white/15 rounded-full relative mb-6 overflow-visible">
         <div className="absolute inset-0 rounded-full border border-white/10" />
 
@@ -155,7 +91,70 @@ export default function FullScreenLoader({ onFinish }) {
 }
 
 
+    // <div className="mb-0 flex justify-center items-center">
+    //     <motion.div
+    //       initial={{ opacity: 0 }}
+    //       animate={{ opacity: 1 }}
+    //       transition={{
+    //         duration: 1.6,
+    //         ease: [0.16, 1, 0.3, 1], // smoother entry
+    //       }}
+    //       className="relative w-64 h-64 md:w-72 md:h-72"
+    //     >
+    //       <motion.div
+    //         initial={{ opacity: 0 }}
+    //         animate={{ opacity: 0.58 }}
+    //         transition={{ duration: 2.2, delay: 0.4 }}
+    //         className="absolute inset-0 blur-3xl"
+    //         style={{
+    //           background:
+    //             "radial-gradient(circle, rgba(59,130,246,0.15), transparent 90%)",
+    //         }}
+    //       />
 
+  
+    //       <motion.div
+    //         initial={{ y: "0%" }}
+    //         animate={{ y: "-100%" }}
+    //         transition={{
+    //           duration: 2.2,
+    //           ease: [0.16, 1, 0.3, 1],
+    //           delay: 0.5,
+    //         }}
+    //         className="absolute inset-0 bg-black z-30"
+    //       />
+
+    //       <motion.div
+    //         initial={{ scale: 1.08 }}
+    //         animate={{ scale: 1 }}
+    //         transition={{
+    //           duration: 2.2,
+    //           ease: [0.16, 1, 0.3, 1],
+    //           delay: 0.5,
+    //         }}
+    //         className="relative w-full h-full"
+    //       >
+    //         <motion.div
+    //           animate={{ scale: [1, 1.35, 1] }}
+    //           transition={{
+    //             duration: 6,
+    //             repeat: Infinity,
+    //             ease: "easeInOut",
+    //             delay: 2.6,
+    //           }}
+    //           className="relative w-full h-full"
+    //         >
+    //           <Image
+    //             src="/MAHY.png"
+    //             alt="Company Logo"
+    //             fill
+    //             className="object-contain"
+    //             priority
+    //           />
+    //         </motion.div>
+    //       </motion.div>
+    //     </motion.div>
+    //   </div>
 
 // <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-60 px-6">
 

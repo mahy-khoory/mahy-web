@@ -10,13 +10,13 @@ function SustainabilityPage() {
             title: "Responsible Operations",
             text: "Sustainability at MAHY Khoory Group is closely linked to operational discipline and governance. Environmental considerations are incorporated into operational planning, investment decisions, and continuous improvement initiatives across all businesses.",
             text2: "We apply structured management systems, monitoring processes, and audits to ensure responsible operations, environmental protection, and ongoing performance improvement.",
-            image: "/gallery/gallery-4.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776677556/corporate-sustainability.jpg_vhc4mz.jpg"
         },
         {
             title: "Health, Safety & People",
             text: "The Group places strong emphasis on the health, safety, and well-being of its employees, contractors, and stakeholders. Safe working environments, risk management, and continuous training are essential components of our sustainability framework.",
             text2: "By investing in people, skills development, and safety awareness, we aim to create stable, productive, and responsible workplaces across all operations.",
-            image: "/gallery/gallery-5.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"
         },
         {
             title: "Community Engagement & Social Responsibility",
@@ -41,9 +41,9 @@ function SustainabilityPage() {
     return (
         <main className='lg:pb-20'>
             <div className="w-full h-screen relative">
-                <Image src={"/gallery/gallery-1.jpg"} alt="Sustainability" fill style={{ objectFit: "cover" }} />
-                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-linear-to-t from-white to-transparent" />
-                <div className="absolute inset-0 text-center z-10 pt-45 text-3xl text-white">
+                <Image src={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776682027/photorealistic-view-tree-nature-with-branches-trunk.jpg_mtzsxt.jpg"} alt="Sustainability" fill style={{ objectFit: "cover" }} />
+                <div className="absolute left-0 right-0 bottom-0 h-1/3 bg-linear-to-t from-white to-transparent" />
+                <div className="absolute inset-0 text-center z-10 top-7 pt-45 text-4xl text-white">
                     <p>To lead in connectivity and intelligence computing.</p>
                     <p className="mt-5">Enabling communation</p>
                 </div>
@@ -64,7 +64,7 @@ function SustainabilityPage() {
             </div>
             <QualityPolicies
                 heading="Environmental Responsibility"
-                text="Environmental stewardship is a core focus across the Group’s operations, particularly within manufacturing, recycling, waste management, logistics, and energy-related activities. We actively work to minimize environmental impact, improve resource efficiency, and support circular economy principles."
+                text="Environmental stewardship is a core focus across the Group's operations, particularly within manufacturing, recycling, waste management, logistics, and energy-related activities. We actively work to minimize environmental impact, improve resource efficiency, and support circular economy principles."
                 items={[
                     { title: "Recycling & Resource Recovery", text: "Recycling and resource recovery of wood, metal, cartons, and OCC" },
                     { title: "Manufacturing Integration", text: "Integration of recovered materials into manufacturing processes" },

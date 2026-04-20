@@ -25,36 +25,36 @@ function AllCompaniesPage() {
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438750/1_-_mahy-khoory-trading_ecld8t.jpg",
         },
-        {
-            title: "Emirates International Equipment & Machinery L.L.C.",
-            texts: [
-                "Emirates International Equipment & Machinery L.L.C., a key subsidiary of the MAHY Khoory Group, is one of the UAE's leading providers of pumping and fluid-handling solutions. Established in 1989, the company supplies pumps, water heaters, HVAC equipment, sanitary fittings, and related systems for industrial, commercial, and residential applications. With a strong nationwide presence and a dealer network of over 300 partners, it supports major developments across high-rise, infrastructure, utilities, and oil & gas sectors. Its mission centers on delivering reliable, efficient, and high-performance pumping solutions backed by strong engineering support.",
-                "The company offers a comprehensive portfolio that includes submersible pumps, booster sets, sewage pumps, hot-water circulation systems, valves, pressure vessels, and packaged pumping skids. Its services span system design, pump selection, turnkey supply, installation support, commissioning, and preventive maintenance. Emirates International Equipment & Machinery L.L.C. has contributed to numerous landmark UAE projects by working closely with consultants, developers, and MEP contractors from early design through final commissioning. Its ISO-certified quality framework and fully equipped service center ensure compliance, reliability, and long-term performance.",
-                "Headquartered in Dubai with a large central warehouse and dedicated workshops, the company provides rapid distribution, technical support, and after-sales service across all emirates. It promotes energy-efficient technologies such as variable-speed systems and high-efficiency motors, aligning with the Group's sustainability goals. As the MAHY Khoory Group's dedicated pump solutions arm, it plays a strategic role in supporting both external clients and internal subsidiaries. Ongoing investments in smart pumping technologies, digital tools, and advanced service capabilities position the company as a preferred partner for complex pumping and water-management projects.",
-            ],
-            image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438762/2_-_emirates-international_jejxjx.png",
-        },
-        {
-            title: "Greenland Equipment & Machinery Est. L.L.C.",
-            texts: [
-                "Greenland Equipment & Machinery Est. L.L.C., part of the MAHY Khoory Group since 1996, is a leading UAE distributor of HVAC, water heating, pumping, and electromechanical solutions. The company delivers integrated climate-control and fluid-handling systems backed by strong technical expertise and responsive service. Representing globally recognized brands, it supports commercial, residential, hospitality, and institutional projects with end-to-end supply, design assistance, and after-sales support. Its mission centers on sustainable, high-performance systems that enhance comfort and efficiency.",
-                "Over the years, Greenland has evolved from a focused trading entity into a premier provider of energy-efficient HVAC and pumping technologies. Its product portfolio includes VRF/VRV air-conditioning systems, electric and solar water heaters, pressure booster and pumping systems, and energy-efficient electric motors. The company works closely with consultants, developers, and contractors on major UAE and international projects, offering system sizing, technical consultation, commissioning, and long-term maintenance. Its ISO-certified operations ensure compliance with ASHRAE, Eurovent, and IEC/EN standards.",
-                "Headquartered in Dubai and supported by showrooms, warehouses, and a strong logistics network, Greenland ensures fast delivery and nationwide service coverage. It plays a strategic role within the MAHY Khoory Group as the primary HVAC and electromechanical trading arm, complementing the Group's broader engineering and pumping capabilities. With a focus on sustainability, innovation, and digital enablement—including smart controls, IoT-ready systems, and advanced energy-management tools—Greenland continues to strengthen its market presence and support the region's shift toward efficient, environmentally responsible building systems",
-            ],
-            image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775160049/greenland-mech_uenskm.jpg",
-        },
-        {
-            title: "Al Mehwar Alfede General Trading LLC",
-            texts: [
-                "Al Mehwar Alfede General Trading LLC, a member of the MAHY Khoory Group, is a specialized UAE-based trading company focused on mechanical and pumping solutions for building services and light industrial applications. Established in the early 2000s, it supplies a wide range of pumps, booster sets, fire-fighting systems, valves, fittings, and spare parts sourced from reputable international manufacturers. With a project-oriented approach and strong technical knowledge, the company supports contractors and facility operators across the Emirates.",
-                "The company's portfolio includes centrifugal pumps, end-suction and axial-flow pumps, self-priming and submersible units, and fire-fighting pump systems, along with selected HVAC components such as cooling and belt-driven fans. Beyond equipment supply, Al Mehwar provides pump selection support, installation guidance, and limited maintenance assistance. Its solutions are deployed in residential water systems, commercial HVAC installations, and fire-fighting networks, with a strong presence in Dubai and Sharjah. The company also collaborates with other MAHY Khoory entities on larger or more complex projects.",
-                "Operating from its Dubai office and warehouse, Al Mehwar ensures efficient distribution and maintains stock for fast order fulfillment, supported by light fabrication and testing facilities. It plays a complementary role within the MAHY Khoory Group by managing specific pump product lines and enhancing the Group's overall supply capabilities. With a focus on quality, compliance, and energy-efficient technologies, the company continues to expand its offerings through global partnerships and value-added services, strengthening its position as a trusted specialist in pumping solutions.",
-            ],
-            image:
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438717/4_-_al-mehwar_vpyemm.png",
-        },
+        // {
+        //     title: "Emirates International Equipment & Machinery L.L.C.",
+        //     texts: [
+        //         "Emirates International Equipment & Machinery L.L.C., a key subsidiary of the MAHY Khoory Group, is one of the UAE's leading providers of pumping and fluid-handling solutions. Established in 1989, the company supplies pumps, water heaters, HVAC equipment, sanitary fittings, and related systems for industrial, commercial, and residential applications. With a strong nationwide presence and a dealer network of over 300 partners, it supports major developments across high-rise, infrastructure, utilities, and oil & gas sectors. Its mission centers on delivering reliable, efficient, and high-performance pumping solutions backed by strong engineering support.",
+        //         "The company offers a comprehensive portfolio that includes submersible pumps, booster sets, sewage pumps, hot-water circulation systems, valves, pressure vessels, and packaged pumping skids. Its services span system design, pump selection, turnkey supply, installation support, commissioning, and preventive maintenance. Emirates International Equipment & Machinery L.L.C. has contributed to numerous landmark UAE projects by working closely with consultants, developers, and MEP contractors from early design through final commissioning. Its ISO-certified quality framework and fully equipped service center ensure compliance, reliability, and long-term performance.",
+        //         "Headquartered in Dubai with a large central warehouse and dedicated workshops, the company provides rapid distribution, technical support, and after-sales service across all emirates. It promotes energy-efficient technologies such as variable-speed systems and high-efficiency motors, aligning with the Group's sustainability goals. As the MAHY Khoory Group's dedicated pump solutions arm, it plays a strategic role in supporting both external clients and internal subsidiaries. Ongoing investments in smart pumping technologies, digital tools, and advanced service capabilities position the company as a preferred partner for complex pumping and water-management projects.",
+        //     ],
+        //     image:
+        //         "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438762/2_-_emirates-international_jejxjx.png",
+        // },
+        // {
+        //     title: "Greenland Equipment & Machinery Est. L.L.C.",
+        //     texts: [
+        //         "Greenland Equipment & Machinery Est. L.L.C., part of the MAHY Khoory Group since 1996, is a leading UAE distributor of HVAC, water heating, pumping, and electromechanical solutions. The company delivers integrated climate-control and fluid-handling systems backed by strong technical expertise and responsive service. Representing globally recognized brands, it supports commercial, residential, hospitality, and institutional projects with end-to-end supply, design assistance, and after-sales support. Its mission centers on sustainable, high-performance systems that enhance comfort and efficiency.",
+        //         "Over the years, Greenland has evolved from a focused trading entity into a premier provider of energy-efficient HVAC and pumping technologies. Its product portfolio includes VRF/VRV air-conditioning systems, electric and solar water heaters, pressure booster and pumping systems, and energy-efficient electric motors. The company works closely with consultants, developers, and contractors on major UAE and international projects, offering system sizing, technical consultation, commissioning, and long-term maintenance. Its ISO-certified operations ensure compliance with ASHRAE, Eurovent, and IEC/EN standards.",
+        //         "Headquartered in Dubai and supported by showrooms, warehouses, and a strong logistics network, Greenland ensures fast delivery and nationwide service coverage. It plays a strategic role within the MAHY Khoory Group as the primary HVAC and electromechanical trading arm, complementing the Group's broader engineering and pumping capabilities. With a focus on sustainability, innovation, and digital enablement—including smart controls, IoT-ready systems, and advanced energy-management tools—Greenland continues to strengthen its market presence and support the region's shift toward efficient, environmentally responsible building systems",
+        //     ],
+        //     image:
+        //         "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775160049/greenland-mech_uenskm.jpg",
+        // },
+        // {
+        //     title: "Al Mehwar Alfede General Trading LLC",
+        //     texts: [
+        //         "Al Mehwar Alfede General Trading LLC, a member of the MAHY Khoory Group, is a specialized UAE-based trading company focused on mechanical and pumping solutions for building services and light industrial applications. Established in the early 2000s, it supplies a wide range of pumps, booster sets, fire-fighting systems, valves, fittings, and spare parts sourced from reputable international manufacturers. With a project-oriented approach and strong technical knowledge, the company supports contractors and facility operators across the Emirates.",
+        //         "The company's portfolio includes centrifugal pumps, end-suction and axial-flow pumps, self-priming and submersible units, and fire-fighting pump systems, along with selected HVAC components such as cooling and belt-driven fans. Beyond equipment supply, Al Mehwar provides pump selection support, installation guidance, and limited maintenance assistance. Its solutions are deployed in residential water systems, commercial HVAC installations, and fire-fighting networks, with a strong presence in Dubai and Sharjah. The company also collaborates with other MAHY Khoory entities on larger or more complex projects.",
+        //         "Operating from its Dubai office and warehouse, Al Mehwar ensures efficient distribution and maintains stock for fast order fulfillment, supported by light fabrication and testing facilities. It plays a complementary role within the MAHY Khoory Group by managing specific pump product lines and enhancing the Group's overall supply capabilities. With a focus on quality, compliance, and energy-efficient technologies, the company continues to expand its offerings through global partnerships and value-added services, strengthening its position as a trusted specialist in pumping solutions.",
+        //     ],
+        //     image:
+        //         "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438717/4_-_al-mehwar_vpyemm.png",
+        // },
         {
             title: "Al Khoory Engineering",
             texts: [
@@ -270,6 +270,8 @@ function AllCompaniesPage() {
     return (
         <main>
             <SubPageHeading
+            fullHeight
+            scrollReadText="View All Companies"
                 title={"All Companies"}
                 image={"/gallery/gallery-2.jpg"}
             />

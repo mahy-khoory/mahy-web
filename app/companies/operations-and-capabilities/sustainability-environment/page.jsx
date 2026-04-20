@@ -8,18 +8,18 @@ function SustainabilityEnvironmentPage() {
         {
             title: "Sustainability as a Core Strategy",
             bullets: [
-                "Sustainability is embedded at the core of the MAHY Khoory Group’s operating model and long-term strategy.",
+                "Sustainability is embedded at the core of the MAHY Khoory Group's operating model and long-term strategy.",
                 "The Group is a regional leader in circular-economy practices, integrating waste collection, recycling, manufacturing, and sustainable product development into a unified environmental ecosystem."
             ],
-            image: "/processes/UAE.avif",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776679387/recycling-symbol-green-wall-modern-office.jpg_hflmu9.jpg",
         },
         {
             title: "Circular Economy & Resource Recovery",
             bullets: [
-                "Recycling and resource recovery operations supply recovered materials directly into the Group’s manufacturing facilities, where waste paper, wood, plastics, and other materials are transformed into high-value industrial products.",
+                "Recycling and resource recovery operations supply recovered materials directly into the Group's manufacturing facilities, where waste paper, wood, plastics, and other materials are transformed into high-value industrial products.",
                 "This closed-loop approach significantly reduces landfill dependency and reliance on virgin resources."
             ],
-            image: "/processes/manufacturer.avif",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776679481/skyscrapers-tokyo.jpg_e2niyf.jpg",
         },
         {
             title: "Comprehensive Environmental Services",
@@ -49,8 +49,9 @@ function SustainabilityEnvironmentPage() {
     return (
         <Fragment>
             <SubPageHeading
+            fullHeight
                 title={"Sustainability & Environment"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776677556/corporate-sustainability.jpg_vhc4mz.jpg"}
             />
             <EnterprisePinnedSection sections={sections} />
         </Fragment>
