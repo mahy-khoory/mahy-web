@@ -1,10 +1,10 @@
 import { ArrowRight, Check, Quote } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import { FaQuoteLeft } from "react-icons/fa6"
 
 function SolarPanelQuoteGrid({
     heading = "Tailored Solutions",
+    image = "/gallery/gallery-1.jpg",
     text = "Lorem ipsum Suspendisse a massa vel sem ornare tincidunt eu sed ipsum Suspendisse commodo finibus nibh ac pretium turpis molestie",
     text2,
     items = [
@@ -20,7 +20,7 @@ function SolarPanelQuoteGrid({
         <section className="max-w-7xl mx-auto md:px-5">
             <div className="grid grid-cols-1 md:grid-cols-5">
                 <div className="relative h-80 md:h-full md:col-span-2">
-                    <Image src={"/gallery/gallery-1.jpg"} alt="Solar Panel OEM Grid" fill style={{ objectFit: "cover" }} />
+                    <Image src={image} alt="Solar Panel OEM Grid" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="pt-7 pb-5 md:py-10 px-5 md:px-10 md:col-span-3">
                     <h2 className="uppercase font-semibold">{heading}</h2>

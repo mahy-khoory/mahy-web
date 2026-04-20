@@ -1,5 +1,4 @@
 "use client"
-import Image from 'next/image'
 import { motion } from "framer-motion";
 import CompaniesCard from './CompaniesCard';
 
@@ -14,7 +13,7 @@ function List({ companies, locale }) {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true, amount: 0.3 }}
                 >
-                    <CompaniesCard id={index} category={company.sector} title={company.name} logo={company.image} locale={locale}
+                    <CompaniesCard slug={company.slug} category={company.sector} title={company.name} logo={company.image} locale={locale}
                         onClick={() => { console.log('clicked'); }} />
                 </motion.div>
             ))}

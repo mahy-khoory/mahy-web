@@ -4,7 +4,16 @@ import Image from 'next/image'
 import { Quote } from 'lucide-react'
 import { motion } from "framer-motion"
 
+const DEFAULT_IMG1 = "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630183/warehouse-workers-protective-uniform-walking-through-large-distribution-center-organizing-goods-distribution.jpg_2_oqky00.jpg"
+const DEFAULT_IMG2 = "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"
+
+function getValidImageSrc(src, fallback) {
+    return typeof src === "string" && src.trim() ? src : fallback
+}
+
 function CompanyDetailCards({
+    img1,
+    img2,
     heading1 = "About Us",
     text1 = ["Born of one man's vision, drive and enterprising spirit, Juma Al Majid Holding Group, a conglomerate in Dubai operates across numerous business categories - in the fields of Contracting, Commercial, Travel, Real Estate, and Investment in the UAE and across geographies."],
     items1 = [
@@ -19,6 +28,9 @@ function CompanyDetailCards({
         "More than 10,000 Employees"
     ]
 }) {
+    const primaryImage = getValidImageSrc(img1, DEFAULT_IMG1)
+    const secondaryImage = getValidImageSrc(img2, DEFAULT_IMG2)
+
     return (
         <motion.section
             className="max-w-7xl mx-auto py-5 md:py-20 px-5"
@@ -40,7 +52,7 @@ function CompanyDetailCards({
                         ))}
                     </div>
                     <div className='absolute inset-0'>
-                        <Image src={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630183/warehouse-workers-protective-uniform-walking-through-large-distribution-center-organizing-goods-distribution.jpg_2_oqky00.jpg"} alt='' fill style={{ objectFit: "cover" }} />
+                        <Image src={primaryImage} alt='' fill style={{ objectFit: "cover" }} />
                     </div>
                     <div className='absolute inset-0 bg-black/30' />
                 </div>
@@ -53,7 +65,7 @@ function CompanyDetailCards({
                         ))}
                     </div>
                     <div className='absolute inset-0'>
-                        <Image src={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"} alt='' fill style={{ objectFit: "cover" }} />
+                        <Image src={secondaryImage} alt='' fill style={{ objectFit: "cover" }} />
                     </div>
                     <div className='absolute inset-0 bg-black/30' />
                 </div>

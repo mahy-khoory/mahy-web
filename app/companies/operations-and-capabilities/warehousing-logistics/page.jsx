@@ -13,6 +13,8 @@ function WarehousingLogisticsPage() {
 
             />
             <CompanyDetailCards
+            img1 = {"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630183/warehouse-workers-protective-uniform-walking-through-large-distribution-center-organizing-goods-distribution.jpg_2_oqky00.jpg"}
+            img2 = {"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"}
                 heading1='Warehousing & Logistics'
                 text1={[
                     "The MAHY Khoory Group maintains a robust warehousing and logistics infrastructure designed to support its multi-sector operations at scale. Centralized and regional warehouses are integrated across trading, manufacturing, automotive, and project-based businesses, enabling efficient storage, handling, and distribution of products and equipment.",

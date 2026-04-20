@@ -93,7 +93,7 @@ export function getNavigation(t) {
       {
         id: "companies",
         label: t("Companies"),
-        href: "/companies/all",
+        href: "/companies",
         linkType: "mega",
         columns: [
           {

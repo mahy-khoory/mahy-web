@@ -5,14 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
-export default function CompaniesCard({ id, category, title, logo, locale }) {
+export default function CompaniesCard({ slug, category, title, logo, locale }) {
     const arrowClasses = "transition-transform duration-300 group-hover:animate-[arrow-loop_0.5s_ease-in-out]";
+const href = !slug || slug === "/" ? "/" : `/companies/details/${slug}`;
 
     return (
         <div
             className="group relative w-full rounded-3xl border border-[#E7E3DA] bg-white hover:shadow-lg px-8 pt-8 pb-7 
             overflow-hidden transition-colors duration-500">
-            <Link className="" href={`/companies/${id}`}>
+            
+            <Link className="" href={href}>
                 <div className="flex flex-col justify-between gap-6 h-full">
                     <div>
                         <div className="text-[12px] font-semibold uppercase tracking-[0.28em] t-base">
