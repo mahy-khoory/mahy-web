@@ -15,9 +15,10 @@ function OpportunitiesPage() {
         <main>
             <SubPageHeading
                 title={"Career Opportunities"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776595911/businessman-contemplates-city-skyline-amidst-modern-towers.jpg_viobsf.jpg"}
+                fullHeight
             />
-            <div className='mt-8 lg:mb-260 xl:mb-220'>
+            <div className='mt-8 lg:mb-260 xl:mb-22'>
                 <SolarPanelImagesGrid
                     heading='Overview'
                     items={items}
