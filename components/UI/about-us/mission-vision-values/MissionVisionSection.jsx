@@ -3,9 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import AnimatedLines from "../../AnimatedLines";
 
-const VALUES = [
+const DEFAULT_VALUES = [
   {
     title: "Excellence",
     description:
@@ -38,7 +37,32 @@ const VALUES = [
   },
 ];
 
-export default function MissionVisionSection() {
+export default function MissionVisionSection({
+  image = "/gallery/gallery-3.jpg",
+
+  visionTitle = "Our Vision",
+  visionText = `To achieve sustainable long-term growth through innovation,
+diversification, and geographical expansion, while consistently
+delivering value that exceeds stakeholder expectations.
+
+We aim to strengthen our presence across regional and
+international markets by building resilient businesses, enhancing
+industrial and environmental capabilities, and maintaining the
+highest standards of governance, performance, and responsibility.`,
+
+  missionTitle = "Our Mission",
+  missionText = `Our mission is to provide high-quality products and integrated
+solutions that support industrial, commercial, environmental, and
+community needs, while contributing positively to economic
+development and environmental sustainability.
+
+Through disciplined execution, innovation, and responsible
+business practices, we strive to enhance quality of life and
+create long-term value for our customers, employees, partners, and
+stakeholders.`,
+
+  values = DEFAULT_VALUES,
+}) {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
@@ -46,7 +70,7 @@ export default function MissionVisionSection() {
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 px-6 py-28">
         <div className="relative h-[320px] sm:h-[400px] lg:h-[640px] lg:sticky lg:top-20 flex items-center justify-center">
           <Image
-            src="/gallery/gallery-3.jpg"
+            src={image}
             alt="MAHY Khoory Vision"
             fill
             priority
@@ -55,135 +79,42 @@ export default function MissionVisionSection() {
         </div>
 
         <div className="space-y-24">
-          {/* <motion.section
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <h2 className="text-3xl font-semibold tracking-tight mb-4">
-              Our Mission
-            </h2>
-            <div className="h-px w-20 bg-orange-500 mb-6" />
-            <p className="text-[15px] leading-relaxed text-gray-700">
-              Our mission is to provide high-quality products and integrated
-              solutions that support industrial, commercial, environmental, and
-              community needs, while contributing positively to economic
-              development and environmental sustainability.
-              <br />
-              <br />
-              Through disciplined execution, innovation, and responsible
-              business practices, we strive to enhance quality of life and
-              create long-term value for our customers, employees, partners, and
-              stakeholders.
-            </p>
-          </motion.section>
-
           <motion.section
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-semibold tracking-tight mb-4">
-              Our Values
-            </h2>
-            <div className="h-px w-20 bg-orange-500 mb-10" />
-
-            <div className="space-y-6">
-              {VALUES.map((item, index) => {
-                const isOpen = openIndex === index;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="border-b border-gray-200 pb-6"
-                  >
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : index)}
-                      className="flex w-full items-center justify-between text-left"
-                    >
-                      <span className="text-lg font-medium">{item.title}</span>
-                      <span className="text-2xl text-orange-500">
-                        {isOpen ? "−" : "+"}
-                      </span>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.p
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeOut" }}
-                          className="mt-3 text-[15px] leading-relaxed text-gray-600 overflow-hidden"
-                        >
-                          {item.description}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.section> */}
-
-          <motion.section
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <h2 className="text-heading text-3xl mb-4">Our Vision</h2>
+            <h2 className="text-heading text-3xl mb-4">{visionTitle}</h2>
             <div className="h-px w-20 b-base mb-6" />
-            <p className="text-body text-[15px] text-gray-700">
-              To achieve sustainable long-term growth through innovation,
-              diversification, and geographical expansion, while consistently
-              delivering value that exceeds stakeholder expectations.
-              <br />
-              <br />
-              We aim to strengthen our presence across regional and
-              international markets by building resilient businesses, enhancing
-              industrial and environmental capabilities, and maintaining the
-              highest standards of governance, performance, and responsibility.
+            <p className="text-body text-[15px] text-gray-700 whitespace-pre-line">
+              {visionText}
             </p>
           </motion.section>
-
-          {/* MISSION */}
           <motion.section
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-heading text-3xl mb-4">Our Mission</h2>
+            <h2 className="text-heading text-3xl mb-4">{missionTitle}</h2>
             <div className="h-px w-20 b-base mb-6" />
-            <p className="text-body text-[15px] text-gray-700">
-              Our mission is to provide high-quality products and integrated
-              solutions that support industrial, commercial, environmental, and
-              community needs, while contributing positively to economic
-              development and environmental sustainability.
-              <br />
-              <br />
-              Through disciplined execution, innovation, and responsible
-              business practices, we strive to enhance quality of life and
-              create long-term value for our customers, employees, partners, and
-              stakeholders.
+            <p className="text-body text-[15px] text-gray-700 whitespace-pre-line">
+              {missionText}
             </p>
           </motion.section>
 
-          {/* VALUES */}
           <motion.section
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-heading text-3xl mb-4">Our Values</h2>
             <div className="h-px w-20 b-base mb-10" />
 
             <div className="space-y-6">
-              {VALUES.map((item, index) => {
+              {values.map((item, index) => {
                 const isOpen = openIndex === index;
 
                 return (
@@ -207,7 +138,7 @@ export default function MissionVisionSection() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          transition={{ duration: 0.3 }}
                           className="mt-3 text-body text-[15px] text-gray-600 overflow-hidden"
                         >
                           {item.description}

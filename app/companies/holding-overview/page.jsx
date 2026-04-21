@@ -6,14 +6,21 @@ function HoldingOverviewPage() {
   return (
     <main>
       <SubPageHeading
-      fullHeight
+        fullHeight
         title={"Holding Company Overview"}
         image={
-        //   "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593285/holding-overview-page.jpg_norjia.jpg"
-"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776629101/empty-corporate-boardroom-with-documents-city-skyline-twilight.jpg_bhsoze.jpg"
-    }
+          //   "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593285/holding-overview-page.jpg_norjia.jpg"
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776629101/empty-corporate-boardroom-with-documents-city-skyline-twilight.jpg_bhsoze.jpg"
+        }
       />
-      <CompanyTextGrid />
+      <CompanyTextGrid
+        heading="About Us"
+        paragraphs={[
+          "The Group operates through a portfolio of specialized companies active across a broad range of sectors, including water and wastewater pumping systems, electromechanical and power solutions, HVAC and industrial machinery, paper recycling and packaging manufacturing, environmental and waste management services, logistics and warehousing, and hospitality. This diversified portfolio reflects a balanced mix of industrial, commercial, service-oriented, and environmental activities, enabling the Group to serve multiple industries while maintaining focused expertise within each business segment.",
+        ]}
+        image="/MAHY.png"
+        rightText="Headquartered in Dubai, the MAHY Khoory Group maintains a strong operational footprint across the United Arab Emirates, with offices, warehouses, manufacturing facilities, and service centers in Abu Dhabi, Al Ain, Sharjah, and Ras Al Khaimah. Beyond the UAE, the Group serves customers and supports projects in more than 29 countries, spanning the GCC, Africa, and South Asia. This geographic reach allows the Group to combine deep local market knowledge with the capability to support regional and international projects of varying scale and complexity."
+      />
 
       <section className="space-y-5 text-gray-600 max-w-7xl mx-auto px-5 pb-10 md:pb-20">
         <p>
@@ -36,7 +43,6 @@ function HoldingOverviewPage() {
       </section>
 
       <section className="relative w-full h-[65vh] md:h-[85vh] overflow-hidden">
-
         <Image
           src="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593394/urban-business-growth-financial-success.jpg_bnuzqg.jpg"
           alt="Business Growth"

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function AboutUsSection() {
+export default function AboutUsSection({image = "/gallery/gallery-6.jpg"}) {
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <div className="mx-auto max-w-[1600px]">
@@ -22,7 +22,7 @@ export default function AboutUsSection() {
                 className="absolute inset-0 will-change-transform transform-gpu"
               >
                 <Image
-                  src="/gallery/gallery-6.jpg"
+                  src={image}
                   alt="About Us"
                   fill
                   priority

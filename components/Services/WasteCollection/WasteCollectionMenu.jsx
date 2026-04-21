@@ -12,15 +12,16 @@ function WasteCollectionMenu({
         "Innovation is woven into the fabric of our strategy. We recognize the dynamic nature of the financial landscape and are committed to staying at the forefront of industry trends. Our strategy involves embracing technological advancements, exploring innovative solutions.",
         "At the core of our strategy is a commitment to putting our clients first. We prioritize understanding your unique needs, challenges, and aspirations. By adopting a client-centric approach, we tailor our services to deliver personalized solutions that align with your goals.",
         "Trust is paramount in financial consultancy, and our strategy is built on a foundation of integrity and transparency. We uphold the highest ethical standards in our interactions, ensuring that our clients have complete confidence in our recommendations and actions."
-    ]
+    ],
+    image = "/gallery/gallery-1.jpg"
 }) {
     return (
         <section className="bg-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="relative h-90 md:h-full">
-                    <Image src={"/gallery/gallery-1.jpg"} alt="Waste Collection Menu" fill style={{ objectFit: "cover" }} />
+                    <Image src={image} alt="Waste Collection Menu" fill style={{ objectFit: "cover" }} />
                 </div>
-                <div className="pt-8 pb-12 md:py-20 px-5 max-w-2xl mx-auto">
+                <div className="pt-8 pb-12 md:py-20 px-5 max-w-2xl mx-auto h-[450px]">
                     {/* <h2 className="uppercase t-base font-semibold">Our Vision</h2> */}
                     <p className="text-3xl md:text-4xl font-semibold mt-3">{heading}</p>
                     {/* <p className="text-sm text-gray-600 mt-5">We are more than just financial consultants; we are a dedicated team of experts driven by a shared vision of transforming challenges into opportunities.</p> */}

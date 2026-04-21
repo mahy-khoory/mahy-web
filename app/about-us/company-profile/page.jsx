@@ -241,12 +241,15 @@ async function companyProfile() {
 
   return (
     <>
-      <SubPageHeadingNoOverlayImage
+      <SubPageHeading
+      fullHeight
+       scrollReadText = "Know About Us"
         image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593796/business-people-group-hd-8k-wallpaper-stock-photographic-image.jpg_bbf9gf.jpg"}
         // image2={"/profile/profile-bg-2.jpg"}
         height="h-screen"
+        title={"Our Company Profile"}
       />
-      <WhoWeAre image={"/gallery/gallery-2.jpg"} />
+      <WhoWeAre image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776794069/group-business-people-are-sitting-conference-room-looking-out-city-skyline-sun-is-setting-sky-is-bright-orange_wmnkpt.jpg"} />
       {/* <div className="text-center px-4 bg-black p-20">
         <AnimatedLines bg="bg-gray-200" />
         <p className="text-heading text-2xl sm:text-1xl font-semibold text-gray-100">
@@ -260,12 +263,9 @@ async function companyProfile() {
       </div> */}
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 lg:py-28 text-center bg-black">
-        {/* Decorative divider */}
         <div className="flex justify-center mb-8">
           <AnimatedLines bg="bg-gray-300" />
         </div>
-
-        {/* Statement */}
         <p
           className="
       text-gray-100

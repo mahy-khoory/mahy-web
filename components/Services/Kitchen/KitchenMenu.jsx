@@ -17,7 +17,7 @@ function KitchenMenu({
 
     return (
         <section className="max-w-7xl mx-auto px-5 py-8 md:py-12">
-            <h2 className="t-base font-bold text-lg text-center md:text-start">{heading}</h2>
+            <h1 className="t-base font-bold text-2xl text-center md:text-start">{heading}</h1>
             <div className="grid grid-cols-1 md:grid-cols-9 gap-10 md:gap-20">
                 <div className="md:col-span-4">
                     <p className="mt-3 mb-7 text-gray-600 text-center md:text-start">{text}</p>

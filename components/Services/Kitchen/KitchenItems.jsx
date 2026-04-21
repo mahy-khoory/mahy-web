@@ -14,20 +14,21 @@ function KitchenItems({
     text,
     title = "Landing Page",
     text2,
-    items = defaultItems
+    items = defaultItems,
+    image= "/gallery/gallery-1.jpg"
 }) {
     return (
-        <section className="max-w-7xl mx-auto px-5 py-12">
+        <section className="max-w-full mx-auto px-5 py-12">
             {heading && (
                 <>
                     <AnimatedLines />
                     <h2 className="text-4xl md:text-5xl pt-2 text-center font-semibold">{heading}</h2>
                 </>
             )}
-            {text && <p className="mt-4 md:mt-6 text-center max-w-4xl mx-auto text-gray-600">{text}</p>}
-            <div className="rounded-2xl p-5 md:p-8 border border-gray-300 grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-10">
-                <div className="relative h-80 md:h-full rounded-2xl overflow-hidden">
-                    <Image src={"/gallery/gallery-1.jpg"} alt="Kitchen" fill style={{ objectFit: "cover" }} />
+            {text && <p className="mt-4 md:mt-6 text-center max-w-4xl mx-auto">{text}</p>}
+            <div className="p-5 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-10">
+                <div className="relative h-80 md:h-full overflow-hidden">
+                    <Image src={image} alt="Kitchen" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="py-4">
                     <p className="text-2xl md:text-3xl font-semibold leading-8">{title}</p>

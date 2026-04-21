@@ -15,7 +15,7 @@ const href = !slug || slug === "/" ? "/" : `/companies/details/${slug}`;
             overflow-hidden transition-colors duration-500">
             
             <Link className="" href={href}>
-                <div className="flex flex-col justify-between gap-6 h-full">
+                <div className="flex flex-col justify-between gap-6 h-full min-h-[400px]">
                     <div>
                         <div className="text-[12px] font-semibold uppercase tracking-[0.28em] t-base">
                             {category}
