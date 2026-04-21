@@ -81,6 +81,14 @@ async function Companies({ searchParams }) {
             location: "uae",
         },
         {
+            name: "Solid Waste Management Division",
+            slug: "solid-waste-management-division",
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774901474/npi-logo_yq0h45.png",
+            sector: "waste management",
+            size: "small",
+            location: "pakistan",
+        },
+        {
             name: "National Paper Industry",
             slug: "national-paper-industry",
             image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774901474/npi-logo_yq0h45.png",
