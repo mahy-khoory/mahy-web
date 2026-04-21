@@ -6,11 +6,13 @@ function InternshipAndGraduatePrograms() {
         <main>
             <SubPageHeading
                 title={"Internship & Graduate Program"}
-                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773043332/representing_internship_and_graduate_develo.jpg_bo4uyd.jpg"}
+                fullHeight
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767567/internship-graduates-prog.jpg_uq1d6i.jpg"}
             />
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773043332/skyline_at_early_evening_featuring_real.jpg_kdmx30.jpg"}
+                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767418/dubai-city-skyline-showing-burj-khalifa-2014.jpg_jx4cxo.jpg"}
+                    image2={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767464/panoramic-view-dubai-city-illuminated-neon-spectrum.jpg_v9thiu.jpg"}
                     title={"Overview"}
                     texts={[
                         "At MAHY Khoory Group, we recognize the importance of developing future professionals by providing meaningful early-career opportunities. Our Internship and Graduate Program is designed to give students and recent graduates practical exposure to real business environments across our diversified group.",

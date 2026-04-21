@@ -15,7 +15,7 @@ function ServicesGloballyTemp({
   invert = false,
 }) {
   return (
-    <section className="max-w-7xl mx-auto px-5">
+    <section className="max-w-7xl mx-auto px-5 mb-1.5">
       <motion.div
         className="mt-3 md:mt-6 p-8 md:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 bg-blue-100"
         initial={{ opacity: 0, y: 10 }}

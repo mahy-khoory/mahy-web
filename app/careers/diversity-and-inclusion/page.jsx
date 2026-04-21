@@ -3,14 +3,14 @@ import SubPageHeading from "@/components/UI/SubPageHeading"
 
 function DiversityAndInclusionPage() {
     const Images = [
-        "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773043707/sunset_featuring_recognizable.jpg_x6clvj.jpg",
-        "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773043706/Dubai_s-illumina.jpg_eonxvc.jpg"
+        "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767741/tall-steel-skyscraper-reflects-bright-city-lights-generated-by-ai.jpg_fluzra.jpg",
+        "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767742/businessman-showing-changes-report.jpg_ojripq.jpg"
     ]
     return (
         <main>
             <SubPageHeading
                 title={"Diversity & Inclusion"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767690/diversity_inclusion.jpg_fomkzs.jpg"}
             />
             <TrustedAdvisorSection
                 heading="Overview"

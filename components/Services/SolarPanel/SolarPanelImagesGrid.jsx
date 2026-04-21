@@ -11,9 +11,15 @@ const defaultItems = [
   },
 ];
 
+const defaultImages = [
+  "/gallery/gallery-2.jpg",
+  "/gallery/gallery-3.jpg",
+];
+
 function SolarPanelImagesGrid({
   heading = "Helping Businesses Scale Smarter Faster And Stronger",
   items = defaultItems,
+  images = defaultImages,
   text1 = "250+",
   text2 = "Active Customers",
 }) {
@@ -56,24 +62,19 @@ group-hover:text-[var(--accent-light)] transition-colors duration-300"
           </div>
         </div>
 
-        <div className="lg:col-span-2 flex flex-col gap-6">
-          <div className="relative h-70 rounded overflow-hidden">
-            <Image
-              src="/gallery/gallery-2.jpg"
-              alt="Solar Panel Images Grid"
-              fill
-              className="object-cover"
-            />
-          </div>
+     <div className="lg:col-span-2 flex flex-col gap-6">
+    
+          {images.map((img, index) => (
+            <div key={index} className="relative h-60 md:h-64 rounded overflow-hidden">
+              <Image
+                src={img}
+                alt={`grid-image-${index}`}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
 
-          <div className="relative h-70 rounded overflow-hidden">
-            <Image
-              src="/gallery/gallery-3.jpg"
-              alt="Solar Panel Images Grid"
-              fill
-              className="object-cover"
-            />
-          </div>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,10 +83,10 @@ group-hover:text-[var(--accent-light)] transition-colors duration-300"
             className="bg-slate-900 text-white px-6 py-5"
           >
             <span className="text-2xl font-medium block">{text1}</span>
-
             <span className="uppercase text-sm tracking-wide">{text2}</span>
           </motion.div>
         </div>
+
       </div>
     </section>
   );

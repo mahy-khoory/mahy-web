@@ -13,13 +13,15 @@ function LearningAndDevelopmentPage() {
         <main>
             <SubPageHeading
                 title={"Learning & Development"}
-                image={"/gallery/gallery-2.jpg"}
+                fullHeight
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776764802/learning-and-development_cobakj.jpg"}
             />
             <SolarPanelInstallationsGrid
                 heading="Overview"
                 text={"At MAHY Khoory Group, we strongly believe that organizational growth and employee development go hand in hand. Continuous learning is not viewed as an optional initiative, but as a strategic investment that strengthens both individual capability and overall business performance."}
                 itemsTitle={false}
                 items={items}
+                image="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776766853/town-square-financial-district.jpg_n5d8sa.jpg"
             />
         </main>
     )

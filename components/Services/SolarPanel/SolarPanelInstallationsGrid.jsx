@@ -8,7 +8,8 @@ function SolarPanelInstallationsGrid({
     items = [
         { title: "Driving Innovation Through Strategy", text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking", image: "/solar/solar-1.svg" },
         { title: "Expert Consulting For Sustainable Growth", text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered", image: "/solar/solar-2.svg" }
-    ]
+    ],
+    image = "/gallery/gallery-1.jpg"
 }) {
     return (
         <section className="max-w-7xl mx-auto px-5 py-10 md:py-20">
@@ -46,7 +47,7 @@ function SolarPanelInstallationsGrid({
                     </div>
                 </div>
                 <div className="relative h-70 md:h-full">
-                    <Image src={"/gallery/gallery-1.jpg"} alt={"Solar Panel"} fill style={{ objectFit: "cover" }} />
+                    <Image src={image} alt={"Solar Panel"} fill style={{ objectFit: "cover" }} />
                 </div>
             </div>
         </section>

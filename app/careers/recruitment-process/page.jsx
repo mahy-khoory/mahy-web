@@ -38,8 +38,9 @@ function RecruitmentProcessPage() {
     return (
         <main>
             <SubPageHeading
+            fullHeight
                 title={"Recruitment Process"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776766968/customer-relationship-management-concept-with-global-structure-human-resources-hr-management-recruit.jpg_hgiy6w.jpg"}
             />
             <CompanyVisionPurpose
                 heading="Recruitment Process"

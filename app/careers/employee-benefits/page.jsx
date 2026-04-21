@@ -6,7 +6,8 @@ function EmployeeBenefitsPage() {
         <main>
             <SubPageHeading
                 title={"Employee Benefits"}
-                image={"/gallery/gallery-6.jpg"}
+                fullHeight
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776764649/employee-benefits.jpg_czxz7n.jpg"}
             />
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
