@@ -82,7 +82,7 @@ async function Companies({ searchParams }) {
         },
         {
             name: "National Paper Industry",
-            slug: "manufacturing",
+            slug: "national-paper-industry",
             image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774901474/npi-logo_yq0h45.png",
             sector: "manufacturing",
             size: "small",
