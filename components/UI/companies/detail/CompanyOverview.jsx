@@ -34,7 +34,7 @@ function CompanyOverview({
           priority
         />
       </motion.div>
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/60" />
 
       <div className="absolute inset-0 z-10 px-4 sm:px-6 md:px-0">
         <div className="pt-28 sm:pt-32 md:pt-0">
@@ -44,7 +44,7 @@ function CompanyOverview({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="bg-black/60 backdrop-blur-md px-5 sm:px-6 md:px-10 py-4 md:py-6 inline-block max-w-full md:max-w-[690px]">
+              <div className="max-w-full md:max-w-172.5">
                 <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-5xl font-semibold text-white leading-tight">
                   {heading}
                 </h1>
@@ -56,7 +56,7 @@ function CompanyOverview({
               transition={{ duration: 0.9, delay: 0.2 }}
               className="mt-5 sm:mt-6 md:mt-8"
             >
-              <div className="bg-black/60 backdrop-blur-md p-5 sm:p-6 md:p-10 space-y-4 md:space-y-5 max-w-full md:max-w-xl">
+              <div className="max-w-full md:max-w-2xl space-y-4">
                 {texts.map((text, i) => (
                   <motion.p
                     key={i}
