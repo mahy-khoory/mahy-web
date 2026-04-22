@@ -2,7 +2,7 @@ import { Check } from "lucide-react"
 import Image from "next/image"
 import SlideReveal from "./UI/SlideReveal"
 
-function CompaniesSectors({ image, image2, title, texts, companiesHeading = false, items, text2, items2, noCheck = [], boldLabels = false }) {
+function CompaniesSectors({ image, image2, title, texts, companiesHeading = false, items, text2, items2, noCheck = [], boldLabels = false, endText }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20">
             <SlideReveal direction="left">
@@ -47,6 +47,10 @@ function CompaniesSectors({ image, image2, title, texts, companiesHeading = fals
                                 </div>
                             ))}
                         </div>
+                    )}
+
+                    {endText && (
+                        <p className="text-gray-600 mt-6">{endText}</p>
                     )}
                 </div>
             </SlideReveal>

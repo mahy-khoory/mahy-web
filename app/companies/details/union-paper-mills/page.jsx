@@ -1,12 +1,8 @@
 import FeaturesEngineeringSection from "@/components/Services/FeaturesEngineeringSection";
 import KitchenMenu from "@/components/Services/Kitchen/KitchenMenu";
 import PumpingServiceCards from "@/components/Services/PumpingServiceCards";
-import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuoteGrid";
 import ValuesSection from "@/components/UI/about-us/ValuesSection";
-import CompanyDetailCards from "@/components/UI/companies/detail/CompanyDetailCards";
 import CompanyOverview from "@/components/UI/companies/detail/CompanyOverview";
-import CompanyTextGrid from "@/components/UI/companies/detail/CompanyTextGrid";
-import CompanyTextOnBackground from "@/components/UI/companies/detail/CompanyTextOnBackground";
 
 function UnionPaperMills() {
   const upmCardsData = [
@@ -109,7 +105,7 @@ function UnionPaperMills() {
       />
 
       <ValuesSection
-        title="Our Mission "
+        title="Our Mission"
         description="Union Paper Mills is driven by a clear sustainability-focused mission: to deliver premium recycled paper products while minimizing environmental impact and reducing reliance on virgin raw materials"
         imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776762183/commitment-to-growth_qhzgjt.jpg"
         imageAlt="Our Mission"
@@ -118,7 +114,7 @@ function UnionPaperMills() {
       />
 
       <ValuesSection
-        title="Our Vision "
+        title="Our Vision"
         description="Our vision is to remain a regional leader in sustainable paper manufacturing through continuous investment in technology, capacity expansion, and operational excellence."
         imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"
         imageAlt="Our Vision"

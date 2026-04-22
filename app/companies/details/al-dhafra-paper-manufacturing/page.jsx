@@ -9,81 +9,81 @@ import CompanyTextGrid from "@/components/UI/companies/detail/CompanyTextGrid";
 import CompanyTextOnBackground from "@/components/UI/companies/detail/CompanyTextOnBackground";
 
 function AlDhafraPaper() {
-const adpmCardsData = [
-  {
-    title: "Market Reach",
-    text: "Headquartered in Abu Dhabi, Al Dhafra Paper Manufacturing supplies packaging manufacturers across the United Arab Emirates and the wider Middle East, with products also reaching selected international markets. Alongside Union Paper Mills in Dubai, the facility plays a critical role in ensuring regional self-sufficiency in recycled containerboard production.",
-    image: "/solar/solar-1.svg",
-  },
-  {
-    title: "Innovation and Continuous Advancement",
-    text: "Al Dhafra Paper Manufacturing maintains a strong focus on technological advancement, regularly upgrading fibre processing equipment and embracing digital optimization. Through collaboration with global technology partners and industry specialists, the mill continuously enhances product performance, cost efficiency, and environmental outcomes—maintaining its position at the forefront of sustainable paper manufacturing in the Middle East.",
-    image: "/solar/solar-2.svg",
-  },
-  {
-    title: "Infrastructure and Technology",
-    text: "The Abu Dhabi facility is equipped with advanced paper manufacturing infrastructure, including high-capacity pulpers, continuous fibre processing systems, modern winders, and fully automated packing lines. Digital control systems and real-time quality monitoring ensure production stability and operational efficiency.",
-    image: "/solar/solar-2.svg",
-  },
-  {
-    title: "Leadership and Management",
-    text: "Al Dhafra Paper Manufacturing is managed by experienced professionals with deep expertise in paper manufacturing and industrial operations. Leadership at the mill emphasizes operational discipline, safety, efficiency, and continuous improvement, in line with the Group’s approach to managing its technical and manufacturing businesses.",
-    image: "/solar/solar-1.svg",
-  },
-];
-const overview = [
-  {
-    heading: "Background and Development",
-    text: "The foundation of Al Dhafra Paper Manufacturing builds on the Group’s long-standing expertise in paper recycling, which began in 1987 with the establishment of Union Paper Mills, one of the earliest paper recycling operations in the GCC.",
-    lastText:
-      "Leveraging decades of technical and operational experience, Al Dhafra Paper Manufacturing was established to address the growing regional demand for sustainable containerboard solutions. The development of the facility reflects the MAHY Khoory Group’s long-term growth philosophy: expansion through innovation, circular manufacturing, and environmental stewardship.",
-  },
-  {
-    heading: "Operations and Integration",
-    text: "Al Dhafra Paper Manufacturing operates as part of an integrated recycling and manufacturing ecosystem within the MAHY Khoory Group.",
-    bullets: [
-      "Works closely with Union Paper Mills and in-house waste collection operations",
-      "Processes over 1,300 tonnes of recovered waste paper daily",
-      "Partnership with Valmet to install advanced ceramic dewatering elements",
-    ],
-    lastText:
-      "These initiatives enhance machine efficiency, paper quality, and energy performance, reflecting the company’s commitment to operational excellence, continuous improvement, and innovation.",
-  },
-  {
-    heading: "Strategic Importance to the Group",
-    text: "As the UAE’s second recycled containerboard mill, Al Dhafra Paper Manufacturing represents a strategic pillar within the MAHY Khoory Group’s industrial portfolio.",
-    bullets: [
-      "Secures stable supply of recycled paper for the Group’s packaging value chain",
-      "Reinforces regional leadership in recycling and circular manufacturing",
-    ],
-    lastText:
-      "By transforming waste into high-value industrial raw material, the facility reflects the Group’s long-term vision for sustainable manufacturing and responsible industrial growth.",
-  },
-  {
-    heading: "Quality and Regulatory Compliance",
-    text: "Quality assurance is embedded throughout the operations of Al Dhafra Paper Manufacturing, supported by ISO-certified management systems and strict regulatory compliance.",
-    bullets: [
-      "Adherence to environmental and industrial standards",
-      "Comprehensive testing for strength, performance, and reliability",
-      "Careful sorting, cleaning, and processing of recovered paper",
-    ],
-    lastText:
-      "These processes ensure contamination-free production and consistent output quality.",
-  },
-  {
-    heading: "Environmental and Sustainability Performance",
-    text: "Sustainability is central to the operating model of Al Dhafra Paper Manufacturing, with 100% post-consumer wastepaper used as raw material.",
-    bullets: [
-      "Reduces reliance on virgin raw materials",
-      "Conserves natural resources",
-      "Lowers energy and water consumption",
-      "Significantly reduces landfill waste and carbon emissions",
-      "Operates closed-loop water recycling systems",
-    ],
-    lastText:
-      "The mill also incorporates waste-heat recovery where feasible and actively supports community recycling initiatives that promote responsible waste diversion.",
-  },
-];
+  const adpmCardsData = [
+    {
+      title: "Market Reach",
+      text: "Headquartered in Abu Dhabi, Al Dhafra Paper Manufacturing supplies packaging manufacturers across the United Arab Emirates and the wider Middle East, with products also reaching selected international markets. Alongside Union Paper Mills in Dubai, the facility plays a critical role in ensuring regional self-sufficiency in recycled containerboard production.",
+      image: "/solar/solar-1.svg",
+    },
+    {
+      title: "Innovation and Continuous Advancement",
+      text: "Al Dhafra Paper Manufacturing maintains a strong focus on technological advancement, regularly upgrading fibre processing equipment and embracing digital optimization. Through collaboration with global technology partners and industry specialists, the mill continuously enhances product performance, cost efficiency, and environmental outcomes—maintaining its position at the forefront of sustainable paper manufacturing in the Middle East.",
+      image: "/solar/solar-2.svg",
+    },
+    {
+      title: "Infrastructure and Technology",
+      text: "The Abu Dhabi facility is equipped with advanced paper manufacturing infrastructure, including high-capacity pulpers, continuous fibre processing systems, modern winders, and fully automated packing lines. Digital control systems and real-time quality monitoring ensure production stability and operational efficiency.",
+      image: "/solar/solar-2.svg",
+    },
+    {
+      title: "Leadership and Management",
+      text: "Al Dhafra Paper Manufacturing is managed by experienced professionals with deep expertise in paper manufacturing and industrial operations. Leadership at the mill emphasizes operational discipline, safety, efficiency, and continuous improvement, in line with the Group’s approach to managing its technical and manufacturing businesses.",
+      image: "/solar/solar-1.svg",
+    },
+  ];
+  const overview = [
+    {
+      heading: "Background and Development",
+      text: "The foundation of Al Dhafra Paper Manufacturing builds on the Group’s long-standing expertise in paper recycling, which began in 1987 with the establishment of Union Paper Mills, one of the earliest paper recycling operations in the GCC.",
+      lastText:
+        "Leveraging decades of technical and operational experience, Al Dhafra Paper Manufacturing was established to address the growing regional demand for sustainable containerboard solutions. The development of the facility reflects the MAHY Khoory Group’s long-term growth philosophy: expansion through innovation, circular manufacturing, and environmental stewardship.",
+    },
+    {
+      heading: "Operations and Integration",
+      text: "Al Dhafra Paper Manufacturing operates as part of an integrated recycling and manufacturing ecosystem within the MAHY Khoory Group.",
+      bullets: [
+        "Works closely with Union Paper Mills and in-house waste collection operations",
+        "Processes over 1,300 tonnes of recovered waste paper daily",
+        "Partnership with Valmet to install advanced ceramic dewatering elements",
+      ],
+      lastText:
+        "These initiatives enhance machine efficiency, paper quality, and energy performance, reflecting the company’s commitment to operational excellence, continuous improvement, and innovation.",
+    },
+    {
+      heading: "Strategic Importance to the Group",
+      text: "As the UAE’s second recycled containerboard mill, Al Dhafra Paper Manufacturing represents a strategic pillar within the MAHY Khoory Group’s industrial portfolio.",
+      bullets: [
+        "Secures stable supply of recycled paper for the Group’s packaging value chain",
+        "Reinforces regional leadership in recycling and circular manufacturing",
+      ],
+      lastText:
+        "By transforming waste into high-value industrial raw material, the facility reflects the Group’s long-term vision for sustainable manufacturing and responsible industrial growth.",
+    },
+    {
+      heading: "Quality and Regulatory Compliance",
+      text: "Quality assurance is embedded throughout the operations of Al Dhafra Paper Manufacturing, supported by ISO-certified management systems and strict regulatory compliance.",
+      bullets: [
+        "Adherence to environmental and industrial standards",
+        "Comprehensive testing for strength, performance, and reliability",
+        "Careful sorting, cleaning, and processing of recovered paper",
+      ],
+      lastText:
+        "These processes ensure contamination-free production and consistent output quality.",
+    },
+    {
+      heading: "Environmental and Sustainability Performance",
+      text: "Sustainability is central to the operating model of Al Dhafra Paper Manufacturing, with 100% post-consumer wastepaper used as raw material.",
+      bullets: [
+        "Reduces reliance on virgin raw materials",
+        "Conserves natural resources",
+        "Lowers energy and water consumption",
+        "Significantly reduces landfill waste and carbon emissions",
+        "Operates closed-loop water recycling systems",
+      ],
+      lastText:
+        "The mill also incorporates waste-heat recovery where feasible and actively supports community recycling initiatives that promote responsible waste diversion.",
+    },
+  ];
 
   const features = [
     {
@@ -108,7 +108,7 @@ const overview = [
       />
 
       <ValuesSection
-        title="Our Mission "
+        title="Our Mission"
         description="Al Dhafra Paper Manufacturing’s mission is to be a regional leader in sustainable containerboard manufacturing, fully aligned with the MAHY Khoory Group’s commitment to delivering solutions that enhance quality of life while protecting the environment."
         imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776762183/commitment-to-growth_qhzgjt.jpg"
         imageAlt="Our Mission"
@@ -117,7 +117,7 @@ const overview = [
       />
 
       <ValuesSection
-        title="Our Vision "
+        title="Our Vision"
         description="Our vision is to expand the use of recycled fibre, reduce the environmental footprint of packaging materials, and support regional industries with reliable, eco-friendly paper products."
         imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"
         imageAlt="Our Vision"
@@ -140,7 +140,6 @@ const overview = [
 
       <FeaturesEngineeringSection
         heading="Al Dhafra Paper Mills Overview"
-
         items={overview}
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776593394/urban-business-growth-financial-success.jpg_bnuzqg.jpg"
       />

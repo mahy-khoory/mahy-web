@@ -7,8 +7,10 @@ import clsx from "clsx"
 function CompanyTextOnBackground({
     heading = "Warranty",
     text = "",
+    items,
+    endText,
     image = "/gallery/gallery-10.jpeg",
-    align = "right", 
+    align = "right",
 }) {
 
     const isRight = align === "right"
@@ -37,8 +39,19 @@ function CompanyTextOnBackground({
                         <p className="text-gray-100 mt-5 md:mt-7 leading-7 md:leading-8 tracking-wide">
                             {text}
                         </p>
-                    </motion.div>
 
+                        {items && (
+                            <ul className="list-disc pl-5 mt-3 md:mt-5 space-y-1">
+                                {items.map((bullet, index) => (
+                                    <li key={index} className="font-light leading-relaxed text-gray-100">{bullet}</li>
+                                ))}
+                            </ul>
+                        )}
+
+                        <p className="text-gray-100 mt-5 md:mt-7 leading-7 md:leading-8 tracking-wide">
+                            {endText}
+                        </p>
+                    </motion.div>
                 </div>
             </div>
 
