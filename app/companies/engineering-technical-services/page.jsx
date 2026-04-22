@@ -1,7 +1,10 @@
-import CompaniesSectors from "@/components/CompaniesSectors"
-import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuoteGrid"
+import CompaniesSectors from "@/components/CompaniesSectors";
+import GroupCompaniesGrid from "@/components/UI/companies/GroupCompaniesGrid";
+import { getCompaniesBySector } from "@/constants/companyGroups";
 
 function EngineeringTechnicalServices() {
+    const companies = getCompaniesBySector("engineering-technical-services");
+
     return (
         <main>
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
@@ -14,14 +17,15 @@ function EngineeringTechnicalServices() {
                         "Projects are executed across residential, commercial, municipal, industrial, and utility sectors, where system reliability, performance, and regulatory compliance are essential. Capabilities span hydraulic design, equipment selection, fabrication, system integration, and site execution.",
                         "Through disciplined engineering processes and close coordination with the Group's trading and service entities, this sector delivers customized, high-performance solutions that meet demanding technical and operational requirements."
                     ]}
-                    companiesHeading={true}
-                    items={[
-                        "Al Khoory Engineering"
-                    ]}
                 />
             </section>
+            <GroupCompaniesGrid
+                companies={companies}
+                title="Companies in This Sector"
+                description="Businesses operating within this business sector of the Group."
+            />
             {/* added component */}
-            {/* <SolarPanelQuoteGrid /> */}  
+            {/* <SolarPanelQuoteGrid /> */}
         </main>
     )
 }

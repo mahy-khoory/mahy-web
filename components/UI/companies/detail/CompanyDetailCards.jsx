@@ -17,15 +17,12 @@ function CompanyDetailCards({
     heading1 = "About Us",
     text1 = ["Born of one man's vision, drive and enterprising spirit, Juma Al Majid Holding Group, a conglomerate in Dubai operates across numerous business categories - in the fields of Contracting, Commercial, Travel, Real Estate, and Investment in the UAE and across geographies."],
     items1 = [
-        "A Past to Remember"
+        ""
     ],
     heading2 = "Our History",
     text2 = ["Our story is interwoven with the rise of the nation of the UAE. Our transformative journey has made us the business enterprise we are today."],
     items2 = [
-        "Founded in 1950",
-        "Over 30 Companies",
-        "Presence in 16 Countries",
-        "More than 10,000 Employees"
+        ""
     ]
 }) {
     const primaryImage = getValidImageSrc(img1, DEFAULT_IMG1)

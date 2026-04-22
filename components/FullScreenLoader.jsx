@@ -48,7 +48,7 @@ export default function FullScreenLoader({ onFinish }) {
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 px-6">
 
       {/* place if needed for the image */}
-      <div className="w-full max-w-md h-3.5 bg-white/15 rounded-full relative mb-6 overflow-visible">
+      <div className="w-full max-w-md h-2.5 bg-white/15 rounded-full relative mb-6 overflow-visible">
         <div className="absolute inset-0 rounded-full border border-white/10" />
 
         <div

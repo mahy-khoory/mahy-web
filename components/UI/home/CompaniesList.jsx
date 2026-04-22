@@ -17,7 +17,7 @@ const industeries = [
     { label: "Waste Management", href: "/companies/waste-management", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210761/joyful-indian-worker-in-protective-vest-and-gloves-2026-01-06-00-11-34-utc_m8310z.jpg" },
     { label: "Transportation", href: "/companies/transportation-logistics", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628975/free-photo-ai-generated-truck.jpg_xjeied.jpg" },
     { label: "Energy & Sustainability Consulting", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1770210530/businesswoman-with-solar-panels-model-having-prese-2026-01-09-09-42-23-utc_l5vlii.jpg" },
-    { label: "Hospitality & Food", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628677/Hospitality_food_b3zern.jpg" },
+    { label: "Hospitality", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628677/Hospitality_food_b3zern.jpg" },
     { label: "Engineering", href: "/companies/energy-sustainability-consulting", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776628907/worker-working-factory.jpg_fqcfkn.jpg" },
 ];
 
@@ -26,7 +26,7 @@ const moreIndusteries = ["Hospitality", "Engineering"];
 
 function CompaniesList({ darkBg = false, industeriesFirst = true }) {
 
-    const tabs = [industeriesFirst ? "Industries" : "Companies", industeriesFirst ? "Companies" : "Industries"];
+    const tabs = [industeriesFirst ? "Business Sectors" : "Companies", industeriesFirst ? "Companies" : "Business Sectors"];
 
     // const [hoveredCards, setHoveredCards] = useState(0);
 

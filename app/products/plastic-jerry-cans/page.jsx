@@ -1,8 +1,6 @@
-import ScrollRevealImage from "@/components/Products/PlasticJerryCans";
 import CompanyVisionPurpose from "@/components/UI/companies/detail/CompanyVisionPurpose";
 import ServicesGlobally from "@/components/UI/companies/detail/ServicesGlobally";
 import PageHeading from "@/components/UI/PageHeading";
-import SubPageHeading from "@/components/UI/SubPageHeading";
 
 function PlasticJerryCansPage() {
   const features = [

@@ -9,11 +9,13 @@ function TechnologyInnovationPage() {
         fullHeight
         title={"Technology & Innovation"}
         image={
-          "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776595640/business-person-futuristic-business-environment.jpg_cjfnkq.jpg"
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776887372/businessman-working-overtime-digital-tablet-with-glasses-corporate-modern-office-corporation-manager-reading-company-documents-data-statistics-internet-website-with-technology.jpg_eoz1ck.jpg"
         }
       />
       <CompanyDetailCards
         heading1="Technology & Innovation"
+        img1={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776887381/light-trails-buildings.jpg_ziiyg9.jpg"}
+        img2={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776887376/man-wearing-suit-is-utilizing-tablet-device.jpg_fker7t.jpg"}
         text1={[
           "Technology and innovation are fundamental enablers of the MAHY Khoory Group’s long-term competitiveness and operational excellence. Across all sectors, the Group adopts modern digital platforms, advanced manufacturing technologies, and data-driven decision-making to enhance efficiency, transparency, and performance.",
           "Enterprise-wide systems support finance, operations, supply chain, customer management, and analytics, providing unified visibility across the Group’s diverse businesses. Advanced reporting and business-intelligence tools enable leadership to monitor performance, optimize resources, and drive informed strategic decisions.",

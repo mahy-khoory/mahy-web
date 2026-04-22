@@ -103,14 +103,14 @@ export function getNavigation(t) {
                 label: t("HoldingCompanyOverview"),
                 href: "/companies/holding-overview",
               },
-              {
-                label: t("GroupStructure"),
-                href: "/companies/group-structure",
-              },
-              {
-                label: t("GovernanceOversight"),
-                href: "/companies/governance-oversight",
-              },
+              // {
+              //   label: t("GroupStructure"),
+              //   href: "/companies/group-structure",
+              // },
+              // {
+              //   label: t("GovernanceOversight"),
+              //   href: "/companies/governance-oversight",
+              // },
             ],
           },
           {
