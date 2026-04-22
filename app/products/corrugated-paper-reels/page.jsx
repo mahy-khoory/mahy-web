@@ -103,6 +103,7 @@ function CorrugatedPaperReelsPage() {
       />
       <HoverableColumns title="Applications" items={applications} />
       <WasteCollectionGrid
+      image="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776627437/digital-document-online-electronic-signature-document-management-paperless-office-e-signing-signing-business-contract-concept-metaverse.jpg_zvimmr.jpg"
         heading="Why Choose Our Corrugated Paper Reels?"
         items={whyChooseUs}
         icon={<HiLightBulb size={25} />}

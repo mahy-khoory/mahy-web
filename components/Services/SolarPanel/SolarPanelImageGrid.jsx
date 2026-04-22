@@ -4,6 +4,7 @@ import Image from "next/image";
 
 function SolarPanelImageGrid({
     heading = "Insights for Growth",
+    image = "/gallery/gallery-1.jpg",
     subHeading,
     bulletItems,
     text,
@@ -59,7 +60,7 @@ function SolarPanelImageGrid({
                     {/* <PrimaryButton className={"mt-4 md:mt-2"} /> */}
                 </div>
                 <div className="md:col-span-2 relative h-80 md:h-full">
-                    <Image src={"/gallery/gallery-1.jpg"} alt="Solar Panel Images Grid" fill style={{ objectFit: "cover" }} />
+                    <Image src={image} alt="Solar Panel Images Grid" fill style={{ objectFit: "cover" }} />
                 </div>
             </div>
         </section>

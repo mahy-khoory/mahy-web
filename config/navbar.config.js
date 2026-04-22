@@ -35,14 +35,14 @@ export function getNavigation(t) {
                 label: t("LeadershipManagement"),
                 href: "/about-us/leadership-and-management",
               },
-              {
-                label: t("BoardDirectors"),
-                href: "/about-us/board-of-directors",
-              },
-              {
-                label: t("CorporateGovernance"),
-                href: "/about-us/corporate-governance",
-              },
+              // {
+              //   label: t("BoardDirectors"),
+              //   href: "/about-us/board-of-directors",
+              // },
+              // {
+              //   label: t("CorporateGovernance"),
+              //   href: "/about-us/corporate-governance",
+              // },
             ],
           },
           {
@@ -654,11 +654,12 @@ export function getNavigation(t) {
             title: t("SalesBusinessEnquiries"),
             links: [
               // { label: t("SalesEnquiry"), href: "/contact-us/sales" },
-              { label: t("RequestQuotation"), href: "/rfq" },
-              {
-                label: t("KeyAccountContacts"),
-                href: "/contact-us/key-accounts",
-              },
+              { label: "Contact Us ", href: "/contact-us" }
+              // { label: t("RequestQuotation"), href: "/rfq" },
+              // {
+              //   label: t("KeyAccountContacts"),
+              //   href: "/contact-us/key-accounts",
+              // },
             ],
           },
           {

@@ -273,7 +273,7 @@ function AllCompaniesPage() {
             fullHeight
             scrollReadText="View All Companies"
                 title={"All Companies"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776880631/back-view-thoughtful-businessman-looking-through-window-big-modern-cityplanning-future-project-concept-early-morning-scene.jpg_ayuw8c.jpg"}
             />
             <ScrollTimeline
                 items={companies}

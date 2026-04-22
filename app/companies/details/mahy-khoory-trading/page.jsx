@@ -55,6 +55,7 @@ function MahyKhooryTradingPage() {
       />
 
       <CompanyTextGrid
+      showImage={false}
         heading="Market Experience and Project Support"
         paragraphs={[
           "M.A.H.Y. Khoory Trading has supplied equipment to a wide range of major residential, commercial, industrial, and infrastructure projects across the UAE and the wider region. Its products are widely specified in high-rise towers, mixed-use developments, utilities networks, industrial facilities, hospitality projects, and oil & gas installations.",

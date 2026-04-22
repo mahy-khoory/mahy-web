@@ -16,6 +16,7 @@ function MahyKhooryGroupPage() {
       />
 
       <CompanyTextGrid
+      showImage={false}
         heading="About Us"
         paragraphs={[
           "The Group operates through a portfolio of specialized companies active across a broad range of sectors, including water and wastewater pumping systems, electromechanical and power solutions, HVAC and industrial machinery, paper recycling and packaging manufacturing, environmental and waste management services, logistics and warehousing, and hospitality. This diversified portfolio reflects a balanced mix of industrial, commercial, service-oriented, and environmental activities, enabling the Group to serve multiple industries while maintaining focused expertise within each business segment.",

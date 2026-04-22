@@ -1,11 +1,8 @@
 import FeaturesEngineeringSection from "@/components/Services/FeaturesEngineeringSection";
 import PumpingServiceCards from "@/components/Services/PumpingServiceCards";
-import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuoteGrid";
 import ValuesSection from "@/components/UI/about-us/ValuesSection";
-import CompanyDetailCards from "@/components/UI/companies/detail/CompanyDetailCards";
 import CompanyOverview from "@/components/UI/companies/detail/CompanyOverview";
-import CompanyTextGrid from "@/components/UI/companies/detail/CompanyTextGrid";
-import CompanyTextOnBackground from "@/components/UI/companies/detail/CompanyTextOnBackground";
+
 
 function AlKhooryEngineering() {
   const pumpingCardsData = [

@@ -20,7 +20,7 @@ function CompanyDetailPage() {
             />
             {/* <CompanyDetailMenu /> */}
             <CompanyDetailCards />
-            <CompanyTextGrid />
+            <CompanyTextGrid showImage={false} />
             <CompanyTextOnBackground />
         </main>
     )

@@ -7,15 +7,15 @@ function CompanyTextGrid({
     heading = "A little bit about us",
     paragraphs = [],
     rightText = "",
-    image = "/gallery/mka.jpg"
+    image = "/gallery/mka.jpg",
+    showImage = true 
 }) {
 
     return (
         <section className="max-w-7xl mx-auto px-5 py-12 md:py-20">
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-                <div>
-                
+                                <div>
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -25,8 +25,8 @@ function CompanyTextGrid({
                     >
                         {heading}
                     </motion.h2>
-                    <div className="mt-6 space-y-4 text-gray-600">
 
+                    <div className="mt-6 space-y-4 text-gray-600">
                         {paragraphs.map((text, i) => (
                             <motion.p
                                 key={i}
@@ -42,9 +42,9 @@ function CompanyTextGrid({
                                 {text}
                             </motion.p>
                         ))}
-
                     </div>
                 </div>
+
                 <motion.div
                     initial={{ opacity: 0, y: 50, scale: 0.98 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -59,22 +59,27 @@ function CompanyTextGrid({
                         group
                     "
                 >
-                    <motion.div
-                        className="relative h-20 w-full"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
-                    >
-                        <Image
-                            src={image}
-                            alt="Logo"
-                            fill
-                            style={{ objectFit: "contain" }}
-                        />
-                    </motion.div>
+                    {showImage && (
+                        <motion.div
+                            className="relative h-20 w-full"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            viewport={{ once: true }}
+                        >
+                            <Image
+                                src={image}
+                                alt="Logo"
+                                fill
+                                style={{ objectFit: "contain" }}
+                            />
+                        </motion.div>
+                    )}
+
                     <motion.p
-                        className="text-gray-200 mt-8 leading-relaxed"
+                        className={`text-gray-200 leading-relaxed ${
+                            showImage ? "mt-8" : ""
+                        }`}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
@@ -90,4 +95,4 @@ function CompanyTextGrid({
     )
 }
 
-export default CompanyTextGrid
+export default CompanyTextGrid;

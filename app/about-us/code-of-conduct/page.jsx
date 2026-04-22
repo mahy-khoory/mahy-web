@@ -112,6 +112,7 @@ export default function GovernancePage() {
         space={"lg:space-y-10"}
       />
       <WasteCollectionGrid
+      images={["https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776878538/concepts-practices-policies-company-articles-association-terms.jpg_jyxybb.jpg","https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776878543/professional-touching-policy-icon-digital-interface-networking-corporate-connections-with-technology-strategic-progress.jpg_pzmnti.jpg", "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776878527/digital-document-online-electronic-signature-document-management-paperless-office-e-signing-signing-business-contract-concept-metaverse_1.jpg_b8ydfi.jpg"]}
         heading={"Group Policies"}
         text1={"MAHY Khoory Group maintains a comprehensive set of policies designed to support consistent governance, risk management, and operational discipline across all companies."}
         text2={"These policies cover, among others:"}

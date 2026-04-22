@@ -27,9 +27,11 @@ function LeadershipAndVisionPage() {
   return (
     <main>
       <SubPageHeading
-      fullHeight
+        fullHeight
         title={"Leadership & Vision"}
-        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767418/dubai-city-skyline-showing-burj-khalifa-2014.jpg_jx4cxo.jpg"}
+        image={
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776881251/businessman-standing-roof.jpg_uvfwtd.jpg"
+        }
       />
       <VisionBenchmarkSection
         heading="Overview"
