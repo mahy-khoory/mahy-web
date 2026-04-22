@@ -6,11 +6,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { motion } from "framer-motion";
+import { image } from "d3";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ComprehensiveProcessSection({
   subHeading = "Our process",
+  image = "/gallery/gallery-1.jpg",
   heading = "A simple yet powerful and efficient process",
   steps = [
     {
@@ -91,7 +93,7 @@ export default function ComprehensiveProcessSection({
             className="relative rounded-2xl overflow-hidden shadow-xl"
           >
             <Image
-              src="/gallery/gallery-1.jpg"
+              src={image}
               alt="Process"
               width={500}
               height={600}

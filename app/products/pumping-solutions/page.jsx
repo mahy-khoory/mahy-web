@@ -62,20 +62,12 @@ function PumpingSystemServicesPage() {
 
   return (
     <main>
-      {/* <SubPageHeading
-        title={"Pumping Solutions"}
-        description={
-          "Reliable pumping system services delivering optimal performance and long-term efficiency. From installation to maintenance, we ensure smooth and uninterrupted operations."
-        }
-        image={"/gallery/gallery-6.jpg"}
-      /> */}
-
       <PageHeading
         title={"Pumping Solutions"}
         description={
           "Reliable pumping system services delivering optimal performance and long-term efficiency. From installation to maintenance, we ensure smooth and uninterrupted operations."
         }
-        image="/gallery/gallery-3.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776796417/products-service-optimization-and-consultancy-heroimage-master_1800x500_vussf6.avif"
       />
       <TrustedAdvisorSection
         heading="Overview"

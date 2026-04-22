@@ -692,16 +692,16 @@ export function getNavigation(t) {
                 href: "/contact-us/customer-registration",
               },
 
-              {
-                label: "Employee Portal",
-                href: "/mahy-portal/employee-portal",
-                newTab: true,
-              },
-              {
-                label: "GCEO Portal",
-                href: "/mahy-portal/gceo-portal",
-                newTab: true,
-              },
+              // {
+              //   label: "Employee Portal",
+              //   href: "/mahy-portal/employee-portal",
+              //   newTab: true,
+              // },
+              // {
+              //   label: "GCEO Portal",
+              //   href: "/mahy-portal/gceo-portal",
+              //   newTab: true,
+              // },
             ],
           },
         ],
