@@ -142,7 +142,7 @@ export default function ValuesSection({
                         viewport={{ once: true }}
                         className={`w-full ${col2} h-80 lg:h-full ${imageFirstInMobile && "hidden lg:block"}`}
                     >
-                        <div className="group relative w-full overflow-hidden bg-slate-100 rounded-xl h-full">
+                        <div className="group relative w-full overflow-hidden bg-slate-100 rounded-xl h-full min-h-100">
                             <div className="pointer-events-none absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-tr from-white/10 via-white/5 to-transparent" />
                             <Image
                                 src={imageSrc}
