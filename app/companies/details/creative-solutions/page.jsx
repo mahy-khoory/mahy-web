@@ -1,5 +1,4 @@
 import CompaniesSectors from "@/components/CompaniesSectors"
-import SolarPanelImageGrid from "@/components/Services/SolarPanel/SolarPanelImageGrid"
 import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuoteGrid"
 import TrustedAdvisorSection from "@/components/TrustedAdvisorSection"
 import CompanyOverview from "@/components/UI/companies/detail/CompanyOverview"
