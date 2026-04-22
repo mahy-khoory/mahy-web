@@ -48,9 +48,11 @@ function CompanyTextOnBackground({
                             </ul>
                         )}
 
-                        <p className="text-gray-100 mt-5 md:mt-7 leading-7 md:leading-8 tracking-wide">
-                            {endText}
-                        </p>
+                        {endText &&
+                            <p className="text-gray-100 mt-5 md:mt-7 leading-7 md:leading-8 tracking-wide">
+                                {endText}
+                            </p>
+                        }
                     </motion.div>
                 </div>
             </div>

@@ -3,10 +3,8 @@ import EnterprisePinnedSection from "@/components/Layout/EnterprisePinnedSection
 import SolarPanelImageGrid from "@/components/Services/SolarPanel/SolarPanelImageGrid"
 import TrustedAdvisorSection from "@/components/TrustedAdvisorSection"
 import ValuesSection from "@/components/UI/about-us/ValuesSection"
-import CompanyDetailCards from "@/components/UI/companies/detail/CompanyDetailCards"
 import CompanyOverview from "@/components/UI/companies/detail/CompanyOverview"
 import CompanyTextOnBackground from "@/components/UI/companies/detail/CompanyTextOnBackground"
-import WhyUs from "@/components/UI/home/WhyUs"
 
 function AlEtihadWasteManagementServicesPage() {
     const items = [

@@ -11,6 +11,7 @@ function SolarPanelImageGrid({
         { title: "Achieving Business Goals Together", text: "At et et ipsum sit posuere facilisis. Commodo mattis nunc venenatis malesuada posuere at vel. Feugiat nunc eget purus molestie nisi." },
         { title: "Data-Driven Strategies For Success", text: "At et et ipsum sit posuere facilisis. Commodo mattis nunc venenatis malesuada posuere at vel. Feugiat nunc eget purus molestie nisi." }
     ],
+    endText
 }) {
     return (
         <section className="max-w-7xl mx-auto px-5 py-12">
@@ -52,6 +53,9 @@ function SolarPanelImageGrid({
                             )}
                         </div>
                     ))}
+                    {endText && (
+                        <p className="text-gray-700 text-sm md:text-md">{endText}</p>
+                    )}
                     {/* <PrimaryButton className={"mt-4 md:mt-2"} /> */}
                 </div>
                 <div className="md:col-span-2 relative h-80 md:h-full">
