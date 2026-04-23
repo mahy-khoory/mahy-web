@@ -1,5 +1,6 @@
 import CompaniesSectors from "@/components/CompaniesSectors";
 import GroupCompaniesGrid from "@/components/UI/companies/GroupCompaniesGrid";
+import SubPageHeading from "@/components/UI/SubPageHeading";
 import { getCompaniesBySector } from "@/constants/companyGroups";
 
 function TradingPage() {

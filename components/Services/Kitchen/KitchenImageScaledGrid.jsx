@@ -6,7 +6,8 @@ function KitchenImageScaledGrid({
     items = [
         { text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.", icon: "/kitchen/kitchenGrid-1.svg" },
         { text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.", icon: "/kitchen/kitchenGrid-2.svg" }
-    ]
+    ],
+    image = "/gallery/gallery-2.jpg"
 }) {
     ;
     return (
@@ -41,7 +42,7 @@ function KitchenImageScaledGrid({
                     </div>
                 </div>
                 <div className="relative h-80 md:h-full">
-                    <Image src={"/gallery/gallery-2.jpg"} alt={"Kitchen Grid"} fill style={{ objectFit: "cover" }} />
+                    <Image src={image} alt={heading} fill style={{ objectFit: "cover" }} />
                 </div>
             </div>
         </section>

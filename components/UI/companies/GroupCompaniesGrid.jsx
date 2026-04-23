@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function GroupCompaniesGrid({
   companies,
@@ -31,9 +32,9 @@ export default function GroupCompaniesGrid({
           ].join(" ")}
         >
           {companies.map((company, i) => (
-            <div
-              key={i}
-              className="
+            <Link key={i} href={company.href}>
+              <div
+                className="
                 border
                 border-slate-400
                 rounded-[8px]
@@ -44,26 +45,27 @@ export default function GroupCompaniesGrid({
                 transition
                 hover:border-slate-600
               "
-            >
-              <div className="flex items-center gap-4">
-                <div className="relative w-10 h-10 shrink-0">
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    fill
-                    className="object-contain"
-                  />
+              >
+                <div className="flex items-center gap-4">
+                  <div className="relative w-10 h-10 shrink-0">
+                    <Image
+                      src={company.logo}
+                      alt={company.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+
+                  <h3 className="text-[14px] font-semibold text-gray-900 leading-snug">
+                    {company.name}
+                  </h3>
                 </div>
 
-                <h3 className="text-[14px] font-semibold text-gray-900 leading-snug">
-                  {company.name}
-                </h3>
+                <p className="mt-3 text-[12px] text-gray-500 leading-relaxed">
+                  {company.preview}
+                </p>
               </div>
-
-              <p className="mt-3 text-[12px] text-gray-500 leading-relaxed">
-                {company.preview}
-              </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
