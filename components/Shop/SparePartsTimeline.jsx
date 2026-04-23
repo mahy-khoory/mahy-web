@@ -44,9 +44,8 @@ const Desktop = ({ items }) => (
             <div className="absolute top-1/2 w-px h-20 bg-gray-300 -translate-y-1/2" />
 
             <div
-              className={`flex flex-col items-center text-center ${
-                isTop ? "pb-32" : "pt-32 flex-col-reverse"
-              }`}
+              className={`flex flex-col items-center text-center ${isTop ? "pb-32" : "pt-32 flex-col-reverse"
+                }`}
             >
               <TitleAndText item={item} />
 

@@ -51,22 +51,18 @@ function SparePartsPage() {
 
   const items = [
     {
-      year: "Step 1",
       title: "Understanding Customer Needs",
       text: "We analyze your requirements and identify the exact spare parts needed to keep your operations running smoothly.",
     },
     {
-      year: "Step 2",
       title: "Sourcing & Quality Assurance",
       text: "We work with trusted suppliers to ensure high-quality, reliable spare parts that meet industry standards.",
     },
     {
-      year: "Step 3",
       title: "Inventory & Availability",
       text: "Critical parts are stocked and managed efficiently to ensure quick availability and minimal downtime.",
     },
     {
-      year: "Step 4",
       title: "Fast Delivery & Support",
       text: "We provide timely delivery and ongoing support to ensure your business operations continue without interruption.",
     },

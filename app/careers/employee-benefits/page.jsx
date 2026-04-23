@@ -11,7 +11,7 @@ function EmployeeBenefitsPage() {
             />
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042426/Dubai_skyline_at_sunrise_with_warm_golden_light_illuminating_office_tower.jpg_igrsap.jpg"}
+                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776949975/young-smiling-professional-woman-having-coffee-break-her-full-working-day-she-holds-paper-cup-outdoors-near-business-building-while-relaxing-enjoying-her-beverage_wyjfaj.jpg"}
                     title={"Overview"}
                     texts={[
                         "At MAHY Khoory Group, we provide a structured and fair benefits framework designed to support employee well-being, stability, and professional growth. Compensation and benefits are aligned with market standards and fully compliant with UAE Labour Law and applicable regulations.",

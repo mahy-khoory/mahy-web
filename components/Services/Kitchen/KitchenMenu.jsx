@@ -8,9 +8,9 @@ function KitchenMenu({
     heading = "Services",
     text = "Our unique methodology is designed to empower organizations, driving transformative change and sustainable growth. Discover the key pillars of our collaborative process:",
     items = [
-        { title: "Strategic Visionaries", text: "We start by understanding your business at its core. Ourteam of seasoned consultants collaborates with you to craft a strategic vision that aligns with your goals.", image: "/gallery/gallery-1.jpg" },
-        { title: "Customized Solutions", text: "No two businesses are alike, and we recognize that. Our team develops bespoke solutions tailored to your specific needs.", image: "/gallery/gallery-2.jpg" },
-        { title: "Collaborative Execution", text: "We start by understanding your business at its core. Ourteam of seasoned consultants collaborates with you to craft a strategic vision that aligns with your goals.", image: "/gallery/gallery-3.jpg" }
+        { title: "Strategic Visionaries", text: "We start by understanding your business at its core. Ourteam of seasoned consultants collaborates with you to craft a strategic vision that aligns with your goals.", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937366/fusion-03-pg30_qsuufj.jpg" },
+        { title: "Customized Solutions", text: "No two businesses are alike, and we recognize that. Our team develops bespoke solutions tailored to your specific needs.", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937209/collezioni-frida-03-pg129_qhzqdu.jpg" },
+        { title: "Collaborative Execution", text: "We start by understanding your business at its core. Ourteam of seasoned consultants collaborates with you to craft a strategic vision that aligns with your goals.", image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937267/collezioni-opera-02-pg199_vbgmzu.jpg" }
     ]
 }) {
     const [currentIndex, setCurrentIndex] = useState(0);
