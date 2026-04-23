@@ -30,22 +30,22 @@ function TimelineContainer({ title }) {
       title: "Union Paper Mills commenced operations",
       text: "Union Paper Mills recycles waste paper and manufactures corrugated sheets, supporting sustainable packaging and circular economy initiatives.",
     },
-    {
-      year: "1989",
-      title: "Emirates International Equipment & Machinery (EIEM) established",
-      text: "EIEM supplies pumps, pumping solutions, and water heaters for residential, commercial, and industrial applications.",
-    },
+    // {
+    //   year: "1989",
+    //   title: "Emirates International Equipment & Machinery (EIEM) established",
+    //   text: "EIEM supplies pumps, pumping solutions, and water heaters for residential, commercial, and industrial applications.",
+    // },
     {
       year: "1994",
       title:
         "Official Partner & Distributor of a Spanish Origin Water Pumping Manufacturer",
       text: "MAHY Khoory became the UAE partner and distributor for a well established Spanish origin producer of water pumping technologies, expanding its portfolio of advanced water pumps and comprehensive pumping solutions.",
     },
-    {
-      year: "1996",
-      title: "Greenland Equipment & Machinery established",
-      text: "Greenland supplies water pumps, pumping solutions, and HVAC systems for residential, commercial, and industrial projects.",
-    },
+    // {
+    //   year: "1996",
+    //   title: "Greenland Equipment & Machinery established",
+    //   text: "Greenland supplies water pumps, pumping solutions, and HVAC systems for residential, commercial, and industrial projects.",
+    // },
     {
       year: "1998",
       title: "Clean Earth started",
@@ -56,11 +56,11 @@ function TimelineContainer({ title }) {
       title: "Greenland Transport established",
       text: "Greenland Transport provides transportation and logistics services exclusively for MAHY Khoory Group companies.",
     },
-    {
-      year: "2001",
-      title: "Al Mehwar Alfede General Trading LLC established",
-      text: "A specialized trading company focused on pumping systems and mechanical solutions for building services and light industrial projects.",
-    },
+    // {
+    //   year: "2001",
+    //   title: "Al Mehwar Alfede General Trading LLC established",
+    //   text: "A specialized trading company focused on pumping systems and mechanical solutions for building services and light industrial projects.",
+    // },
     {
       year: "2004",
       title: "SENAN Industry established",
