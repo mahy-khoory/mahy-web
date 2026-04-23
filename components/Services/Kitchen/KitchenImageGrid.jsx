@@ -7,7 +7,8 @@ function KitchenImageGrid({
         { heading: 200, text: "Successfully increased revenue for 200+ number of clients by 90% through strategic planning and implementation of marketing and sales techniques." },
         { heading: 16, text: "Provided expert business advice to 13+ number of startups, resulting in successful funding and growth." },
         { heading: 40, text: "Assisted 40+ number of established businesses in streamlining operations and achieving increased efficiency and productivity." }
-    ]
+    ],
+    image = "/gallery/gallery-2.jpg"
 }) {
     return (
         <section className="md:h-screen w-full relative">
@@ -23,7 +24,7 @@ function KitchenImageGrid({
                 </div>
             </div>
             <div className="absolute inset-0">
-                <Image src="/gallery/gallery-2.jpg" alt="Kitchen" fill className="object-cover" />
+                <Image src={image} alt="Kitchen" fill className="object-cover" />
             </div>
             <div className="absolute inset-0 bg-black/50" />
             <div

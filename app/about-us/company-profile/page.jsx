@@ -7,7 +7,7 @@ import GroupCompaniesGrid from "@/components/UI/companies/GroupCompaniesGrid";
 import WhoWeAre from "@/components/UI/home/WhoWeAre";
 import SubPageHeading from "@/components/UI/SubPageHeading";
 import SubPageHeadingNoOverlayImage from "@/components/UI/SubPageHeadingNoOverlayImage";
-import { companieDescriptions } from "@/constants/companyDescriptions";
+import { companyDescriptions } from "@/constants/companyDescriptions";
 import { getLocale, getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -111,8 +111,8 @@ async function companyProfile() {
   return (
     <>
       <SubPageHeading
-      fullHeight
-       scrollReadText = "Know About Us"
+        fullHeight
+        scrollReadText="Know About Us"
         image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776593796/business-people-group-hd-8k-wallpaper-stock-photographic-image.jpg_bbf9gf.jpg"}
         // image2={"/profile/profile-bg-2.jpg"}
         height="h-screen"
@@ -174,7 +174,7 @@ async function companyProfile() {
         </h2>
       </div>
       <SustainabilityPanels items={sustainability} cols={4} />
-      <GroupCompaniesGrid companies={companieDescriptions} />
+      <GroupCompaniesGrid companies={companyDescriptions} />
 
       {/* <EnterprisePinnedContainer /> */}
     </>

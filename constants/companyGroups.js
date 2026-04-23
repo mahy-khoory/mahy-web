@@ -1,4 +1,4 @@
-import { companieDescriptions } from "@/constants/companyDescriptions";
+import { companyDescriptions } from "@/constants/companyDescriptions";
 
 const sectorCompanyNames = {
   trading: [
@@ -42,7 +42,7 @@ const sectorCompanyNames = {
 };
 
 const companiesByName = new Map(
-  companieDescriptions.map((company) => [company.name, company]),
+  companyDescriptions.map((company) => [company.name, company]),
 );
 
 export function getCompaniesBySector(sector) {

@@ -10,7 +10,7 @@ const containerVariants = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-export default function WhyUs({ items, reverse = true }) {
+export default function WhyUs({ items, reverse = true, image = "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776679760/idea-creative-solving-question-icons.jpg_fahnp3.jpg" }) {
     return (
         <div className={`grid lg:grid-cols-2 lg:h-[70vh] ${reverse && "[&>*:first-child]:order-2"} my-6`}>
             <motion.div
@@ -62,7 +62,7 @@ export default function WhyUs({ items, reverse = true }) {
             </motion.div>
             <div className="relative w-full h-80 lg:h-full lg:rounded-r-2xl overflow-hidden">
                 <Image
-                    src="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776679760/idea-creative-solving-question-icons.jpg_fahnp3.jpg"
+                    src={image}
                     alt="Why Us"
                     fill
                     className="object-cover"

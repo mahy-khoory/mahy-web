@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import SlideReveal from "./UI/SlideReveal";
+import Link from "next/link";
 
 export default function ScrollTimeline({ items, size = "lg" }) {
   const containerRef = useRef(null);
@@ -80,6 +81,7 @@ export default function ScrollTimeline({ items, size = "lg" }) {
                 start={items[0].title}
                 end={items[items.length - 1].title}
                 image={item.image}
+                href={item.href}
               />
             ) : (
               <Sections
@@ -88,6 +90,7 @@ export default function ScrollTimeline({ items, size = "lg" }) {
                 texts={item.texts}
                 image={item.image}
                 dark={i % 2 !== 0}
+                href={item.href}
               />
             )}
           </div>
@@ -97,7 +100,7 @@ export default function ScrollTimeline({ items, size = "lg" }) {
   );
 }
 
-const FirstSection = ({ title, start, end, image, texts }) => (
+const FirstSection = ({ title, start, end, image, texts, href }) => (
   <div className="relative max-w-6xl px-5 xl:px-0 mt-5 xl:mt-0">
     <div className="relative z-10">
       {/* <SlideReveal direction="up" triggerOnce={false}>
@@ -126,12 +129,13 @@ const FirstSection = ({ title, start, end, image, texts }) => (
             {text}
           </p>
         ))}
+        <Link href={href} className="border-b pb-1">Read More</Link>
       </div>
     </SlideReveal>
   </div>
 );
 
-const Sections = ({ title, heading, texts, image, dark }) => (
+const Sections = ({ title, heading, texts, image, dark, href }) => (
   <div
     className={`grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-15 py-8 px-5 xl:px-0 xl:py-20 ${dark ? "text-white" : "t-base"} relative`}
   >
@@ -162,6 +166,7 @@ const Sections = ({ title, heading, texts, image, dark }) => (
                 {text}
               </p>
             ))}
+            <Link href={href} className="border-b pb-1">Read More</Link>
           </div>
         </SlideReveal>
       </div>

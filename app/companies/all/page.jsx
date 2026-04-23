@@ -14,6 +14,7 @@ function AllCompaniesPage() {
             image:
                 // "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438758/0_-_mahy-khoory-group_azokpi.jpg",
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775160129/grundfos_cklxxr.png",
+            href: "/companies/details/mahy-khoory-group"
         },
         {
             title: "M.A.H.Y. Khoory Trading",
@@ -24,6 +25,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438750/1_-_mahy-khoory-trading_ecld8t.jpg",
+            href: "/companies/details/mahy-khoory-trading"
         },
         // {
         //     title: "Emirates International Equipment & Machinery L.L.C.",
@@ -64,6 +66,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438739/5_-_mahy-khoory-engineering_u8wblr.jpg",
+            href: "/companies/details/al-khoory-engineering",
         },
         {
             title: "Union Paper Mills",
@@ -74,6 +77,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438717/6_-_union-paper-mills_a7rhay.jpg",
+            href: "/companies/details/union-paper-mills",
         },
         {
             title: "Al Dhafra Paper Manufacturing",
@@ -84,6 +88,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438766/7_-_al-dhafra-paper_wt16se.jpg",
+            href: "/companies/details/al-dhafra-paper-manufacturing",
         },
         {
             title: "Union Wood Works",
@@ -94,6 +99,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438767/8_-_union-paper-works_nnh5oi.png",
+            href: "/companies/details/union-wood-works",
         },
         {
             title: "Recyclable Waste Management Division",
@@ -104,6 +110,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438762/9_-_recyclable-waste_ktxefe.jpg",
+            href: "/companies/details/recyclable-waste-management",
         },
         {
             title: "Al Dhafra Waste Collection LLC",
@@ -114,6 +121,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438762/10_-_al-dhafra-waste-collection_cbexcl.jpg",
+            href: "/companies/details/al-dhafra-waste-collection",
         },
         {
             title: "Around Continent Waste Collection",
@@ -124,6 +132,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438741/11_-_around-continent-waste_zezot5.jpg",
+            href: "/companies/details/around-continent-waste-collection",
         },
         {
             title: "Al Etihad Waste Management Services LLC",
@@ -134,6 +143,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438739/12_-_etihad-waste-management_y5mnza.jpg",
+            href: "/companies/details/etihad-waste-management",
         },
         {
             title: "Clean Earth LLC",
@@ -144,6 +154,8 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438758/0_-_mahy-khoory-group_azokpi.jpg",
+            href: "/companies/details/clean-earth-llc",
+
         },
         {
             title: "Solid Waste Management Division",
@@ -154,6 +166,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438747/14_-_solid-waste_komaxr.jpg",
+            href: "/companies/details/solid-waste-management-division",
         },
         {
             title: "Union Sustainable Packaging Solutions",
@@ -164,7 +177,8 @@ function AllCompaniesPage() {
             ],
             image:
                 // "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438764/15_-_union-packaging_uugj62.jpg",
-                "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775159998/palletbiz_qeqscs.jpg"
+                "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1775159998/palletbiz_qeqscs.jpg",
+            href: "/companies/details/union-sustainable-packaging",
         },
         {
             title: "National Paper Industry (S.P.S - L.L.C)",
@@ -175,6 +189,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438748/16_-_national-paper_vsgpit.jpg",
+            href: "/companies/details/national-paper-industry",
         },
         {
             title: "Greenland General Transport",
@@ -185,6 +200,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438744/17_-_greenland-transport_voakzk.jpg",
+            href: "/companies/details/greenland-transport",
         },
         {
             title: "Senan Industry LLC",
@@ -195,6 +211,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438753/18_-_senan-industry_yiajzi.jpg",
+            href: "/companies/details/senan-industry",
         },
         {
             title: "Pure Energy Construction LLC",
@@ -205,6 +222,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438764/19_-_pure-energy_wbprxe.jpg",
+            href: "/companies/details/pure-energy-construction",
         },
         {
             title: "Pearl Marina Hotel Apartments",
@@ -215,6 +233,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438761/20_-_pearl-marina_jwoc7e.jpg",
+            href: "/companies/details/pearl-marina",
         },
         {
             title: "Market Restaurant & Café",
@@ -225,6 +244,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438752/21_-_market-restaurant_cvo99s.jpg",
+            href: "/companies/details/market-restaurant",
         },
         {
             title: "MAHY Khoory Motors",
@@ -235,6 +255,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1775283251/IMG_gwgb1p.png",
+            href: "/companies/details/mahy-khoory-motors",
         },
         {
             title: "MAHY Khoory Automotive",
@@ -245,6 +266,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438750/23_-_mahy-automotive_la0ndw.jpg",
+            href: "/companies/details/mahy-khoory-automotive",
         },
         {
             title: "Union Nonwoven Industries",
@@ -255,6 +277,7 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438758/0_-_mahy-khoory-group_azokpi.jpg",
+            href: "/companies/details/union-nonwoven-industries",
         },
         {
             title: "Creative Solutions Green Building Consultancy",
@@ -265,13 +288,14 @@ function AllCompaniesPage() {
             ],
             image:
                 "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774438758/0_-_mahy-khoory-group_azokpi.jpg",
+            href: "/companies/details/creative-solutions",
         },
     ];
     return (
         <main>
             <SubPageHeading
-            fullHeight
-            scrollReadText="View All Companies"
+                fullHeight
+                scrollReadText="View All Companies"
                 title={"All Companies"}
                 image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776880631/back-view-thoughtful-businessman-looking-through-window-big-modern-cityplanning-future-project-concept-early-morning-scene.jpg_ayuw8c.jpg"}
             />

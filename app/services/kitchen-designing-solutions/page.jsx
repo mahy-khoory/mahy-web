@@ -150,7 +150,7 @@ function KitchenDesignPage() {
         <main>
             <SubPageHeading
                 title={"Kitchen Designing Solutions"}
-                image={"/gallery/gallery-1.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937226/collezioni-frida-03-pg126-127_olpgru.jpg"}
             />
             <KitchenImageScaledGrid
                 heading='Overview'
@@ -159,11 +159,14 @@ function KitchenDesignPage() {
                     "With a comprehensive range of premium appliances, custom cabinetry, high-quality countertops, sinks, and storage systems, we create kitchens that combine elegance, durability, and everyday practicality."
                 ]}
                 items={overviewItems}
+                image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937209/collezioni-frida-03-pg129_qhzqdu.jpg'
             />
             <CompanyDetailMenu
                 items={featuresData}
             />
-            <KitchenImageGrid />
+            <KitchenImageGrid
+                image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937319/fusion-03-pg28-29_drgi9r.jpg'
+            />
             <KitchenMenu />
             <KitchenBackgroundGrid />
             <KitchenHorizontalItems />

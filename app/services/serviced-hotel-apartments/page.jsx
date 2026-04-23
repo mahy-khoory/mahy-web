@@ -16,7 +16,7 @@ function ServicedHotelApartmentsPage() {
                 "Business facilities and meeting spaces"
             ],
             endText: "These amenities support both leisure and productivity, making the property suitable for all types of travellers.",
-            image: "/gallery/gallery-1.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934082/medium-shot-woman-working-luxury-restaurant_fjxhja.jpg"
         },
         {
             label: "Dining & Hospitality Services",
@@ -28,7 +28,7 @@ function ServicedHotelApartmentsPage() {
                 "Café and casual dining areas"
             ],
             endText: "The dining experience is designed to cater to diverse tastes and daily lifestyle needs.",
-            image: "/gallery/gallery-2.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934183/elegant-shot-hotel-receptionist-handing-key-card-minimalist-setting_yzuhfm.jpg"
         },
         {
             label: "Support & Concierge Services",
@@ -42,7 +42,7 @@ function ServicedHotelApartmentsPage() {
                 "On-site security and maintenance support"
             ],
             endText: "These services guarantee comfort, safety, and an elevated guest experience.",
-            image: "/gallery/gallery-3.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934014/walking-business-happy-woman-with-suitcase-city-travel-commute-journey-hotel-professional-corporate-person-with-luggage-work-trip-convention-smile-with-drink-outdoor_f0a3p2.jpg"
         },
         {
             label: "Prime Dubai Marina Location",
@@ -56,7 +56,7 @@ function ServicedHotelApartmentsPage() {
                 "Waterfront leisure attractions"
             ],
             endText: "The location provides exceptional connectivity for both business and leisure activities.",
-            image: "/gallery/gallery-4.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934241/full-shot-people-working-laptop_lv2ulb.jpg"
         },
         {
             label: "Suitable For",
@@ -68,18 +68,18 @@ function ServicedHotelApartmentsPage() {
                 "Corporate bookings",
                 "Families seeking spacious, fully equipped accommodation"
             ],
-            image: "/gallery/gallery-5.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934007/spacious-hotel-lobby-filled-with-numerous-chairs-elegant-lamps-ideal-use-hospitality-industry-promotions-interior-design-websites_unkti2.jpg"
         },
     ]
     return (
         <main>
             <SubPageHeading
                 title={"Serviced Hotel Apartments "}
-                image={"/gallery/gallery-1.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934007/spacious-hotel-lobby-filled-with-numerous-chairs-elegant-lamps-ideal-use-hospitality-industry-promotions-interior-design-websites_unkti2.jpg"}
             />
             <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
                 <CompaniesSectors
-                    image={"/gallery/gallery-2.jpg"}
+                    image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934241/full-shot-people-working-laptop_lv2ulb.jpg"}
                     title={"Accommodation Options"}
                     texts={[
                         "Guests can choose from a wide selection of fully furnished units designed for comfort, flexibility, and convenience:"
