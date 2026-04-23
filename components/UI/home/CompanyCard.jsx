@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef, useEffect, useRef, useState } from "react";
+import ScrollToTop from "../ScrollToTop";
 
 const CompanyCard = forwardRef(({ item, index, shouldPlay }, ref) => {
     const videoRef = useRef(null);
@@ -40,7 +41,7 @@ const CompanyCard = forwardRef(({ item, index, shouldPlay }, ref) => {
             onMouseLeave={() => setPlay(false)}
             onTouchEnd={handleTouch}
         >
-            <Link href={item.href}>
+            <ScrollToTop href={item.href}>
                 <div className="absolute inset-0">
                     <Image src={item.image} alt={item.label} fill objectFit="cover" />
 
@@ -64,7 +65,7 @@ const CompanyCard = forwardRef(({ item, index, shouldPlay }, ref) => {
                         <div className='h-px w-full bg-white mt-2 -translate-x-120 group-hover:translate-x-0 transition-all duration-500' />
                     </div>
                 </div>
-            </Link>
+            </ScrollToTop>
         </div>
     );
 });

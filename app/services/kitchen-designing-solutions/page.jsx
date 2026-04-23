@@ -170,8 +170,12 @@ function KitchenDesignPage() {
             <KitchenMenu />
             <KitchenBackgroundGrid />
             <KitchenHorizontalItems />
-            <KitchenItems />
-            <BlobImageSection />
+            <KitchenItems
+                image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937155/collezioni-asolo-04-pg164-165-166_zrtzth.jpg'
+            />
+            <BlobImageSection
+                image={'https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776936979/collezioni-asolo-01-pg142-143_xxk9at.jpg'}
+            />
         </main>
     )
 }

@@ -1,7 +1,9 @@
 import PrimaryButton from "@/components/UI/PrimaryButton"
 import Image from "next/image"
 
-function BlobImageSection() {
+function BlobImageSection({
+    image = "/gallery/gallery-4.jpg"
+}) {
     const items = [
         { count: "200+", text: "We deliver great work always", icon: "/waste/waste-3.svg" },
         { count: "10+", text: "Experience you can count on", icon: "/waste/waste-bg2.svg" },
@@ -14,7 +16,7 @@ function BlobImageSection() {
             <p className="text-gray-700 mt-3 font-medium text-center max-w-2xl mx-auto text-sm md:text-md">We are a dynamic team of innovators, storytellers, and visionaries dedicated to transforming ideas into extraordinary experiences.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-12 mt-8 md:mt-15">
                 <div className="relative rounded-2xl overflow-hidden h-80 md:h-full">
-                    <Image src={"/gallery/gallery-4.jpg"} alt="Kitchen Solutions Image" fill style={{ objectFit: "cover" }} />
+                    <Image src={image} alt="Kitchen Solutions Image" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="md:py-10">
                     <div className="grid grid-cols-2 gap-3 md:gap-6 mb-8">

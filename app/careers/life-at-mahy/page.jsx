@@ -7,7 +7,7 @@ function LifeAtMahyPage() {
         <main>
             <SubPageHeading
                 title={"Life at MAHY Khoory Group"}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776949740/outdoor-network_keopln.jpg"}
             />
             <TrustedAdvisorSection
                 heading="Overview"
@@ -17,6 +17,10 @@ function LifeAtMahyPage() {
                     "Our multicultural workforce brings together professionals from various nationalities and backgrounds, working together with shared objectives and mutual respect. This diversity strengthens teamwork and creates a dynamic yet harmonious work environment.",
                     "We believe that a positive workplace culture directly contributes to long-term employee satisfaction. Recognition of performance, internal growth opportunities, and transparent communication all play a role in maintaining a healthy and motivating environment. Employees who demonstrate commitment and dedication are given opportunities to expand their responsibilities and build meaningful careers within the group.",
                     "At MAHY Khoory Group, life is defined by professional growth, operational excellence, and long-term partnership. We are committed to maintaining an environment where employees feel secure, respected, and motivated to grow alongside the organization."
+                ]}
+                images={[
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776950133/two-business-colleagues-working-project-while-sitting-outdoors-skyscrapers-background_xafkju.jpg",
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776950288/business-people-talking-break-time-standing-background-modern-city-skyscrapers_ee9zan.jpg"
                 ]}
             />
         </main>

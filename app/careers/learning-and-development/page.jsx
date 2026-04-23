@@ -46,9 +46,9 @@ function LearningAndDevelopmentPage() {
         itemsTitle={false}
         items={items}
         images={[
-          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776878013/worker-with-glasses-signing-contract.jpg_a7lrte.jpg",
-          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776878014/front-view-lawyer-working-with-documents.jpg_al2hze.jpg",
-          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776878025/businessman-thinking-office.jpg_a5q9sr.jpg",
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776950556/business-team-take-sits-steps-using-smartphone_bumzph.jpg",
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776950500/office-workers-walking-street_rgkyyj.jpg",
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776950288/business-people-talking-break-time-standing-background-modern-city-skyscrapers_ee9zan.jpg"
         ]}
       />
     </main>
