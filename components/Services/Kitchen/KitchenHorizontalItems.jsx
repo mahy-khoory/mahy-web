@@ -55,53 +55,53 @@ function KitchenHorizontalItems() {
         return () => ScrollTrigger.killAll();
     }, []);
 
-    const data = [
-        {
-            title: "Research",
-            items: [
-                "Stakeholders interview",
-                "Competitors analysis",
-                "UX research",
-                "In-depth interviews"
-            ]
-        },
-        {
-            title: "Strategy",
-            items: [
-                "Stakeholders interview",
-                "Competitors analysis",
-                "UX research",
-                "In-depth interviews"
-            ]
-        },
-        {
-            title: "Prototyping/Concepting",
-            items: [
-                "Stakeholders interview",
-                "Competitors analysis",
-                "UX research",
-                "In-depth interviews"
-            ]
-        },
-        {
-            title: "Design and iterate",
-            items: [
-                "Stakeholders interview",
-                "Competitors analysis",
-                "UX research",
-                "In-depth interviews"
-            ]
-        },
-        {
-            title: "Development",
-            items: [
-                "Stakeholders interview",
-                "Competitors analysis",
-                "UX research",
-                "In-depth interviews"
-            ]
-        }
-    ]
+const data = [
+  {
+    title: "Consultation",
+    items: [
+      "Understanding client requirements",
+      "Site assessment and measurements",
+      "Space utilization planning",
+      "Functional needs evaluation",
+    ],
+  },
+  {
+    title: "Design & Planning",
+    items: [
+      "Concept design development",
+      "Layout optimization",
+      "Material and finish selection",
+      "3D visualization and approval",
+    ],
+  },
+  {
+    title: "Engineering & Technical",
+    items: [
+      "Detailed technical drawings",
+      "Equipment selection and specification",
+      "Utility and service planning",
+      "Compliance with safety standards",
+    ],
+  },
+  {
+    title: "Fabrication & Installation",
+    items: [
+      "Custom manufacturing of kitchen components",
+      "On-site installation and assembly",
+      "Equipment setup and integration",
+      "Quality checks and finishing",
+    ],
+  },
+  {
+    title: "Testing & Handover",
+    items: [
+      "System testing and performance checks",
+      "Final inspection and adjustments",
+      "Client walkthrough and approval",
+      "Project handover and documentation",
+    ],
+  },
+];
     return (
         <section ref={sectionRef} className="max-w-7xl mx-auto px-5 py-8 md:py-20 md:h-screen">
             <div className="flex flex-wrap justify-between gap-5 items-start md:pt-15">

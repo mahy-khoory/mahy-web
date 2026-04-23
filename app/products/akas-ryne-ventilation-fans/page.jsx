@@ -1,6 +1,5 @@
 import KitchenItems from "@/components/Services/Kitchen/KitchenItems";
 import PageHeading from "@/components/UI/PageHeading";
-import SubPageHeading from "@/components/UI/SubPageHeading";
 
 function AkasFansPage() {
   const highlights = [

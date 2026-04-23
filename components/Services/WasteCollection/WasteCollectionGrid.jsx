@@ -1,4 +1,3 @@
-import PrimaryButton from "@/components/UI/PrimaryButton";
 import { Mail } from "lucide-react";
 import Image from "next/image";
 import { FaQuestion } from "react-icons/fa6";

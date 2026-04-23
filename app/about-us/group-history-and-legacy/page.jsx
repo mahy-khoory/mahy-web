@@ -101,10 +101,10 @@ async function GroupHistoryAndLegacyPage() {
       <CompanyDetailCards
         heading1="Our History"
         text1={data.text1}
-        items1={data.items1}
+        // items1={data.items1}
         heading2="Our Legacy"
         text2={data.text2}
-        items2={data.items2}
+        // items2={data.items2}
       />
     </main>
   );

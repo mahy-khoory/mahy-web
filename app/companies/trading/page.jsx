@@ -13,16 +13,18 @@ function TradingPage() {
         title="Trading"
         // image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772868318/Code_of_Conduct.jpg_qjqqzs.jpg"
         image={
-          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776948728/working-through-meeting-agenda-like-pros-shot-team-executives-having-formal-meeting-boardroom_ljgiuc.jpg"
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776883124/business-meeting-office.jpg_ubgwsk.jpg"
         }
         align="center"
       />
       <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
         <CompaniesSectors
           image={
-            "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776629673/corporate-buildings.jpg_vxoi9u.jpg"
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776883067/working-through-meeting-agenda-like-pros-shot-team-executives-having-formal-meeting-boardroom.jpg_nlnvae.jpg"
           }
-          image2={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776948899/business-meeting-office_c8qylz.jpg"}
+          image2={
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776948899/business-meeting-office_c8qylz.jpg"
+          }
           title={"Trading"}
           texts={[
             "This sector represents the Group's commercial foundation, delivering a comprehensive range of industrial supply, distribution, and sustainable energy solutions across regional markets",

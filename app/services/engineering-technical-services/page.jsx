@@ -10,10 +10,11 @@ function PumpingSystemServicesPage() {
     <main>
       <SubPageHeading
         title={"Engineering & Technical Services"}
+        fullHeight
         description={
           "Reliable pumping system services delivering optimal performance and long-term efficiency. From installation to maintenance, we ensure smooth and uninterrupted operations."
         }
-        image={"/gallery/gallery-5.jpg"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776982359/data-center-admins-monitoring-artificial-intelligence-llm-visualization.jpg_x17h5t.jpg"}
       />
       <FeaturesEngineeringSection />
       <OfferingsSection/>

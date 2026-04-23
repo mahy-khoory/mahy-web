@@ -21,7 +21,7 @@ async function ContactUs() {
   return (
     <main>
       <PageHeading
-        title={t("Heading")}
+        title={"Inquiries"}
         description={t("Description")}
         image="/gallery/gallery-3.jpg"
       />

@@ -73,6 +73,7 @@ function RestaurantDiningServices() {
     return (
         <main>
             <SubPageHeading
+            fullHeight
                 title={"Restaurant & Dining Services"}
                 image={"/gallery/gallery-1.jpg"}
             />

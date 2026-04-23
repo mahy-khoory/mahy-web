@@ -11,9 +11,9 @@ export default function TrustedAdvisorSection({
   lastText,
   images = [],
   object = "",
-  subject = "Experience",
-  numbers_1 = "200+",
-  numbers_2 = "98 Years"
+  subject = " Years of Excellence",
+  numbers_1 = "4000+",
+  numbers_2 = "96"
 }) {
   const defaultFallBack = [
     "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1773042303/Dubai_skyline_at_twilight_with_glowing_connection.jpg_vctmco.jpg",
@@ -92,7 +92,7 @@ export default function TrustedAdvisorSection({
                 className="aspect-[4/5] bg-[#0B1320] text-white flex items-center justify-center text-center cursor-pointer"
               >
                 <div>
-                  <h3 className="text-5xl font-bold">{numbers_2}</h3>
+                  <h3 className="text-4xl font-bold">{numbers_2}</h3>
                   <p className="mt-2 tracking-widest text-sm font-semibold">
                     {subject}
                   </p>
@@ -110,7 +110,7 @@ export default function TrustedAdvisorSection({
                 className="aspect-[4/5] bg-slate-700 text-white flex items-center justify-center text-center cursor-pointer"
               >
                 <div>
-                  <h3 className="text-5xl font-bold">{numbers_1}</h3>
+                  <h3 className="text-3xl font-bold">{numbers_1}</h3>
                   <p className="mt-2 tracking-widest text-sm font-semibold">
                    {object}
                   </p>

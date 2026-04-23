@@ -11,7 +11,8 @@ function SubmitCv() {
         description={
           "MAHY Khoory Group welcomes experienced professionals, specialists, and motivated individuals who are interested in building a long-term career within a diversified, multi-sector organization."
         }
-        image={"/gallery/gallery-2.jpg"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776984212/people-working-with-computers.jpg_s9wcea.jpg"}
+        fullHeight
       />
       <ServicesGlobally
         heading="Submit Your CV"

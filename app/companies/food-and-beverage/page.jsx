@@ -11,14 +11,15 @@ function HospitalityPage() {
       <SubPageHeading
         title="Hospitality & Food"
         // description="The company has a well-developed internal governance structure, under which all governance bodies have clear and focused authority and responsibility."
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776886121/receptionists-elegant-suits-work-hours.jpg_pboawv.jpghttps://res.cloudinary.com/dpn6mdpxd/image/upload/v1776885851/businessman-standing-front-large-glass-building-business-corporative-concept-generative-ai.jpg_f65dkk.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776886121/receptionists-elegant-suits-work-hours.jpg_pboawv.jpg"
         align="center"
         fullHeight
       />
       <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
         <CompaniesSectors
+        image2={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776886109/check-reception-mature-man-with-luggage-hotel-business-meeting-hospitality-travel-service-concierge-woman-person-with-suitcase-welcome-vacation-sales-convention.jpg_t05o9z.jpg"}
           image={
-            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776886121/receptionists-elegant-suits-work-hours.jpg_pboawv.jpg"
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776886116/business-partners.jpg_pubbpk.jpg"
           }
           title={"Hospitality & Food"}
           texts={[

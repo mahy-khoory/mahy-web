@@ -7,7 +7,6 @@ import SolarPanelQuoteGrid from "@/components/Services/SolarPanel/SolarPanelQuot
 import ServicesPumping from "@/components/ServicesPumping";
 import ServicesGlobally from "@/components/UI/companies/detail/ServicesGlobally";
 import PageHeading from "@/components/UI/PageHeading";
-import SubPageHeading from "@/components/UI/SubPageHeading";
 
 function PumpingSystemServicesPage() {
   const items = [

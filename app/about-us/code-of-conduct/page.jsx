@@ -4,7 +4,7 @@ import CodeOfConductSection from "@/components/UI/about-us/code-of-conduct/CodeO
 import LargeArticleSection from "@/components/UI/about-us/code-of-conduct/LargeArticleSection";
 import DesignProcessContainer from "@/components/UI/home/DesignProcessContainer";
 import SubPageHeading from "@/components/UI/SubPageHeading";
-import { HiLightBulb } from "react-icons/hi";
+import { HiLightBulb, HiShieldCheck } from "react-icons/hi";
 
 export default function GovernancePage() {
   const codeOfConductItems = [
@@ -117,7 +117,7 @@ export default function GovernancePage() {
         text1={"MAHY Khoory Group maintains a comprehensive set of policies designed to support consistent governance, risk management, and operational discipline across all companies."}
         text2={"These policies cover, among others:"}
         text3={"Group policies are regularly reviewed and updated to ensure alignment with legal requirements, industry standards, and best practices."}
-        icon={<HiLightBulb size={25} fill="white" />}
+        icon={<HiShieldCheck size={25} fill="white" />}
         items={groupPoliciesItems}
       />
       <WasteCollectionTimeline

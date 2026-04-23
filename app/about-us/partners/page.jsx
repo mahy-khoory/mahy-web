@@ -26,7 +26,7 @@ async function StrategicPartnershipsPage() {
             heading: "Global Brands & Local Expertise",
             text1: "Through strategic alliances with internationally recognized manufacturers and suppliers, MAHY Khoory Group brings proven technologies, products, and systems to local and regional markets. These partnerships are strengthened by the Group's deep local market knowledge, operational infrastructure, and technical capabilities.",
             text2: "By combining global expertise with local execution, we ensure that solutions are relevant, compliant, and tailored to customer requirements.",
-            img: "/gallery/gallery-7.webp"
+            img: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776975420/building-organization-uncertainty-choice-abstract-risk.jpg_xurfli.jpg"
         },
         {
             heading: "Value Creation Through Collaboration",
@@ -41,35 +41,36 @@ async function StrategicPartnershipsPage() {
                     "Joint development of customized and cost-effective solutions"
                 ]
             },
-            img: "/gallery/gallery-8.jpeg"
+            img: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776975434/online-research.jpg_yhmhf8.jpg"
         },
         {
             heading: "Governance & Professional Engagement",
             text1: "All strategic partnerships are governed by structured agreements, clear commercial frameworks, and defined performance standards. The Group applies strong governance, compliance, and risk management practices to ensure transparency, ethical conduct, and alignment with regulatory requirements.",
             text2: "Partners can expect professionalism, consistency, and respect in all engagements with MAHY Khoory Group.",
-            img: "/gallery/gallery-9.jpeg"
+            img: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776975446/group-asia-young-creative-people-smart-casual-wear-discussing-business-brainstorming.jpg_a1ejss.jpg"
         },
         {
             heading: "Commitment to Trust & Reliability",
             text1: "Trust is central to every partnership we build. MAHY Khoory Group values reliability, confidentiality, and accountability, and we take pride in honoring our commitments to partners and stakeholders.",
             text2: "Through responsible business practices and long-standing relationships, the Group continues to strengthen its partnership network and support sustainable growth across all sectors in which it operates.",
-            img: "/gallery/gallery-4.jpg"
+            img: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776975428/business-partnership-successful-global-logistics.jpg_uj60m7.jpg"
         },
         {
             heading: t("Announcements.Heading6"),
             text1: t("Announcements.Title6"),
             text2: t("Announcements.Text6"),
-            img: "/gallery/gallery-5.jpg"
+            img: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776975441/strategic-brilliance-unfolds-as-person-engages-game-chess-symbolizing-business-strategy.jpg_rchqvn.jpg"
         }
     ];
 
     return (
         <main>
             <SubPageHeading
+            fullHeight
                 title={"Strategic Partnerships"}
                 description={"Strategic partnerships are a cornerstone of MAHY Khoory Group’s long-term success. Over decades of operation, the Group has built and maintained strong relationships with international manufacturers, suppliers, service providers, and business partners across multiple industries and markets."}
                 description2={"These partnerships are founded on mutual trust, transparency, and shared objectives, enabling the Group to deliver reliable products, integrated solutions, and consistent value to customers across the UAE and beyond."}
-                image={"/gallery/gallery-3.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776975437/king-leadership-reflected-victorious-chess-strategy-generated-by-ai.jpg_af3dyn.jpg"}
             />
             <Announcements items={announcements} cta={t("Announcements.Button")} locale={locale} />
         </main>

@@ -1,9 +1,4 @@
-import SolarPanelImageGrid from '@/components/Services/SolarPanel/SolarPanelImageGrid'
-import SolarPanelImagesGrid from '@/components/Services/SolarPanel/SolarPanelImagesGrid'
-import SolarPanelInstallations from '@/components/Services/SolarPanel/SolarPanelInstallations'
-import SolarPanelInstallationsGrid from '@/components/Services/SolarPanel/SolarPanelInstallationsGrid'
-import SolarPanelNumbers from '@/components/Services/SolarPanel/SolarPanelNumbers'
-import SolarPanelQuoteGrid from '@/components/Services/SolarPanel/SolarPanelQuoteGrid'
+
 import CompanyDetailMenu from '@/components/UI/companies/detail/CompanyDetailMenu'
 import SubPageHeading from '@/components/UI/SubPageHeading'
 
@@ -158,6 +153,7 @@ function SolarPanelInstallationsPage() {
     return (
         <main>
             <SubPageHeading
+            fullHeight
                 title={"Solar Panel Installation & O&M Services"}
                 description={"We deliver end-to-end solar energy solutions for residential, commercial, and industrial projects across the UAE covering system design, engineering, installation, commissioning, and long-term maintenance. Our solutions feature high-efficiency solar panels from globally trusted brands such as Astro Energy, GINKO, and LONGI, ensuring maximum energy generation, long-term stability, and superior performance under challenging UAE climate conditions."}
                 image={"/gallery/gallery-2.jpg"}
@@ -165,12 +161,12 @@ function SolarPanelInstallationsPage() {
             <CompanyDetailMenu
                 items={menuItems}
             />
-            <SolarPanelInstallations />
+            {/* <SolarPanelInstallations />
             <SolarPanelImageGrid />
             <SolarPanelInstallationsGrid />
             <SolarPanelQuoteGrid />
             <SolarPanelNumbers />
-            <SolarPanelImagesGrid />
+            <SolarPanelImagesGrid /> */}
         </main>
     )
 }

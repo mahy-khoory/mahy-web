@@ -18,20 +18,55 @@ export default async function Home() {
 
   const slides = [
     {
-      title: t("Hero1Title"),
-      subtitle: t("Hero1Subtitle"),
-      cta: { label: t("Hero1CtaLabel"), href: "/companies/all" },
+      title: "Driving Sustainable Growth Across Industries",
+      subtitle:
+        "With a strong foundation in diverse sectors, we deliver integrated solutions that support long-term development and responsible growth.",
+      cta: { label: "Explore Companies", href: "/companies/all" },
     },
     {
-      title: t("Hero2Title"),
-      subtitle: t("Hero2Subtitle"),
-      cta: { label: t("Hero2CtaLabel"), href: "/companies/engineering-services" },
-      otherCta: { label: t("Hero2OtherCtaLabel"), href: "/shop" },
+      title: "Powering Industries with Innovation and Reliability",
+      subtitle:
+        "We combine technical expertise with innovative thinking to deliver dependable solutions that meet evolving industry demands.",
+      cta: {
+        label: "Engineering Services",
+        href: "/companies/engineering-services",
+      },
     },
     {
-      title: t("Hero3Title"),
-      subtitle: t("Hero3Subtitle"),
-      cta: { label: t("Hero3CtaLabel"), href: "/shop" },
+      title: "Excellence Built on Experience and Commitment",
+      subtitle:
+        "Our decades of industry knowledge enable us to provide consistent quality and trusted services across every business we operate.",
+      cta: { label: "Shop Products", href: "/shop" },
+    },
+    {
+      title: "Delivering Value Through Integrated Solutions",
+      subtitle:
+        "From trading to manufacturing and beyond, we create seamless solutions that enhance efficiency and performance.",
+      cta: { label: "Explore Companies", href: "/companies/all" },
+    },
+    {
+      title: "Strengthening Industries Through Expertise and Trust",
+      subtitle:
+        "We work closely with our partners to deliver reliable products and services that drive operational success.",
+      cta: { label: "View Services", href: "/companies/engineering-services" },
+    },
+    {
+      title: "Sustainable Solutions for a Better Tomorrow",
+      subtitle:
+        "Our focus on responsible practices ensures that our operations contribute positively to the environment and society.",
+      cta: { label: "Learn More", href: "/companies/all" },
+    },
+    {
+      title: "Building Reliable Foundations for Future Growth",
+      subtitle:
+        "We support businesses with scalable solutions designed to adapt, perform, and grow in a changing world.",
+      cta: { label: "Explore Solutions", href: "/companies/all" },
+    },
+    {
+      title: "Committed to Quality, Driven by Performance",
+      subtitle:
+        "Every solution we deliver reflects our dedication to high standards, operational excellence, and customer satisfaction.",
+      cta: { label: "Discover More", href: "/companies/all" },
     },
   ];
   const floatingMenuItems = [
@@ -131,7 +166,11 @@ export default async function Home() {
       </div>
 
       <section id="who-we-are">
-        <WhoWeAre image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1771915804/office_jaeuiz.webp"} />
+        <WhoWeAre
+          image={
+            "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1771915804/office_jaeuiz.webp"
+          }
+        />
       </section>
 
       <div id="companies">

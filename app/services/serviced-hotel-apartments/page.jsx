@@ -74,6 +74,7 @@ function ServicedHotelApartmentsPage() {
     return (
         <main>
             <SubPageHeading
+            fullHeight
                 title={"Serviced Hotel Apartments "}
                 image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934007/spacious-hotel-lobby-filled-with-numerous-chairs-elegant-lamps-ideal-use-hospitality-industry-promotions-interior-design-websites_unkti2.jpg"}
             />

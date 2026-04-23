@@ -462,10 +462,10 @@ export function getNavigation(t) {
                 label: t("ServicedHotelApartments"),
                 href: "/services/serviced-hotel-apartments",
               },
-              {
-                label: t("Restaurant&DiningServices"),
-                href: "/services/restaurant-dining-services",
-              },
+              // {
+              //   label: t("Restaurant&DiningServices"),
+              //   href: "/services/restaurant-dining-services",
+              // },
               {
                 label: t("KitchenDesigningSolutions"),
                 href: "/services/kitchen-designing-solutions",
@@ -635,7 +635,7 @@ export function getNavigation(t) {
       },
       {
         id: "contact",
-        label: t("Contact"),
+        label: "Customer Enquiries",
         href: "/contact-us",
         linkType: "mega",
         columns: [

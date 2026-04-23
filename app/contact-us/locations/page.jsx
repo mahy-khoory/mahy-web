@@ -214,6 +214,7 @@ function locations() {
         <main>
             <SubPageHeading
                 title={"Our Locations"}
+                fullHeight
                 description={"At MAHY Khoory Group, delivering reliable support and maintaining strong customer relationships is a core priority across all our sectors."}
                 image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776592263/mahy-location-page.jpg_jdopju.jpg"}
             />

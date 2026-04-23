@@ -16,6 +16,7 @@ function CultureAndValuesPage() {
       />
       <div className="my-8">
         <SolarPanelQuoteGrid
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776982981/businessman-summer-city-with-three-women.jpg_wriu63.jpg"
           heading="Overview"
           text="Integrity is at the core of everything we do. We uphold transparency in our operations, ethical conduct in our decision-making, and responsibility in our commitments to clients, partners, and employees. We believe that long-term success is achieved through trust, compliance, and adherence to structured governance frameworks."
           text2="Accountability is embedded in our daily operations. Every role within the organization carries clearly defined responsibilities and measurable performance expectations. We promote ownership of tasks, proactive problem-solving, and results-driven execution at every level of the group."

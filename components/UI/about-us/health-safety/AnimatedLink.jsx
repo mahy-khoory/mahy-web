@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function AnimatedLink() {
   return (
     <motion.div
-      className="inline-flex items-center gap-2 text-sm font-medium text-[#0A58FF]"
+      className="inline-flex items-center gap-2 text-sm font-medium t-base transition-colors duration-300 group-hover:text-[var(--accent-color)]"
       whileHover="hover"
       initial="rest"
       animate="rest"
@@ -15,7 +15,7 @@ export default function AnimatedLink() {
         Read more
         {/* underline */}
         <motion.span
-          className="absolute -bottom-1 left-0 h-[1px] w-full bg-[#0A58FF]"
+          className="absolute -bottom-1 left-0 h-[1px] w-full bg-[var(--accent-light)] group-hover:bg-[var(--accent-color)]"
           variants={{
             rest: { scaleX: 0 },
             hover: { scaleX: 1 },

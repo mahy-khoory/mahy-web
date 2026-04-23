@@ -4,6 +4,7 @@ import { HiLightBulb } from "react-icons/hi";
 function SolarPanelInstallationsGrid({
     heading = "Investment Strategies",
     text,
+     icon = <HiLightBulb size={30} color="white" />, 
     itemsTitle = "Product Features & Options",
     items = [
         {
@@ -39,7 +40,7 @@ function SolarPanelInstallationsGrid({
                         {items.map((item, i) => (
                             <div key={i} className="flex gap-5">
                                 <div className="flex-none p-3 bg-slate-900 rounded-lg overflow-hidden h-fit">
-                                    <HiLightBulb size={30} color="white" />
+                                    {icon}
                                 </div>
 
                                 <div>

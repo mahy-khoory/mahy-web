@@ -12,12 +12,13 @@ export default function GovernancePage() {
         // description="The company has a well-developed internal governance structure, under which all governance bodies have clear and focused authority and responsibility."
         image="/gallery/ADGM.png"
         align="center"
+        fullHeight
       />
       <DiscoverSection
         eyebrow="Discover More"
         title="MAHY Khoory Center"
         description="Find out more about MAHY events, read the latest media announcements and publications, or access our video and image gallery via the MAHY Media Centre."
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1772801631/Health_Safety_fdep1v.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776977658/woman-reading-diagrams-tablet-device-helped-by-specialist.jpg_epm3nu.jpg"
       />
       <InfoNavigationSection />
     </main>

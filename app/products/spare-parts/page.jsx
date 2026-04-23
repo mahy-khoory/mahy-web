@@ -78,9 +78,10 @@ function SparePartsPage() {
         description2={
           "Every spare part is sourced directly from leading global brands and engineered to deliver long service life, optimal compatibility, and consistent performance in the region’s demanding operating conditions."
         }
-        image={"/gallery/gallery-8.jpeg"}
+        fullHeight
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776984818/spare-parts-background-beautiful-illustration-picture-generative-ai.jpg_yanoie.jpg"}
       />
-      <FeaturesEngineeringSection heading="Product Coverage" items={coverage} />
+      <FeaturesEngineeringSection image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776984884/transportation.jpg_f3k4sm.jpg" heading="Product Coverage" items={coverage} />
       <OfferingsSection
         heading="Service Support & Availability"
         texts={[
@@ -89,7 +90,7 @@ function SparePartsPage() {
         ]}
         items={support}
       />
-      <SparePartsTimeline items={items} />
+      <SparePartsTimeline  items={items} />
     </main>
   );
 }
