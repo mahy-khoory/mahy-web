@@ -1,6 +1,9 @@
+import CompaniesSectors from "@/components/CompaniesSectors";
 import FeaturesEngineeringSection from "@/components/Services/FeaturesEngineeringSection";
 import OfferingsSection from "@/components/Services/OfferingsSection";
 import SparePartsTimeline from "@/components/Shop/SparePartsTimeline";
+import TrustedAdvisorSection from "@/components/TrustedAdvisorSection";
+import ValuesSection from "@/components/UI/about-us/ValuesSection";
 import SubPageHeading from "@/components/UI/SubPageHeading";
 
 function SparePartsPage() {
@@ -71,15 +74,24 @@ function SparePartsPage() {
   return (
     <main>
       <SubPageHeading
-        title={"Spare Parts"}
-        description={
-          "Our Spare Parts Division provides a comprehensive inventory of genuine, manufacturer-approved spare parts to support all the products we supply—including pumps, engines, motors, and power tools. By maintaining a robust stock of critical components, we ensure fast turnaround, minimized downtime, and reliable after-sales service for customers across the UAE and the wider GCC region."
-        }
-        description2={
-          "Every spare part is sourced directly from leading global brands and engineered to deliver long service life, optimal compatibility, and consistent performance in the region’s demanding operating conditions."
-        }
         fullHeight
         image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776984818/spare-parts-background-beautiful-illustration-picture-generative-ai.jpg_yanoie.jpg"}
+      />
+      <ValuesSection
+        description="Our Spare Parts Division provides a comprehensive inventory of genuine, manufacturer-approved spare parts to support all the products we supply—including pumps, engines, motors, and power tools. By maintaining a robust stock of critical components, we ensure fast turnaround, minimized downtime, and reliable after-sales service for customers across the UAE and the wider GCC region."
+        imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776762183/commitment-to-growth_qhzgjt.jpg"
+        imageAlt="Spare Parts Division"
+        ctaHref={false}
+        width="max-w-7xl mx-auto"
+        imagePosition="left"
+      />
+      <ValuesSection
+        description="Every spare part is sourced directly from leading global brands and engineered to deliver long service life, optimal compatibility, and consistent performance in the region’s demanding operating conditions."
+        imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776630358/photo-family-visiting-dubai-opera-architectural-masterpiece.jpg_qopoc6.jpg"
+        imageAlt="Spare Part"
+        width="max-w-7xl mx-auto"
+        ctaHref={false}
+        imagePosition="right"
       />
       <FeaturesEngineeringSection image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776984884/transportation.jpg_f3k4sm.jpg" heading="Product Coverage" items={coverage} />
       <OfferingsSection
@@ -90,7 +102,7 @@ function SparePartsPage() {
         ]}
         items={support}
       />
-      <SparePartsTimeline  items={items} />
+      <SparePartsTimeline items={items} />
     </main>
   );
 }

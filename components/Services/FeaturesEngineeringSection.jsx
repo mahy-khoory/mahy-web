@@ -24,7 +24,7 @@ const cardVariants = {
 };
 
 export default function FeaturesEngineeringSection({
-  heading = "Features & Engineering",
+  heading = "",
   text,
   image = "/gallery/gallery-1.jpg",
   items = [],

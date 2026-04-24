@@ -40,7 +40,6 @@ function OpportunitiesPage() {
       />
       <div className="mt-8 lg:mb-260 xl:mb-22">
         <SolarPanelImagesGrid
-          heading="Overview"
           items={items}
           text1="3000+"
           text2="Employees"

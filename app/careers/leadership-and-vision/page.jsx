@@ -34,7 +34,6 @@ function LeadershipAndVisionPage() {
         }
       />
       <VisionBenchmarkSection
-        heading="Overview"
         images={[
           "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776768057/group-people-working-out-business-plan-office.jpg_joudjy.jpg",
           "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776768055/planning-corporate-event-with-colleagues-modern-office-setting.jpg_yb8nqq.jpg",

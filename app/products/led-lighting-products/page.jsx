@@ -34,7 +34,6 @@ function LedLightningProducts() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795212/vintage-light-lamp_qsbnhm.jpg"
       />
       <SolarPanelImageGrid
-        heading="Overview"
         subHeading={"LED Bulbs & Lighting Products"}
         text={
           "ECOLINK LED Bulbs & Lighting Products are designed to deliver high performance, energy efficiency, and long-lasting reliability for residential, commercial, and industrial applications. Built with advanced LED technology, ECOLINK lighting solutions provide superior illumination while significantly reducing power consumption and maintenance costs."

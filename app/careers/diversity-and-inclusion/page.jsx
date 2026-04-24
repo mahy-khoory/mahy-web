@@ -9,12 +9,11 @@ function DiversityAndInclusionPage() {
     return (
         <main>
             <SubPageHeading
-            fullHeight
+                fullHeight
                 title={"Diversity & Inclusion"}
                 image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767690/diversity_inclusion.jpg_fomkzs.jpg"}
             />
             <TrustedAdvisorSection
-                heading="Overview"
                 numbers_1="30+ Nationalities"
                 texts={[
                     "At MAHY Khoory Group, diversity is one of our core strengths. As a multi-sector organization operating across various industries, our workforce represents a wide range of nationalities, professional backgrounds, and cultural perspectives.",

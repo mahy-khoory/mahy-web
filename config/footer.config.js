@@ -47,6 +47,7 @@ export const getFooter = (t) => {
           label: "Contact Us",
           href: "/contact-us",
         },
+        image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776838952/MK_Logo_Gold_tr9dox.png"
       },
     ],
 

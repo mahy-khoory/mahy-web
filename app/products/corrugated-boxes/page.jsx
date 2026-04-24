@@ -121,7 +121,6 @@ function CorrugatedBoxesPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795755/financial-chart-blurred-skyscraper-office-background_hbc40c.jpg"
       />
       <SolarPanelInstallationsGrid
-        heading="Overview"
         text="Our high-quality corrugated boxes are available in a comprehensive range of sizes, flute profiles, board grades, and customization options, designed to meet the diverse packaging needs of industrial, commercial, and retail sectors across the UAE. Manufactured using premium kraft liners, high-strength fluting paper, and environmentally responsible raw materials, these cartons offer excellent durability, crush resistance, and printability—ensuring superior product protection and brand presentation."
         items={features}
       />

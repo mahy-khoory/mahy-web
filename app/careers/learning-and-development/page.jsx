@@ -39,7 +39,6 @@ function LearningAndDevelopmentPage() {
         }
       />
       <SolarPanelInstallationsGrid
-        heading="Overview"
         text={
           "At MAHY Khoory Group, we strongly believe that organizational growth and employee development go hand in hand. Continuous learning is not viewed as an optional initiative, but as a strategic investment that strengthens both individual capability and overall business performance."
         }

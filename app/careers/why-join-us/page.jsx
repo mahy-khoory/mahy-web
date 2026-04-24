@@ -33,7 +33,6 @@ function WhyJoinUsPage() {
         }
       />
       <TrustedBusinessAdvisor
-        heading="Overview"
         items={items}
         endText={
           "At MAHY Khoory Group, you become part of a professional, disciplined, and forward-looking organization committed to long-term success."

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { FaQuoteLeft } from "react-icons/fa6"
 
 function SolarPanelQuoteGrid({
-    heading = "Tailored Solutions",
+    heading = "",
     image = "/gallery/gallery-1.jpg",
     text = "Lorem ipsum Suspendisse a massa vel sem ornare tincidunt eu sed ipsum Suspendisse commodo finibus nibh ac pretium turpis molestie",
     text2,

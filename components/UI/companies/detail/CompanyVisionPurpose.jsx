@@ -20,7 +20,7 @@ export default function CompanyVisionPurpose({
 
           {/* LEFT SIDE */}
           <div className="lg:col-span-5">
-            <h2 className="font-serif text-[32px] sm:text-[40px] lg:text-[56px] leading-[1.15] text-white">
+            <h2 className="text-[32px] sm:text-[40px] lg:text-[56px] leading-[1.15] text-white">
               {heading}
             </h2>
 
@@ -64,7 +64,7 @@ export default function CompanyVisionPurpose({
 
                     <span
                       className={clsx(
-                        "font-serif text-[18px] sm:text-[20px] lg:text-[22px] whitespace-nowrap transition-colors",
+                        "text-[18px] sm:text-[20px] lg:text-[22px] whitespace-nowrap transition-colors",
                         activeIndex === i
                           ? "text-white"
                           : "text-white/45"
@@ -116,7 +116,7 @@ export default function CompanyVisionPurpose({
               <div className="bg-slate-500 px-5 sm:px-6 lg:px-8 py-6 sm:py-7 space-y-5">
                 {items[activeIndex].items?.map((item, i) => (
                   <div key={i}>
-                    <h3 className="font-serif text-[18px] sm:text-[20px] md:text-xl text-white">
+                    <h3 className="text-[18px] sm:text-[20px] md:text-xl text-white">
                       {item.title}
                     </h3>
 

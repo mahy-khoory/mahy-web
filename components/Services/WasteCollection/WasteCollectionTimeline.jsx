@@ -9,7 +9,7 @@ const defaultItems = [
 
 function WasteCollectionTimeline({
     topSection = true,
-    heading = "This is our message to you",
+    heading = "",
     text = "I say always follow your passion, no matter what, because even if it’s not the same financial success, it’ll lead you to the money that’ll make you the happiest.",
     text2,
     text3,
@@ -77,7 +77,9 @@ function WasteCollectionTimeline({
 
 const DataElement = ({ item, alignmentClass = "text-left" }) => (
     <div className={`py-10 w-90 border rounded-2xl border-gray-300 bg-white relative z-10 flex flex-col justify-center px-8`}>
-        <h2 className="uppercase text-xl font-semibold border-b border-gray-200 pb-4 mb-5">{item.title}</h2>
+        {item.title &&
+            <h2 className="uppercase text-xl font-semibold border-b border-gray-200 pb-4 mb-5">{item.title}</h2>
+        }
         {item.text && <p className="text-sm text-gray-700 mb-4">{item.text}</p>}
         {item.text2 && <p className="text-sm text-gray-700 mb-4">{item.text2}</p>}
         {item.options && (

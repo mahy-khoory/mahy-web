@@ -12,7 +12,7 @@ const defaultItems = [
 ];
 
 function WasteCollectionScrollMovingCards({
-    heading = "A Few Words From Our Trusted Partners",
+    heading = "",
     items = defaultItems
 }) {
 

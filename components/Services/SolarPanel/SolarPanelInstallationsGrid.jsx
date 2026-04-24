@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { HiLightBulb } from "react-icons/hi";
 
 function SolarPanelInstallationsGrid({
   heading = "Investment Strategies",
@@ -38,11 +37,13 @@ function SolarPanelInstallationsGrid({
           <div className="border-t border-gray-400 mt-8 md:mt-10 pt-10 space-y-10">
             {itemsTitle && <h3 className="font-bold text-xl">{itemsTitle}</h3>}
 
-            {items.map((item, i) => (
-              <div key={i} className="flex gap-5">
-                <div className="flex-none p-3 bg-slate-900 rounded-lg overflow-hidden h-fit">
-                  {icon}
-                </div>
+                        {items.map((item, i) => (
+                            <div key={i} className="flex gap-3">
+                                <div className="flex-none h-fit">
+                                    <div className="relative text-slate-500 size-10">
+                                        <Image src={"/bullet-point.svg"} alt="Bullet Point" fill style={{ objectFit: "cover" }} />
+                                    </div>
+                                </div>
 
                 <div>
                   <h3 className="text-xl font-semibold">{item.title}</h3>

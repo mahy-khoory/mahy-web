@@ -26,7 +26,7 @@ export default function SubPageHeading({
 
   return (
     <section className={clsx("relative w-full overflow-hidden z-40", height)}>
-      <Image src={image} alt={title} fill priority className="object-cover" />
+      <Image src={image} alt={title || "Page Heading"} fill priority className="object-cover" />
 
       <div
         className="
