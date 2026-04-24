@@ -12,6 +12,7 @@ function LifeAtMahyPage() {
         }
       />
       <TrustedAdvisorSection
+      numbers_1="30+ Nationalities"
         texts={[
           "Life at MAHY Khoory Group is built on stability, professionalism, and long-term relationships. Many of our employees choose to grow their careers with us for decades, reflecting the supportive and structured environment we strive to maintain. It is not uncommon to find team members who have been part of the organization for 20 or even 30 years a testament to the trust, continuity, and mutual respect within the group.",
           "We foster a professional yet collaborative working atmosphere where individuals feel valued for their contributions. Employees work within clearly defined roles and structured systems, creating clarity, fairness, and accountability across departments. This structured approach provides both stability and confidence, allowing individuals to focus on performance and growth.",
