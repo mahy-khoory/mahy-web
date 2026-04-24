@@ -3,7 +3,7 @@ import { Check, CheckCircle, CheckCircle2Icon, CheckCircleIcon } from "lucide-re
 import Image from "next/image";
 
 function SolarPanelImageGrid({
-    heading = "Insights for Growth",
+    heading = "",
     image = "/gallery/gallery-1.jpg",
     subHeading,
     bulletItems,

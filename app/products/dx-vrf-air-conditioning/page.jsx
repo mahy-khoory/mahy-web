@@ -125,7 +125,6 @@ function DxArfAirConditioningPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795158/air-conditioner-air-conditioning-system-industrial-house-generative-ai-illustrator_zl8nyt.jpg"
       />
       <TrustedAdvisorSection
-        heading="Overview"
         texts={[
           "Our Air Conditioning Division provides a complete range of DX (Direct Expansion) and VRF (Variable Refrigerant Flow) systems engineered for high performance, energy efficiency, and long-term reliability. Designed for residential, commercial, and industrial applications, our solutions ensure optimal indoor comfort even in the harsh climatic conditions of the UAE.",
           "With an extensive selection of ducted split units, decorative split units, fresh air units, ERVs, and advanced VRF technologies, we deliver cooling systems tailored to meet any building’s mechanical requirements. Our experienced technical sales and application team ensures every project receives precise engineering, reliable system design, and cost-effective installation support.",

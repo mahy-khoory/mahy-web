@@ -8,7 +8,7 @@ import WasteCollectionScrollMovingCards from "@/components/Services/WasteCollect
 import WasteCollectionTimeline from "@/components/Services/WasteCollection/WasteCollectionTimeline";
 import WhyUs from "@/components/UI/home/WhyUs";
 import SubPageHeading from "@/components/UI/SubPageHeading";
-import {  HiOfficeBuilding } from "react-icons/hi";
+import { HiOfficeBuilding } from "react-icons/hi";
 
 function WasteCollectionServicesPage() {
   const services = [
@@ -98,12 +98,11 @@ function WasteCollectionServicesPage() {
   return (
     <main>
       <SubPageHeading
-      fullHeight
+        fullHeight
         title={"Waste Collection & Recycling Services"}
         image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776935960/smart-waste-management-systems-recycling-tech-waste-reduction-strategies_qxqmrc.jpg"}
       />
       <SolarPanelInstallationsGrid
-        heading="Overview"
         icon={<HiOfficeBuilding size={30} color="white" />}
         text={
           "We provide professional, reliable, and fully managed waste collection and recycling services for residential communities, commercial complexes, industrial facilities, and large-scale developments across the UAE. Our service model is built around efficiency, safety, and environmental responsibility—offering tailored waste management solutions for every property type while maintaining compliance with UAE municipal and environmental regulations."

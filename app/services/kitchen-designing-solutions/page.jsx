@@ -11,8 +11,8 @@ import React from 'react'
 
 function KitchenDesignPage() {
     const overviewItems = [
-        { text: "We proudly represent world-class brands such as Siemens, Bosch, MVP, and luxury Italian kitchen brands ARREDO3 and COMPOSIT, offering unmatched craftsmanship and design excellence.", icon: "/kitchen/kitchenGrid-1.svg" },
-        { text: "Whether you are building a new kitchen or upgrading an existing one, we provide end-to-end design, manufacturing, supply, and installation services, including complete kitchen re-design projects.", icon: "/kitchen/kitchenGrid-2.svg" }
+        { text: "We proudly represent world-class brands such as Siemens, Bosch, MVP, and luxury Italian kitchen brands ARREDO3 and COMPOSIT, offering unmatched craftsmanship and design excellence.", icon: "/kitchen/kitchen1.svg" },
+        { text: "Whether you are building a new kitchen or upgrading an existing one, we provide end-to-end design, manufacturing, supply, and installation services, including complete kitchen re-design projects.", icon: "/kitchen/kitchen2.svg" }
     ];
     const featuresData = [
         {
@@ -147,27 +147,27 @@ function KitchenDesignPage() {
     ];
 
     const cards = [
-  {
-    count: "01",
-    title: "Strategic Visionaries",
-    text: "We start by understanding your business at its core. Our team of seasoned consultants collaborates with you to craft a strategic vision that aligns with your goals.",
-  },
-  {
-    count: "16",
-    title: "Customized Solutions",
-    text: "No two businesses are alike, and we recognize that. Our team develops bespoke solutions tailored to your specific needs.",
-  },
-  {
-    count: "40",
-    title: "Collaborative Execution",
-    text: "We believe in partnership. Once a strategy is in place, we work side by side with your team to implement the recommended changes.",
-  },
-];
+        {
+            count: "01",
+            title: "Strategic Visionaries",
+            text: "We start by understanding your business at its core. Our team of seasoned consultants collaborates with you to craft a strategic vision that aligns with your goals.",
+        },
+        {
+            count: "16",
+            title: "Customized Solutions",
+            text: "No two businesses are alike, and we recognize that. Our team develops bespoke solutions tailored to your specific needs.",
+        },
+        {
+            count: "40",
+            title: "Collaborative Execution",
+            text: "We believe in partnership. Once a strategy is in place, we work side by side with your team to implement the recommended changes.",
+        },
+    ];
 
     return (
         <main>
             <SubPageHeading
-            fullHeight
+                fullHeight
                 title={"Kitchen Designing Solutions"}
                 image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937226/collezioni-frida-03-pg126-127_olpgru.jpg"}
             />
@@ -187,10 +187,10 @@ function KitchenDesignPage() {
                 image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937319/fusion-03-pg28-29_drgi9r.jpg'
             />
             <KitchenMenu />
- <KitchenBackgroundGrid
-      items={cards}
-      bgImage="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937192/collezioni-asolo-03-pg152-153_rg2cfg.jpg" // <-- replace with your actual image path
-    />            <KitchenHorizontalItems />
+            <KitchenBackgroundGrid
+                items={cards}
+                bgImage="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937192/collezioni-asolo-03-pg152-153_rg2cfg.jpg" // <-- replace with your actual image path
+            />            <KitchenHorizontalItems />
             <KitchenItems
                 image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776937155/collezioni-asolo-04-pg164-165-166_zrtzth.jpg'
             />

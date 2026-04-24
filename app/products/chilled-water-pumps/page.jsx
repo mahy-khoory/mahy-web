@@ -92,7 +92,6 @@ function ChilldWaterPumpsPage() {
       />
       <div className="my-20">
         <SolarPanelImagesGrid
-          heading="Overview"
           items={overviewItems}
           text1="Trusted"
           text2="for Thermal Stability"

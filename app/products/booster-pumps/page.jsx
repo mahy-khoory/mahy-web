@@ -80,7 +80,6 @@ function BoosterPumpsPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776796208/business-colleagues-working-reports-communicating-while-working-office-focus-is-woman_vnjtxp.jpg"
       />
       <WasteCollectionTimeline
-        heading="Overview"
         text="Booster pumps are engineered to elevate water pressure and maintain a consistent, reliable flow across residential, commercial, and industrial systems. Designed for continuous and stable performance, these pumps ensure uninterrupted water delivery even under fluctuating demand conditions. With advanced control technologies and robust construction, booster systems deliver long-term durability, energy efficiency, and user-friendly operation."
         items={timelineItems}
         bottomSection={false}

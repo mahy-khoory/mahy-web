@@ -70,7 +70,6 @@ function PumpingSystemServicesPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776796417/products-service-optimization-and-consultancy-heroimage-master_1800x500_vussf6.avif"
       />
       <TrustedAdvisorSection
-        heading="Overview"
         texts={[
           "The Pumping Solutions catalogue showcases a complete portfolio of GRUNDFOS-engineered pump systems, purpose-built for residential, commercial, industrial, and infrastructure applications. Each pump is designed with advanced hydraulics, high-efficiency motors, and durable materials to ensure optimal performance, reduced energy consumption, and long operational life—particularly suited to the demanding climatic and water quality conditions of the UAE.",
           "These solutions are developed to meet the region’s highest standards for reliability, sustainability, and lifecycle efficiency, supporting modern building requirements and large-scale industrial operations.",

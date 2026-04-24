@@ -15,7 +15,7 @@ const barVariants = {
 };
 
 export default function VisionBenchmarkSection({
-  heading = "Our vision empowers leaders to thrive in a dynamic world",
+  heading = "",
   items = [
     {
       title: "Empowering growth",
@@ -123,9 +123,8 @@ export default function VisionBenchmarkSection({
             <div key={i} className="flex gap-6 mb-10">
               <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
                 <span
-                  className={`${
-                    i % 2 === 0 ? "w-5 h-px" : "w-px h-5"
-                  } bg-gray-500`}
+                  className={`${i % 2 === 0 ? "w-5 h-px" : "w-px h-5"
+                    } bg-gray-500`}
                 />
               </div>
 

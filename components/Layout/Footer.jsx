@@ -72,7 +72,7 @@ export default function Footer({ data, setIsWidgetOpen }) {
             grid gap-12
             grid-cols-1
             sm:grid-cols-2
-            lg:grid-cols-6
+            lg:grid-cols-5
           "
         >
           <div className="lg:col-span-2 space-y-6">
@@ -143,19 +143,6 @@ export default function Footer({ data, setIsWidgetOpen }) {
               setIsWidgetOpen={setIsWidgetOpen}
             />
           ))}
-
-          <div className="hidden lg:flex items-start justify-end">
-            <div className="relative w-[140px] xl:w-[160px] 2xl:w-[180px]">
-              <Image
-                src="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776838952/MK_Logo_Gold_tr9dox.png"
-                alt="MAHY 96 Years"
-                width={180}
-                height={180}
-                priority
-                className="w-full h-auto object-contain opacity-95"
-              />
-            </div>
-          </div>
         </div>
       </div>
       <div className="relative z-10 border-t border-slate-800">
@@ -230,6 +217,18 @@ function FooterSection({ section, setIsWidgetOpen }) {
       </ul>
 
       {section.cta && <FooterCTA cta={section.cta} />}
+
+      {section.image &&
+        <div className="hidden lg:block">
+          <div className="relative size-40 -translate-x-6">
+            <Image
+              src={section.image}
+              alt="MAHY 96 Years"
+              fill
+              className="opacity-95"
+            />
+          </div>
+        </div>}
     </div>
   );
 }

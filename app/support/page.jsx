@@ -251,26 +251,24 @@ function CustomerSupportOverviewPage() {
       />
 
       <SolarPanelImageGrid
-        heading="To ensure smooth communication and efficient service"
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776881391/investor-shaking-hands-with-factory-manager-after-finding-no-issues-closeup.jpg_tdlhe1.jpg"
-        subHeading=" We’re here to support you"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016541/laptop-meeting-business-people-with-cooperation-group-project-proposal-sharing-ideas-office-corporate-employees-computer-brainstorming-feedback-report-online-marketing_zsldhp.jpg"
         // bulletItems={bulletItems}
-        text="We offer multiple ways for you to connect with us, ensuring a smooth and efficient experience at every step. Whether you have an inquiry, need technical support, require service assistance, or have any other request, our team is ready to help. Simply reach out through our website, and we will ensure your request is handled promptly and professionally."
+        text="We make it easy for you to connect with us and get the support you need without delays or complications. Whether you have a question, need technical assistance, or require service support, our team is ready to respond quickly and professionally."
         items={[
           {
-            title: "You may also reach us directly via:",
+            title: "You can reach out through our website or contact us directly via:",
             textItems: [
-              "📧 Email: info@mahykhoory.com",
+              "📧 Email: info@mahykhoory.com (mailto:info@mahykhoory.com)",
               "📞 Telephone: +971 4 6067300",
             ],
           },
           {
             title: "We are committed to providing support",
-            text: "No matter how you contact us, our team is committed to providing professional, timely, and effective support.",
+            text: "No matter how you choose to contact us, you can expect a consistent level of service built on responsiveness, reliability, and clear communication. Our focus is always on delivering timely and effective support that meets your needs and exceeds your expectations.",
           },
           {
             title: "Our goal is clear",
-            text: "To keep our customers and partners fully supported, satisfied, and confident in working with us.",
+            text: "We aim to build lasting relationships with our customers and partners by ensuring you feel supported, confident, and valued at every interaction.",
           },
         ]}
       />

@@ -5,10 +5,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function TrustedBusinessAdvisor({
-  heading = "Your Trusted Business Advisor",
+  heading = "",
   text,
   bullets,
   endText,
+  images,
   items = [
     {
       label: "Our Expertise",
@@ -103,28 +104,37 @@ export default function TrustedBusinessAdvisor({
             )}
           </div>
           <div className="lg:col-span-7">
-            <div className="relative h-full min-h-[520px] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.12)]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={items[active].image}
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.03 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={items[active].image}
-                    alt={items[active].label}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {images ?
+              <div className="h-full flex flex-col gap-5">
+                {images.map((image, i) => (
+                  <div key={i} className="relative flex-1 rounded-2xl overflow-hidden">
+                    <Image src={image} alt={heading} fill style={{ objectFit: "cover" }} />
+                  </div>
+                ))}
+              </div>
+              : (
+                <div className="relative h-full min-h-[520px] rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.12)]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={items[active].image}
+                      initial={{ opacity: 0, scale: 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.03 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={items[active].image}
+                        alt={items[active].label}
+                        fill
+                        priority
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              )}
           </div>
-
         </div>
       </div>
     </section>

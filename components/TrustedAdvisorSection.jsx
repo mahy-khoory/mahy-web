@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function TrustedAdvisorSection({
-  heading = "A business advisor you can trust",
+  heading = "",
   texts,
   bulletsTitle,
   bullets,
@@ -112,7 +112,7 @@ export default function TrustedAdvisorSection({
                 <div>
                   <h3 className="text-3xl font-bold">{numbers_1}</h3>
                   <p className="mt-2 tracking-widest text-sm font-semibold">
-                   {object}
+                    {object}
                   </p>
                 </div>
               </motion.div>

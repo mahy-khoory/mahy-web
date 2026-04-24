@@ -74,7 +74,7 @@ function ServicedHotelApartmentsPage() {
     return (
         <main>
             <SubPageHeading
-            fullHeight
+                fullHeight
                 title={"Serviced Hotel Apartments "}
                 image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776934007/spacious-hotel-lobby-filled-with-numerous-chairs-elegant-lamps-ideal-use-hospitality-industry-promotions-interior-design-websites_unkti2.jpg"}
             />
@@ -107,6 +107,13 @@ function ServicedHotelApartmentsPage() {
             <TrustedBusinessAdvisor
                 heading='Services'
                 items={services}
+                images={[
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016295/lobby-with-large-lobby-with-large-chandelier-plant-center_pznxim.jpg",
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016313/croissant-boiled-egg-orange-juice-yogurt-breakfast-tray-bed-hotel-room_w7r5es.jpg",
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016328/traveller-calling-hotel-concierge_mlmxzp.jpg",
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016355/popular-resort-amara-dolce-vita-luxury-hotel-with-pools-water-parks-recreational-area-along-sea-coast-turkey-sunset-tekirova-kemer_myzrdu.jpg",
+                    "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016448/modern-studio-apartment-design-with-bedroom-living-space_l4vewk.jpg"
+                ]}
             />
             <ServicedHotelApartments />
         </main>

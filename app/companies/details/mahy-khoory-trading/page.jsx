@@ -55,7 +55,7 @@ function MahyKhooryTradingPage() {
       />
 
       <CompanyTextGrid
-      showImage={false}
+        showImage={false}
         heading="Market Experience and Project Support"
         paragraphs={[
           "M.A.H.Y. Khoory Trading has supplied equipment to a wide range of major residential, commercial, industrial, and infrastructure projects across the UAE and the wider region. Its products are widely specified in high-rise towers, mixed-use developments, utilities networks, industrial facilities, hospitality projects, and oil & gas installations.",
@@ -78,15 +78,14 @@ function MahyKhooryTradingPage() {
           "Hospitality and commercial facility owners",
         ]}
         quoteText="Its ability to supply multiple product categories under a single commercial platform makes it a preferred partner for large, multi-discipline projects."
-        // quoteItems={[
-        //   "Controlled Diversification Strategy",
-        //   "Geographic Expansion Across Regions",
-        //   "Investment in Digital Transformation",
-        //   "Focus on Sustainability & Innovation",
-        // ]}
+      // quoteItems={[
+      //   "Controlled Diversification Strategy",
+      //   "Geographic Expansion Across Regions",
+      //   "Investment in Digital Transformation",
+      //   "Focus on Sustainability & Innovation",
+      // ]}
       />
       <FeaturesEngineeringSection
-        heading="Overview"
         text={
           "M.A.H.Y. Khoory Trading is a GCC-wide procurement and distribution division that delivers compliant, energy-efficient solutions through strong infrastructure, technical support, and global partnerships, driving consistent quality, operational efficiency, and long-term growth across the Group."
         }

@@ -13,7 +13,6 @@ function InternshipAndGraduatePrograms() {
                 <CompaniesSectors
                     image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767418/dubai-city-skyline-showing-burj-khalifa-2014.jpg_jx4cxo.jpg"}
                     image2={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776767464/panoramic-view-dubai-city-illuminated-neon-spectrum.jpg_v9thiu.jpg"}
-                    title={"Overview"}
                     texts={[
                         "At MAHY Khoory Group, we recognize the importance of developing future professionals by providing meaningful early-career opportunities. Our Internship and Graduate Program is designed to give students and recent graduates practical exposure to real business environments across our diversified group.",
                         "From time to time, different departments within the group may require interns or entry-level graduates based on operational needs and project requirements. Opportunities may arise within engineering, finance, supply chain, logistics, technical services, administration, IT, digital transformation, hospitality, and other business functions across our subsidiaries.",

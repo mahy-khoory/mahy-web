@@ -69,15 +69,17 @@ export default function ValuesSection({
                             </div>
                         )}
 
-                        {h1 ?
-                            <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-slate-950">
-                                {title}
-                            </h1>
-                            :
-                            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[48px] font-extrabold leading-tight tracking-tight text-slate-950">
-                                {title}
-                            </h2>
-                        }
+                        {title &&
+                            (
+                                h1 ?
+                                    <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-slate-950">
+                                        {title}
+                                    </h1>
+                                    :
+                                    <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[48px] font-extrabold leading-tight tracking-tight text-slate-950">
+                                        {title}
+                                    </h2>
+                            )}
 
                         <p className="mt-3 font-light leading-relaxed text-slate-700 text-sm">
                             {description}

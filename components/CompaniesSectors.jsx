@@ -7,7 +7,9 @@ function CompaniesSectors({ image, image2, title, texts, companiesHeading = fals
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20">
             <SlideReveal direction="left">
                 <div>
-                    <h2 className="text-4xl font-semibold t-base">{title}</h2>
+                    {title &&
+                        <h2 className="text-4xl font-semibold t-base">{title}</h2>
+                    }
                     {texts && texts.map((text, i) => (
                         <p key={i} className="text-gray-600 mt-4">{text}</p>
                     ))}

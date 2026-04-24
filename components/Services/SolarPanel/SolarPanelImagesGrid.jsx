@@ -17,7 +17,7 @@ const defaultImages = [
 ];
 
 function SolarPanelImagesGrid({
-  heading = "Helping Businesses Scale Smarter Faster And Stronger",
+  heading = "",
   items = defaultItems,
   images = defaultImages,
   text1 = "250+",
@@ -62,8 +62,8 @@ group-hover:text-[var(--accent-light)] transition-colors duration-300"
           </div>
         </div>
 
-     <div className="lg:col-span-2 flex flex-col gap-6">
-    
+        <div className="lg:col-span-2 flex flex-col gap-6">
+
           {images.map((img, index) => (
             <div key={index} className="relative h-60 md:h-64 rounded overflow-hidden">
               <Image

@@ -109,7 +109,6 @@ function PlasticJerryCansPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776796417/products-service-optimization-and-consultancy-heroimage-master_1800x500_vussf6.avif"
       />
       <ServicesGlobally
-        heading="Overview"
         text="Our comprehensive range of plastic jerry cans is available in multiple capacities — 0.5L, 1L, 3L, 4L, 5L, 15L, 20L, and 25L — designed to meet the versatile packaging requirements of lubricant manufacturers, petroleum distributors, chemical suppliers, cleaning product producers, and food-processing industries across the UAE. Each jerry can is manufactured using premium-grade, high-density raw materials, ensuring durability, leak resistance, dimensional stability, and safe handling in harsh operational environments."
       />
       <CompanyVisionPurpose

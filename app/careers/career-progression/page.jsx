@@ -30,7 +30,7 @@ function CareerProgressionPage() {
           "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776595911/businessman-contemplates-city-skyline-amidst-modern-towers.jpg_viobsf.jpg"
         }
       />
-      <WasteCollectionScrollMovingCards heading="Overview" items={items} />
+      <WasteCollectionScrollMovingCards items={items} />
     </main>
   );
 }
