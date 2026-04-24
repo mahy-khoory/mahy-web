@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HiLightBulb } from "react-icons/hi";
 
 function SolarPanelInstallationsGrid({
   heading = "Investment Strategies",
