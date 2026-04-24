@@ -57,7 +57,7 @@ function FeaturedDepartments({ title, departments }) {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className='w-full h-[40vh] md:h-[60vh] relative'>
+                        className='w-full h-[65vh] md:h-[85vh] relative'>
                         <Image
                             src={departments[index].image}
                             alt={departments[index].title}
