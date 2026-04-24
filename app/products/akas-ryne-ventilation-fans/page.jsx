@@ -44,10 +44,10 @@ function AkasFansPage() {
         description={
           "AKAS & RYNE Ventilation Fans are engineered to deliver powerful air movement, reliable performance, and long-term durability across residential, commercial, and industrial environments. Designed with advanced airflow technology, these fans ensure effective removal of heat, moisture, smoke, and odors—creating healthier and more comfortable indoor spaces."
         }
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795511/complex-air-filters-diligently-purify-indoor-air_abhqa4.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777026614/ventilation-fans-1_vawdoy.jpg"
       />
       <KitchenItems
-      image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795511/complex-air-filters-diligently-purify-indoor-air_abhqa4.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777026621/ventilation-fans-2_eni0zu.png"
         heading="AKAS & RYNE Ventilation Fans"
         text="With a focus on safety, efficiency, and performance, AKAS & RYNE Ventilation Fans support proper air circulation and compliance with ventilation standards, making them a dependable choice for both small-scale installations and large commercial projects."
         title="Key Highlights"

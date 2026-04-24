@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import DesignProcess from "./DesignProcess";
 import AnimatedLines from "../AnimatedLines";
 
-async function DesignProcessContainer({ heading, text1, text2, text3, processes, space }) {
+async function DesignProcessContainer({ heading, text1, text2, text3, processes, space, image }) {
     const translations = await getTranslations('HomePage.Process');
 
     if (!heading) {
@@ -56,7 +56,7 @@ async function DesignProcessContainer({ heading, text1, text2, text3, processes,
                 {text1 && <p className="md:text-lg mt-6 lg:mt-10 text-slate-700">{text1}</p>}
                 {text2 && <p className="md:text-lg mt-5 mb-14 lg:mb-10 text-slate-700">{text2}</p>}
             </div>
-            <DesignProcess processes={processes} space={space} />
+            <DesignProcess processes={processes} space={space} image={image} />
             {text3 && <p className="md:text-lg mt-8 lg:mt-13 text-slate-700 mx-5">{text3}</p>}
         </div>
     )

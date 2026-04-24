@@ -5,7 +5,6 @@ import WasteCollectionGrid from "@/components/Services/WasteCollection/WasteColl
 import SustainabilitySection from "@/components/UI/about-us/sustainability/Sustainability";
 import DesignProcessContainer from "@/components/UI/home/DesignProcessContainer";
 import PageHeading from "@/components/UI/PageHeading";
-import SubPageHeading from "@/components/UI/SubPageHeading";
 import { HiLightBulb } from "react-icons/hi";
 
 function AirConditioningServicesPage() {
@@ -21,22 +20,22 @@ function AirConditioningServicesPage() {
     {
       label: "OEM Warranty Support",
       text: "Full coordination with AC brands and OEMs for warranty validation and approvals",
-      image: "/gallery/gallery-1.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024576/air-condioning-2_flnp8z.png",
     },
     {
       label: "Genuine Spare Parts",
       text: "Use of genuine spare parts to maintain system integrity and durability",
-      image: "/gallery/gallery-3.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024576/air-condioning-2_flnp8z.png",
     },
     {
       label: "Service Documentation",
       text: "Comprehensive service documentation for record-keeping and future reference",
-      image: "/gallery/gallery-3.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024576/air-condioning-2_flnp8z.png",
     },
     {
       label: "Minimal Disruption",
       text: "Repairs carried out with minimal disruption to residents, tenants, or operations",
-      image: "/gallery/gallery-3.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024576/air-condioning-2_flnp8z.png",
     },
   ];
   const processes = [
@@ -95,22 +94,22 @@ function AirConditioningServicesPage() {
     {
       title: "Duct Cleaning & IAQ Services",
       text: "Duct cleaning & IAQ (Indoor Air Quality) improvement services",
-      image: "/gallery/gallery-5.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024585/air-condioning-4_mbdocr.png",
     },
     {
       title: "Thermostat Calibration & Optimization",
       text: "Thermostat calibration & control optimization",
-      image: "/gallery/gallery-6.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024574/air-condioning-5_aesro0.jpg",
     },
     {
       title: "Refrigerant Leak Testing",
       text: "Refrigerant leak testing and system recharging",
-      image: "/gallery/gallery-8.jpeg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024577/air-condioning-6_udyays.jpg",
     },
     {
       title: "Ventilation & Exhaust Servicing",
       text: "Ventilation system inspection & exhaust system servicing",
-      image: "/gallery/gallery-4.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024580/air-condioning-7_mziiru.png",
     },
   ];
   const whyChooseUs = [
@@ -150,6 +149,7 @@ function AirConditioningServicesPage() {
           text="Our installation and commissioning services follow strict engineering guidelines and manufacturer specifications to ensure optimal performance from day one:"
           items={installation}
           quoteText="These commissioning procedures guarantee stable cooling, quiet operation, and efficient energy consumption."
+          image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024566/air-condioning-1_hl73cp.png"
         />
       </div>
       <TrustedBusinessAdvisor
@@ -165,6 +165,7 @@ function AirConditioningServicesPage() {
       <DesignProcessContainer
         heading={"Dependable Non-Warranty Repairs"}
         processes={processes}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024583/air-condioning-3_aphpe6.png"}
         text1={
           "Our swift and accurate repair services ensure your AC systems return to peak performance quickly and efficiently:"
         }
@@ -177,7 +178,7 @@ function AirConditioningServicesPage() {
         items={services}
       />
       <WasteCollectionGrid
-      image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776627437/digital-document-online-electronic-signature-document-management-paperless-office-e-signing-signing-business-contract-concept-metaverse.jpg_zvimmr.jpg"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777024582/air-condioning-8_fxkhqs.png"}
         heading="Why Choose Our Air Conditioning Services?"
         items={whyChooseUs}
         icon={<HiLightBulb size={25} />}

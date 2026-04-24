@@ -31,7 +31,7 @@ function LedLightningProducts() {
     <main>
       <PageHeading
         title={"ECOLINK LED Bulbs & Lighting Products"}
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795212/vintage-light-lamp_qsbnhm.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777025861/led-lightning-1_z6ycj6.jpg"
       />
       <SolarPanelImageGrid
         subHeading={"LED Bulbs & Lighting Products"}
@@ -48,12 +48,13 @@ function LedLightningProducts() {
             text: "With a strong focus on sustainability and cost efficiency, ECOLINK LED lighting supports greener operations by lowering energy usage and carbon footprint—without compromising on quality or aesthetics.",
           },
         ]}
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777025869/led-lightning-2_y1ke9v.png"
       />
       <ComprehensiveProcessSection
         heading="Key Highlights"
         subHeading="LED Bulbs & Lighting"
         steps={highlights}
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795204/led-lamps-white-lamps-environment-electronic_eyuygt.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777025863/led-lightning-3_mugfpo.png"
         endText="ECOLINK LED Bulbs & Lighting Products offer a smart, sustainable lighting choice for projects that demand performance, durability, and efficiency."
       />
     </main>
