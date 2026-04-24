@@ -15,7 +15,7 @@ function FactoriesPage() {
 
       <TrustedAdvisorSection
         heading="Manufacturing Facilities"
-        numbers_1="30+"
+        numbers_1="30+ Nationalities"
         numbers_2="96 Years"
         texts={[
           "Our manufacturing facilities form the backbone of our industrial operations, combining advanced technology, efficient processes, and sustainable practices to deliver high-quality products at scale.",

@@ -20,7 +20,7 @@ function PumpingSystemServicesPage() {
         }
       />
       <ValuesSection
-        title="Overview"
+        title=""
         description="We provide a complete suite of specialized services to ensure the reliability, performance, and long-term efficiency of chilled water systems, domestic water supply pumps (transfer & booster), sewage pumps, and other critical pumping installations. Every stage—from pre-installation assessment to commissioning, repair, and ongoing maintenance—is executed with precision and adherence to industry-best standards."
         imageSrc="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777020429/2_uqw1x9.jpg"
         imageAlt="Our Services"

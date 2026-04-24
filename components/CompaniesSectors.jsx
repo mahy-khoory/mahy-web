@@ -61,12 +61,12 @@ function CompaniesSectors({ image, image2, title, texts, companiesHeading = fals
                     <div className="hidden md:block" />
                     <SlideReveal direction="right">
                         <div className="relative h-80 md:h-full w-full rounded-2xl overflow-hidden">
-                            <Image src={image} alt={title} fill style={{ objectFit: "cover" }} />
+                            <Image src={image} alt={"img"} fill style={{ objectFit: "cover" }} />
                         </div>
                     </SlideReveal>
                     <SlideReveal>
                         <div className="relative h-80 md:h-full w-full rounded-2xl overflow-hidden">
-                            <Image src={image2} alt={title} fill style={{ objectFit: "cover" }} />
+                            <Image src={image2} alt={"img"} fill style={{ objectFit: "cover" }} />
                         </div>
                     </SlideReveal>
                     <div className="hidden md:block" />
@@ -74,7 +74,7 @@ function CompaniesSectors({ image, image2, title, texts, companiesHeading = fals
             ) : (
                 <SlideReveal>
                     <div className="relative h-full rounded-2xl overflow-hidden">
-                        <Image src={image} alt={title} fill style={{ objectFit: "cover" }} />
+                        <Image src={image} alt={"img"} fill style={{ objectFit: "cover" }} />
                     </div>
                 </SlideReveal>
             )}
