@@ -60,9 +60,9 @@ export default function GroupCompaniesGrid({
                     className={[
                       "relative shrink-0",
                       useSingleCardLayout
-                        ? `${company.wideLogo ? "w-50 h-16" : "size-16"}`
+                        ? "w-50 h-16"
                         : useTwoCardLayout
-                          ? "w-14 h-14"
+                          ? "w-40 h-16"
                           : "w-10 h-10",
                     ].join(" ")}
                   >
