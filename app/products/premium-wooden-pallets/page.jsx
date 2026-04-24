@@ -18,12 +18,12 @@ function PremiumWoodenPallets() {
       ],
       endText:
         "Ideal for industries requiring reusable, long-lasting, and contamination-free pallet solutions.",
-      image: "/gallery/gallery-1.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777029513/pure-wood-pure-pellets-factory-price_ggev6t.jpg",
     },
     {
       label: "Export-Ready Construction",
       text: "Our pallets comply with regional and international shipping standards, making them suitable for global logistics companies, export warehouses, and manufacturing hubs.",
-      image: "/gallery/gallery-2.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777029510/Pine-Wood-Pellets_mq1yfw.jpg",
     },
     {
       label: "Custom Engineering & Fabrication",
@@ -33,7 +33,7 @@ function PremiumWoodenPallets() {
         "Reinforced load-bearing structures",
         "Specialized coatings or treatments",
       ],
-      image: "/gallery/gallery-3.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777029521/firewood-fg55-64_1000_w42qyr.jpg",
     },
   ];
   const advantages = [
@@ -75,7 +75,7 @@ function PremiumWoodenPallets() {
     <main>
       <PageHeading
         title={"Premium Wooden Pallets"}
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795795/futuristic-modern-skyscrapers-glass-metal_px2vrg.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777029517/biomass-wood-pellet-500x500_wxke1f.jpg"
       />
       <TrustedBusinessAdvisor
         heading="Premium Wooden Pallets"

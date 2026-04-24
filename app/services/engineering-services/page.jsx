@@ -90,7 +90,7 @@ function EngineeringServicesPage() {
             fullHeight
                 title={"Engineering & Technical Services"}
                 description={"With decades of industry expertise, our Engineering Division delivers complete water-transfer and pumping solutions, covering design, fabrication, installation, commissioning, and long-term maintenance. We support a wide range of applications including pressure boosting, water transfer, firefighting, irrigation, decorative water features, and water purification systems—ensuring reliable performance tailored to each project’s technical requirements."}
-                image={"/gallery/gallery-8.jpeg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777030656/2_y07xxs.jpg"}
             />
             <EnterprisePinnedSection sections={capabilities} />
         </main>

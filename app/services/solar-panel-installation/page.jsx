@@ -156,7 +156,7 @@ function SolarPanelInstallationsPage() {
             fullHeight
                 title={"Solar Panel Installation & O&M Services"}
                 description={"We deliver end-to-end solar energy solutions for residential, commercial, and industrial projects across the UAE covering system design, engineering, installation, commissioning, and long-term maintenance. Our solutions feature high-efficiency solar panels from globally trusted brands such as Astro Energy, GINKO, and LONGI, ensuring maximum energy generation, long-term stability, and superior performance under challenging UAE climate conditions."}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777030778/1_o6b5gu.jpg"}
             />
             <CompanyDetailMenu
                 items={menuItems}

@@ -1,11 +1,7 @@
-import AnnualMaintenanceContracts from '@/components/Services/AnnualMaintenanceContracts'
 import KitchenItems from '@/components/Services/Kitchen/KitchenItems'
-import ServicesSection from '@/components/Services/ServicesSection'
 import SolarPanelQuoteGrid from '@/components/Services/SolarPanel/SolarPanelQuoteGrid'
-import TrustedAdvisorTabs from '@/components/Services/TrustedAdvisorTabs'
 import WasteCollectionGrid from '@/components/Services/WasteCollection/WasteCollectionGrid'
 import WasteCollectionTimeline from '@/components/Services/WasteCollection/WasteCollectionTimeline'
-import TrustedAdvisorSection from '@/components/TrustedAdvisorSection'
 import SubPageHeading from '@/components/UI/SubPageHeading'
 import { HiLightBulb } from 'react-icons/hi'
 
@@ -35,9 +31,9 @@ function AnnualMaintenanceContractsPage() {
     ];
     const timelineItems = [
         {
-            title: "Overview",
+            title: "Comprehensive System Assessments",
             text: "We provide a comprehensive range of air conditioning and ventilation services designed to ensure year-round comfort, high system reliability, and long-term energy efficiency. From new installations to corrective repairs and lifecycle maintenance, every service is delivered with engineering accuracy and a strong commitment to customer satisfaction.",
-            image: "/gallery/gallery-1.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777030121/press-materials-ALPHA-pump-technology-Grundfos-master_bruo8u.jpg"
         },
         {
             title: "Expert Installation & Commissioning",
@@ -51,7 +47,7 @@ function AnnualMaintenanceContractsPage() {
                 "Ensuring compliance with safety, ventilation, and environmental standards"
             ],
             endText: "These commissioning procedures guarantee stable cooling, quiet operation, and efficient energy consumption.",
-            image: "/gallery/gallery-2.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777030121/press-material-employee-factory-Grundfos-master_ad29rr.jpg"
         },
         {
             title: "Stress-Free Warranty Repairs",
@@ -63,7 +59,7 @@ function AnnualMaintenanceContractsPage() {
                 "Repairs carried out with minimal disruption to residents, tenants, or operations"
             ],
             endText: "Our streamlined warranty process helps reduce downtime and maintain consistent cooling performance.",
-            image: "/gallery/gallery-3.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017052/c1rwdlcc_geixvt.jpg"
         },
         {
             title: "Dependable Non-Warranty Repairs",
@@ -76,7 +72,7 @@ function AnnualMaintenanceContractsPage() {
                 "Replacement of faulty compressors, motors, blowers, sensors, contactors, PCB boards, and refrigerant components"
             ],
             endText: "We aim to restore system efficiency while extending equipment lifespan.",
-            image: "/gallery/gallery-4.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017212/chilled-water-pumps1_n8dxpq.png"
         },
         {
             title: "Additional Support Services",
@@ -87,7 +83,7 @@ function AnnualMaintenanceContractsPage() {
                 "Refrigerant leak testing and system recharging",
                 "Ventilation system inspection & exhaust system servicing"
             ],
-            image: "/gallery/gallery-5.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017212/chilled-water-pumps1_n8dxpq.png"
         },
         {
             title: "Why Choose Our Air Conditioning Services?",
@@ -98,20 +94,22 @@ function AnnualMaintenanceContractsPage() {
                 "Genuine parts and long-term service solutions",
                 "Suitable for villas, apartments, towers, offices, warehouses, and commercial buildings"
             ],
-            image: "/gallery/gallery-6.jpg"
+            image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017200/1_ywexpd.jpg"
         }
     ];
 
     return (
         <main>
             <SubPageHeading
+            fullHeight
                 title={"Annual Maintenance Contracts"}
                 description={"Reliable, preventive maintenance solutions designed to keep your essential building systems operating safely, efficiently, and continuously throughout the year."}
                 description2={"Our AMC packages are structured to provide year-round technical support, proactive servicing, and long-term protection for residential, commercial, and industrial facilities."}
-                image={"/gallery/gallery-2.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777030121/1_xsgrt2.jpg"}
             />
             <div className="pt-10">
                 <SolarPanelQuoteGrid
+                image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017571/psol3_free9g.png'
                     heading='Systems Covered Under AMC'
                     text='Our maintenance contracts cover a wide range of mechanical, electrical, and water-management systems, including:'
                     items={systemsCovered}
@@ -119,11 +117,12 @@ function AnnualMaintenanceContractsPage() {
                 />
             </div>
             <KitchenItems
+            image='https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017574/psol2_dasgse.png'
                 title='Key Benefits of Our AMC Services'
                 items={benefits}
             />
             <WasteCollectionGrid
-                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776627437/digital-document-online-electronic-signature-document-management-paperless-office-e-signing-signing-business-contract-concept-metaverse.jpg_zvimmr.jpg"}
+                image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017292/ptanks2_uafxz4.png"}
                 heading="Why Choose Our AMC Services?"
                 items={whyChooseUs}
                 icon={<HiLightBulb size={25} />}
@@ -133,10 +132,10 @@ function AnnualMaintenanceContractsPage() {
                 text="Our Annual Maintenance Contracts ensure consistent system performance, reduced downtime, and total peace of mind—allowing property managers, facility teams, and homeowners to focus on daily operations without worrying about equipment failures."
                 items={timelineItems}
             />
-            <AnnualMaintenanceContracts />
-            <TrustedAdvisorSection />
+            {/* <AnnualMaintenanceContracts /> */}
+            {/* <TrustedAdvisorSection />
             <ServicesSection />
-            <TrustedAdvisorTabs />
+            <TrustedAdvisorTabs /> */}
         </main>
     )
 }
