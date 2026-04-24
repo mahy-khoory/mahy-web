@@ -1,6 +1,5 @@
 import CompaniesSectors from "@/components/CompaniesSectors";
 import PageHeading from "@/components/UI/PageHeading";
-import SubPageHeading from "@/components/UI/SubPageHeading";
 
 function VinzorAluminumLaddersPage() {
   return (
@@ -10,11 +9,11 @@ function VinzorAluminumLaddersPage() {
         // description={
         //   "Global Water Solutions Pressure Tanks are engineered to ensure efficient pressure control, system stability, and long service life in water supply applications. Designed for consistent performance, these tanks support smooth operation of pumps and water networks."
         // }
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795810/town-square-financial-district_1_coqpu5.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777026747/ladders-1_fzdatr.jpg"
       />
       <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
         <CompaniesSectors
-          image={"/gallery/gallery-1.jpg"}
+          image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777026753/ladders-2_bb8efs.png"}
           title={"Key Highlights"}
           texts={[
             "VINZOR Aluminum Ladders are designed to deliver strength, stability, and lightweight performance for a wide range of applications. Manufactured using high-quality aluminum, these ladders offer excellent load-bearing capacity while remaining easy to handle and transport.",

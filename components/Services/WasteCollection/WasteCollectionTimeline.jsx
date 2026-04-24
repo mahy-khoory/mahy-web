@@ -17,7 +17,8 @@ function WasteCollectionTimeline({
     endHeading = "Don't wish it were easier",
     endText = "Successful people do what unsuccessful people are not willing to do. Don't wish it were easier; wish you were better.",
     bottomSection = true,
-    items = defaultItems
+    items = defaultItems,
+    bottomImage = "/gallery/gallery-1.jpg"
 }) {
     return (
         <section className="max-w-5xl mx-auto px-5 py-10 md:py-20 relative">
@@ -63,7 +64,7 @@ function WasteCollectionTimeline({
                             <p className="text-sm mt-4">{endText}</p>
                         </div>
                         <div className="relative h-80 md:h-full">
-                            <Image src={"/gallery/gallery-1.jpg"} alt="Waste Collection Timeline" fill style={{ objectFit: "cover" }} />
+                            <Image src={bottomImage} alt="Waste Collection Timeline" fill style={{ objectFit: "cover" }} />
                         </div>
                     </div>
                 </div>

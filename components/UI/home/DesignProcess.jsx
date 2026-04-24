@@ -4,8 +4,9 @@ import DesignProcessCard from "./DesignProcessCard";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 
-function DesignProcess({ processes, space = "lg:space-y-10" }) {
+function DesignProcess({ processes, space = "lg:space-y-10", image }) {
   const locale = useLocale();
+  if (!image) image = "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776890076/multi-ethnic-group-three-businesspeople-meeting-modern-office-two-women-caucasian-man-wearing-suit-looking-laptop-computer.jpg_grdqs2.jpg"
 
   const containerVariants = {
     hidden: { opacity: 0, x: locale === "ar" ? 20 : -20 },
@@ -35,7 +36,7 @@ function DesignProcess({ processes, space = "lg:space-y-10" }) {
         className={`relative overflow-hidden w-150 h-150 rounded-full ${locale === "ar" ? "-right-40" : "-left-40"} hidden lg:block col-span-2`}
       >
         <Image
-          src="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776890076/multi-ethnic-group-three-businesspeople-meeting-modern-office-two-women-caucasian-man-wearing-suit-looking-laptop-computer.jpg_grdqs2.jpg"
+          src={image}
           alt="Design Process"
           fill
           className="object-cover"

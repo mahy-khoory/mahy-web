@@ -60,9 +60,7 @@ function PumpingSystemServicesPage() {
       />
       <section className="max-w-7xl mx-auto px-5 py-15 md:pt-25">
         <CompaniesSectors
-          image={
-            "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776840944/maintenance-gas-pipeline-specialist-checks-gas-pipeline_xca8ji.jpg"
-          }
+          image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777025256/comprehensive-pumping-system-3_cvxj3a.jpg"
           title={"Precision from Start to Finish"}
           texts={[
             "We provide end-to-end services for chilled water, domestic water supply (transfer & booster), sewerage , and other pumping systems, focusing on optimal performance and minimal downtime.",
@@ -78,6 +76,7 @@ function PumpingSystemServicesPage() {
           "We offer complete solutions for air conditioning and ventilation systems, ensuring consistent comfort, reliability, and energy efficiency."
         }
         items={acItems}
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777025222/comprehensive-pumping-system-2_kt1cfj.png"
       />
       <SolarPanelQuoteGrid
         heading="Annual Maintenance Contracts (AMC): Proactive Peace of Mind"
@@ -100,6 +99,7 @@ function PumpingSystemServicesPage() {
           "Proper care and timely interventions that protect your investment over the long term.",
           "Fixed or structured costs that make it easier to plan and control maintenance expenses.",
         ]}
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777025219/comprehensive-pumping-system-1_tzdqvk.jpg"
       />
       <ServicesGlobally
         heading="Your Single-Point Solution for Mechanical System Reliability"
@@ -107,8 +107,8 @@ function PumpingSystemServicesPage() {
         texts2={[
           "Talk to us today to discuss a service plan or AMC tailored to your building and operational needs.",
         ]}
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776840944/maintenance-gas-pipeline-specialist-checks-gas-pipeline_xca8ji.jpg"
       />
-
       <HoverableColumns />
       <ServicedHotelApartments />
       <ComprehensiveProcessSection />

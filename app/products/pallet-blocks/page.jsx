@@ -115,11 +115,12 @@ function PalletBlock() {
           "Manufactured from 100% recycled wood chips, these blocks offer exceptional strength, dimensional stability, and long-term durability—providing an eco-friendly and cost-effective solution for building reliable wooden pallets and load-bearing structures.",
           "Available in multiple standard dimensions — 148 × 100 mm, 165 × 80 mm, 95 × 95 mm, 148 × 80 mm, and 155 × 100 mm — with custom sizes available upon request to meet specific industrial requirements."
         ]}
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777026081/pallet-blocks-1_scrhqr.png"
       />
       <CompanyDetailMenu
         items={menuItems}
       />
-      <PalletProcessSection
+      {/* <PalletProcessSection
         mainImage="/gallery/gallery-1.jpg"
         secondaryImage="/gallery/gallery-2.jpg"
         steps={[
@@ -139,7 +140,7 @@ function PalletBlock() {
               "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.",
           },
         ]}
-      />
+      /> */}
     </main>
   );
 }

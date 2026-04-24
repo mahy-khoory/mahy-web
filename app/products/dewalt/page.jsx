@@ -14,20 +14,18 @@ function Dewalt() {
     {
       title: "Certified Industrial Safety Footwear",
       text: "Certified safety shoes for industrial and construction use",
-      image:
-        "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421591/518lx4XQYEL._AC_SL1200__b7r08x.png",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777027389/power-tools-1_zo4m4y.png",
     },
     {
       title: "Built for Demanding Environments",
       text: "High durability for demanding work environments",
       image:
-        "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421596/515qTE0N52L._AC_SL1200__vw9mug.png",
+        "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777027393/power-tools-4_jmppuk.png",
     },
     {
       title: "Engineered for Comfort & Protection",
       text: "Designed for performance, comfort, and protection",
-      image:
-        "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421653/91B7XzKKDoL._AC_SL1500__r9uxvo.png",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777027375/power-tools-2_zj7ofz.jpg",
     },
   ];
 
@@ -38,7 +36,7 @@ function Dewalt() {
         // description={
         //   "Global Water Solutions Pressure Tanks are engineered to ensure efficient pressure control, system stability, and long service life in water supply applications. Designed for consistent performance, these tanks support smooth operation of pumps and water networks."
         // }
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1769421583/71RDkb-CH5L._AC_SL1500__xvaxxk.png"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777027385/power-tools-5_vkzikd.png"
       />
       <WasteCollectionTimeline
         heading="Key Highlights"
@@ -49,6 +47,7 @@ function Dewalt() {
         endHeading="Built for Reliable Performance"
         endText="DEWALT solutions ensure confidence, efficiency, and safety across every task."
         items={timelineItems}
+        bottomImage="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777027375/power-tools-3_xcs0f6.jpg"
       />
       <DewaltStrategySection />
     </main>

@@ -102,7 +102,7 @@ export default function CompanyVisionPurpose({
             >
 
               {/* Image */}
-              <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] overflow-hidden rounded-sm">
+              <div className="relative w-full aspect-4/3 sm:aspect-16/10 overflow-hidden rounded-sm">
                 <Image
                   src={items[activeIndex].image}
                   alt=""

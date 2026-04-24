@@ -16,12 +16,14 @@ function ServicesGlobally({
 }) {
   return (
     <section className="max-w-7xl mx-auto py-4 md:py-10 px-5">
-      <AnimatedLines />
-
-      <h2 className="pt-2 text-4xl md:text-5xl font-semibold text-center leading-12">
-        {heading}
-      </h2>
-
+      {heading && (
+        <>
+          <AnimatedLines />
+          <h2 className="pt-2 text-4xl md:text-5xl font-semibold text-center leading-12">
+            {heading}
+          </h2>
+        </>
+      )}
       <motion.div
         className="mt-10 md:mt-14 p-8 md:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 bg-blue-100 md:min-h-100"
         initial={{ opacity: 0, y: 10 }}
