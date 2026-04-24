@@ -24,7 +24,7 @@ const container2 = {
   },
 };
 
-function WhoWeAre({ image }) {
+function WhoWeAre({ image, showButton = true }) {
   const router = useRouter();
   return (
     <section className="relative py-15 md:py-20 overflow-hidden">
@@ -48,22 +48,22 @@ function WhoWeAre({ image }) {
             <p className="mt-6 font-light text-gray-600 leading-relaxed">
               MAHY Khoory Group of Companies is a Dubai-based diversified
               holding group comprising 25+ operating companies and business
-              divisions across multiple industries. The Group has built a
-              strong presence in the UAE and the wider region through
-              long-term commercial relationships, technical capability, and
-              integrated operations. With businesses spanning trading,
-              engineering, industrial manufacturing, recycling,
-              sustainability, logistics, automotive, hospitality, and food &
-              beverage, the Group operates a balanced and resilient portfolio
-              designed to support both traditional industries and
-              future-focused sectors.
+              divisions across multiple industries. The Group has built a strong
+              presence in the UAE and the wider region through long-term
+              commercial relationships, technical capability, and integrated
+              operations. With businesses spanning trading, engineering,
+              industrial manufacturing, recycling, sustainability, logistics,
+              automotive, hospitality, and food & beverage, the Group operates a
+              balanced and resilient portfolio designed to support both
+              traditional industries and future-focused sectors.
             </p>
-
-            <PrimaryButton
-              onClick={() => scrollToTop("/about-us", router)}
-              className="w-fit mt-8"
-              label="Learn more about us"
-            />
+            {showButton && (
+              <PrimaryButton
+                onClick={() => scrollToTop("/about-us", router)}
+                className="w-fit mt-8"
+                label="Learn more about us"
+              />
+            )}
           </motion.div>
           <motion.div
             variants={container2}
@@ -82,7 +82,6 @@ function WhoWeAre({ image }) {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-white/8 via-transparent to-transparent pointer-events-none" />
           </motion.div>
-
         </div>
       </div>
     </section>
@@ -91,9 +90,8 @@ function WhoWeAre({ image }) {
 
 export default WhoWeAre;
 
-
-
-   {/* <section className="max-w-7xl mx-auto py-15 md:py-20">
+{
+  /* <section className="max-w-7xl mx-auto py-15 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-18 md:h-[80vh]">
           <motion.div
             variants={container1}
@@ -144,4 +142,5 @@ export default WhoWeAre;
             />
           </motion.div>
         </div>
-      </section> */}
+      </section> */
+}

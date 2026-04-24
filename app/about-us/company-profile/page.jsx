@@ -118,7 +118,7 @@ async function companyProfile() {
         height="h-screen"
         title={"Our Company Profile"}
       />
-      <WhoWeAre image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776794069/group-business-people-are-sitting-conference-room-looking-out-city-skyline-sun-is-setting-sky-is-bright-orange_wmnkpt.jpg"} />
+      <WhoWeAre showButton={false} image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776794069/group-business-people-are-sitting-conference-room-looking-out-city-skyline-sun-is-setting-sky-is-bright-orange_wmnkpt.jpg"} />
       {/* <div className="text-center px-4 bg-black p-20">
         <AnimatedLines bg="bg-gray-200" />
         <p className="text-heading text-2xl sm:text-1xl font-semibold text-gray-100">

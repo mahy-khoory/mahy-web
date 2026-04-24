@@ -55,7 +55,7 @@ function PageHeading({ title, description, image }) {
     return (
         <div className="lg:grid lg:grid-cols-5 relative z-40">
             <div className="col-span-2 overflow-hidden">
-                <div ref={containerRef} className="h-[50vh] lg:h-[65vh] relative overflow-hidden">
+                <div ref={containerRef} className="h-[50vh] lg:h-[70vh] relative overflow-hidden">
                     <div ref={imageRef} className="absolute inset-0">
                         <Image
                             src={image}

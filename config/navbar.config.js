@@ -635,7 +635,7 @@ export function getNavigation(t) {
       },
       {
         id: "contact",
-        label: "Customer Enquiries",
+        label: "Contact Us",
         href: "/contact-us",
         linkType: "mega",
         columns: [
@@ -647,14 +647,14 @@ export function getNavigation(t) {
                 label: t("OfficeLocationsMaps"),
                 href: "/contact-us/locations",
               },
-              { label: t("Contact"), href: "/contact-us/enquiry" },
+              { label: "Customer Enquiries", href: "/contact-us/enquiry" },
             ],
           },
           {
             title: t("SalesBusinessEnquiries"),
             links: [
               // { label: t("SalesEnquiry"), href: "/contact-us/sales" },
-              { label: "Contact Us ", href: "/contact-us" }
+              { label: "Enquiries", href: "/contact-us" }
               // { label: t("RequestQuotation"), href: "/rfq" },
               // {
               //   label: t("KeyAccountContacts"),

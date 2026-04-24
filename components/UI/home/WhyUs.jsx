@@ -10,6 +10,7 @@ export default function WhyUs({
     image = "https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776679760/idea-creative-solving-question-icons.jpg_fahnp3.jpg"
 }) {
     const [openIndex, setOpenIndex] = React.useState(0)
+    const contentClassName = "text-sm text-gray-500 leading-relaxed pb-4 pl-[30px] pr-6"
 
     const toggle = (i) => setOpenIndex(prev => prev === i ? null : i)
 
@@ -27,7 +28,7 @@ export default function WhyUs({
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true }}
                 >
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400 mb-5">
+                    <p className="text-[16px] font-semibold uppercase tracking-[0.14em] text-gray-400 mb-5">
                         Why choose us
                     </p>
 
@@ -80,9 +81,11 @@ export default function WhyUs({
                                             transition={{ duration: 0.3, ease: "easeInOut" }}
                                             className="overflow-hidden"
                                         >
-                                            <p className="text-sm text-gray-500 leading-relaxed pb-4 pl-[30px] pr-6">
-                                                {item.content}
-                                            </p>
+                                            {typeof item.content === "string" ? (
+                                                <p className={contentClassName}>{item.content}</p>
+                                            ) : (
+                                                <div className={contentClassName}>{item.content}</div>
+                                            )}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>

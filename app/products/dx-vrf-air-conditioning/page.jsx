@@ -4,6 +4,7 @@ import TrustedAdvisorSection from "@/components/TrustedAdvisorSection";
 import WhyUs from "@/components/UI/home/WhyUs";
 import PageHeading from "@/components/UI/PageHeading";
 import SubPageHeading from "@/components/UI/SubPageHeading";
+import { HiAnnotation, HiOutlinePlus } from "react-icons/hi";
 
 function DxArfAirConditioningPage() {
   const tabItems = [
@@ -125,6 +126,7 @@ function DxArfAirConditioningPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795158/air-conditioner-air-conditioning-system-industrial-house-generative-ai-illustrator_zl8nyt.jpg"
       />
       <TrustedAdvisorSection
+      images={["https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016516/1_xdkma2.png", "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016522/2_famb09.png"]}
         heading="Overview"
         texts={[
           "Our Air Conditioning Division provides a complete range of DX (Direct Expansion) and VRF (Variable Refrigerant Flow) systems engineered for high performance, energy efficiency, and long-term reliability. Designed for residential, commercial, and industrial applications, our solutions ensure optimal indoor comfort even in the harsh climatic conditions of the UAE.",
@@ -133,15 +135,19 @@ function DxArfAirConditioningPage() {
         ]}
       />
       <WasteCollectionMenu
+    
+      image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016383/air-conditioning_zoherk.png"
         heading="Product-Oriented Features"
         tabs={tabItems.map((item) => item.title)}
         items={tabItems.map((item) => featuresElement({ item }))}
       />
       <SolarPanelInstallationsGrid
+      images={["https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016515/4_pbropg.png", "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016518/3_nlkrvm.png", "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016519/5_hjecz7.png"]}
         heading="Service-Oriented Offerings"
         items={serviceOfferings}
+          icon={<HiOutlinePlus size={30} color="white" />}
       />
-      <WhyUs items={applications} reverse={true} />
+      <WhyUs items={applications} reverse={true} image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777016526/6_hey3gy.png" />
     </main>
   );
 }

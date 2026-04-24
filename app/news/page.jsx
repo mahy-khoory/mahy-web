@@ -6,10 +6,10 @@ import FeaturedNews from "@/components/UI/news/FeaturedNews";
 import NewsCard from "@/components/UI/news/NewsCard";
 import Pagination from "@/components/UI/news/Pagination";
 import SwipeableNewsGrid from "@/components/UI/news/SwipeableNewsGrid";
-import { getArticle, getArticles } from "@/utlils/articles";
 import { getTranslations } from "next-intl/server";
-import { articles } from "@/constants/articles";
+
 import { getLocale } from "@/utlils";
+import { articles } from "@/constants/news"; // my correct one now please use this
 
 const itemsPerPage = 3;
 
@@ -31,9 +31,8 @@ async function NewsContent({ searchParams }) {
   const end = start + itemsPerPage;
   const totalPages = Math.ceil(articles.length / itemsPerPage);
 
-  const articleTranslations = await getTranslations('Articles');
-  const news = getArticles(start, end, articleTranslations);
-  const featuredArticle = getArticle(1, articleTranslations);
+const news = articles.slice(start, end);
+const featuredArticle = articles[0]; 
   const locale = await getLocale();
 
   return (
@@ -41,7 +40,7 @@ async function NewsContent({ searchParams }) {
       <PageHeading
         title={t("Heading")}
         description={t("Description")}
-        image="/gallery/gallery-2.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777027449/skyscrapers-from-low-angle-view_1.jpg_kcydkj.jpg"
       />
 
       <Breadcrumb segments={[{ label: t("Page"), href: "/news" }]} locale={locale} />

@@ -88,10 +88,11 @@ function ChilldWaterPumpsPage() {
         // description={
         //   "Reliable pumping system services delivering optimal performance and long-term efficiency. From installation to maintenance, we ensure smooth and uninterrupted operations."
         // }
-        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1776795751/silhouettes-business-people-who-are-working-with-documents-panoramic-new-york-city-view-with-downtown-skyscrapers-law-firm-corporate-lifestyle-concept-double-exposure_eg5kzj.jpg"
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017212/chilled-water-pumps1_n8dxpq.png"
       />
       <div className="my-20">
         <SolarPanelImagesGrid
+        images={["https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017207/chilled-water-pumps2.png_tslxu6.jpg", "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017208/chilled-water-pumps3.png_lug0j8.jpg"]}
           heading="Overview"
           items={overviewItems}
           text1="Trusted"

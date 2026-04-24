@@ -10,15 +10,20 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaYoutube,
+  FaFacebook,
 } from "react-icons/fa6";
 import ScrollToTop from "../UI/ScrollToTop";
 
 export default function Footer({ data, setIsWidgetOpen }) {
   const socials = [
-    { icon: FaXTwitter, href: "#" },
-    { icon: FaLinkedinIn, href: "#" },
-    { icon: FaInstagram, href: "#" },
-    { icon: FaYoutube, href: "#" },
+    { icon: FaFacebook, href: "https://www.facebook.com/MAHYKHOORYLLC" },
+    { icon: FaInstagram, href: "https://www.instagram.com/mahykhooryllc" },
+    {
+      icon: FaLinkedinIn,
+      href: "https://www.linkedin.com/company/m-a-h-y-khoory-co",
+    },
+    { icon: FaXTwitter, href: "https://x.com/mahykhooryllc?ct=google-seo" },
+    { icon: FaYoutube, href: "https://www.youtube.com/@mahykhoory8592" },
   ];
 
   const { brand, sections, bottom } = data;
@@ -103,6 +108,8 @@ export default function Footer({ data, setIsWidgetOpen }) {
                 <Link
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     w-9 h-9
                     flex items-center justify-center

@@ -74,18 +74,22 @@ export default function EngProcessSection({
   items = [
     {
       heading: "Understand your needs",
-      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed."
+      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.",
     },
     {
       heading: "Develop custom solutions",
-      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed."
+      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.",
     },
     {
       heading: "Achieve targeted results",
-      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed."
-    }
-  ]
+      text: "Lorem ipsum dolor sit amet consectetur. Ultricies blandit libero leo ut turpis cras amet sed.",
+    },
+  ],
+  images: propImages,
 }) {
+  const defaultImages = ["/gallery/gallery-1.jpg", "/gallery/gallery-2.jpg"];
+
+  const images = propImages?.length ? propImages : defaultImages;
   return (
     <section className="relative bg-white py-24 md:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -103,7 +107,7 @@ export default function EngProcessSection({
           <div className="relative lg:pl-20">
             {/* Large image (more centered like reference) */}
             <SwipeRevealImage
-              src="/gallery/gallery-1.jpg"
+              src={images[0] || defaultImages[0]}
               alt="Process image 1"
               priority
               delay={0.06}
@@ -120,7 +124,7 @@ export default function EngProcessSection({
 
             {/* Smaller image (overlaps more inward + slightly higher) */}
             <SwipeRevealImage
-              src="/gallery/gallery-2.jpg"
+              src={images[1] || defaultImages[1]}
               alt="Process image 2"
               delay={0.22}
               className="
@@ -180,6 +184,6 @@ export default function EngProcessSection({
           </div>
         </div>
       </div>
-    </section >
+    </section>
   );
 }

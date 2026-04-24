@@ -92,7 +92,8 @@ async function GroupHistoryAndLegacyPage() {
       fullHeight
         title={"Group History & Legacy"}
         // image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776626064/formal-people-with-gadgets-meeting.jpg_et6idb.jpg"}
-        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776626413/grouphistory-legacy_ghps2d.png"}
+        // image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1776626413/grouphistory-legacy_ghps2d.png"}
+        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/f_auto/v1777026942/manhattan-new-york-city-las-americas-6th-av.jpg_h6ccdy.jpg"}
       />
       <TimelineContainer
         title={"History Of MAHY Khoory"}

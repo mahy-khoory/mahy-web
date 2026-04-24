@@ -11,6 +11,8 @@ import NewsroomSection from "@/components/UI/home/NewsroomSection";
 import { getArticles } from "@/utlils/articles";
 import ProjectsSection from "@/components/Home/ProjectsSection";
 import AwardsSection from "@/components/Awards/AwardsSection";
+import { articles } from "@/constants/news";
+
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -155,8 +157,10 @@ export default async function Home() {
       text: t("Announcements.Text8"),
     },
   ];
-  const articleTranslations = await getTranslations("Articles");
-  const articles = await getArticles(0, 4, articleTranslations);
+  // const articleTranslations = await getTranslations("Articles");
+  // const articles = await getArticles(0, 4, articleTranslations);
+
+
   return (
     <main className="bg-white min-h-screen overflow-x-hidden">
       <FloatingMenu floatingMenuItems={floatingMenuItems} />

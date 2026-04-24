@@ -1,9 +1,3 @@
-import PumpingServiceCards from "@/components/Services/PumpingServiceCards";
-import PumpingSystemServices from "@/components/Services/PumpingSystemServices";
-import SubPageHeading from "@/components/UI/SubPageHeading";
-import SplitScrollShowcase from "@/components/UI/SplitScrollShowcase";
-import PumpingServiceHorizontalScroll from "@/components/Services/PumpingServiceHorizontalScroll";
-import StackingCardsSection from "@/components/Services/StackingCardsSection";
 import TrustedAdvisorSection from "@/components/TrustedAdvisorSection";
 import ServicedHotelApartments from "@/components/Services/ServicedHotelApartments";
 import ComprehensiveProcessSection from "@/components/ComprehensiveProcessSection";
@@ -14,27 +8,27 @@ function PumpingSystemServicesPage() {
     {
       title: "Booster Pumps",
       text: "High-performance pressure boosting systems for domestic villas, commercial buildings, and high-rise towers. GRUNDFOS booster systems ensure stable water pressure, intelligent control, and energy-efficient operation through advanced VFD technology and modular pump configurations.",
-      image: "/gallery/gallery-1.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017571/psol3_free9g.png",
     },
     {
       title: "Transfer Pumps",
       text: "Designed for fluid movement, circulation, and utility applications, these pumps provide dependable operation with high hydraulic efficiency. Ideal for building services, chilled/hot water loops, mechanical rooms, and industrial water distribution.",
-      image: "/gallery/gallery-2.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017573/psol4_aeocww.png",
     },
     {
       title: "Submersible Pumps",
       text: "Engineered for submerged operation in boreholes, sumps, tanks, and drainage pits, GRUNDFOS submersible lines deliver superior performance in clean water, sandy wells, drainage, and dewatering applications.",
-      image: "/gallery/gallery-3.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017540/psol5_iunacy.jpg",
     },
     {
       title: "Sewage & Wastewater Pumps",
       text: "Purpose-built for heavy-duty solids handling, sewage transfer, and sludge movement. Available with channel, vortex, and grinder/cutter options, these pumps support municipal networks, STPs, commercial buildings, and industrial wastewater management.",
-      image: "/gallery/gallery-4.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017539/psol6_qabvp2.jpg",
     },
     {
       title: "Chilled Water Pumps",
       text: "Optimized for HVAC applications, these pumps ensure precise chilled water circulation for district cooling plants, central cooling networks, and commercial building HVAC systems. Fully compatible with VFD controls for maximum energy savings.",
-      image: "/gallery/gallery-5.jpg",
+      image: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017537/psol7_kndyxu.jpg",
     },
   ];
   const steps = [
@@ -70,6 +64,7 @@ function PumpingSystemServicesPage() {
         image="https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776796417/products-service-optimization-and-consultancy-heroimage-master_1800x500_vussf6.avif"
       />
       <TrustedAdvisorSection
+      images={["https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017542/psol1_ae3dip.png", "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017526/press-material-products-industrial-pumping-systems-Grundfos-master_320x220_pn4ovk.jpg"]}
         heading="Overview"
         texts={[
           "The Pumping Solutions catalogue showcases a complete portfolio of GRUNDFOS-engineered pump systems, purpose-built for residential, commercial, industrial, and infrastructure applications. Each pump is designed with advanced hydraulics, high-efficiency motors, and durable materials to ensure optimal performance, reduced energy consumption, and long operational life—particularly suited to the demanding climatic and water quality conditions of the UAE.",
@@ -86,6 +81,7 @@ function PumpingSystemServicesPage() {
         subHeading="Specialized Engineering"
         heading="Engineered for UAE Market Requirements"
         steps={steps}
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777017551/psol8.jpg_njgwhj.png"
       />
 
       {/* <StackingCardsSection /> */}

@@ -66,14 +66,24 @@ function SubmersiblePumpsPage() {
         description={
           "Submersible pumps are specifically engineered for fully immersed operation, delivering reliable and efficient liquid handling in wells, tanks, sumps, and drainage pits. Built to perform under harsh and variable environmental conditions, these pumps ensure stable output, excellent hydraulic efficiency, and long-term durability. Their sealed motor design and rugged construction make them suitable for both clean water and demanding solids-laden applications."
         }
-        image={"https://res.cloudinary.com/dpn6mdpxd/image/upload/q_auto/v1776795782/tall-steel-skyscraper-reflects-bright-city-lights-generated-by-ai_2_ujv4ow.jpg"}
+        image={
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777023498/submersible1_dxhdvq.png"
+        }
+      />
+      <EngProcessSection
+        images={[
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777023516/submersible3.png.jpg_hhokke.png",
+          "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777023500/submersible3_i0ycer.png",
+        ]}
+        heading="Applications"
+        items={applications}
       />
       <KitchenImageGrid
+        image="https://res.cloudinary.com/dpn6mdpxd/image/upload/v1777023496/submersible2.png_odmcpj.jpg"
         topHeading="Features"
         headings={["Product-Oriented", "Key Features"]}
         items={features}
       />
-      <EngProcessSection heading="Applications" items={applications} />
     </main>
   );
 }

@@ -58,7 +58,7 @@ export default function AnimatedCounter({
         ${className}
       `}
     >
-      {count.toLocaleString()}
+      {count.toLocaleString()}+
     </span>
   );
 }
