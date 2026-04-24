@@ -11,47 +11,11 @@ function PalletBlock() {
         {
           label: "High-Density Compressed Wood Construction",
           text: [
-            "Made from recycled wood chips bonded under high pressure and temperature, creating a uniform, solid, and durable block with excellent load-bearing capability."
+            "High-density compressed wood blocks are manufactured from recycled wood chips that are bonded under high pressure and temperature, resulting in a uniform, solid, and highly durable structure with excellent load-bearing capacity. These blocks are eco-friendly and sustainable, produced using 100% recycled wood material, which helps reduce waste while supporting responsible manufacturing practices and meeting environmental and export compliance standards.",
+            "They are precision-molded to ensure consistent size, density, and structural integrity, allowing for smooth pallet assembly and compatibility with automated nailing systems and pallet production lines. Available in a wide range of standard sizes, including 148 × 100 mm, 165 × 80 mm, 95 × 95 mm, 148 × 80 mm, and 155 × 100 mm, these blocks can accommodate various industrial requirements.",
+            "In addition, the blocks are moisture and pest resistant, as they are heat-treated and dried to optimal moisture levels, preventing fungal growth, insect infestation, and decay. This makes them highly suitable for export pallets and global shipping standards. With high load-bearing strength, they are engineered to withstand heavy industrial loads, forklift handling, and long-distance transportation without deformation or cracking."
           ]
         },
-        {
-          label: "Eco-Friendly & Sustainable Material",
-          text: [
-            "Produced using 100% recycled wood material, reducing waste and supporting responsible manufacturing practices. Fully compliant with sustainability guidelines for export and environmentally conscious industries."
-          ]
-        },
-        {
-          label: "Precision-Molded, Dimensionally Stable Blocks",
-          text: [
-            "Consistent size, density, and structural integrity ensure smooth pallet assembly and compatibility with automated nailers and pallet-production lines."
-          ]
-        },
-        {
-          label: "Wide Range of Standard Sizes",
-          text: [
-            "We offer multiple commonly used sizes:"
-          ],
-          subItems: [
-            "148 × 100 mm",
-            "165 × 80 mm",
-            "95 × 95 mm",
-            "148 × 80 mm",
-            "155 × 100 mm"
-          ],
-          lastText: "Additional custom sizes can be manufactured based on customer requirements."
-        },
-        {
-          label: "Moisture & Pest Resistant",
-          text: [
-            "Blocks are heat-treated and dried to optimal moisture content, resisting fungal growth, insects, and decay. Suitable for export pallets and global shipping standards."
-          ]
-        },
-        {
-          label: "High Load-Bearing Strength",
-          text: [
-            "Engineered to support heavy industrial loads, forklifting operations, and long-distance transportation without deformation or cracking."
-          ]
-        }
       ]
     },
     {
@@ -60,21 +24,9 @@ function PalletBlock() {
         {
           label: "Custom Size Manufacturing",
           text: [
-            "Tailored dimensions can be produced upon request to meet the specifications of pallet manufacturers, automation lines, and specialized packaging applications."
+            "Custom size manufacturing allows blocks to be produced in tailored dimensions to meet the exact requirements of pallet manufacturers, automated production lines, and specialized packaging applications. In addition, custom density and strength grades can be provided, enabling the production of blocks with varying density levels suited for light-duty, medium-duty, or heavy-duty load requirements. To support efficient handling and logistics, flexible packaging and palletization options are available, including shrink-wrapping, strapping, or bulk packing, depending on customer preferences and operational needs."
           ]
         },
-        {
-          label: "Custom Density / Strength Grades",
-          text: [
-            "We can produce blocks in different density ratings to match required pallet strength levels—light-duty, medium-duty, or heavy-duty loads."
-          ]
-        },
-        {
-          label: "Packaging & Palletization Options",
-          text: [
-            "Products can be supplied shrink-wrapped, strapped, or bulk-packed based on customer handling needs."
-          ]
-        }
       ]
     },
     {

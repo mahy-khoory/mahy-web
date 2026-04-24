@@ -100,6 +100,7 @@ export const companyDescriptions = [
     name: "Greenland Transport",
     logo: "https://res.cloudinary.com/dpn6mdpxd/image/upload/v1774900741/greenland_hyiyra.png",
     href: "/companies/details/greenland-transport",
+    wideLogo: true,
     preview:
       "Provides in-house logistics and transportation services across the UAE, ensuring efficient movement of goods, equipment, and personnel for the Group’s diverse operations.",
   },

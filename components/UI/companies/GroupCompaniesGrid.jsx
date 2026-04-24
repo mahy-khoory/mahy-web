@@ -32,7 +32,7 @@ export default function GroupCompaniesGrid({
               ? "max-w-2xl mx-auto grid grid-cols-1"
               : useTwoCardLayout
                 ? "max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2"
-              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+                : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
           ].join(" ")}
         >
           {companies.map((company, i) => (
@@ -60,7 +60,7 @@ export default function GroupCompaniesGrid({
                     className={[
                       "relative shrink-0",
                       useSingleCardLayout
-                        ? "w-16 h-16"
+                        ? `${company.wideLogo ? "w-50 h-16" : "size-16"}`
                         : useTwoCardLayout
                           ? "w-14 h-14"
                           : "w-10 h-10",
