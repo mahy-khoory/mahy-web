@@ -23,9 +23,9 @@ function WasteCollectionTimeline({
     return (
         <section className="max-w-5xl mx-auto px-5 py-10 md:py-20 relative">
             {topSection && (
-                <div className="relative z-10 border border-gray-300 rounded-2xl bg-white max-w-2xl mx-auto text-center px-8 py-10 mb-10 md:mb-20">
-                    <p className="text-lg">{text}</p>
-                    {text2 && <p className="text-lg mt-4">{text2}</p>}
+                <div className="relative z-10 border border-gray-300 rounded-2xl bg-white max-w-2xl mx-auto text-center px-8 py-10 mb-8 md:mb-20">
+                    <p className="md:text-lg">{text}</p>
+                    {text2 && <p className="md:text-lg mt-4">{text2}</p>}
                     {text3 && text4 && (
                         <div className="flex justify-center text-xs uppercase text-white mt-5">
                             <p className="bg-slate-500 px-3 py-1 rounded-l-2xl">{text3}</p>
@@ -37,9 +37,9 @@ function WasteCollectionTimeline({
                     </div>
                 </div>
             )}
-            <div className="space-y-25 md:space-y-16">
+            <div className="space-y-8 md:space-y-16">
                 {items.map((item, i) => (
-                    <div key={i} className="flex flex-col md:flex-row gap-20 md:gap-0 md:items-stretch items-center justify-between relative">
+                    <div key={i} className="flex flex-col md:flex-row gap-8 md:gap-0 md:items-stretch items-center justify-between relative">
                         {i % 2 === 0 ? (<>
                             <DataElement item={item} alignmentClass={"text-right"} />
                             <ImageElement item={item} />
@@ -47,10 +47,10 @@ function WasteCollectionTimeline({
                             <ImageElement item={item} />
                             <DataElement item={item} />
                         </>)}
-                        <div className="absolute inset-0 flex items-center ">
+                        <div className="absolute inset-0 hidden md:flex items-center">
                             <div className="h-px w-full bg-gray-300" />
                         </div>
-                        <div className="absolute z-10 inset-0 flex justify-center items-center">
+                        <div className="absolute z-10 inset-0 justify-center items-center hidden md:flex">
                             <div className="size-5 rounded-full b-base" />
                         </div>
                     </div>
@@ -95,7 +95,7 @@ const DataElement = ({ item, alignmentClass = "text-left" }) => (
 );
 
 const ImageElement = ({ item }) => (
-    <div className="w-90 rounded-2xl relative z-10 overflow-hidden">
+    <div className="w-90 rounded-2xl relative z-10 overflow-hidden h-80">
         <Image src={item.image} alt={item.title} fill style={{ objectFit: "cover" }} />
     </div>
 );
